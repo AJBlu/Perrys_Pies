@@ -11,14 +11,18 @@ public enum InteractingItem
 
 public class PlayerController : MonoBehaviour
 {
-    private bool isLaunching;
-    private bool isJumpingOutOfPlane;
+    public LayerMask pickableLayerMask;
+    public Transform playerCameraTransform;
+    public GameObject pickupUI;
+    [Min(1)]
+    public float hitRange = 3f;
+    private RaycastHit hit;
+
     private Transform interactedItem;
 
     private bool canMove = true;
 
     private Rigidbody rigid;
-
 
     private Vector3 movement;
     private float xInput;
@@ -26,7 +30,6 @@ public class PlayerController : MonoBehaviour
     private float currentSpeed;
     private float originalSpeed;
     private float jumpSpeed;
-
 
     // Start is called before the first frame update
     void Start()
@@ -41,25 +44,20 @@ public class PlayerController : MonoBehaviour
     {
         ChangeMoveMent();
 
-        if (isLaunching)
+        Debug.DrawRay(playerCameraTransform.position,
+            playerCameraTransform.forward * hitRange,
+            Color.red);
+        if (hit.collider != null)
         {
-            Vector3 targetPos=interactedItem.position;
-            if (Vector3.Distance(transform.position,targetPos)<=1)
-            {
-                rigid.velocity = Vector3.zero;
-                canMove = true;
-                isLaunching = false;
-            }
+            hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
+            pickupUI.SetActive(false);
         }
-
-        if (isJumpingOutOfPlane)
+        if (Physics.Raycast(playerCameraTransform.position,
+            playerCameraTransform.forward,
+            out hit, hitRange, pickableLayerMask))
         {
-            RaycastHit hit;
-            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 1.5f))
-            {
-                isJumpingOutOfPlane = false;
-                transform.rotation = Quaternion.Euler(0, 0, 0);
-            }
+            hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
+            pickupUI.SetActive(true);
         }
     }
 
@@ -97,24 +95,9 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    public void InteractWithItem(InteractingItem item,Transform secondItem=null,bool _canMove=false)
+    private void Interact(InputAction.CallbackContext obj)
     {
-        canMove = _canMove;
-        switch (item)
-        {
-            case InteractingItem.Cannon:
-                isLaunching = true;
-                interactedItem = secondItem;
-                break;
-            case InteractingItem.Plane:
-                if (_canMove == true)
-                {
-                    isJumpingOutOfPlane = true;
-                }
-                break;
-            default:
-                break;
-        }
+        
     }
 
 
@@ -126,16 +109,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag=="DashPad")
-        {
-            currentSpeed *= 3;
-            Invoke("ResetSpeed", 3);
-        }
-        if (other.tag=="JumpPad")
-        {
-            Vector3 jumpVec = new Vector3(20, jumpSpeed*7, 0);
-            rigid.AddRelativeForce(jumpVec, ForceMode.Impulse);
-        }
+        
     }
 
 

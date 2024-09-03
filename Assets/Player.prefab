@@ -302,6 +302,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a9376465fedb3749b3ff7bc064e9712, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pickableLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  playerCameraTransform: {fileID: 2353446158679785555}
+  pickupUI: {fileID: 0}
+  hitRange: 3
 --- !u!114 &6871891509075842663
 MonoBehaviour:
   m_ObjectHideFlags: 0
