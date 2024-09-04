@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     public GameObject pickupUI;
     [Min(1)]
     public float hitRange = 3f;
+    public float sprintLimit;
+    public float sprintFactor;
     private RaycastHit hit;
 
     private Transform interactedItem;
@@ -121,6 +123,14 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 jumpVec = new Vector3(0, jumpSpeed, 0);
             rigid.AddRelativeForce(jumpVec,ForceMode.Impulse);
+        }
+    }
+
+    public void sprint()
+    {
+        if (sprintLimit > 0)
+        {
+            if (currentSpeed == originalSpeed) currentSpeed *= sprintFactor;
         }
     }
 
