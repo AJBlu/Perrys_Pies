@@ -411,6 +411,11 @@ PrefabInstance:
       propertyPath: pickupParent
       value: 
       objectReference: {fileID: 830109298}
+    - target: {fileID: 4389873307277588665, guid: cd638d44627ae154bb988bbc77d2c709,
+        type: 3}
+      propertyPath: sprintFactor
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4932923506114199505, guid: cd638d44627ae154bb988bbc77d2c709,
         type: 3}
       propertyPath: m_LocalPosition.x

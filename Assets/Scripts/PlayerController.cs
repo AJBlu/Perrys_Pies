@@ -131,7 +131,7 @@ public class PlayerController : MonoBehaviour
         if (sprintLimit > 0)
         {
             if (currentSpeed == originalSpeed) currentSpeed *= sprintFactor;
-        }
+        } 
     }
 
     private bool IsGround()
