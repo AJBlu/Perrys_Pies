@@ -130,7 +130,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void sprint()
+    public void sprint(InputAction.CallbackContext context)
     {
         if (sprintLimit > 0)
         {
@@ -138,7 +138,7 @@ public class PlayerController : MonoBehaviour
         } 
     }
 
-    public void crouch()
+    public void crouch(InputAction.CallbackContext context)
     {
         playerCameraTransform.transform.position = crouchHeight.transform.position;
         if (sprintLimit > 0)
@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void resetMovement()
+    public void resetMovement(InputAction.CallbackContext context)
     {
         if (currentSpeed != originalSpeed) currentSpeed = originalSpeed;
         playerCameraTransform.transform.position = normalHeight.transform.position;

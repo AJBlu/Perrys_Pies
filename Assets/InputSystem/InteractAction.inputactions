@@ -56,6 +56,62 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Sprint",
+            "id": "3aa21da0-5e56-4a2a-b0b2-b495e328e1fd",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "5f5e28e5-5766-4822-a610-41e31a48aaaa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "4ebd60b2-adff-4c3a-b2ad-64f5c1a4fab2",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Crouch",
+            "id": "feae29d7-c947-431e-960d-89c7bb1d5359",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "a855b2b5-301f-4148-9ebe-00424afa9d1a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f5773c96-6f03-4443-902b-f59a885fc81a",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": []
