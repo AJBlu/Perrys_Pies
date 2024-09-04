@@ -5,10 +5,10 @@ using UnityEngine;
 public class Highlight : MonoBehaviour
 {
     public List<Renderer> renderers;
-    private Color color = Color.white;
-    public List<Material> materials;
+    public Color color = Color.white;
+    private List<Material> materials;
 
-    private void Start()
+    private void Awake()
     {
         materials = new List<Material>();
         foreach (var renderer in renderers)

@@ -24,6 +24,10 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rigid;
 
+    public GameObject pickupParent;
+
+    private GameObject inHandItem;
+
     private Vector3 movement;
     private float xInput;
     private float zInput;
@@ -31,12 +35,33 @@ public class PlayerController : MonoBehaviour
     private float originalSpeed;
     private float jumpSpeed;
 
+    public InputActionReference interactionInput;
+
     // Start is called before the first frame update
     void Start()
     {
+        interactionInput.action.performed += Interact;
         rigid = GetComponent<Rigidbody>();
         originalSpeed = currentSpeed = 10;
         jumpSpeed = 10;
+    }
+
+    private void Interact(InputAction.CallbackContext obj)
+    {
+        if (hit.collider != null)
+        {
+            Debug.Log(hit.collider.name);
+            if (hit.collider.GetComponent<Holdable>())
+            {
+                inHandItem = hit.collider.gameObject;
+                inHandItem.transform.SetParent(pickupParent.transform, false);
+                return;
+            }
+        }
+        else
+        {
+            Debug.Log("WHY?!?!?!?!?!?!?!?!?!?!?!?!?!");
+        }
     }
 
     // Update is called once per frame
@@ -52,6 +77,12 @@ public class PlayerController : MonoBehaviour
             hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
             pickupUI.SetActive(false);
         }
+
+        if (inHandItem != null)
+        {
+            return;
+        }
+
         if (Physics.Raycast(playerCameraTransform.position,
             playerCameraTransform.forward,
             out hit, hitRange, pickableLayerMask))
@@ -67,6 +98,13 @@ public class PlayerController : MonoBehaviour
         {
             rigid.velocity = transform.TransformDirection(movement);
         }
+    }
+
+    
+
+    public void Drop(InputAction.CallbackContext obj)
+    {
+
     }
 
     private void ChangeMoveMent()
@@ -94,13 +132,6 @@ public class PlayerController : MonoBehaviour
         }
         return false;
     }
-
-    private void Interact(InputAction.CallbackContext obj)
-    {
-        
-    }
-
-
 
     private void ResetSpeed()
     {
