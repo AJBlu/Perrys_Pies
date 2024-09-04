@@ -48,6 +48,7 @@ public class PlayerController : MonoBehaviour
 
     private void Interact(InputAction.CallbackContext obj)
     {
+        Debug.Log("Should try to hold on.");
         if (hit.collider != null)
         {
             Debug.Log(hit.collider.name);
