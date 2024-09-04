@@ -24,9 +24,9 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rigid;
 
-    public GameObject pickupParent;
+    public Transform pickupParent;
 
-    private GameObject inHandItem;
+    private Transform inHandItem;
 
     private Vector3 movement;
     private float xInput;
@@ -54,7 +54,7 @@ public class PlayerController : MonoBehaviour
             Debug.Log(hit.collider.name);
             if (hit.collider.GetComponent<Holdable>())
             {
-                inHandItem = hit.collider.gameObject;
+                inHandItem = hit.collider.gameObject.transform;
                 inHandItem.transform.SetParent(pickupParent.transform, false);
                 return;
             }

@@ -401,6 +401,11 @@ PrefabInstance:
       propertyPath: pickupUI
       value: 
       objectReference: {fileID: 1136731852}
+    - target: {fileID: 4389873307277588665, guid: cd638d44627ae154bb988bbc77d2c709,
+        type: 3}
+      propertyPath: pickupParent
+      value: 
+      objectReference: {fileID: 830109298}
     - target: {fileID: 4932923506114199505, guid: cd638d44627ae154bb988bbc77d2c709,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -481,6 +486,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd638d44627ae154bb988bbc77d2c709, type: 3}
+--- !u!4 &830109298 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8107526997589564132, guid: cd638d44627ae154bb988bbc77d2c709,
+    type: 3}
+  m_PrefabInstance: {fileID: 830109297}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1136731852
 GameObject:
   m_ObjectHideFlags: 0
