@@ -31,7 +31,7 @@ public class Highlight : MonoBehaviour
         {
             foreach (var material in materials)
             {
-                material.DisableKeyword("_EMISSION");
+                material.DisableKeyword("_EMISSION"); 
             }
         }
     }

@@ -44,9 +44,9 @@ public class PlayerController : MonoBehaviour
     {
         ChangeMoveMent();
 
-        Debug.DrawRay(playerCameraTransform.position,
-            playerCameraTransform.forward * hitRange,
-            Color.red);
+        //Debug.DrawRay(playerCameraTransform.position,
+            //playerCameraTransform.forward * hitRange,
+            //Color.red);
         if (hit.collider != null)
         {
             hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
