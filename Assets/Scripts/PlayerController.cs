@@ -18,7 +18,11 @@ public class PlayerController : MonoBehaviour
     public float hitRange = 3f;
     public float sprintLimit;
     public float sprintFactor;
+    public float crawlFactor;
     private RaycastHit hit;
+
+    public GameObject normalHeight;
+    public GameObject crouchHeight;
 
     private Transform interactedItem;
 
@@ -132,6 +136,21 @@ public class PlayerController : MonoBehaviour
         {
             if (currentSpeed == originalSpeed) currentSpeed *= sprintFactor;
         } 
+    }
+
+    public void crouch()
+    {
+        playerCameraTransform.transform.position = crouchHeight.transform.position;
+        if (sprintLimit > 0)
+        {
+            if (currentSpeed == originalSpeed) currentSpeed *= crawlFactor;
+        }
+    }
+
+    public void resetMovement()
+    {
+        if (currentSpeed != originalSpeed) currentSpeed = originalSpeed;
+        playerCameraTransform.transform.position = normalHeight.transform.position;
     }
 
     private bool IsGround()
