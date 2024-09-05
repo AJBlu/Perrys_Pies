@@ -67,6 +67,13 @@ public class PlayerController : MonoBehaviour
     public void storeLogic()
     {
         bool isStored = false;
+        if (hit.collider.tag == "PieTin")
+        {
+            hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            hit.collider.enabled = false;
+            Debug.Log("Better start running!");
+            return;
+        }
         for (int i = 0; i <= inventory.Count; i++)
         {
             if (isStored) return;
@@ -90,15 +97,24 @@ public class PlayerController : MonoBehaviour
             hit.collider.enabled = false;
             keyCount++;
         }
-        if (hit.collider.tag == "Lock")
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.tag == "Lock")
         {
-            for (int i = 0; i <= inventory.Count; i++)
+            if (keyCount == 3)
             {
-                if (inventory[i].tag == "Key")
+                for (int i = 0; i <= inventory.Count; i++)
                 {
-                    inventory[i] = null;
+                    if (inventory[i].tag == "Key")
+                    {
+                        inventory[i] = null;
+                    }
                 }
+                collision.gameObject.SetActive(false);
             }
+            else Debug.Log("Not enough keys.");
         }
     }
 
