@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
 
     public void sprint(InputAction.CallbackContext context)
     {
-        if (sprintLimit > 0)
+        if (sprintLimit > 0 && rigid.velocity != Vector3.zero)
         {
             if (currentSpeed == originalSpeed) currentSpeed *= sprintFactor;
         } 
