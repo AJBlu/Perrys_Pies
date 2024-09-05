@@ -2,41 +2,40 @@
     "name": "InteractAction",
     "maps": [
         {
-            "name": "InteractItem",
-            "id": "7f2c071e-63e3-4159-91e3-ef3957eaa08e",
+            "name": "PlayerControls",
+            "id": "79b57657-79ae-4826-b114-06874115a5e0",
             "actions": [
                 {
-                    "name": "Interact",
+                    "name": "Crouch",
                     "type": "Button",
-                    "id": "cf89021a-cf1e-4c8a-b7d4-d69392b35cae",
+                    "id": "383a257e-7ef6-4837-8fd0-75eb0dee0d3f",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                }
-            ],
-            "bindings": [
+                },
                 {
-                    "name": "",
-                    "id": "14a461ea-9334-40d6-9024-c72b341f9734",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
+                    "name": "Sprint",
+                    "type": "Button",
+                    "id": "ccc1f7a4-b762-47cf-8fd1-b887e17b13d5",
+                    "expectedControlType": "Button",
                     "processors": "",
-                    "groups": "",
-                    "action": "Interact",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "PlayerAction",
-            "id": "e75dbca4-752b-424c-8417-05baf0e465af",
-            "actions": [
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
                 {
                     "name": "Jump",
                     "type": "Button",
-                    "id": "92dfa495-7226-45d9-91f3-90f11645fe6f",
+                    "id": "b4072607-d6fd-4954-8aea-dd6a55a35c69",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "e94785d0-4b35-4780-ae4e-3b9d891d9850",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -46,7 +45,29 @@
             "bindings": [
                 {
                     "name": "",
-                    "id": "6eb76f27-2ee0-440e-9115-78eb539767ee",
+                    "id": "d99ba1e0-5cde-48df-8fa2-5dd62d406ef5",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Sprint",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1011aeda-8818-419c-b1b3-10c1ef1f200c",
+                    "path": "<Keyboard>/leftCtrl",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "41ff77b8-7de2-4536-8df2-f028e81de248",
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
@@ -54,60 +75,15 @@
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Sprint",
-            "id": "3aa21da0-5e56-4a2a-b0b2-b495e328e1fd",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "5f5e28e5-5766-4822-a610-41e31a48aaaa",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "",
-                    "id": "4ebd60b2-adff-4c3a-b2ad-64f5c1a4fab2",
-                    "path": "<Keyboard>/leftShift",
+                    "id": "6846b370-3ae8-436a-94ed-194cf8eb6bea",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
-        },
-        {
-            "name": "Crouch",
-            "id": "feae29d7-c947-431e-960d-89c7bb1d5359",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "a855b2b5-301f-4148-9ebe-00424afa9d1a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "f5773c96-6f03-4443-902b-f59a885fc81a",
-                    "path": "<Keyboard>/leftCtrl",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "New action",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
