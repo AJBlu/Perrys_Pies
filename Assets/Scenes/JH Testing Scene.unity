@@ -1024,6 +1024,12 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!23 &1250718013 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2514457555437363434, guid: 79b4f4ff0e098a44eb53e367b14e7fda,
+    type: 3}
+  m_PrefabInstance: {fileID: 1597237154}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1336533571
 GameObject:
   m_ObjectHideFlags: 0
@@ -1273,6 +1279,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5820010302155885829, guid: 79b4f4ff0e098a44eb53e367b14e7fda,
+        type: 3}
+      propertyPath: renderers.Array.data[0]
+      value: 
+      objectReference: {fileID: 1250718013}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
