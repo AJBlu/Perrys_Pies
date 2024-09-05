@@ -37,7 +37,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 movement;
     private float xInput;
     private float zInput;
-    private float currentSpeed;
+    public float currentSpeed;
     private float originalSpeed;
     private float jumpSpeed;
 
@@ -141,10 +141,7 @@ public class PlayerController : MonoBehaviour
     public void crouch(InputAction.CallbackContext context)
     {
         playerCameraTransform.transform.position = crouchHeight.transform.position;
-        if (sprintLimit > 0)
-        {
-            if (currentSpeed == originalSpeed) currentSpeed *= crawlFactor;
-        }
+        if (currentSpeed == originalSpeed) currentSpeed *= crawlFactor;
     }
 
     public void resetMovement(InputAction.CallbackContext context)
