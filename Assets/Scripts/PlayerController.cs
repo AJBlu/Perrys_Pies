@@ -42,6 +42,7 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed;
 
     public List<GameObject> inventory;
+    public List<GameObject> keySpace;
 
     public InputActionReference interactionInput;
 
@@ -74,6 +75,13 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Better start running!");
             return;
         }
+        if (hit.collider.tag == "Key")
+        {
+            hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            hit.collider.enabled = false;
+            keySpace[keyCount] = hit.collider.gameObject;
+            keyCount++;
+        }
         for (int i = 0; i <= inventory.Count; i++)
         {
             if (isStored) return;
@@ -91,12 +99,7 @@ public class PlayerController : MonoBehaviour
 
     public void itemCheck()
     {
-        if (hit.collider.tag == "Key")
-        {
-            hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
-            hit.collider.enabled = false;
-            keyCount++;
-        }
+        
     }
 
     private void OnTriggerEnter(Collider other)
@@ -105,11 +108,11 @@ public class PlayerController : MonoBehaviour
         {
             if (keyCount == 3)
             {
-                for (int i = 0; i <= inventory.Count; i++)
+                for (int i = 0; i <= keySpace.Count; i++)
                 {
-                    if (inventory[i].tag == "Key")
+                    if (keySpace[i].tag == "Key")
                     {
-                        inventory[i] = null;
+                        keySpace[i] = null;
                         keyCount--;
                     }
                     if (keyCount == 0)
