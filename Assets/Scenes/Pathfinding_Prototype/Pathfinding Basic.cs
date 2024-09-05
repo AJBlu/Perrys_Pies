@@ -15,7 +15,7 @@ public class PathfindingBasic : MonoBehaviour
     public float sightRadius_Chase;
 
 
-
+    bool isRunning = false;
 
 
     private void Awake()
@@ -25,8 +25,28 @@ public class PathfindingBasic : MonoBehaviour
         _destination = GameObject.FindGameObjectWithTag("destination");
         _agent = gameObject.GetComponent<NavMeshAgent>();
         _agent.SetDestination(_destination.transform.position);
+        StartCoroutine("refreshDestination");
     }
 
+    private void FixedUpdate()
+    {
+        if (!isRunning)
+        {
+            StartCoroutine("refreshDestination");
+        }
+    }
+
+
+    private IEnumerator refreshDestination()
+    {
+        isRunning = true;
+        _agent.SetDestination(_destination.transform.position);
+        yield return new WaitForSeconds(1);
+        _agent.SetDestination(_destination.transform.position);
+        isRunning = false;
+
+    }
+    
 
     //returns whether or not object is in sphere determined by detection radius
     private bool _isEntityDetectable(float radius, GameObject entity)
