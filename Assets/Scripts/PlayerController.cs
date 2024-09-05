@@ -81,6 +81,7 @@ public class PlayerController : MonoBehaviour
             hit.collider.enabled = false;
             keySpace[keyCount] = hit.collider.gameObject;
             keyCount++;
+            return;
         }
         for (int i = 0; i <= inventory.Count; i++)
         {
