@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
         interactionInput.action.performed += Interact;
         rigid = GetComponent<Rigidbody>();
         originalSpeed = currentSpeed = 10;
-        jumpSpeed = 10;
+        jumpSpeed = 5;
     }
 
     private void Interact(InputAction.CallbackContext obj)
