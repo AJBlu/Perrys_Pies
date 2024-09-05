@@ -1542,6 +1542,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lock
       objectReference: {fileID: 0}
+    - target: {fileID: 3813954408933433784, guid: b8dc7969d5eedb242a9e179770a96e4d,
+        type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5310909001979041645, guid: b8dc7969d5eedb242a9e179770a96e4d,
         type: 3}
       propertyPath: m_LocalPosition.x
