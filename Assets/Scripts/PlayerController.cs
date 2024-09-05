@@ -97,6 +97,23 @@ public class PlayerController : MonoBehaviour
             hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
             pickupUI.SetActive(true);
         }
+
+        if (Input.GetKeyDown("space"))
+        {
+            if (IsGround()) HandleJump();
+        }
+        if (Input.GetKeyDown("left shift"))
+        {
+            sprint();
+        }
+        if (Input.GetKeyDown("left ctrl"))
+        {
+            crouch();
+        }
+        if (Input.GetKeyUp("left shift") || Input.GetKeyUp("left ctrl"))
+        {
+            resetMovement();
+        }
     }
 
     private void FixedUpdate()
@@ -121,33 +138,37 @@ public class PlayerController : MonoBehaviour
         movement = new Vector3(xInput * currentSpeed, rigid.velocity.y, zInput * currentSpeed);
     }
 
-    public void HandleJump(InputAction.CallbackContext context)
+    public void HandleJump()
     {
-        Debug.Log("Context performed: " + context.performed);
-        Debug.Log("Grounded: " + IsGround());
-        if (context.performed&&IsGround())
+        Debug.Log("Should be jumping.");
+        Vector3 jumpVec = new Vector3(0, jumpSpeed, 0);
+        rigid.AddRelativeForce(jumpVec, ForceMode.Impulse);
+    }
+
+    public void sprint()
+    {
+        Debug.Log("Checking the sprint limit and velocity...");
+        if (sprintLimit > 0 && rigid.velocity != Vector3.zero)
         {
-            Vector3 jumpVec = new Vector3(0, jumpSpeed, 0);
-            rigid.AddRelativeForce(jumpVec,ForceMode.Impulse);
+            Debug.Log("Sprint Success");
+            if (currentSpeed == originalSpeed) currentSpeed *= sprintFactor;
+        }
+        else
+        {
+            Debug.Log("Sprint Failure");
         }
     }
 
-    public void sprint(InputAction.CallbackContext context)
+    public void crouch()
     {
-        if (sprintLimit > 0 && rigid.velocity != Vector3.zero)
-        {
-            if (currentSpeed == originalSpeed) currentSpeed *= sprintFactor;
-        } 
-    }
-
-    public void crouch(InputAction.CallbackContext context)
-    {
+        Debug.Log("Getting lower to the ground");
         playerCameraTransform.transform.position = crouchHeight.transform.position;
         if (currentSpeed == originalSpeed) currentSpeed *= crawlFactor;
     }
 
-    public void resetMovement(InputAction.CallbackContext context)
+    public void resetMovement()
     {
+        Debug.Log("Going back to normal.");
         if (currentSpeed != originalSpeed) currentSpeed = originalSpeed;
         playerCameraTransform.transform.position = normalHeight.transform.position;
     }
