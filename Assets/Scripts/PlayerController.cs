@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
     private float originalSpeed;
     public float jumpSpeed;
 
+    public List<GameObject> inventory;
+
     public InputActionReference interactionInput;
 
     [SerializeField]
@@ -58,10 +60,45 @@ public class PlayerController : MonoBehaviour
     private void Interact(InputAction.CallbackContext obj)
     {
         Debug.Log("Interacted with: " + hit.collider.name);
+        //hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        if (hit.collider.tag != "NotItem") storeLogic();
+    }
+
+    public void storeLogic()
+    {
+        bool isStored = false;
+        for (int i = 0; i <= inventory.Count; i++)
+        {
+            if (isStored) return;
+            else
+            {
+                if (inventory[i] == null)
+                {
+                    inventory[i] = hit.collider.gameObject;
+                    itemCheck();
+                    isStored = true;
+                }
+            }
+        }
+    }
+
+    public void itemCheck()
+    {
         if (hit.collider.tag == "Key")
         {
-            hit.collider.gameObject.SetActive(false);
+            hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            hit.collider.enabled = false;
             keyCount++;
+        }
+        if (hit.collider.tag == "Lock")
+        {
+            for (int i = 0; i <= inventory.Count; i++)
+            {
+                if (inventory[i].tag == "Key")
+                {
+                    inventory[i] = null;
+                }
+            }
         }
     }
 
