@@ -30,9 +30,9 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rigid;
 
-    public Transform pickupParent;
+    //public Transform pickupParent;
 
-    private Transform inHandItem;
+    //private Transform inHandItem;
 
     private Vector3 movement;
     private float xInput;
@@ -42,6 +42,9 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed;
 
     public InputActionReference interactionInput;
+
+    [SerializeField]
+    private int keyCount;
 
     // Start is called before the first frame update
     void Start()
@@ -54,21 +57,17 @@ public class PlayerController : MonoBehaviour
 
     private void Interact(InputAction.CallbackContext obj)
     {
-        Debug.Log("Should try to hold on.");
-        if (hit.collider != null)
+        Debug.Log("Interacted with: " + hit.collider.name);
+        if (hit.collider.tag == "Key")
         {
-            Debug.Log(hit.collider.name);
-            if (hit.collider.GetComponent<Holdable>())
-            {
-                inHandItem = hit.collider.gameObject.transform;
-                inHandItem.transform.SetParent(pickupParent.transform, false);
-                return;
-            }
+            hit.collider.gameObject.SetActive(false);
+            keyCount++;
         }
-        else
-        {
-            Debug.Log("WHY?!?!?!?!?!?!?!?!?!?!?!?!?!");
-        }
+    }
+
+    public void Drop(InputAction.CallbackContext obj)
+    {
+        
     }
 
     // Update is called once per frame
@@ -85,14 +84,7 @@ public class PlayerController : MonoBehaviour
             pickupUI.SetActive(false);
         }
 
-        if (inHandItem != null)
-        {
-            return;
-        }
-
-        if (Physics.Raycast(playerCameraTransform.position,
-            playerCameraTransform.forward,
-            out hit, hitRange, pickableLayerMask))
+        if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit, hitRange, pickableLayerMask))
         {
             hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
             pickupUI.SetActive(true);
@@ -122,13 +114,6 @@ public class PlayerController : MonoBehaviour
         {
             rigid.velocity = transform.TransformDirection(movement);
         }
-    }
-
-    
-
-    public void Drop(InputAction.CallbackContext obj)
-    {
-
     }
 
     private void ChangeMoveMent()

@@ -17,6 +17,11 @@ public class Highlight : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        renderers[0] = this.GetComponent<MeshRenderer>();
+    }
+
     public void ToggleHighlight(bool val)
     {
         if (val)
