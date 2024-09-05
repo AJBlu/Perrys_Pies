@@ -123,6 +123,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!23 &213762133 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2514457555437363434, guid: 79b4f4ff0e098a44eb53e367b14e7fda,
+    type: 3}
+  m_PrefabInstance: {fileID: 414967765}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &231696035
 GameObject:
   m_ObjectHideFlags: 0
@@ -285,6 +291,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5820010302155885829, guid: 79b4f4ff0e098a44eb53e367b14e7fda,
+        type: 3}
+      propertyPath: renderers.Array.data[0]
+      value: 
+      objectReference: {fileID: 213762133}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -439,6 +450,12 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+--- !u!23 &733983030 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2514457555437363434, guid: 79b4f4ff0e098a44eb53e367b14e7fda,
+    type: 3}
+  m_PrefabInstance: {fileID: 8007668898631225518}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &753259680
 GameObject:
   m_ObjectHideFlags: 0
@@ -518,6 +535,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 753259680}
   m_CullTransparentMesh: 1
+--- !u!23 &817101039 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 2514457555437363434, guid: 79b4f4ff0e098a44eb53e367b14e7fda,
+    type: 3}
+  m_PrefabInstance: {fileID: 1172793599}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &830109297
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -984,6 +1007,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5820010302155885829, guid: 79b4f4ff0e098a44eb53e367b14e7fda,
+        type: 3}
+      propertyPath: renderers.Array.data[0]
+      value: 
+      objectReference: {fileID: 817101039}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1503,6 +1531,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5820010302155885829, guid: 79b4f4ff0e098a44eb53e367b14e7fda,
+        type: 3}
+      propertyPath: renderers.Array.data[0]
+      value: 
+      objectReference: {fileID: 733983030}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
