@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
     private float zInput;
     public float currentSpeed;
     private float originalSpeed;
-    private float jumpSpeed;
+    public float jumpSpeed;
 
     public InputActionReference interactionInput;
 
@@ -123,6 +123,8 @@ public class PlayerController : MonoBehaviour
 
     public void HandleJump(InputAction.CallbackContext context)
     {
+        Debug.Log("Context performed: " + context.performed);
+        Debug.Log("Grounded: " + IsGround());
         if (context.performed&&IsGround())
         {
             Vector3 jumpVec = new Vector3(0, jumpSpeed, 0);
