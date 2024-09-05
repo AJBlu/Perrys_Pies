@@ -99,9 +99,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.transform.tag == "Lock")
+        if (other.transform.tag == "Lock")
         {
             if (keyCount == 3)
             {
@@ -110,9 +110,14 @@ public class PlayerController : MonoBehaviour
                     if (inventory[i].tag == "Key")
                     {
                         inventory[i] = null;
+                        keyCount--;
+                    }
+                    if (keyCount == 0)
+                    {
+                        i = 10;
                     }
                 }
-                collision.gameObject.SetActive(false);
+                other.gameObject.SetActive(false);
             }
             else Debug.Log("Not enough keys.");
         }
@@ -225,11 +230,4 @@ public class PlayerController : MonoBehaviour
     {
         currentSpeed = originalSpeed;
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        
-    }
-
-
 }
