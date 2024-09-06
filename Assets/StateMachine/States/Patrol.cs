@@ -6,12 +6,14 @@ using UnityEngine.Events;
 public class Patrol : State
 {
     private bool _isDeaf = false;
-
     public float TimeDeafened = 5f;
+    private Search _search;
+    private Pursuit _pursuit;
 
-    Patrol(PerryNav perry, State_Machine statemachine) : base(perry, statemachine) {
+    public Patrol(PerryNav perry, State_Machine statemachine, PerrySensor perrySensor) : base(perry, statemachine, perrySensor) {
         base._perry = perry;
         base._statemachine = statemachine;
+        base._perrySensor = perrySensor;
     }
 
     public override void InitializeState()
@@ -19,6 +21,11 @@ public class Patrol : State
         //implement deafness
         StartCoroutine("deafenPerry");
         //create room nodes
+        EnteredState.AddListener(_perrySensor.OnNewState);
+        ExitedState.AddListener(_perrySensor.OnExitState);
+        _perrySensor.PlayerSeen_Distant.AddListener(OnDistantPlayerSeen);
+        _perrySensor.PlayerSeen_Close.AddListener(OnClosePlayerSeen);
+        EnteredState.Invoke();
 
 
     }
@@ -36,7 +43,7 @@ public class Patrol : State
 
         //eyesight code goes here
             //if distant eyesight range sees player, change state to pursue
-
+            
             //if close eyesight range sees player, change state to pursue
 
     }
@@ -44,6 +51,7 @@ public class Patrol : State
     public override void ExitState()
     {
         //clear explored room nodes
+        
 
     }
 
@@ -54,4 +62,17 @@ public class Patrol : State
         _isDeaf = false;
     }
 
+    public void OnDistantPlayerSeen()
+    {
+        //change state to search
+        _search = new Search(_perry, _statemachine, _perrySensor);
+        _statemachine.ChangeState(_search);
+    }
+
+    public void OnClosePlayerSeen()
+    {
+        //change state to pursuit
+        _pursuit = new Pursuit(_perry, _statemachine, _perrySensor);
+        _statemachine.ChangeState(_pursuit);
+    }
 }

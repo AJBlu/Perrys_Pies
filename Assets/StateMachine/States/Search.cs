@@ -4,25 +4,48 @@ using UnityEngine;
 
 public class Search : State
 {
-
-    Search(PerryNav perry, State_Machine statemachine) : base(perry, statemachine)
+    private Patrol _patrol;
+    private Pursuit _pursuit;
+    public Search(PerryNav perry, State_Machine statemachine, PerrySensor perrySensor) : base(perry, statemachine, perrySensor)
     {
         base._perry = perry;
         base._statemachine = statemachine;
+        base._perrySensor = perrySensor;
     }
     public override void InitializeState()
     {
-        throw new System.NotImplementedException();
+        EnteredState.AddListener(_perrySensor.OnNewState);
+        ExitedState.AddListener(_perrySensor.OnExitState);
+        _perrySensor.AudioCueHeard.AddListener(OnAudioCueHeard);
+        _perrySensor.SearchCompleted.AddListener(OnSearchCompleted);
+        _perrySensor.PlayerSeen_Close.AddListener(OnClosePlayerSeen);
+
     }
 
     public override void UpdateState()
     {
-        throw new System.NotImplementedException();
 
     }
 
     public override void ExitState()
     {
-        throw new System.NotImplementedException();
+        
+    }
+
+    public void OnAudioCueHeard()
+    {
+
+    }
+
+    public void OnSearchCompleted()
+    {
+        _patrol = new Patrol(_perry, _statemachine, _perrySensor);
+        _statemachine.ChangeState(_patrol);
+    }
+    public void OnClosePlayerSeen()
+    {
+        //change state to pursuit
+        _pursuit = new Pursuit(_perry, _statemachine, _perrySensor);
+        _statemachine.ChangeState(_pursuit);
     }
 }

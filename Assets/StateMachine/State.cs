@@ -7,14 +7,16 @@ public abstract class State : MonoBehaviour
 {
     protected PerryNav _perry;
     protected State_Machine _statemachine;
+    protected PerrySensor _perrySensor;
 
     public UnityEvent EnteredState;
     public UnityEvent ExitedState;
 
-    public State (PerryNav perry, State_Machine statemachine)
+    public State (PerryNav perry, State_Machine statemachine, PerrySensor perrySensor)
     {
         this._perry = perry;
         this._statemachine = statemachine;
+        this._perrySensor = perrySensor;
     }
 
     //What's run whenever the state is entered

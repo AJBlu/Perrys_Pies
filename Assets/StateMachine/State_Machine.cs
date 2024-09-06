@@ -1,14 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class State_Machine : MonoBehaviour
 {
-    State _activeState;
+    public State _activeState;
+
+    private void Awake()
+    {
+
+    }
 
     public void ChangeState(State state)
     {
-        _activeState.ExitState();
+        if(_activeState)
+            _activeState.ExitState();
         _activeState = state;
         _activeState.InitializeState();
     }
