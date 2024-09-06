@@ -83,7 +83,7 @@ public class PlayerController : MonoBehaviour
             keyCount++;
             return;
         }
-        for (int i = 0; i <= inventory.Count; i++)
+        for (int i = 0; i < inventory.Count; i++)
         {
             if (isStored) return;
             else
@@ -109,7 +109,7 @@ public class PlayerController : MonoBehaviour
         {
             if (keyCount == 3)
             {
-                for (int i = 0; i <= keySpace.Count; i++)
+                for (int i = 0; i < keySpace.Count; i++)
                 {
                     if (keySpace[i].tag == "Key")
                     {
