@@ -10,21 +10,24 @@ public class Patrol : State
     private Search _search;
     private Pursuit _pursuit;
 
-    public Patrol(PerryNav perry, State_Machine statemachine, PerrySensor perrySensor) : base(perry, statemachine, perrySensor) {
-        base._perry = perry;
-        base._statemachine = statemachine;
-        base._perrySensor = perrySensor;
-    }
 
+
+    private void Awake()
+    {
+        _perrySensor = gameObject.GetComponent<PerrySensor>();
+        _statemachine = gameObject.GetComponent<State_Machine>();
+    }
     public override void InitializeState()
     {
+        
         //implement deafness
         StartCoroutine("deafenPerry");
         //create room nodes
-        EnteredState.AddListener(_perrySensor.OnNewState);
-        ExitedState.AddListener(_perrySensor.OnExitState);
+
         _perrySensor.PlayerSeen_Distant.AddListener(OnDistantPlayerSeen);
         _perrySensor.PlayerSeen_Close.AddListener(OnClosePlayerSeen);
+        _perrySensor = gameObject.GetComponent<PerrySensor>();
+        _statemachine = gameObject.GetComponent<State_Machine>();
         EnteredState.Invoke();
 
 
@@ -65,14 +68,19 @@ public class Patrol : State
     public void OnDistantPlayerSeen()
     {
         //change state to search
-        _search = new Search(_perry, _statemachine, _perrySensor);
+        _search = gameObject.GetComponent<Search>();
         _statemachine.ChangeState(_search);
     }
 
     public void OnClosePlayerSeen()
     {
         //change state to pursuit
-        _pursuit = new Pursuit(_perry, _statemachine, _perrySensor);
+        _pursuit = gameObject.GetComponent<Pursuit>();
         _statemachine.ChangeState(_pursuit);
     }
+    public void OnAudioCueHeard()
+    {
+
+    }
+
 }

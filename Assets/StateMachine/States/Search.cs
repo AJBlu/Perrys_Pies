@@ -6,11 +6,10 @@ public class Search : State
 {
     private Patrol _patrol;
     private Pursuit _pursuit;
-    public Search(PerryNav perry, State_Machine statemachine, PerrySensor perrySensor) : base(perry, statemachine, perrySensor)
+    private void Awake()
     {
-        base._perry = perry;
-        base._statemachine = statemachine;
-        base._perrySensor = perrySensor;
+        _perrySensor = GetComponent<PerrySensor>();
+        _statemachine = GetComponent<State_Machine>();
     }
     public override void InitializeState()
     {
@@ -37,15 +36,20 @@ public class Search : State
 
     }
 
+    public void OnLineOfSightBroken()
+    {
+        _statemachine.ChangeState(_patrol);
+    }
+
     public void OnSearchCompleted()
     {
-        _patrol = new Patrol(_perry, _statemachine, _perrySensor);
+        _patrol = GetComponent<Patrol>();
         _statemachine.ChangeState(_patrol);
     }
     public void OnClosePlayerSeen()
     {
         //change state to pursuit
-        _pursuit = new Pursuit(_perry, _statemachine, _perrySensor);
+        _pursuit = GetComponent<Pursuit>();
         _statemachine.ChangeState(_pursuit);
     }
 }

@@ -5,13 +5,11 @@ using UnityEngine;
 public class Pursuit : State
 {
 
-    private Search _search;
     private Patrol _patrol;
-    public Pursuit(PerryNav perry, State_Machine statemachine, PerrySensor perrySensor) : base(perry, statemachine, perrySensor)
+    private void Awake()
     {
-        base._perry = perry;
-        base._statemachine = statemachine;
-        base._perrySensor = perrySensor;
+        _perrySensor = GetComponent<PerrySensor>();
+        _statemachine = GetComponent<State_Machine>();
     }
     public override void InitializeState()
     {
@@ -23,18 +21,18 @@ public class Pursuit : State
 
     public override void UpdateState()
     {
-        throw new System.NotImplementedException();
 
     }
 
     public override void ExitState()
     {
-        throw new System.NotImplementedException();
+        ExitedState.Invoke();
     }
 
     public void OnLineOfSightBroken()
     {
-
+        _patrol = GetComponent<Patrol>();
+        _statemachine.ChangeState(_patrol);
     }
 
     public void OnAudioCueHeard()
@@ -47,7 +45,7 @@ public class Pursuit : State
         //perry gets distracted
 
         //and then returns to patrolling
-        _patrol = new Patrol(_perry, _statemachine, _perrySensor);
+        _patrol = GetComponent<Patrol>();
         _statemachine.ChangeState(_patrol);
     }
 }

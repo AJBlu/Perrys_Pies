@@ -7,11 +7,6 @@ public class State_Machine : MonoBehaviour
 {
     public State _activeState;
 
-    private void Awake()
-    {
-
-    }
-
     public void ChangeState(State state)
     {
         if(_activeState)
@@ -20,5 +15,9 @@ public class State_Machine : MonoBehaviour
         _activeState.InitializeState();
     }
 
+    public void RunActiveState()
+    {
+        _activeState.UpdateState();
+    }
 
 }
