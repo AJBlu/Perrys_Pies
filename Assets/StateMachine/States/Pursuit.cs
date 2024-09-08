@@ -1,38 +1,52 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Pursuit : State
 {
 
     private Patrol _patrol;
+    private Search _search;
+    public UnityEvent chase;
     private void Awake()
     {
+        _perry = GetComponent<PerryNav>();
         _perrySensor = GetComponent<PerrySensor>();
         _statemachine = GetComponent<State_Machine>();
+        _patrol = GetComponent<Patrol>();
+        _search = GetComponent<Search>();
+
+
     }
     public override void InitializeState()
     {
-        EnteredState.AddListener(_perrySensor.OnNewState);
-        ExitedState.AddListener(_perrySensor.OnExitState);
-        _perrySensor.LineOfSightBroken.AddListener(OnLineOfSightBroken);
-        _perrySensor.AudioCueHeard.AddListener(OnAudioCueHeard);
+        gameObject.GetComponent<Renderer>().material.color = Color.red;
+
+        EnteredState.Invoke();
+
+        isActive = true;
     }
 
     public override void UpdateState()
     {
-
+        chase.Invoke();
     }
 
     public override void ExitState()
     {
+        Debug.Log("If this doesn't show up I'm killing my dog");
         ExitedState.Invoke();
+        isActive = false;
     }
 
     public void OnLineOfSightBroken()
     {
-        _patrol = GetComponent<Patrol>();
-        _statemachine.ChangeState(_patrol);
+        if (isActive)
+        {
+            _statemachine.ChangeState(_search);
+
+        }
     }
 
     public void OnAudioCueHeard()
@@ -42,10 +56,12 @@ public class Pursuit : State
 
     public void OnDistractionItem()
     {
-        //perry gets distracted
+        if (isActive)
+        {
+            //perry gets distracted
 
-        //and then returns to patrolling
-        _patrol = GetComponent<Patrol>();
-        _statemachine.ChangeState(_patrol);
+            //and then returns to patrolling
+            _statemachine.ChangeState(_patrol);
+        }
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine.Events;
 
 public class Patrol : State
 {
-    private bool _isDeaf = false;
-    public float TimeDeafened = 5f;
+    public bool isDeaf = false;
+    public float TimeDeafened = 10f;
     private Search _search;
     private Pursuit _pursuit;
 
@@ -14,20 +14,23 @@ public class Patrol : State
 
     private void Awake()
     {
+        _perry = GetComponent<PerryNav>();
         _perrySensor = gameObject.GetComponent<PerrySensor>();
         _statemachine = gameObject.GetComponent<State_Machine>();
+        _search = gameObject.GetComponent<Search>();
+        _pursuit = gameObject.GetComponent<Pursuit>();
+
+
     }
     public override void InitializeState()
     {
+        gameObject.GetComponent<Renderer>().material.color = Color.green;
         
         //implement deafness
         StartCoroutine("deafenPerry");
         //create room nodes
 
-        _perrySensor.PlayerSeen_Distant.AddListener(OnDistantPlayerSeen);
-        _perrySensor.PlayerSeen_Close.AddListener(OnClosePlayerSeen);
-        _perrySensor = gameObject.GetComponent<PerrySensor>();
-        _statemachine = gameObject.GetComponent<State_Machine>();
+        isActive = true;
         EnteredState.Invoke();
 
 
@@ -35,7 +38,7 @@ public class Patrol : State
 
     public override void UpdateState()
     {
-        if (!_isDeaf)
+        if (!isDeaf)
         {
             //audio cue code goes here
         }
@@ -54,33 +57,44 @@ public class Patrol : State
     public override void ExitState()
     {
         //clear explored room nodes
-        
+        isActive = false;
 
     }
 
     private IEnumerator deafenPerry()
     {
-        _isDeaf = true;
+        isDeaf = true;
         yield return new WaitForSeconds(TimeDeafened);
-        _isDeaf = false;
+        isDeaf = false;
     }
 
     public void OnDistantPlayerSeen()
     {
-        //change state to search
-        _search = gameObject.GetComponent<Search>();
-        _statemachine.ChangeState(_search);
+        if (isActive)
+        {
+            //change state to search
+            _statemachine.ChangeState(_search);
+        }
+
     }
 
     public void OnClosePlayerSeen()
     {
-        //change state to pursuit
-        _pursuit = gameObject.GetComponent<Pursuit>();
-        _statemachine.ChangeState(_pursuit);
+        if (isActive)
+        {
+            //change state to pursuit
+            _statemachine.ChangeState(_pursuit);
+        }
     }
     public void OnAudioCueHeard()
     {
-
+        if (isActive)
+        {
+            if(!isDeaf)
+            {
+                _statemachine.ChangeState(_search);
+            }
+        }
     }
 
 }

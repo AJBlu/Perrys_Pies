@@ -11,7 +11,7 @@ public abstract class State : MonoBehaviour
 
     public UnityEvent EnteredState;
     public UnityEvent ExitedState;
-
+    public bool isActive;
     //What's run whenever the state is entered
     public abstract void InitializeState();
 

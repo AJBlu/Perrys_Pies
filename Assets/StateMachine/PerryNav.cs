@@ -1,11 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class PerryNav : MonoBehaviour
 {
+    public List<GameObject> searchThese;
+
+    private GameObject player;
+
     //Critical Components
     public PerrySensor PerrySensor;
     public State_Machine StateMachine;
@@ -17,9 +23,12 @@ public class PerryNav : MonoBehaviour
     public State _Pursuit;
     public State _Search;
 
+
+    public UnityEvent allDestinationsSearched;
+
     private void Awake()
     {
-        NavMeshAgent = gameObject.AddComponent(typeof (NavMeshAgent) ) as NavMeshAgent;
+        searchThese = new List<GameObject>();
         if (!PerrySensor)
         {
             print("Warning [PerryNav.cs]: PerrySensor not attached. Instancing it instead.");
@@ -36,10 +45,10 @@ public class PerryNav : MonoBehaviour
 
         StateMachine.ChangeState(_Patrol);
     }
-    void Update()
-    {
-       StateMachine.RunActiveState();
-    }
+
+    private void FixedUpdate()
+    { }        
+    
 
     private void AddEvents()
     {
@@ -47,4 +56,33 @@ public class PerryNav : MonoBehaviour
         _Pursuit = gameObject.GetComponent<Pursuit>();
         _Search = gameObject.GetComponent<Search>();
     }
+
+    public void OnPursuit()
+    {
+        player = GameObject.FindWithTag("Player");
+        NavMeshAgent.SetDestination(player.transform.position);
+    }
+
+    public void OnAudioCueHeard()
+    {
+        float shortest = float.MaxValue;
+        int index = 0;
+        //search 
+        for (int i = 0; i < searchThese.Count; i++)
+        {
+            if (Vector3.Distance(transform.position, searchThese[i].transform.position) < shortest)
+            {
+                shortest = Vector3.Distance(transform.position, searchThese[i].transform.position);
+                index = i;
+            }
+        }
+        NavMeshAgent.SetDestination(searchThese[index].transform.position);
+        searchThese.Remove(searchThese[index]);
+        if(searchThese.Count == 0)
+        {
+            allDestinationsSearched.Invoke();
+        }
+    }
+
+
 }
