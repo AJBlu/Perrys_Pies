@@ -96,6 +96,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
+        Debug.Log("Inventory is full.");
     }
 
     public void itemCheck()
