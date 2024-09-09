@@ -3,12 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public enum InteractingItem
-{
-    Cannon,
-    Plane,
-}
-
 public class PlayerController : MonoBehaviour
 {
     public LayerMask pickableLayerMask;
