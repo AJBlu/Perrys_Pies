@@ -10,7 +10,9 @@ public class PointOfInterest : MonoBehaviour
     {
         if(other.tag == "Perry")
         {
-            Destroy(gameObject);
+
+            //Destroy(this.gameObject);
+            
         }
     }
 

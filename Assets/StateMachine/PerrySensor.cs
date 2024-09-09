@@ -46,7 +46,7 @@ public class PerrySensor : MonoBehaviour
     {
         CheckLineOfSight(CloseSightRadius, "Player");
         CheckLineOfSight(DistantSightRadius, "Player");
-        if (gameObject.GetComponent<Patrol>().isActive && gameObject.GetComponent<Patrol>().isDeaf)
+        if (gameObject.GetComponent<Patrol>().isDeaf)
         {
             
         }
@@ -69,31 +69,40 @@ public class PerrySensor : MonoBehaviour
 
     private void CheckHearing(float radius)
     {
-        GameObject _POI = CheckNearbyAudioSources(HearingRadius);
-        if (_POI != null)
-        {
-            _perryNav.searchThese.Add(_POI);
-            AudioCueHeard.Invoke();
+        List<GameObject> POIs = CheckNearbyAudioSources(HearingRadius);
 
-        }
+            if (POIs.Count != 0)
+            {
+                foreach (GameObject POI in POIs)
+                {
+                    Debug.Log("POI added to searchThese");          
+                    _perryNav.searchThese.Add(POI);
+                }
+                AudioCueHeard.Invoke();
+            }
+
     }
 
-    private GameObject CheckNearbyAudioSources(float radius)
+    private List<GameObject> CheckNearbyAudioSources(float radius)
     {
+        //Debug.Log("Checking audio sources");
         Collider[] hit = Physics.OverlapSphere(transform.position, radius);
+        List<GameObject> POIs = new List<GameObject>(); 
         foreach(Collider col in hit)
         {
             if (col.tag == "POI")
             {
                 if (!col.GetComponent<PointOfInterest>().willBeSearched)
-                {
+                {     
+                    Debug.Log("Adding to POIs");
                     col.gameObject.GetComponent<PointOfInterest>().willBeSearched = true;
-                    return col.gameObject;
+                    POIs.Add(col.gameObject);
+                    Debug.LogFormat($"{POIs.Count}");
                 }
             }
         }
 
-        return null;
+        return POIs;
     }
 
     private GameObject CheckDistance(float radius, string tagname)

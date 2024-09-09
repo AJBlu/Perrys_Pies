@@ -10,6 +10,8 @@ public class PerryNav : MonoBehaviour
 {
     public List<GameObject> searchThese;
 
+    public List<GameObject> patrolThese;
+
     private GameObject player;
 
     //Critical Components
@@ -47,7 +49,21 @@ public class PerryNav : MonoBehaviour
     }
 
     private void FixedUpdate()
-    { }        
+    {
+
+        //if there are still nodes to be searched and nav agent has no path
+        if (searchThese.Count != 0 && !NavMeshAgent.hasPath)
+        {
+            OnAudioCueHeard();
+
+        }
+        //if there are no more nodes to search and nav agent has reached last destination
+        if (searchThese.Count == 0 && !NavMeshAgent.hasPath)
+        {
+            allDestinationsSearched.Invoke();
+        }
+
+    }        
     
 
     private void AddEvents()
@@ -65,24 +81,60 @@ public class PerryNav : MonoBehaviour
 
     public void OnAudioCueHeard()
     {
-        float shortest = float.MaxValue;
-        int index = 0;
-        //search 
-        for (int i = 0; i < searchThese.Count; i++)
+        if (!NavMeshAgent.hasPath)
         {
-            if (Vector3.Distance(transform.position, searchThese[i].transform.position) < shortest)
+            float shortest = float.MaxValue;
+            int index = 0;
+            //search 
+            for (int i = 0; i < searchThese.Count; i++)
             {
-                shortest = Vector3.Distance(transform.position, searchThese[i].transform.position);
-                index = i;
+                if (Vector3.Distance(transform.position, searchThese[i].transform.position) < shortest)
+                {
+                    shortest = Vector3.Distance(transform.position, searchThese[i].transform.position);
+                    index = i;
+                }
             }
-        }
-        NavMeshAgent.SetDestination(searchThese[index].transform.position);
-        searchThese.Remove(searchThese[index]);
-        if(searchThese.Count == 0)
-        {
-            allDestinationsSearched.Invoke();
+            NavMeshAgent.SetDestination(searchThese[index].transform.position);
+            searchThese.Remove(searchThese[index]);
+
         }
     }
 
+    public void OnPatrol()
+    {
+        int i = 0;
+        while (_Patrol.isActive)
+        {
+            if (!NavMeshAgent.hasPath)
+            {
+                NavMeshAgent.SetDestination(patrolThese[i].transform.position);
+                i++;
+            }
+            if (i == patrolThese.Count)
+                i = 0;
+        }
+            //start going through patrol node list
+
+    }
+
+
+    public void GetClosestPatrolNode()
+    {
+        if(!NavMeshAgent.hasPath)
+        {
+            float shortest = float.MaxValue;
+            int index = 0;
+            //search 
+            for (int i = 0; i < patrolThese.Count; i++)
+            {
+                if (Vector3.Distance(transform.position, patrolThese[i].transform.position) < shortest)
+                {
+                    shortest = Vector3.Distance(transform.position, patrolThese[i].transform.position);
+                    index = i;
+                }
+            }
+            NavMeshAgent.SetDestination(patrolThese[index].transform.position);
+        }
+    }
 
 }
