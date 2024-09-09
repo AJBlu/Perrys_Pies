@@ -91,17 +91,13 @@ public class PlayerController : MonoBehaviour
                 if (inventory[i] == null)
                 {
                     inventory[i] = hit.collider.gameObject;
-                    itemCheck();
+                    hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                    hit.collider.enabled = false;
                     isStored = true;
                 }
             }
         }
-        Debug.Log("Inventory is full.");
-    }
-
-    public void itemCheck()
-    {
-        
+        if (!isStored) Debug.Log("Inventory is full.");
     }
 
     private void OnTriggerEnter(Collider other)
