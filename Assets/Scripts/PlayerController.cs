@@ -54,9 +54,9 @@ public class PlayerController : MonoBehaviour
 
     private void Interact(InputAction.CallbackContext obj)
     {
-        Debug.Log("Interacted with: " + hit.collider.name);
+        //Debug.Log("Interacted with: " + hit.collider.name);
         //hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
-        if (hit.collider.tag != "NotItem") storeLogic();
+        if (hit.collider.gameObject.layer == 6) storeLogic();
     }
 
     public void storeLogic()
