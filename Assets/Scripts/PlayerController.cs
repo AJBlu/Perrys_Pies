@@ -192,12 +192,24 @@ public class PlayerController : MonoBehaviour
             rigid.velocity = transform.TransformDirection(movement);
         }
 
-        while (sprinting)
+        if (sprinting)
         {
             if (sprintLimit > 0)
             {
                 sprintLimit -= 0.01f;
             }
+        }
+        else
+        {
+            if (sprintLimit < 1)
+            {
+                sprintLimit += 0.01f;
+            }
+        }
+        
+        if (sprintLimit <= 0)
+        {
+            resetMovement();
         }
     }
 
