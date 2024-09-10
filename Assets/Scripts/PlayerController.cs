@@ -23,6 +23,8 @@ public class PlayerController : MonoBehaviour
     public bool hasPieTin;
     public bool keyDeterGrabbed;
 
+    public int currentFloor;
+
     private Transform interactedItem;
 
     private bool canMove = true;
