@@ -10,6 +10,7 @@ TagManager:
   - Deter
   - Attract
   - KeyDeter
+  - EleDoor
   layers:
   - Default
   - TransparentFX

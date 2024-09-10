@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -45,6 +46,8 @@ public class PlayerController : MonoBehaviour
     public List<GameObject> inventory;
     public List<GameObject> keySpace;
 
+    public List<Button> elevatorButtons;
+
     public GameObject pieTin;
 
     public InputActionReference interactionInput;
@@ -63,6 +66,7 @@ public class PlayerController : MonoBehaviour
         isCrouched = false;
         keyDeterGrabbed = false;
         pieTin = GameObject.FindGameObjectWithTag("PieTin");
+        currentFloor = 1;
     }
 
     private void Interact(InputAction.CallbackContext obj)
@@ -212,6 +216,12 @@ public class PlayerController : MonoBehaviour
         if (sprintLimit <= 0)
         {
             resetMovement();
+        }
+
+        for (int i = 0; i < elevatorButtons.Count; i++)
+        {
+            if (i == currentFloor) elevatorButtons[i].interactable = false;
+            else elevatorButtons[i].interactable = true;
         }
     }
 
