@@ -191,6 +191,14 @@ public class PlayerController : MonoBehaviour
         {
             rigid.velocity = transform.TransformDirection(movement);
         }
+
+        while (sprinting)
+        {
+            if (sprintLimit > 0)
+            {
+                sprintLimit -= 0.01f;
+            }
+        }
     }
 
     private void ChangeMoveMent()
@@ -211,6 +219,7 @@ public class PlayerController : MonoBehaviour
     {
         if (sprintLimit > 0 && rigid.velocity != Vector3.zero)
         {
+            sprinting = true;
             if (currentSpeed == originalSpeed) currentSpeed *= sprintFactor;
         }
         else
@@ -230,6 +239,7 @@ public class PlayerController : MonoBehaviour
     {
         Debug.Log("Going back to normal.");
         isCrouched = false;
+        sprinting = false;
         if (currentSpeed != originalSpeed) currentSpeed = originalSpeed;
         playerCameraTransform.transform.position = normalHeight.transform.position;
     }
