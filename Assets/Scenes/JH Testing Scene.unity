@@ -660,8 +660,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27345c159182aae42b602cbf03c19839, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elevatorPanelHolder: {fileID: 0}
-  player: {fileID: 0}
+  elevatorPanelHolder: {fileID: 1869922428}
+  player: {fileID: 1638568455}
+  elevatorButtons:
+  - {fileID: 333769253}
+  - {fileID: 1498218906}
+  - {fileID: 1985512741}
+  - {fileID: 1097218553}
 --- !u!4 &599591484
 Transform:
   m_ObjectHideFlags: 0
@@ -2790,6 +2795,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79b4f4ff0e098a44eb53e367b14e7fda, type: 3}
+--- !u!1 &1638568455 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5453285288729053333, guid: cd638d44627ae154bb988bbc77d2c709,
+    type: 3}
+  m_PrefabInstance: {fileID: 830109297}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1648325495
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3833,6 +3844,7 @@ SceneRoots:
   - {fileID: 830109297}
   - {fileID: 1217646325}
   - {fileID: 305218639}
+  - {fileID: 599591484}
   - {fileID: 1551031625}
   - {fileID: 1830485788}
   - {fileID: 453845253}
@@ -3852,4 +3864,3 @@ SceneRoots:
   - {fileID: 1679832183}
   - {fileID: 703929696}
   - {fileID: 811213610}
-  - {fileID: 599591484}
