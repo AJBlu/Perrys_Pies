@@ -18,6 +18,9 @@ public class PlayerController : MonoBehaviour
     public GameObject normalHeight;
     public GameObject crouchHeight;
 
+    public bool isCrouched;
+    public bool hasPieTin;
+
     private Transform interactedItem;
 
     private bool canMove = true;
@@ -50,6 +53,8 @@ public class PlayerController : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         originalSpeed = currentSpeed = 10;
         jumpSpeed = 5;
+        hasPieTin = false;
+        isCrouched = false;
     }
 
     private void Interact(InputAction.CallbackContext obj)
@@ -57,6 +62,7 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("Interacted with: " + hit.collider.name);
         //hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
         if (hit.collider.gameObject.layer == 6) storeLogic();
+        else return;
     }
 
     public void storeLogic()
@@ -66,6 +72,7 @@ public class PlayerController : MonoBehaviour
         {
             hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
             hit.collider.enabled = false;
+            hasPieTin = true;
             Debug.Log("Better start running!");
             return;
         }
@@ -200,6 +207,7 @@ public class PlayerController : MonoBehaviour
     public void crouch()
     {
         Debug.Log("Getting lower to the ground");
+        isCrouched = true;
         playerCameraTransform.transform.position = crouchHeight.transform.position;
         if (currentSpeed == originalSpeed) currentSpeed *= crawlFactor;
     }
@@ -207,6 +215,7 @@ public class PlayerController : MonoBehaviour
     public void resetMovement()
     {
         Debug.Log("Going back to normal.");
+        isCrouched = false;
         if (currentSpeed != originalSpeed) currentSpeed = originalSpeed;
         playerCameraTransform.transform.position = normalHeight.transform.position;
     }
