@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
     public bool isCrouched;
     public bool hasPieTin;
+    public bool keyDeterGrabbed;
 
     private Transform interactedItem;
 
@@ -57,17 +58,15 @@ public class PlayerController : MonoBehaviour
         jumpSpeed = 5;
         hasPieTin = false;
         isCrouched = false;
+        keyDeterGrabbed = false;
         pieTin = GameObject.FindGameObjectWithTag("PieTin");
-        pieTin.layer = 7;
     }
 
     private void Interact(InputAction.CallbackContext obj)
     {
         //Debug.Log("Interacted with: " + hit.collider.name);
         //hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
-        if (hit.collider.gameObject.layer == 6) storeLogic();
-        else if (hit.collider.gameObject.layer == 7) Debug.Log("I feel like I need something else...");
-        else return;
+        storeLogic();
     }
 
     public void storeLogic()
@@ -75,11 +74,19 @@ public class PlayerController : MonoBehaviour
         bool isStored = false;
         if (hit.collider.gameObject == pieTin)
         {
-            hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
-            hit.collider.enabled = false;
-            hasPieTin = true;
-            Debug.Log("Better start running!");
-            return;
+            if (!keyDeterGrabbed)
+            {
+                Debug.Log("I feel like I need something else...");
+                return;
+            }
+            else
+            {
+                hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                hit.collider.enabled = false;
+                hasPieTin = true;
+                Debug.Log("Better start running!");
+                return;
+            }
         }
         if (hit.collider.tag == "Key")
         {
@@ -91,7 +98,7 @@ public class PlayerController : MonoBehaviour
         }
         if (hit.collider.tag == "KeyDeter")
         {
-            pieTin.layer = 6;
+            keyDeterGrabbed = true;
         }
         for (int i = 0; i < inventory.Count; i++)
         {
