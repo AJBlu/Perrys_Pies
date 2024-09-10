@@ -222,7 +222,6 @@ public class PlayerController : MonoBehaviour
 
     public void HandleJump()
     {
-        Debug.Log("Should be jumping.");
         Vector3 jumpVec = new Vector3(0, jumpSpeed, 0);
         rigid.AddRelativeForce(jumpVec, ForceMode.Impulse);
     }
@@ -241,7 +240,6 @@ public class PlayerController : MonoBehaviour
 
     public void crouch()
     {
-        Debug.Log("Getting lower to the ground");
         isCrouched = true;
         playerCameraTransform.transform.position = crouchHeight.transform.position;
         if (currentSpeed == originalSpeed) currentSpeed *= crawlFactor;
@@ -249,7 +247,6 @@ public class PlayerController : MonoBehaviour
 
     public void resetMovement()
     {
-        Debug.Log("Going back to normal.");
         isCrouched = false;
         sprinting = false;
         if (currentSpeed != originalSpeed) currentSpeed = originalSpeed;
