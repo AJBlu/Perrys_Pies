@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public GameObject crouchHeight;
 
     public bool isCrouched;
+    public bool sprinting;
     public bool hasPieTin;
     public bool keyDeterGrabbed;
 
