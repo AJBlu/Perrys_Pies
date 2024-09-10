@@ -41,6 +41,8 @@ public class PlayerController : MonoBehaviour
     public List<GameObject> inventory;
     public List<GameObject> keySpace;
 
+    public GameObject pieTin;
+
     public InputActionReference interactionInput;
 
     [SerializeField]
@@ -55,6 +57,8 @@ public class PlayerController : MonoBehaviour
         jumpSpeed = 5;
         hasPieTin = false;
         isCrouched = false;
+        pieTin = GameObject.FindGameObjectWithTag("PieTin");
+        pieTin.layer = 7;
     }
 
     private void Interact(InputAction.CallbackContext obj)
@@ -62,13 +66,14 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("Interacted with: " + hit.collider.name);
         //hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
         if (hit.collider.gameObject.layer == 6) storeLogic();
+        else if (hit.collider.gameObject.layer == 7) Debug.Log("I feel like I need something else...");
         else return;
     }
 
     public void storeLogic()
     {
         bool isStored = false;
-        if (hit.collider.tag == "PieTin")
+        if (hit.collider.gameObject == pieTin)
         {
             hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
             hit.collider.enabled = false;
@@ -83,6 +88,10 @@ public class PlayerController : MonoBehaviour
             keySpace[keyCount] = hit.collider.gameObject;
             keyCount++;
             return;
+        }
+        if (hit.collider.tag == "KeyDeter")
+        {
+            pieTin.layer = 6;
         }
         for (int i = 0; i < inventory.Count; i++)
         {
