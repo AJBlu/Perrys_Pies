@@ -1346,6 +1346,11 @@ PrefabInstance:
       objectReference: {fileID: 1136731852}
     - target: {fileID: 4389873307277588665, guid: cd638d44627ae154bb988bbc77d2c709,
         type: 3}
+      propertyPath: UIManager
+      value: 
+      objectReference: {fileID: 599591482}
+    - target: {fileID: 4389873307277588665, guid: cd638d44627ae154bb988bbc77d2c709,
+        type: 3}
       propertyPath: crawlFactor
       value: 0.5
       objectReference: {fileID: 0}

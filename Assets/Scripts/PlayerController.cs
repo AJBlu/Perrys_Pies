@@ -24,6 +24,8 @@ public class PlayerController : MonoBehaviour
     public bool hasPieTin;
     public bool keyDeterGrabbed;
 
+    public GameObject UIManager;
+
     public int currentFloor;
 
     private Transform interactedItem;
