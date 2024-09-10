@@ -209,15 +209,12 @@ public class PlayerController : MonoBehaviour
 
     public void sprint()
     {
-        Debug.Log("Checking the sprint limit and velocity...");
         if (sprintLimit > 0 && rigid.velocity != Vector3.zero)
         {
-            Debug.Log("Sprint Success");
             if (currentSpeed == originalSpeed) currentSpeed *= sprintFactor;
         }
         else
         {
-            Debug.Log("Sprint Failure");
         }
     }
 
