@@ -460,9 +460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   searchThese: []
-  patrolThese:
-  - {fileID: 0}
-  - {fileID: 0}
+  patrolThese: []
   PerrySensor: {fileID: 1194576402}
   StateMachine: {fileID: 1194576401}
   NavMeshAgent: {fileID: 1194576400}
@@ -471,19 +469,7 @@ MonoBehaviour:
   _Search: {fileID: 1194576397}
   allDestinationsSearched:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1194576397}
-        m_TargetAssemblyTypeName: Search, Assembly-CSharp
-        m_MethodName: OnSearchCompleted
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1194576397
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -524,38 +510,14 @@ MonoBehaviour:
   _perrySensor: {fileID: 0}
   EnteredState:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1194576396}
-        m_TargetAssemblyTypeName: PerryNav, Assembly-CSharp
-        m_MethodName: OnPursuit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   ExitedState:
     m_PersistentCalls:
       m_Calls: []
   isActive: 0
   chase:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1194576396}
-        m_TargetAssemblyTypeName: PerryNav, Assembly-CSharp
-        m_MethodName: OnPursuit
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1194576399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -573,19 +535,7 @@ MonoBehaviour:
   _perrySensor: {fileID: 0}
   EnteredState:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1194576396}
-        m_TargetAssemblyTypeName: PerryNav, Assembly-CSharp
-        m_MethodName: OnPatrol
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   ExitedState:
     m_PersistentCalls:
       m_Calls: []
@@ -647,151 +597,19 @@ MonoBehaviour:
   POI: {fileID: 7379312070594583292, guid: 201b74824aa47d84291b1b68596d0d4a, type: 3}
   PlayerSeen_Distant:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1194576399}
-        m_TargetAssemblyTypeName: Patrol, Assembly-CSharp
-        m_MethodName: OnDistantPlayerSeen
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1194576397}
-        m_TargetAssemblyTypeName: Search, Assembly-CSharp
-        m_MethodName: OnLineOfSight
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   PlayerSeen_Close:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1194576399}
-        m_TargetAssemblyTypeName: Patrol, Assembly-CSharp
-        m_MethodName: OnClosePlayerSeen
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1194576397}
-        m_TargetAssemblyTypeName: Search, Assembly-CSharp
-        m_MethodName: OnClosePlayerSeen
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   AudioCueHeard:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1194576399}
-        m_TargetAssemblyTypeName: Patrol, Assembly-CSharp
-        m_MethodName: OnAudioCueHeard
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1194576398}
-        m_TargetAssemblyTypeName: Pursuit, Assembly-CSharp
-        m_MethodName: OnAudioCueHeard
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1194576397}
-        m_TargetAssemblyTypeName: Search, Assembly-CSharp
-        m_MethodName: OnAudioCueHeard
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1194576396}
-        m_TargetAssemblyTypeName: PerryNav, Assembly-CSharp
-        m_MethodName: OnAudioCueHeard
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   LineOfSightBroken:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1194576398}
-        m_TargetAssemblyTypeName: Pursuit, Assembly-CSharp
-        m_MethodName: OnLineOfSightBroken
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1194576397}
-        m_TargetAssemblyTypeName: Search, Assembly-CSharp
-        m_MethodName: OnLineOfSightBroken
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
   SearchCompleted:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1194576397}
-        m_TargetAssemblyTypeName: Search, Assembly-CSharp
-        m_MethodName: OnSearchCompleted
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!1 &1295571210
 GameObject:
   m_ObjectHideFlags: 0

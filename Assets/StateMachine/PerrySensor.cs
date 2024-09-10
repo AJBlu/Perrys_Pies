@@ -30,16 +30,19 @@ public class PerrySensor : MonoBehaviour
     private PerryNav _perryNav;
 
     //Events
-    public UnityEvent PlayerSeen_Distant;
-    public UnityEvent PlayerSeen_Close;
-    public UnityEvent AudioCueHeard;
-    public UnityEvent LineOfSightBroken;
-    public UnityEvent SearchCompleted;
+    public UnityEvent PlayerSeen_Distant = new UnityEvent();
+    public UnityEvent PlayerSeen_Close = new UnityEvent();
+    public UnityEvent AudioCueHeard = new UnityEvent();
+    public UnityEvent LineOfSightBroken = new UnityEvent();
+    public UnityEvent SearchCompleted = new UnityEvent();
 
     private void Awake()
     {
         _perryNav = gameObject.GetComponent<PerryNav>();
-        _statemachine = gameObject.GetComponent<State_Machine>();   
+        _statemachine = gameObject.GetComponent<State_Machine>();
+
+        //add listeners to events
+        AudioCueHeard.AddListener(_perryNav.OnAudioCueHeard);
     }
 
     private void FixedUpdate()
@@ -210,8 +213,54 @@ public class PerrySensor : MonoBehaviour
     }
 
 
+    public void OnPatrol()
+    {
+        Debug.Log("Adding Patrol listeners");
+        PlayerSeen_Close.AddListener(gameObject.GetComponent<Patrol>().OnClosePlayerSeen);
+        PlayerSeen_Distant.AddListener(gameObject.GetComponent<Patrol>().OnDistantPlayerSeen);
+        AudioCueHeard.AddListener(gameObject.GetComponent<Patrol>().OnAudioCueHeard);
+    }
+
+    public void OnPatrolExit()
+    {
+        //clear explored room nodes
+        PlayerSeen_Close.RemoveListener(gameObject.GetComponent<Patrol>().OnClosePlayerSeen);
+        PlayerSeen_Distant.RemoveListener(gameObject.GetComponent<Patrol>().OnDistantPlayerSeen);
+        AudioCueHeard.RemoveListener(gameObject.GetComponent<Patrol>().OnAudioCueHeard);
+    }
+
+    public void OnSearch()
+    {
+
+        AudioCueHeard.AddListener(gameObject.GetComponent<Search>().OnAudioCueHeard);
+        PlayerSeen_Close.AddListener(gameObject.GetComponent<Search>().OnClosePlayerSeen);
+        PlayerSeen_Distant.AddListener(gameObject.GetComponent<Search>().OnDistantPlayerSeen);
+        LineOfSightBroken.AddListener(gameObject.GetComponent<Search>().OnLineOfSightBroken);
+        
+
+    }
+
+    public void OnSearchExit()
+    {
+
+        AudioCueHeard.RemoveListener(gameObject.GetComponent<Search>().OnAudioCueHeard);
+        PlayerSeen_Close.RemoveListener(gameObject.GetComponent<Search>().OnClosePlayerSeen);
+        PlayerSeen_Distant.RemoveListener(gameObject.GetComponent<Search>().OnDistantPlayerSeen);
+        LineOfSightBroken.RemoveListener(gameObject.GetComponent<Search>().OnLineOfSightBroken);
+
+
+    }
+
+    public void OnPursuit()
+    {
+        LineOfSightBroken.AddListener(gameObject.GetComponent<Pursuit>().OnLineOfSightBroken);
+        AudioCueHeard.AddListener(gameObject.GetComponent<Pursuit>().OnAudioCueHeard);
+    }
+
     public void OnPursuitExit()
     {
+        LineOfSightBroken.RemoveListener(gameObject.GetComponent<Pursuit>().OnLineOfSightBroken);
+        AudioCueHeard.RemoveListener(gameObject.GetComponent<Pursuit>().OnAudioCueHeard);
         InstantiatePOI();
     }
 

@@ -11,33 +11,38 @@ public class Pursuit : State
     public UnityEvent chase;
     private void Awake()
     {
-        _perry = GetComponent<PerryNav>();
-        _perrySensor = GetComponent<PerrySensor>();
         _statemachine = GetComponent<State_Machine>();
         _patrol = GetComponent<Patrol>();
         _search = GetComponent<Search>();
+
+        //events
+
+
 
 
     }
     public override void InitializeState()
     {
         gameObject.GetComponent<Renderer>().material.color = Color.red;
-
-        EnteredState.Invoke();
-
+        EnteredState.AddListener(gameObject.GetComponent<PerryNav>().OnPursuit);
+        ExitedState.AddListener(gameObject.GetComponent<PerryNav>().OnPursuitExit);
+        EnteredState.AddListener(gameObject.GetComponent<PerrySensor>().OnPursuit);
+        ExitedState.AddListener(gameObject.GetComponent<PerrySensor>().OnPursuitExit);
         isActive = true;
+        EnteredState.Invoke();
     }
 
     public override void UpdateState()
     {
-        chase.Invoke();
+        //chase.Invoke();
     }
 
     public override void ExitState()
     {
-        Debug.Log("If this doesn't show up I'm killing my dog");
-        ExitedState.Invoke();
+
         isActive = false;
+        ExitedState.Invoke();
+ 
     }
 
     public void OnLineOfSightBroken()
