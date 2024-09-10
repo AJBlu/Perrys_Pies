@@ -95,6 +95,10 @@ public class PlayerController : MonoBehaviour
                 return;
             }
         }
+        if (hit.collider.gameObject.tag == "EleDoor")
+        {
+            //"elevator panel".setActive = true;
+        }
         if (hit.collider.tag == "Key")
         {
             hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
