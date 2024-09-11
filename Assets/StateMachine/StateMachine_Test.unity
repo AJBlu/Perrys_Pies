@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -460,6 +460,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   searchThese: []
+  patrolThese:
+  - {fileID: 0}
+  - {fileID: 0}
   PerrySensor: {fileID: 1194576402}
   StateMachine: {fileID: 1194576401}
   NavMeshAgent: {fileID: 1194576400}
@@ -503,6 +506,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   isActive: 0
+  SearchToPatrolDelay: 0
 --- !u!114 &1194576398
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,7 +573,19 @@ MonoBehaviour:
   _perrySensor: {fileID: 0}
   EnteredState:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1194576396}
+        m_TargetAssemblyTypeName: PerryNav, Assembly-CSharp
+        m_MethodName: OnPatrol
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   ExitedState:
     m_PersistentCalls:
       m_Calls: []
@@ -1052,74 +1068,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &9208568956149141878
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4188443863519727507, guid: 201b74824aa47d84291b1b68596d0d4a,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 15.87
-      objectReference: {fileID: 0}
-    - target: {fileID: 4188443863519727507, guid: 201b74824aa47d84291b1b68596d0d4a,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.53153443
-      objectReference: {fileID: 0}
-    - target: {fileID: 4188443863519727507, guid: 201b74824aa47d84291b1b68596d0d4a,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 12.39
-      objectReference: {fileID: 0}
-    - target: {fileID: 4188443863519727507, guid: 201b74824aa47d84291b1b68596d0d4a,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4188443863519727507, guid: 201b74824aa47d84291b1b68596d0d4a,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4188443863519727507, guid: 201b74824aa47d84291b1b68596d0d4a,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4188443863519727507, guid: 201b74824aa47d84291b1b68596d0d4a,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4188443863519727507, guid: 201b74824aa47d84291b1b68596d0d4a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4188443863519727507, guid: 201b74824aa47d84291b1b68596d0d4a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4188443863519727507, guid: 201b74824aa47d84291b1b68596d0d4a,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7379312070594583292, guid: 201b74824aa47d84291b1b68596d0d4a,
-        type: 3}
-      propertyPath: m_Name
-      value: POI
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 201b74824aa47d84291b1b68596d0d4a, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1130,4 +1078,3 @@ SceneRoots:
   - {fileID: 1194576394}
   - {fileID: 1553347109}
   - {fileID: 1673405770}
-  - {fileID: 9208568956149141878}

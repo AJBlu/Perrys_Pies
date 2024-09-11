@@ -8,6 +8,7 @@ public class PatrolPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        /*
         if (other.tag == "Perry")
         {
             if (nextPoint != null)
@@ -19,6 +20,7 @@ public class PatrolPoint : MonoBehaviour
                 other.gameObject.GetComponent<PerryNav>().GetClosestPatrolNode();
             }
         }
+        */
     }
     private void OnDrawGizmos()
     {
