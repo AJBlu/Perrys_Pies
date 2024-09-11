@@ -45,7 +45,7 @@ public class Patrol : State
 
         //idle pathing code goes here
             //go to closest random unexplored node
-
+        
 
         //eyesight code goes here
             //if distant eyesight range sees player, change state to pursue
