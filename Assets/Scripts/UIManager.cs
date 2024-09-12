@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -49,5 +50,13 @@ public class UIManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         menuOpen = false;
         elevatorPanelHolder.SetActive(false);
+    }
+
+    public void moveTo()
+    {
+        //Button pressedButton = EventSystem.current.currentSelectedGameObject;
+        //Debug.Log("Button Pressed: " + elevatorButtons.IndexOf(EventSystem.current.currentSelectedGameObject.name));
+        //int buttonPressed = elevatorButtons[];
+        //GameManager.moveToFloor();
     }
 }
