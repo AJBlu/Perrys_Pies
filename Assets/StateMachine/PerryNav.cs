@@ -10,8 +10,6 @@ public class PerryNav : MonoBehaviour
 {
     public List<GameObject> searchThese;
 
-    public List<GameObject> patrolThese;
-
     private GameObject player;
 
     //Critical Components
@@ -43,7 +41,7 @@ public class PerryNav : MonoBehaviour
             StateMachine = gameObject.AddComponent(typeof(State_Machine)) as State_Machine;
         }
 
-        AddEvents();
+        AddStates();
 
         StateMachine.ChangeState(_Patrol);
     }
@@ -66,7 +64,7 @@ public class PerryNav : MonoBehaviour
     }        
     
 
-    private void AddEvents()
+    private void AddStates()
     {
         _Patrol = gameObject.GetComponent<Patrol>();
         _Pursuit = gameObject.GetComponent<Pursuit>();
@@ -77,6 +75,11 @@ public class PerryNav : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         NavMeshAgent.SetDestination(player.transform.position);
+    }
+
+    public void OnPursuitExit()
+    {
+
     }
 
     public void OnAudioCueHeard()
@@ -100,41 +103,34 @@ public class PerryNav : MonoBehaviour
         }
     }
 
+    //events
+
     public void OnPatrol()
     {
-        int i = 0;
-        while (_Patrol.isActive)
-        {
-            if (!NavMeshAgent.hasPath)
-            {
-                NavMeshAgent.SetDestination(patrolThese[i].transform.position);
-                i++;
-            }
-            if (i == patrolThese.Count)
-                i = 0;
-        }
-            //start going through patrol node list
+        Debug.Log("Patrolling now.");
+    }
+        
+
+    public void OnPatrolExit()
+    {
 
     }
 
+    public void OnSearch()
+    {
+        allDestinationsSearched.AddListener(gameObject.GetComponent<Search>().OnSearchCompleted);
+
+    }
+
+    public void OnSearchExit()
+    {
+        allDestinationsSearched.RemoveListener(gameObject.GetComponent<Search>().OnSearchCompleted);
+    }
 
     public void GetClosestPatrolNode()
     {
-        if(!NavMeshAgent.hasPath)
-        {
-            float shortest = float.MaxValue;
-            int index = 0;
-            //search 
-            for (int i = 0; i < patrolThese.Count; i++)
-            {
-                if (Vector3.Distance(transform.position, patrolThese[i].transform.position) < shortest)
-                {
-                    shortest = Vector3.Distance(transform.position, patrolThese[i].transform.position);
-                    index = i;
-                }
-            }
-            NavMeshAgent.SetDestination(patrolThese[index].transform.position);
-        }
+
+
     }
 
 }

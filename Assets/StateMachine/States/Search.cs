@@ -24,11 +24,12 @@ public class Search : State
     public override void InitializeState()
     {
         gameObject.GetComponent<Renderer>().material.color = Color.yellow;
-
-        EnteredState.AddListener(_perrySensor.OnNewState);
-        ExitedState.AddListener(_perrySensor.OnExitState);
+        EnteredState.AddListener(gameObject.GetComponent<PerrySensor>().OnSearch);
+        ExitedState.AddListener(gameObject.GetComponent<PerrySensor>().OnSearchExit);
+        EnteredState.AddListener(gameObject.GetComponent<PerryNav>().OnSearch);
+        ExitedState.AddListener(gameObject.GetComponent<PerryNav>().OnSearchExit);
         isActive = true;
-
+        EnteredState.Invoke();
 
     }
 
@@ -43,6 +44,8 @@ public class Search : State
     public override void ExitState()
     {
         isActive = false;
+
+
     }
 
     public void OnAudioCueHeard()
@@ -50,7 +53,7 @@ public class Search : State
         stillSearching = true;
     }
 
-    public void OnLineOfSight()
+    public void OnDistantPlayerSeen()
     {
         playerEyeContact = true;
     }

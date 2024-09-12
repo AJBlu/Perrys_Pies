@@ -11,15 +11,13 @@ public class Patrol : State
     private Pursuit _pursuit;
 
 
-
     private void Awake()
     {
-        _perry = GetComponent<PerryNav>();
-        _perrySensor = gameObject.GetComponent<PerrySensor>();
-        _statemachine = gameObject.GetComponent<State_Machine>();
         _search = gameObject.GetComponent<Search>();
         _pursuit = gameObject.GetComponent<Pursuit>();
+        _statemachine = gameObject.GetComponent<State_Machine>();
 
+        
 
     }
     public override void InitializeState()
@@ -29,9 +27,14 @@ public class Patrol : State
         //implement deafness
         StartCoroutine("deafenPerry");
         //create room nodes
-
-        isActive = true;
+        //events
+        //events
+        EnteredState.AddListener(gameObject.GetComponent<PerryNav>().OnPatrol);
+        EnteredState.AddListener(gameObject.GetComponent<PerrySensor>().OnPatrol);
+        ExitedState.AddListener(gameObject.GetComponent<PerryNav>().OnPatrolExit);
+        ExitedState.AddListener(gameObject.GetComponent<PerrySensor>().OnPatrolExit);
         EnteredState.Invoke();
+        isActive = true;
 
 
     }
@@ -56,7 +59,9 @@ public class Patrol : State
 
     public override void ExitState()
     {
-        //clear explored room nodes
+
+
+        ExitedState.Invoke();
         isActive = false;
 
     }
@@ -82,12 +87,14 @@ public class Patrol : State
     {
         if (isActive)
         {
+            Debug.Log("Seeing player from patrol state.");
             //change state to pursuit
             _statemachine.ChangeState(_pursuit);
         }
     }
     public void OnAudioCueHeard()
     {
+        Debug.Log("Event invoked!");
         if (isActive)
         {
             if(!isDeaf)
