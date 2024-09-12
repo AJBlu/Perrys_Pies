@@ -492,10 +492,10 @@ MonoBehaviour:
   elevatorPanelHolder: {fileID: 1869922428}
   player: {fileID: 1638568455}
   elevatorButtons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1802197317}
+  - {fileID: 1295078217}
+  - {fileID: 1529249893}
+  - {fileID: 1317952336}
 --- !u!4 &599591484
 Transform:
   m_ObjectHideFlags: 0
