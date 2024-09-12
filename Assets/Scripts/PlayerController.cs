@@ -97,7 +97,8 @@ public class PlayerController : MonoBehaviour
         }
         if (hit.collider.gameObject.tag == "EleDoor")
         {
-            //"elevator panel".setActive = true;
+            UIManager.GetComponent<UIManager>().panelUp();
+            return;
         }
         if (hit.collider.tag == "Key")
         {

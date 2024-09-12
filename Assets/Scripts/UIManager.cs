@@ -13,7 +13,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        elevatorPanelHolder.SetActive(false);
+        panelDown();
     }
 
     // Update is called once per frame
@@ -29,5 +29,21 @@ public class UIManager : MonoBehaviour
             if (i == player.GetComponent<PlayerController>().currentFloor) elevatorButtons[i].interactable = false;
             else elevatorButtons[i].interactable = true;
         }
+    }
+
+    public void panelUp()
+    {
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        elevatorPanelHolder.SetActive(true);
+    }
+
+    public void panelDown()
+    {
+        Time.timeScale = 1;
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        elevatorPanelHolder.SetActive(false);
     }
 }
