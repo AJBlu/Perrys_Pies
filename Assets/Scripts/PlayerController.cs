@@ -161,38 +161,38 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ChangeMoveMent();
+        if (!UIManager.GetComponent<UIManager>().menuOpen)
+        {
+            ChangeMoveMent();
 
-        //Debug.DrawRay(playerCameraTransform.position,
-            //playerCameraTransform.forward * hitRange,
-            //Color.red);
-        if (hit.collider != null)
-        {
-            hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
-            pickupUI.SetActive(false);
-        }
+            if (hit.collider != null)
+            {
+                hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
+                pickupUI.SetActive(false);
+            }
 
-        if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit, hitRange, pickableLayerMask))
-        {
-            hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
-            pickupUI.SetActive(true);
-        }
+            if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit, hitRange, pickableLayerMask))
+            {
+                hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
+                pickupUI.SetActive(true);
+            }
 
-        if (Input.GetKeyDown("space"))
-        {
-            if (IsGround()) HandleJump();
-        }
-        if (Input.GetKeyDown("left shift"))
-        {
-            sprint();
-        }
-        if (Input.GetKeyDown("left ctrl"))
-        {
-            crouch();
-        }
-        if (Input.GetKeyUp("left shift") || Input.GetKeyUp("left ctrl"))
-        {
-            resetMovement();
+            if (Input.GetKeyDown("space"))
+            {
+                if (IsGround()) HandleJump();
+            }
+            if (Input.GetKeyDown("left shift"))
+            {
+                sprint();
+            }
+            if (Input.GetKeyDown("left ctrl"))
+            {
+                crouch();
+            }
+            if (Input.GetKeyUp("left shift") || Input.GetKeyUp("left ctrl"))
+            {
+                resetMovement();
+            }
         }
     }
 

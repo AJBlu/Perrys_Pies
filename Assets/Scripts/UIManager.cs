@@ -8,6 +8,8 @@ public class UIManager : MonoBehaviour
     public GameObject elevatorPanelHolder;
     public GameObject player;
 
+    public bool menuOpen;
+
     public List<Button> elevatorButtons;
 
     // Start is called before the first frame update
@@ -36,6 +38,7 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
+        menuOpen = true;
         elevatorPanelHolder.SetActive(true);
     }
 
@@ -44,6 +47,7 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+        menuOpen = false;
         elevatorPanelHolder.SetActive(false);
     }
 }
