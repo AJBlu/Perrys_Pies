@@ -67,6 +67,11 @@ public class PlayerController : MonoBehaviour
         keyDeterGrabbed = false;
         pieTin = GameObject.FindGameObjectWithTag("PieTin");
         currentFloor = 1;
+        findUI();
+    }
+
+    public void findUI()
+    {
         if (UIManager == null)
         {
             UIManager = GameObject.Find("Canvas");
