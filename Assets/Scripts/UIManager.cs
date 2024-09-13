@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
 {
     public GameObject elevatorPanelHolder;
     public GameObject player;
+    private static GameManager gameManager;
 
     public bool menuOpen;
 
@@ -17,6 +18,10 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         panelDown();
+        if (gameManager == null)
+        {
+            gameManager = FindObjectOfType<GameManager>();
+        }
     }
 
     // Update is called once per frame
@@ -52,11 +57,23 @@ public class UIManager : MonoBehaviour
         elevatorPanelHolder.SetActive(false);
     }
 
-    public void moveTo()
+    public void moveToBasement()
     {
-        //Button pressedButton = EventSystem.current.currentSelectedGameObject;
-        //Debug.Log("Button Pressed: " + elevatorButtons.IndexOf(EventSystem.current.currentSelectedGameObject.name));
-        //int buttonPressed = elevatorButtons[];
-        //GameManager.moveToFloor();
+        gameManager.GetComponent<GameManager>().moveToFloor(0);
+    }
+
+    public void moveToGround()
+    {
+        gameManager.GetComponent<GameManager>().moveToFloor(1);
+    }
+
+    public void moveToFloor2()
+    {
+        gameManager.GetComponent<GameManager>().moveToFloor(2);
+    }
+
+    public void moveToFloor3()
+    {
+        gameManager.GetComponent<GameManager>().moveToFloor(3);
     }
 }

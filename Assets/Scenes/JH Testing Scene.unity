@@ -2057,7 +2057,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 599591483}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: moveTo
+        m_MethodName: moveToGround
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2190,7 +2190,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 599591483}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: moveTo
+        m_MethodName: moveToFloor3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2483,7 +2483,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 599591483}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: moveTo
+        m_MethodName: moveToFloor2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2891,7 +2891,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 79.7, y: 49.21}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1737421327
 MonoBehaviour:
@@ -3016,7 +3016,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 599591483}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: moveTo
+        m_MethodName: moveToBasement
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

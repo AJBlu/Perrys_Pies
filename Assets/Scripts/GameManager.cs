@@ -21,5 +21,7 @@ public class GameManager : MonoBehaviour
     public void moveToFloor(int pressedButton)
     {
         SceneManager.LoadScene(pressedButton);
+        player.GetComponent<PlayerController>().currentFloor = pressedButton;
+        UI.GetComponent<UIManager>().panelDown();
     }
 }
