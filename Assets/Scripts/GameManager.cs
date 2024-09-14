@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
     }
 
+
     public void moveToFloor(int pressedButton)
     {
         UIManager.GetComponent<UIManager>().panelDown();
