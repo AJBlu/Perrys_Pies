@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameObject player;
+    public GameObject player;
     public GameObject UI;
     public GameObject UIManager;
     public GameObject EventSystem;
@@ -17,7 +17,6 @@ public class GameManager : MonoBehaviour
         UI = GameObject.Find("Canvas");
         UIManager = GameObject.Find("UIManager");
         EventSystem = GameObject.Find("EventSystem");
-        DontDestroyOnLoad(player);
         DontDestroyOnLoad(UI);
         DontDestroyOnLoad(UIManager);
         DontDestroyOnLoad(this);
