@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public GameObject player;
+    public static GameObject player;
     public GameObject UI;
     public GameObject UIManager;
+    public GameObject EventSystem;
 
     // Start is called before the first frame update
     void Start()
@@ -15,11 +16,12 @@ public class GameManager : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         UI = GameObject.Find("Canvas");
         UIManager = GameObject.Find("UIManager");
+        EventSystem = GameObject.Find("EventSystem");
         DontDestroyOnLoad(player);
         DontDestroyOnLoad(UI);
         DontDestroyOnLoad(UIManager);
         DontDestroyOnLoad(this);
-        //DontDestroyOnLoad(EventManager);
+        DontDestroyOnLoad(EventSystem);
     }
 
     public void moveToFloor(int pressedButton)
