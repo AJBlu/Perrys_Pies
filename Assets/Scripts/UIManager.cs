@@ -18,16 +18,22 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         panelDown();
-        if (gameManager == null)
-        {
-            gameManager = FindObjectOfType<GameManager>();
-        }
+        checkForMissingStuff();
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void checkForMissingStuff()
+    {
+        if (gameManager == null)
+        {
+            gameManager = FindObjectOfType<GameManager>();
+        }
+        if (player == null) player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void FixedUpdate()

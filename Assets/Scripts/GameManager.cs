@@ -31,7 +31,11 @@ public class GameManager : MonoBehaviour
         UIManager.GetComponent<UIManager>().panelDown();
         SceneManager.LoadScene(pressedButton);
         player.GetComponent<PlayerController>().currentFloor = pressedButton;
-        if (pressedButton == 1) checkForDupes();
+        if (pressedButton == 1)
+        {
+            checkForDupes();
+            UIManager.GetComponent<UIManager>().checkForMissingStuff();
+        }
     }
 
     public void checkForDupes()
