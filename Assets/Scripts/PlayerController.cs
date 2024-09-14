@@ -55,6 +55,22 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private int keyCount;
 
+    public static GameObject playerInstance;
+
+    private void Awake()
+    {
+        DontDestroyOnLoad(this);
+
+        if (playerInstance == null)
+        {
+            playerInstance = this.gameObject;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
