@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(UI);
         DontDestroyOnLoad(UIManager);
         DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(EventManager);
     }
 
     public void moveToFloor(int pressedButton)
