@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         if (UIManager == null)
         {
-            UIManager = GameObject.Find("Canvas");
+            UIManager = GameObject.Find("UIManager");
         }
     }
 
@@ -123,6 +123,11 @@ public class PlayerController : MonoBehaviour
         if (hit.collider.gameObject.tag == "EleDoor")
         {
             UIManager.GetComponent<UIManager>().panelUp();
+            return;
+        }
+        if (hit.collider.gameObject.tag == "RoomDoor")
+        {
+            hit.collider.gameObject.GetComponent<RoomDoor>().isOpen = !hit.collider.gameObject.GetComponent<RoomDoor>().isOpen;
             return;
         }
         if (hit.collider.tag == "Key")

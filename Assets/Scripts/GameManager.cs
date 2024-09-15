@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject UI;
     public GameObject UIManager;
+    public static GameObject InterManageInstance;
     public GameObject EventSystem;
     public static GameObject EventSystemInstance;
     public static GameObject gmInstance;
@@ -31,7 +32,12 @@ public class GameManager : MonoBehaviour
         UIManager.GetComponent<UIManager>().panelDown();
         SceneManager.LoadScene(pressedButton);
         player.GetComponent<PlayerController>().currentFloor = pressedButton;
-        if (pressedButton == 1) checkForDupes();
+        if (pressedButton == 1)
+        {
+            checkForDupes();
+            UIManager.GetComponent<UIManager>().checkForMissingStuff();
+            player.GetComponent<PlayerController>().findUI();
+        }
     }
 
     public void checkForDupes()
@@ -52,6 +58,15 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+
+        if (InterManageInstance == null)
+        {
+            InterManageInstance = UIManager;
+        }
+        else
+        {
+            Destroy(UIManager.gameObject);
         }
     }
 }

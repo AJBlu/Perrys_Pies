@@ -11,6 +11,7 @@ TagManager:
   - Attract
   - KeyDeter
   - EleDoor
+  - RoomDoor
   layers:
   - Default
   - TransparentFX
