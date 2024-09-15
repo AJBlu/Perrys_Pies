@@ -35,8 +35,6 @@ public class GameManager : MonoBehaviour
         if (pressedButton == 1)
         {
             checkForDupes();
-            UIManager.GetComponent<UIManager>().checkForMissingStuff();
-            player.GetComponent<PlayerController>().findUI();
         }
     }
 
@@ -68,5 +66,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(UIManager.gameObject);
         }
+        UIManager.GetComponent<UIManager>().checkForMissingStuff();
+        player.GetComponent<PlayerController>().findUI();
     }
 }
