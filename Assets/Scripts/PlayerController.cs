@@ -125,6 +125,11 @@ public class PlayerController : MonoBehaviour
             UIManager.GetComponent<UIManager>().panelUp();
             return;
         }
+        if (hit.collider.gameObject.tag == "RoomDoor")
+        {
+            hit.collider.gameObject.GetComponent<RoomDoor>().isOpen = !hit.collider.gameObject.GetComponent<RoomDoor>().isOpen;
+            return;
+        }
         if (hit.collider.tag == "Key")
         {
             hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
