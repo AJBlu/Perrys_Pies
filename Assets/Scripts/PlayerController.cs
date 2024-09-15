@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         if (UIManager == null)
         {
-            UIManager = GameObject.Find("Canvas");
+            UIManager = GameObject.Find("UIManager");
         }
     }
 

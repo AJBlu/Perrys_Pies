@@ -33,7 +33,7 @@ public class UIManager : MonoBehaviour
         {
             gameManager = FindObjectOfType<GameManager>();
         }
-        if (player == null) player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null) player = GameObject.Find("Player");
     }
 
     private void FixedUpdate()

@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject UI;
     public GameObject UIManager;
+    public static GameObject InterManageInstance;
     public GameObject EventSystem;
     public static GameObject EventSystemInstance;
     public static GameObject gmInstance;
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
         {
             checkForDupes();
             UIManager.GetComponent<UIManager>().checkForMissingStuff();
+            player.GetComponent<PlayerController>().findUI();
         }
     }
 
@@ -56,6 +58,15 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+
+        if (InterManageInstance == null)
+        {
+            InterManageInstance = UIManager;
+        }
+        else
+        {
+            Destroy(UIManager.gameObject);
         }
     }
 }
