@@ -16,7 +16,10 @@ public class Pursuit : State
         _search = GetComponent<Search>();
 
         //events
-
+        EnteredState.AddListener(gameObject.GetComponent<PerryNav>().OnPursuit);
+        ExitedState.AddListener(gameObject.GetComponent<PerryNav>().OnPursuitExit);
+        EnteredState.AddListener(gameObject.GetComponent<PerrySensor>().OnPursuit);
+        ExitedState.AddListener(gameObject.GetComponent<PerrySensor>().OnPursuitExit);
 
 
 
@@ -24,10 +27,7 @@ public class Pursuit : State
     public override void InitializeState()
     {
         gameObject.GetComponent<Renderer>().material.color = Color.red;
-        EnteredState.AddListener(gameObject.GetComponent<PerryNav>().OnPursuit);
-        ExitedState.AddListener(gameObject.GetComponent<PerryNav>().OnPursuitExit);
-        EnteredState.AddListener(gameObject.GetComponent<PerrySensor>().OnPursuit);
-        ExitedState.AddListener(gameObject.GetComponent<PerrySensor>().OnPursuitExit);
+
         isActive = true;
         EnteredState.Invoke();
     }
