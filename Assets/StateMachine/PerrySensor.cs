@@ -8,19 +8,30 @@ using UnityEngine.Events;
 using UnityEngine.UIElements;
 
 
-//fires off unity events to change states
+/// <summary>
+/// PerrySensor keeps track of what Perry has seen and heard, changing states and adding points of interest to PerryNav.
+/// </summary>
 public class PerrySensor : MonoBehaviour
 {
+
+    [Header("Enable Debug Messages")]
+    public bool DebugEnabled;
+
     //Detection Ranges
-    public float CloseSightRadius;
+    [Header("Detection Ranges")]
 
-    public float DistantSightRadius;
+    [Range(1f,50f)]
+    public float CloseSightRadius = 5f;
 
-    public float HearingRadius;
+    [Range(5f, 50f)]
+    public float DistantSightRadius = 10f;
+
+    [Range(5f, 50f)]
+    public float HearingRadius = 10f;
 
     const float VISIONANGLE = .707f;
 
-    public bool playerSeen;
+    private bool playerSeen;
     private bool runningDelayedRaycast;
 
     public GameObject _player;
@@ -30,6 +41,7 @@ public class PerrySensor : MonoBehaviour
     private PerryNav _perryNav;
 
     //Events
+    [Header("Events")]
     public UnityEvent PlayerSeen_Distant = new UnityEvent();
     public UnityEvent PlayerSeen_Close = new UnityEvent();
     public UnityEvent AudioCueHeard = new UnityEvent();
@@ -38,9 +50,33 @@ public class PerrySensor : MonoBehaviour
 
     private void Awake()
     {
-        _perryNav = gameObject.GetComponent<PerryNav>();
-        _statemachine = gameObject.GetComponent<State_Machine>();
+        if (gameObject.GetComponent<PerryNav>())
+        {
+            _perryNav = gameObject.GetComponent<PerryNav>();
+        } else {
 
+            if (DebugEnabled)
+                Debug.LogFormat($"[{gameObject.name}] in PerrySensor.cs: No PerryNav Component in {gameObject.name}");
+
+        }
+
+        if (gameObject.GetComponent<State_Machine>())
+        {
+            _statemachine = gameObject.GetComponent<State_Machine>();
+        } else {
+            if (DebugEnabled)
+                Debug.LogFormat($"[{gameObject.name}] in PerrySensor.cs: No State_Machine Component in {gameObject.name}");
+        }
+
+
+        if (GameObject.FindWithTag("Player"))
+        {
+            _player = GameObject.FindWithTag("Player");
+        } else
+        {
+            if(DebugEnabled)
+                Debug.LogFormat($"[{gameObject.name}] in PerrySensor.cs: No Player GameObject in Scene");
+        }
         //add listeners to events
         AudioCueHeard.AddListener(_perryNav.OnAudioCueHeard);
     }
@@ -49,11 +85,7 @@ public class PerrySensor : MonoBehaviour
     {
         CheckLineOfSight(CloseSightRadius, "Player");
         CheckLineOfSight(DistantSightRadius, "Player");
-        if (gameObject.GetComponent<Patrol>().isDeaf)
-        {
-            
-        }
-        else
+        if (!gameObject.GetComponent<Patrol>().isDeaf)
         {
             CheckHearing(HearingRadius);
         }
@@ -73,22 +105,22 @@ public class PerrySensor : MonoBehaviour
     private void CheckHearing(float radius)
     {
         List<GameObject> POIs = CheckNearbyAudioSources(HearingRadius);
+        if (POIs.Count != 0)
+        {
+           foreach (GameObject POI in POIs)
+           {
+               if (DebugEnabled)
+                   Debug.LogFormat($"POI at location {POI.transform.position} added to searchThese");
+               _perryNav.searchThese.Add(POI);
+           }
+           AudioCueHeard.Invoke();
+        }
 
-            if (POIs.Count != 0)
-            {
-                foreach (GameObject POI in POIs)
-                {
-                    Debug.Log("POI added to searchThese");          
-                    _perryNav.searchThese.Add(POI);
-                }
-                AudioCueHeard.Invoke();
-            }
 
     }
 
     private List<GameObject> CheckNearbyAudioSources(float radius)
     {
-        //Debug.Log("Checking audio sources");
         Collider[] hit = Physics.OverlapSphere(transform.position, radius);
         List<GameObject> POIs = new List<GameObject>(); 
         foreach(Collider col in hit)
@@ -97,7 +129,6 @@ public class PerrySensor : MonoBehaviour
             {
                 if (!col.GetComponent<PointOfInterest>().willBeSearched)
                 {     
-                    Debug.Log("Adding to POIs");
                     col.gameObject.GetComponent<PointOfInterest>().willBeSearched = true;
                     POIs.Add(col.gameObject);
                     Debug.LogFormat($"{POIs.Count}");
@@ -215,7 +246,7 @@ public class PerrySensor : MonoBehaviour
 
     public void OnPatrol()
     {
-        Debug.Log("Adding Patrol listeners");
+        Debug.LogFormat($"{gameObject.name} Adding PlayerSeen_Close, PlayerSeen_Distant, and AudioCueHeard to Patrol State.");
         PlayerSeen_Close.AddListener(gameObject.GetComponent<Patrol>().OnClosePlayerSeen);
         PlayerSeen_Distant.AddListener(gameObject.GetComponent<Patrol>().OnDistantPlayerSeen);
         AudioCueHeard.AddListener(gameObject.GetComponent<Patrol>().OnAudioCueHeard);
@@ -223,7 +254,7 @@ public class PerrySensor : MonoBehaviour
 
     public void OnPatrolExit()
     {
-        //clear explored room nodes
+        Debug.LogFormat($"{gameObject.name} Removing PlayerSeen_Close, PlayerSeen_Distant, and AudioCueHeard from Patrol State.");
         PlayerSeen_Close.RemoveListener(gameObject.GetComponent<Patrol>().OnClosePlayerSeen);
         PlayerSeen_Distant.RemoveListener(gameObject.GetComponent<Patrol>().OnDistantPlayerSeen);
         AudioCueHeard.RemoveListener(gameObject.GetComponent<Patrol>().OnAudioCueHeard);
@@ -231,6 +262,7 @@ public class PerrySensor : MonoBehaviour
 
     public void OnSearch()
     {
+        Debug.LogFormat($"{gameObject.name} Adding PlayerSeen_Close, PlayerSeen_Distant, AudioCueHeard, and LineOfSightBroken to Search State.");
 
         AudioCueHeard.AddListener(gameObject.GetComponent<Search>().OnAudioCueHeard);
         PlayerSeen_Close.AddListener(gameObject.GetComponent<Search>().OnClosePlayerSeen);
