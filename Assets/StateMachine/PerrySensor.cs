@@ -13,10 +13,6 @@ using UnityEngine.UIElements;
 /// </summary>
 public class PerrySensor : MonoBehaviour
 {
-
-    [Header("Enable Debug Messages")]
-    public bool DebugEnabled;
-
     //Detection Ranges
     [Header("Detection Ranges")]
 
@@ -55,7 +51,7 @@ public class PerrySensor : MonoBehaviour
             _perryNav = gameObject.GetComponent<PerryNav>();
         } else {
 
-            if (DebugEnabled)
+            if (_perryNav.DebugEnabled)
                 Debug.LogFormat($"[{gameObject.name}] in PerrySensor.cs: No PerryNav Component in {gameObject.name}");
 
         }
@@ -64,7 +60,7 @@ public class PerrySensor : MonoBehaviour
         {
             _statemachine = gameObject.GetComponent<State_Machine>();
         } else {
-            if (DebugEnabled)
+            if (_perryNav.DebugEnabled)
                 Debug.LogFormat($"[{gameObject.name}] in PerrySensor.cs: No State_Machine Component in {gameObject.name}");
         }
 
@@ -74,7 +70,7 @@ public class PerrySensor : MonoBehaviour
             _player = GameObject.FindWithTag("Player");
         } else
         {
-            if(DebugEnabled)
+            if(_perryNav.DebugEnabled)
                 Debug.LogFormat($"[{gameObject.name}] in PerrySensor.cs: No Player GameObject in Scene");
         }
         //add listeners to events
@@ -109,7 +105,7 @@ public class PerrySensor : MonoBehaviour
         {
            foreach (GameObject POI in POIs)
            {
-               if (DebugEnabled)
+               if (_perryNav.DebugEnabled)
                    Debug.LogFormat($"POI at location {POI.transform.position} added to searchThese");
                _perryNav.searchThese.Add(POI);
            }
@@ -131,7 +127,7 @@ public class PerrySensor : MonoBehaviour
                 {     
                     col.gameObject.GetComponent<PointOfInterest>().willBeSearched = true;
                     POIs.Add(col.gameObject);
-                    Debug.LogFormat($"{POIs.Count}");
+                    //Debug.LogFormat($"{POIs.Count}");
                 }
             }
         }
@@ -208,24 +204,23 @@ public class PerrySensor : MonoBehaviour
 
     private IEnumerator DelayedRaycast()
     {
-        Debug.Log("Running delayed raycast.");
         runningDelayedRaycast = true;
         RaycastHit hit;
             if (Physics.Raycast(transform.position, _player.transform.position, out hit, CloseSightRadius))
             {
-                Debug.Log("Player Seen up Close.");
+                Debug.LogFormat($"{gameObject.name} [Perrsensor.cs:DelayedRaycast()] Player has been seen up close.");
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * CloseSightRadius, Color.red);
                 PlayerSeen_Close.Invoke();
             }
             else if (Physics.Raycast(transform.position, _player.transform.position, out hit, DistantSightRadius))
             {
-                Debug.Log("Player Seen at Distance.");
+                Debug.LogFormat($"{gameObject.name} [PerrySensor.cs:DelayedRaycast()] Player has been seen from afar.");
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * CloseSightRadius, Color.yellow);
                 PlayerSeen_Distant.Invoke();
             }
             else
             {
-                Debug.Log("Line of Sight officially broken.");
+                Debug.LogFormat($"{gameObject.name} [PerrySensor.cs:DelayedRaycast()] Line of Sight officially broken.");
                 playerSeen = false;
                 LineOfSightBroken.Invoke();
             }
@@ -235,7 +230,8 @@ public class PerrySensor : MonoBehaviour
 
         if (_player == null)
         {
-            Debug.Log("Player is no longer in vision radius.");
+            if(_perryNav.DebugEnabled)
+                Debug.LogFormat($"{gameObject.name} [PerrySensor.cs:DelayedRaycast()] Player is no longer in vision radius.");
             playerSeen = false;
             LineOfSightBroken.Invoke();
         }
@@ -246,7 +242,8 @@ public class PerrySensor : MonoBehaviour
 
     public void OnPatrol()
     {
-        Debug.LogFormat($"{gameObject.name} Adding PlayerSeen_Close, PlayerSeen_Distant, and AudioCueHeard to Patrol State.");
+        if(_perryNav.DebugEnabled)
+            Debug.LogFormat($"{gameObject.name} [PerrySensor.cs:OnPatrol()] Adding PlayerSeen_Close, PlayerSeen_Distant, and AudioCueHeard to Patrol State.");
         PlayerSeen_Close.AddListener(gameObject.GetComponent<Patrol>().OnClosePlayerSeen);
         PlayerSeen_Distant.AddListener(gameObject.GetComponent<Patrol>().OnDistantPlayerSeen);
         AudioCueHeard.AddListener(gameObject.GetComponent<Patrol>().OnAudioCueHeard);
@@ -254,7 +251,8 @@ public class PerrySensor : MonoBehaviour
 
     public void OnPatrolExit()
     {
-        Debug.LogFormat($"{gameObject.name} Removing PlayerSeen_Close, PlayerSeen_Distant, and AudioCueHeard from Patrol State.");
+        if (_perryNav.DebugEnabled)
+            Debug.LogFormat($"{gameObject.name} [PerrySensor.cs:OnPatrolExit()] Removing PlayerSeen_Close, PlayerSeen_Distant, and AudioCueHeard from Patrol State.");
         PlayerSeen_Close.RemoveListener(gameObject.GetComponent<Patrol>().OnClosePlayerSeen);
         PlayerSeen_Distant.RemoveListener(gameObject.GetComponent<Patrol>().OnDistantPlayerSeen);
         AudioCueHeard.RemoveListener(gameObject.GetComponent<Patrol>().OnAudioCueHeard);
@@ -262,7 +260,8 @@ public class PerrySensor : MonoBehaviour
 
     public void OnSearch()
     {
-        Debug.LogFormat($"{gameObject.name} Adding PlayerSeen_Close, PlayerSeen_Distant, AudioCueHeard, and LineOfSightBroken to Search State.");
+        if (_perryNav.DebugEnabled)
+            Debug.LogFormat($"{gameObject.name} [PerrySensor.cs:OnSearch()] Adding PlayerSeen_Close, PlayerSeen_Distant, AudioCueHeard, and LineOfSightBroken to Search State.");
 
         AudioCueHeard.AddListener(gameObject.GetComponent<Search>().OnAudioCueHeard);
         PlayerSeen_Close.AddListener(gameObject.GetComponent<Search>().OnClosePlayerSeen);
@@ -274,7 +273,8 @@ public class PerrySensor : MonoBehaviour
 
     public void OnSearchExit()
     {
-
+        if (_perryNav.DebugEnabled)
+            Debug.LogFormat($"{gameObject.name} [PerrySensor.cs:OnSearchExit()] Removing PlayerSeen_Close, PlayerSeen_Distant, LineOfSightBroken and AudioCueHeard from Search State.");
         AudioCueHeard.RemoveListener(gameObject.GetComponent<Search>().OnAudioCueHeard);
         PlayerSeen_Close.RemoveListener(gameObject.GetComponent<Search>().OnClosePlayerSeen);
         PlayerSeen_Distant.RemoveListener(gameObject.GetComponent<Search>().OnDistantPlayerSeen);
@@ -285,12 +285,16 @@ public class PerrySensor : MonoBehaviour
 
     public void OnPursuit()
     {
+        if (_perryNav.DebugEnabled)
+            Debug.LogFormat($"{gameObject.name} [PerrySensor.cs:OnPursuit()] Adding LineOfSightBroken and AudioCueHeard to Patrol State.");
         LineOfSightBroken.AddListener(gameObject.GetComponent<Pursuit>().OnLineOfSightBroken);
         AudioCueHeard.AddListener(gameObject.GetComponent<Pursuit>().OnAudioCueHeard);
     }
 
     public void OnPursuitExit()
     {
+        if (_perryNav.DebugEnabled)
+            Debug.LogFormat($"{gameObject.name} [PerrySensor.cs:OnPursuitExit()] Adding LineOfSightBroken and AudioCueHeard to Patrol State.");
         LineOfSightBroken.RemoveListener(gameObject.GetComponent<Pursuit>().OnLineOfSightBroken);
         AudioCueHeard.RemoveListener(gameObject.GetComponent<Pursuit>().OnAudioCueHeard);
         InstantiatePOI();
@@ -298,14 +302,16 @@ public class PerrySensor : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Vector3 distantExtends = transform.position + new Vector3(0, 0, DistantSightRadius);
-        Vector3 closeExtends = transform.position + new Vector3(0, 0, CloseSightRadius);
-        UnityEditor.Handles.color = Color.yellow;
-        UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.up, HearingRadius);
-        UnityEditor.Handles.DrawLine(transform.position, distantExtends);
-        UnityEditor.Handles.color = Color.red;
-        UnityEditor.Handles.DrawLine(transform.position, closeExtends);
-
+        if (_perryNav.DebugEnabled)
+        {
+            Vector3 distantExtends = transform.position + new Vector3(0, 0, DistantSightRadius);
+            Vector3 closeExtends = transform.position + new Vector3(0, 0, CloseSightRadius);
+            UnityEditor.Handles.color = Color.yellow;
+            UnityEditor.Handles.DrawWireDisc(transform.position, Vector3.up, HearingRadius);
+            UnityEditor.Handles.DrawLine(transform.position, distantExtends);
+            UnityEditor.Handles.color = Color.red;
+            UnityEditor.Handles.DrawLine(transform.position, closeExtends);
+        }
     }
 
 

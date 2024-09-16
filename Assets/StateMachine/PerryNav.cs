@@ -8,6 +8,9 @@ using UnityEngine.Events;
 
 public class PerryNav : MonoBehaviour
 {
+    [Header("Enable Debug Messages")]
+    public bool DebugEnabled;
+
     public List<GameObject> searchThese;
 
     private GameObject player;
@@ -67,8 +70,22 @@ public class PerryNav : MonoBehaviour
     private void AddStates()
     {
         _Patrol = gameObject.GetComponent<Patrol>();
+        if(_Patrol == null){
+            Debug.Log("Warning [PerryNav.cs]: Patrol not attached. Instancing it instead.");
+           _Patrol = gameObject.AddComponent(typeof (Patrol)) as Patrol;
+        }
         _Pursuit = gameObject.GetComponent<Pursuit>();
+        if (_Pursuit == null)
+        {
+            Debug.Log("Warning [PerryNav.cs]: Pursuit not attached. Instancing it instead.");
+            _Pursuit = gameObject.AddComponent(typeof(Pursuit)) as Pursuit;
+        }
         _Search = gameObject.GetComponent<Search>();
+        if (_Search == null)
+        {
+            Debug.Log("Warning [PerryNav.cs]: Patrol not attached. Instancing it instead.");
+            _Search = gameObject.AddComponent(typeof(Search)) as Search;
+        }
     }
 
     public void OnPursuit()
@@ -107,7 +124,8 @@ public class PerryNav : MonoBehaviour
 
     public void OnPatrol()
     {
-        Debug.Log("Patrolling now.");
+        if(DebugEnabled)
+            Debug.Log("Patrolling now.");
     }
         
 

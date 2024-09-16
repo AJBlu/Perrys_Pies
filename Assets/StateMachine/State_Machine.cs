@@ -13,8 +13,7 @@ public class State_Machine : MonoBehaviour
     }
 
     public void ChangeState(State state)
-    {
-        Debug.LogFormat($"Changing State to {state.GetType().Name}");
+    {      
         if(_activeState)
             _activeState.ExitState();
         _activeState = state;

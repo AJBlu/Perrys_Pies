@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028334, g: 0.22571328, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -529,7 +529,6 @@ GameObject:
   - component: {fileID: 1194576401}
   - component: {fileID: 1194576400}
   - component: {fileID: 1194576399}
-  - component: {fileID: 1194576398}
   - component: {fileID: 1194576397}
   m_Layer: 0
   m_Name: Perry
@@ -638,12 +637,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f1820c61b52bcf4aaa31da96aca48c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DebugEnabled: 0
   searchThese: []
   PerrySensor: {fileID: 1194576402}
   StateMachine: {fileID: 1194576401}
   NavMeshAgent: {fileID: 1194576400}
   _Patrol: {fileID: 1194576399}
-  _Pursuit: {fileID: 1194576398}
+  _Pursuit: {fileID: 0}
   _Search: {fileID: 1194576397}
   allDestinationsSearched:
     m_PersistentCalls:
@@ -671,31 +671,6 @@ MonoBehaviour:
       m_Calls: []
   isActive: 0
   SearchToPatrolDelay: 0
---- !u!114 &1194576398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1194576390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d08154a382dfbe4d883c0676e6237d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _perry: {fileID: 0}
-  _statemachine: {fileID: 0}
-  _perrySensor: {fileID: 0}
-  EnteredState:
-    m_PersistentCalls:
-      m_Calls: []
-  ExitedState:
-    m_PersistentCalls:
-      m_Calls: []
-  isActive: 0
-  chase:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &1194576399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -770,7 +745,6 @@ MonoBehaviour:
   CloseSightRadius: 10
   DistantSightRadius: 25
   HearingRadius: 25
-  playerSeen: 0
   _player: {fileID: 0}
   POI: {fileID: 7379312070594583292, guid: 201b74824aa47d84291b1b68596d0d4a, type: 3}
   PlayerSeen_Distant:
