@@ -300,10 +300,9 @@ public class PerrySensor : MonoBehaviour
         InstantiatePOI();
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
-        if (_perryNav.DebugEnabled)
-        {
+
             Vector3 distantExtends = transform.position + new Vector3(0, 0, DistantSightRadius);
             Vector3 closeExtends = transform.position + new Vector3(0, 0, CloseSightRadius);
             UnityEditor.Handles.color = Color.yellow;
@@ -311,7 +310,6 @@ public class PerrySensor : MonoBehaviour
             UnityEditor.Handles.DrawLine(transform.position, distantExtends);
             UnityEditor.Handles.color = Color.red;
             UnityEditor.Handles.DrawLine(transform.position, closeExtends);
-        }
     }
 
 
