@@ -11,9 +11,8 @@ public class Pursuit : State
     public UnityEvent chase;
     private void Awake()
     {
-        _statemachine = GetComponent<State_Machine>();
-        _patrol = GetComponent<Patrol>();
-        _search = GetComponent<Search>();
+
+        ComponentAssignment();
 
         //events
         EnteredState.AddListener(gameObject.GetComponent<PerryNav>().OnPursuit);
@@ -68,5 +67,62 @@ public class Pursuit : State
             //and then returns to patrolling
             _statemachine.ChangeState(_patrol);
         }
+    }
+    private void ComponentAssignment()
+    {
+        if (gameObject.GetComponent<Search>())
+        {
+            _search = gameObject.GetComponent<Search>();
+        }
+        else
+        {
+            Debug.LogFormat($"{gameObject.name} [Pursuit.cs:ComponentAssignment()] Search component not attached to {gameObject.name}, instancing now.");
+            _search = gameObject.AddComponent(typeof(Search)) as Search;
+        }
+
+        if (gameObject.GetComponent<Patrol>())
+        {
+            _patrol = gameObject.GetComponent<Patrol>();
+        }
+        else
+        {
+            Debug.LogFormat($"{gameObject.name} [Pursuit.cs:ComponentAssignment()] Patrol component not attached to {gameObject.name}, instancing now.");
+            _patrol = gameObject.AddComponent(typeof(Patrol)) as Patrol;
+
+        }
+
+
+        if (gameObject.GetComponent<State_Machine>())
+        {
+            _statemachine = gameObject.GetComponent<State_Machine>();
+        }
+        else
+        {
+            Debug.LogFormat($"WARNING! {gameObject.name} [Pursuit.cs:ComponentAssignment()] StateMachine component not " +
+                $"attached to {gameObject.name} PerryNav.cs should have instanced it.");
+        }
+
+
+        if (gameObject.GetComponent<PerryNav>())
+        {
+            _perry = gameObject.GetComponent<PerryNav>();
+        }
+        else
+        {
+            Debug.LogFormat($"WARNING! {gameObject.name} [Pursuit.cs:ComponentAssignment()] PerryNav component not " +
+                $"attached to {gameObject.name}.");
+        }
+
+
+        if (gameObject.GetComponent<PerrySensor>())
+        {
+            _perrySensor = gameObject.GetComponent<PerrySensor>();
+        }
+        else
+        {
+            Debug.LogFormat($"WARNING! {gameObject.name} [Pursuit.cs:ComponentAssignment()] PerrySensor component not " +
+                $"attached to {gameObject.name} PerryNav.cs should have instanced it.");
+        }
+
     }
 }

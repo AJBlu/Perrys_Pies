@@ -13,12 +13,14 @@ public class Patrol : State
 
     private void Awake()
     {
-        _search = gameObject.GetComponent<Search>();
-        _pursuit = gameObject.GetComponent<Pursuit>();
-        _statemachine = gameObject.GetComponent<State_Machine>();
+        //wrapper for assignment
+        ComponentAssignment();
 
-        
-
+        //added in awake so entered and exited state can be actually invoked
+        EnteredState.AddListener(gameObject.GetComponent<PerryNav>().OnPatrol);
+        EnteredState.AddListener(gameObject.GetComponent<PerrySensor>().OnPatrol);
+        ExitedState.AddListener(gameObject.GetComponent<PerryNav>().OnPatrolExit);
+        ExitedState.AddListener(gameObject.GetComponent<PerrySensor>().OnPatrolExit);
     }
     public override void InitializeState()
     {
@@ -26,13 +28,8 @@ public class Patrol : State
         
         //implement deafness
         StartCoroutine("deafenPerry");
-        //create room nodes
-        //events
-        //events
-        EnteredState.AddListener(gameObject.GetComponent<PerryNav>().OnPatrol);
-        EnteredState.AddListener(gameObject.GetComponent<PerrySensor>().OnPatrol);
-        ExitedState.AddListener(gameObject.GetComponent<PerryNav>().OnPatrolExit);
-        ExitedState.AddListener(gameObject.GetComponent<PerrySensor>().OnPatrolExit);
+        //add entered and exited states to Nav and Sensor
+
         EnteredState.Invoke();
         isActive = true;
 
@@ -87,21 +84,81 @@ public class Patrol : State
     {
         if (isActive)
         {
-            Debug.Log("Seeing player from patrol state.");
+            if(_perry.DebugEnabled)
+                Debug.LogFormat($"{gameObject.name} [Patrol.cs:OnClosePlayerSeen()] Seeing player from patrol state.");
             //change state to pursuit
             _statemachine.ChangeState(_pursuit);
         }
     }
     public void OnAudioCueHeard()
     {
-        Debug.Log("Event invoked!");
         if (isActive)
         {
             if(!isDeaf)
             {
+                if (_perry.DebugEnabled)
+                    Debug.LogFormat($"{gameObject.name} [Patrol.cs:OnAudioCueHeard()] Hearing audio from patrol state.");
                 _statemachine.ChangeState(_search);
             }
         }
+    }
+
+    private void ComponentAssignment()
+    {
+        if (gameObject.GetComponent<Search>())
+        {
+            _search = gameObject.GetComponent<Search>();
+        }
+        else
+        {
+            Debug.LogFormat($"{gameObject.name} [Patrol.cs:ComponentAssignment()] Search component not attached to {gameObject.name}, instancing now.");
+            _search = gameObject.AddComponent(typeof(Search)) as Search;
+        }
+
+        if (gameObject.GetComponent<Pursuit>())
+        {
+            _pursuit = gameObject.GetComponent<Pursuit>();
+        }
+        else
+        {
+            Debug.LogFormat($"{gameObject.name} [Patrol.cs:ComponentAssignment()] Pursuit component not attached to {gameObject.name}, instancing now.");
+            _pursuit = gameObject.AddComponent(typeof(Pursuit)) as Pursuit;
+
+        }
+
+
+        if (gameObject.GetComponent<State_Machine>())
+        {
+            _statemachine = gameObject.GetComponent<State_Machine>();
+        }
+        else
+        {
+            Debug.LogFormat($"WARNING! {gameObject.name} [Patrol.cs:ComponentAssignment()] StateMachine component not " +
+                $"attached to {gameObject.name} PerryNav.cs should have instanced it.");
+        }
+
+
+        if (gameObject.GetComponent<PerryNav>())
+        {
+            _perry = gameObject.GetComponent<PerryNav>();
+        }
+        else
+        {
+            Debug.LogFormat($"WARNING! {gameObject.name} [Patrol.cs:ComponentAssignment()] PerryNav component not " +
+                $"attached to {gameObject.name}.");
+        }
+
+
+        if (gameObject.GetComponent<PerrySensor>())
+        {
+            _perrySensor = gameObject.GetComponent<PerrySensor>();
+        }
+        else
+        {
+            Debug.LogFormat($"WARNING! {gameObject.name} [Patrol.cs:ComponentAssignment()] PerrySensor component not " +
+                $"attached to {gameObject.name} PerryNav.cs should have instanced it.");
+        }
+
     }
 
 }

@@ -530,6 +530,7 @@ GameObject:
   - component: {fileID: 1194576400}
   - component: {fileID: 1194576399}
   - component: {fileID: 1194576397}
+  - component: {fileID: 1194576403}
   m_Layer: 0
   m_Name: Perry
   m_TagString: Untagged
@@ -643,7 +644,7 @@ MonoBehaviour:
   StateMachine: {fileID: 1194576401}
   NavMeshAgent: {fileID: 1194576400}
   _Patrol: {fileID: 1194576399}
-  _Pursuit: {fileID: 0}
+  _Pursuit: {fileID: 1194576403}
   _Search: {fileID: 1194576397}
   allDestinationsSearched:
     m_PersistentCalls:
@@ -760,6 +761,31 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   SearchCompleted:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1194576403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1194576390}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d08154a382dfbe4d883c0676e6237d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _perry: {fileID: 0}
+  _statemachine: {fileID: 0}
+  _perrySensor: {fileID: 0}
+  EnteredState:
+    m_PersistentCalls:
+      m_Calls: []
+  ExitedState:
+    m_PersistentCalls:
+      m_Calls: []
+  isActive: 0
+  chase:
     m_PersistentCalls:
       m_Calls: []
 --- !u!1 &1295571210

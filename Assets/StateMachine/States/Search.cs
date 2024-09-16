@@ -94,4 +94,61 @@ public class Search : State
 
     }
 
+    private void ComponentAssignment()
+    {
+        if (gameObject.GetComponent<Pursuit>())
+        {
+            _pursuit = gameObject.GetComponent<Pursuit>();
+        }
+        else
+        {
+            Debug.LogFormat($"{gameObject.name} [Search.cs:ComponentAssignment()] Pursuit component not attached to {gameObject.name}, instancing now.");
+            _pursuit = gameObject.AddComponent(typeof(Pursuit)) as Pursuit;
+        }
+
+        if (gameObject.GetComponent<Patrol>())
+        {
+            _patrol = gameObject.GetComponent<Patrol>();
+        }
+        else
+        {
+            Debug.LogFormat($"{gameObject.name} [Search.cs:ComponentAssignment()] Patrol component not attached to {gameObject.name}, instancing now.");
+            _patrol = gameObject.AddComponent(typeof(Patrol)) as Patrol;
+
+        }
+
+
+        if (gameObject.GetComponent<State_Machine>())
+        {
+            _statemachine = gameObject.GetComponent<State_Machine>();
+        }
+        else
+        {
+            Debug.LogFormat($"WARNING! {gameObject.name} [Search.cs:ComponentAssignment()] StateMachine component not " +
+                $"attached to {gameObject.name} PerryNav.cs should have instanced it.");
+        }
+
+
+        if (gameObject.GetComponent<PerryNav>())
+        {
+            _perry = gameObject.GetComponent<PerryNav>();
+        }
+        else
+        {
+            Debug.LogFormat($"WARNING! {gameObject.name} [Search.cs:ComponentAssignment()] PerryNav component not " +
+                $"attached to {gameObject.name}.");
+        }
+
+
+        if (gameObject.GetComponent<PerrySensor>())
+        {
+            _perrySensor = gameObject.GetComponent<PerrySensor>();
+        }
+        else
+        {
+            Debug.LogFormat($"WARNING! {gameObject.name} [Search.cs:ComponentAssignment()] PerrySensor component not " +
+                $"attached to {gameObject.name} PerryNav.cs should have instanced it.");
+        }
+
+    }
 }

@@ -158,39 +158,39 @@ public class PerrySensor : MonoBehaviour
         if(_player != null)
         {
             //if player is confirmed to exist in space, check if player is within vision cone
-            // if(Vector3.Dot(gameObject.transform.position, _player.transform.position) < VISIONANGLE)
-            // {
-            transform.LookAt(_player.transform);
-            if (!playerSeen)
+            if(Vector3.Dot(gameObject.transform.position, _player.transform.position) < VISIONANGLE)
             {
-                //then send raycast
-                if (Physics.Raycast(transform.position, _player.transform.position * radius, out hit, radius))
+                transform.LookAt(_player.transform);
+                if (!playerSeen)
                 {
-                    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * radius, Color.green);
-                    //invoke events depending on radius used
-                    if (radius == CloseSightRadius)
+                    //then send raycast
+                    if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) * radius, out hit, radius))
                     {
-                        PlayerSeen_Close.Invoke();
+                        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * radius, Color.green);
+                        //invoke events depending on radius used
+                        if (radius == CloseSightRadius)
+                        {
+                            PlayerSeen_Close.Invoke();
                         
-                        playerSeen = true;
-                    }
-                    else if (radius == DistantSightRadius)
-                    {
-                        PlayerSeen_Distant.Invoke();
-                        InstantiatePOI();
-                        playerSeen = true;
+                            playerSeen = true;
+                        }
+                        else if (radius == DistantSightRadius)
+                        {
+                            PlayerSeen_Distant.Invoke();
+                            InstantiatePOI();
+                            playerSeen = true;
+                        }
                     }
                 }
-            }
-            //if the player has been seen, check at a slower rate
-            else
-            {
-                if(!runningDelayedRaycast)
-                    StartCoroutine("DelayedRaycast");
-            }
+                //if the player has been seen, check at a slower rate
+                else
+                {
+                    if(!runningDelayedRaycast)
+                        StartCoroutine("DelayedRaycast");
+                }
 
                     
-            // }
+            }
         }
     }
 
@@ -206,13 +206,13 @@ public class PerrySensor : MonoBehaviour
     {
         runningDelayedRaycast = true;
         RaycastHit hit;
-            if (Physics.Raycast(transform.position, _player.transform.position, out hit, CloseSightRadius))
+            if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) * CloseSightRadius, out hit, CloseSightRadius))
             {
                 Debug.LogFormat($"{gameObject.name} [Perrsensor.cs:DelayedRaycast()] Player has been seen up close.");
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * CloseSightRadius, Color.red);
                 PlayerSeen_Close.Invoke();
             }
-            else if (Physics.Raycast(transform.position, _player.transform.position, out hit, DistantSightRadius))
+            else if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) * DistantSightRadius, out hit, DistantSightRadius))
             {
                 Debug.LogFormat($"{gameObject.name} [PerrySensor.cs:DelayedRaycast()] Player has been seen from afar.");
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * CloseSightRadius, Color.yellow);
