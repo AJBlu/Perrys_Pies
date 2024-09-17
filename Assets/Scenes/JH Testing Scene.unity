@@ -139,7 +139,7 @@ PrefabInstance:
     - target: {fileID: 5010966276305397424, guid: e6132244f6c381c44b82426c2f31e7f5,
         type: 3}
       propertyPath: m_TagString
-      value: KeyDeter
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7778031218064203738, guid: e6132244f6c381c44b82426c2f31e7f5,
         type: 3}
@@ -497,6 +497,12 @@ MonoBehaviour:
   - {fileID: 1295078217}
   - {fileID: 1529249893}
   - {fileID: 1317952336}
+  inventorySlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &599591484
 Transform:
   m_ObjectHideFlags: 0
@@ -642,6 +648,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: PieBell (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3377830441188796269, guid: 0a4e96d56b341804886d0a8c83a3029f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4448967617229102349, guid: 0a4e96d56b341804886d0a8c83a3029f,
         type: 3}
@@ -2988,6 +2999,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: IcingBag (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 875158317567215946, guid: 876b867d696a40d4b97fd2d6e0794390,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3247,6 +3263,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SprayCan (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 736113820545745498, guid: bda402b05d9835e428c7efe994de1a3e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4901786631865875705, guid: bda402b05d9835e428c7efe994de1a3e,
         type: 3}
@@ -3583,6 +3604,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BlueberryBall (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5010966276305397424, guid: e6132244f6c381c44b82426c2f31e7f5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 7778031218064203738, guid: e6132244f6c381c44b82426c2f31e7f5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3650,6 +3676,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SprayCan
+      objectReference: {fileID: 0}
+    - target: {fileID: 736113820545745498, guid: bda402b05d9835e428c7efe994de1a3e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 4901786631865875705, guid: bda402b05d9835e428c7efe994de1a3e,
         type: 3}
@@ -3719,6 +3750,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: PieBell
       objectReference: {fileID: 0}
+    - target: {fileID: 3377830441188796269, guid: 0a4e96d56b341804886d0a8c83a3029f,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
+      objectReference: {fileID: 0}
     - target: {fileID: 4448967617229102349, guid: 0a4e96d56b341804886d0a8c83a3029f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3786,6 +3822,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: BlueberryBall
+      objectReference: {fileID: 0}
+    - target: {fileID: 5010966276305397424, guid: e6132244f6c381c44b82426c2f31e7f5,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     - target: {fileID: 7778031218064203738, guid: e6132244f6c381c44b82426c2f31e7f5,
         type: 3}
@@ -3992,6 +4033,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: IcingBag
+      objectReference: {fileID: 0}
+    - target: {fileID: 875158317567215946, guid: 876b867d696a40d4b97fd2d6e0794390,
+        type: 3}
+      propertyPath: m_TagString
+      value: Untagged
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
