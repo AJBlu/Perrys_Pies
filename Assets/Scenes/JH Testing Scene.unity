@@ -565,7 +565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elevatorPanelHolder: {fileID: 1869922428}
-  inventoryHolder: {fileID: 0}
+  inventoryHolder: {fileID: 1247444561}
   player: {fileID: 1638568455}
   menuOpen: 0
   elevatorButtons:
