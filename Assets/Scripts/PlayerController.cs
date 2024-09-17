@@ -34,6 +34,8 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody rigid;
 
+    public bool canInteract;
+
     //public Transform pickupParent;
 
     //private Transform inHandItem;
@@ -84,6 +86,7 @@ public class PlayerController : MonoBehaviour
         pieTin = GameObject.FindGameObjectWithTag("PieTin");
         currentFloor = 1;
         findUI();
+        canInteract = true;
     }
 
     public void findUI()
@@ -92,6 +95,14 @@ public class PlayerController : MonoBehaviour
         {
             UIManager = GameObject.Find("UIManager");
         }
+    }
+
+    public IEnumerator interactBuffer()
+    {
+        canInteract = false;
+        yield return new WaitForSeconds(.5f);
+        canInteract = true;
+        yield return null;
     }
 
     private void Interact(InputAction.CallbackContext obj)
@@ -104,54 +115,57 @@ public class PlayerController : MonoBehaviour
     public void storeLogic()
     {
         bool isStored = false;
-        if (hit.collider.gameObject == pieTin)
+        if (canInteract)
         {
-            if (!keyDeterGrabbed)
+            if (hit.collider.gameObject == pieTin)
             {
-                Debug.Log("I feel like I need something else...");
+                if (!keyDeterGrabbed)
+                {
+                    Debug.Log("I feel like I need something else...");
+                    return;
+                }
+                else
+                {
+                    hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                    hit.collider.enabled = false;
+                    hasPieTin = true;
+                    Debug.Log("Better start running!");
+                    return;
+                }
+            }
+            if (hit.collider.gameObject.tag == "EleDoor")
+            {
+                UIManager.GetComponent<UIManager>().panelUp();
                 return;
             }
-            else
+            if (hit.collider.tag == "Key")
             {
                 hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
                 hit.collider.enabled = false;
-                hasPieTin = true;
-                Debug.Log("Better start running!");
+                keySpace[keyCount] = hit.collider.gameObject;
+                keyCount++;
                 return;
             }
-        }
-        if (hit.collider.gameObject.tag == "EleDoor")
-        {
-            UIManager.GetComponent<UIManager>().panelUp();
-            return;
-        }
-        if (hit.collider.tag == "Key")
-        {
-            hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
-            hit.collider.enabled = false;
-            keySpace[keyCount] = hit.collider.gameObject;
-            keyCount++;
-            return;
-        }
-        if (hit.collider.tag == "KeyDeter")
-        {
-            keyDeterGrabbed = true;
-        }
-        for (int i = 0; i < inventory.Count; i++)
-        {
-            if (isStored) return;
-            else
+            if (hit.collider.tag == "KeyDeter")
             {
-                if (inventory[i] == null)
+                keyDeterGrabbed = true;
+            }
+            for (int i = 0; i < inventory.Count; i++)
+            {
+                if (isStored) return;
+                else
                 {
-                    inventory[i] = hit.collider.gameObject;
-                    hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
-                    hit.collider.enabled = false;
-                    isStored = true;
+                    if (inventory[i] == null)
+                    {
+                        inventory[i] = hit.collider.gameObject;
+                        hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
+                        hit.collider.enabled = false;
+                        isStored = true;
+                    }
                 }
             }
+            if (!isStored) Debug.Log("Inventory is full.");
         }
-        if (!isStored) Debug.Log("Inventory is full.");
     }
 
     private void OnTriggerEnter(Collider other)

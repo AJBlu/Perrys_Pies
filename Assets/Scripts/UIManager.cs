@@ -38,6 +38,10 @@ public class UIManager : MonoBehaviour
         {
             elevatorPanelHolder = GameObject.Find("ElevatorScreenParent");
         }
+        if (elevatorButtons[0] == null) elevatorButtons[0] = GameObject.Find("Basement").GetComponent<Button>();
+        if (elevatorButtons[1] == null) elevatorButtons[1] = GameObject.Find("Ground").GetComponent<Button>();
+        if (elevatorButtons[2] == null) elevatorButtons[2] = GameObject.Find("Floor 2").GetComponent<Button>();
+        if (elevatorButtons[3] == null) elevatorButtons[3] = GameObject.Find("Floor 3").GetComponent<Button>();
     }
 
     private void FixedUpdate()
