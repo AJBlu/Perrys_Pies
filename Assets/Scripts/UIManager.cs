@@ -90,4 +90,10 @@ public class UIManager : MonoBehaviour
     {
         gameManager.GetComponent<GameManager>().moveToFloor(3);
     }
+    public IEnumerator waitAndCheck()
+    {
+        yield return new WaitForSeconds(1f);
+        checkForMissingStuff();
+        yield return null;
+    }
 }

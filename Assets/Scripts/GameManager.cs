@@ -67,6 +67,7 @@ public class GameManager : MonoBehaviour
             Destroy(UIManager.gameObject);
         }
         UIManager.GetComponent<UIManager>().checkForMissingStuff();
+        StartCoroutine(UIManager.GetComponent<UIManager>().waitAndCheck());
         player.GetComponent<PlayerController>().findUI();
     }
 }
