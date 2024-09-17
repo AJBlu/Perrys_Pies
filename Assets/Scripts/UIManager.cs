@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public GameObject elevatorPanelHolder;
+    public GameObject inventoryHolder;
     public GameObject player;
     private static GameManager gameManager;
 
@@ -28,6 +29,11 @@ public class UIManager : MonoBehaviour
         
     }
 
+    public void slotUpdate(int slotNumber, string slotName)
+    {
+        inventorySlots[slotNumber].GetComponent<Image>().color = Color.blue;
+    }
+
     public void checkForMissingStuff()
     {
         if (gameManager == null)
@@ -38,6 +44,10 @@ public class UIManager : MonoBehaviour
         if (elevatorPanelHolder == null)
         {
             elevatorPanelHolder = GameObject.Find("ElevatorScreenParent");
+        }
+        if (inventoryHolder == null)
+        {
+            inventoryHolder = GameObject.Find("InventoryParent");
         }
         if (elevatorButtons[0] == null) elevatorButtons[0] = GameObject.Find("Basement").GetComponent<Button>();
         if (elevatorButtons[1] == null) elevatorButtons[1] = GameObject.Find("Ground").GetComponent<Button>();
@@ -57,6 +67,7 @@ public class UIManager : MonoBehaviour
     public void panelUp()
     {
         elevatorPanelHolder.SetActive(true);
+        inventoryHolder.SetActive(false);
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -66,6 +77,7 @@ public class UIManager : MonoBehaviour
     public void panelDown()
     {
         elevatorPanelHolder.SetActive(false);
+        inventoryHolder.SetActive(true);
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
