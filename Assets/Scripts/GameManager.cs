@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public GameObject player;
     public GameObject UI;
+    public static GameObject UIinstance;
     public GameObject UIManager;
     public static GameObject InterManageInstance;
     public GameObject EventSystem;
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
         UIManager = GameObject.Find("UIManager");
         EventSystem = GameObject.Find("EventSystem");
         checkForDupes();
-        DontDestroyOnLoad(UI);
+        DontDestroyOnLoad(UIinstance);
         DontDestroyOnLoad(UIManager);
         DontDestroyOnLoad(this);
         DontDestroyOnLoad(EventSystemInstance);
@@ -48,6 +49,15 @@ public class GameManager : MonoBehaviour
         else
         {
             Destroy(EventSystem.gameObject);
+        }
+
+        if (UIinstance == null)
+        {
+            UIinstance = UI;
+        }
+        else
+        {
+            Destroy(UI.gameObject);
         }
 
         if (gmInstance == null)

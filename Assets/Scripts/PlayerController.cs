@@ -100,6 +100,10 @@ public class PlayerController : MonoBehaviour
         {
             UIManager = GameObject.Find("UIManager");
         }
+        if (pickupUI == null)
+        {
+            pickupUI = GameObject.Find("HintSource");
+        }
     }
 
     public IEnumerator interactBuffer()
