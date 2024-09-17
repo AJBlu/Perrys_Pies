@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
         if (pressedButton == 1)
         {
             checkForDupes();
-            destroySingleObjects();
+            //destroySingleObjects();
         }
     }
 
