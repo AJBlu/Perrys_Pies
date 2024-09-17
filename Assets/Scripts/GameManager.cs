@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
         if (pressedButton == 1)
         {
             checkForDupes();
+            destroySingleObjects();
         }
     }
 
@@ -69,5 +70,13 @@ public class GameManager : MonoBehaviour
         UIManager.GetComponent<UIManager>().checkForMissingStuff();
         StartCoroutine(UIManager.GetComponent<UIManager>().waitAndCheck());
         player.GetComponent<PlayerController>().findUI();
+    }
+
+    public IEnumerator destroySingleObjects()
+    {
+        yield return new WaitForSeconds(0.5f);
+        if (player.GetComponent<PlayerController>().keyDeterGrabbed) Destroy(GameObject.FindGameObjectWithTag("KeyDeter"));
+        if (player.GetComponent<PlayerController>().hasPieTin) Destroy(GameObject.FindGameObjectWithTag("PieTin"));
+        yield return null;
     }
 }

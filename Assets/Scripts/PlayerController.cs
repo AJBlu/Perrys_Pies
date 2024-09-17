@@ -131,8 +131,7 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
-                    hit.collider.enabled = false;
+                    hit.collider.gameObject.SetActive(false);
                     hasPieTin = true;
                     Debug.Log("Better start running!");
                     return;
@@ -151,10 +150,6 @@ public class PlayerController : MonoBehaviour
                 keyCount++;
                 return;
             }
-            if (hit.collider.tag == "KeyDeter")
-            {
-                keyDeterGrabbed = true;
-            }
             for (int i = 0; i < inventory.Count; i++)
             {
                 if (isStored) return;
@@ -167,12 +162,17 @@ public class PlayerController : MonoBehaviour
                         else if (hit.collider.tag == "BagDeter") inventory[i] = bagDeter;
                         else if (hit.collider.tag == "BellAttract") inventory[i] = bellAttract;
                         else if (hit.collider.tag == "CanAttract") inventory[i] = canAttract;
-                        hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
-                        hit.collider.enabled = false;
+                        hit.collider.gameObject.SetActive(false);
                         isStored = true;
+                        if (hit.collider.tag == "KeyDeter")
+                        {
+                            keyDeterGrabbed = true;
+                        }
                     }
                 }
             }
+            
+            
             if (!isStored) Debug.Log("Inventory is full.");
         }
     }
