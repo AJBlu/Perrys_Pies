@@ -21,21 +21,8 @@ public class GameManager : MonoBehaviour
         UIManager = GameObject.Find("UIManager");
         EventSystem = GameObject.Find("EventSystem");
         checkForDupes();
-        DontDestroyOnLoad(UI);
-        DontDestroyOnLoad(UIManager);
         DontDestroyOnLoad(this);
         DontDestroyOnLoad(EventSystemInstance);
-    }
-
-    public void moveToFloor(int pressedButton)
-    {
-        UIManager.GetComponent<UIManager>().panelDown();
-        SceneManager.LoadScene(pressedButton);
-        player.GetComponent<PlayerController>().currentFloor = pressedButton;
-        if (pressedButton == 1)
-        {
-            checkForDupes();
-        }
     }
 
     public void checkForDupes()
@@ -66,7 +53,5 @@ public class GameManager : MonoBehaviour
         {
             Destroy(UIManager.gameObject);
         }
-        UIManager.GetComponent<UIManager>().checkForMissingStuff();
-        player.GetComponent<PlayerController>().findUI();
     }
 }

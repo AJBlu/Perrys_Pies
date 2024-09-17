@@ -8,7 +8,6 @@ public class PlayerController : MonoBehaviour
 {
     public LayerMask pickableLayerMask;
     public Transform playerCameraTransform;
-    public GameObject pickupUI;
     [Min(1)]
     public float hitRange = 3f;
     public float sprintLimit;
@@ -21,12 +20,6 @@ public class PlayerController : MonoBehaviour
 
     public bool isCrouched;
     public bool sprinting;
-    public bool hasPieTin;
-    public bool keyDeterGrabbed;
-
-    public GameObject UIManager;
-
-    public int currentFloor;
 
     private Transform interactedItem;
 
@@ -45,15 +38,7 @@ public class PlayerController : MonoBehaviour
     private float originalSpeed;
     public float jumpSpeed;
 
-    public List<GameObject> inventory;
-    public List<GameObject> keySpace;
-
-    public GameObject pieTin;
-
     public InputActionReference interactionInput;
-
-    [SerializeField]
-    private int keyCount;
 
     public static GameObject playerInstance;
 
@@ -74,155 +59,30 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        interactionInput.action.performed += Interact;
         rigid = GetComponent<Rigidbody>();
         originalSpeed = currentSpeed = 10;
-        jumpSpeed = 5;
-        hasPieTin = false;
         isCrouched = false;
-        keyDeterGrabbed = false;
-        pieTin = GameObject.FindGameObjectWithTag("PieTin");
-        currentFloor = 1;
-        findUI();
-    }
-
-    public void findUI()
-    {
-        if (UIManager == null)
-        {
-            UIManager = GameObject.Find("UIManager");
-        }
-    }
-
-    private void Interact(InputAction.CallbackContext obj)
-    {
-        //Debug.Log("Interacted with: " + hit.collider.name);
-        //hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
-        storeLogic();
-    }
-
-    public void storeLogic()
-    {
-        bool isStored = false;
-        if (hit.collider.gameObject == pieTin)
-        {
-            if (!keyDeterGrabbed)
-            {
-                Debug.Log("I feel like I need something else...");
-                return;
-            }
-            else
-            {
-                hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
-                hit.collider.enabled = false;
-                hasPieTin = true;
-                Debug.Log("Better start running!");
-                return;
-            }
-        }
-        if (hit.collider.gameObject.tag == "EleDoor")
-        {
-            UIManager.GetComponent<UIManager>().panelUp();
-            return;
-        }
-        if (hit.collider.gameObject.tag == "RoomDoor")
-        {
-            hit.collider.gameObject.GetComponent<RoomDoor>().isOpen = !hit.collider.gameObject.GetComponent<RoomDoor>().isOpen;
-            return;
-        }
-        if (hit.collider.tag == "Key")
-        {
-            hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
-            hit.collider.enabled = false;
-            keySpace[keyCount] = hit.collider.gameObject;
-            keyCount++;
-            return;
-        }
-        if (hit.collider.tag == "KeyDeter")
-        {
-            keyDeterGrabbed = true;
-        }
-        for (int i = 0; i < inventory.Count; i++)
-        {
-            if (isStored) return;
-            else
-            {
-                if (inventory[i] == null)
-                {
-                    inventory[i] = hit.collider.gameObject;
-                    hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
-                    hit.collider.enabled = false;
-                    isStored = true;
-                }
-            }
-        }
-        if (!isStored) Debug.Log("Inventory is full.");
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.transform.tag == "Lock")
-        {
-            if (keyCount == 3)
-            {
-                for (int i = 0; i < keySpace.Count; i++)
-                {
-                    if (keySpace[i].tag == "Key")
-                    {
-                        keySpace[i] = null;
-                        keyCount--;
-                    }
-                    if (keyCount == 0)
-                    {
-                        i = 10;
-                    }
-                }
-                other.gameObject.SetActive(false);
-            }
-            else Debug.Log("Not enough keys.");
-        }
-    }
-
-    public void Drop(InputAction.CallbackContext obj)
-    {
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!UIManager.GetComponent<UIManager>().menuOpen)
+        ChangeMoveMent();
+        if (Input.GetKeyDown("space"))
         {
-            ChangeMoveMent();
-
-            if (hit.collider != null)
-            {
-                hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
-                pickupUI.SetActive(false);
-            }
-
-            if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit, hitRange, pickableLayerMask))
-            {
-                hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
-                pickupUI.SetActive(true);
-            }
-
-            if (Input.GetKeyDown("space"))
-            {
-                if (IsGround()) HandleJump();
-            }
-            if (Input.GetKeyDown("left shift"))
-            {
-                sprint();
-            }
-            if (Input.GetKeyDown("left ctrl"))
-            {
-                crouch();
-            }
-            if (Input.GetKeyUp("left shift") || Input.GetKeyUp("left ctrl"))
-            {
-                resetMovement();
-            }
+            if (IsGround()) HandleJump();
+        }
+        if (Input.GetKeyDown("left shift"))
+        {
+            sprint();
+        }
+        if (Input.GetKeyDown("left ctrl"))
+        {
+            crouch();
+        }
+        if (Input.GetKeyUp("left shift") || Input.GetKeyUp("left ctrl"))
+        {
+            resetMovement();
         }
     }
 
@@ -247,7 +107,7 @@ public class PlayerController : MonoBehaviour
                 sprintLimit += 0.01f;
             }
         }
-        
+
         if (sprintLimit <= 0)
         {
             resetMovement();
@@ -274,9 +134,6 @@ public class PlayerController : MonoBehaviour
             sprinting = true;
             if (currentSpeed == originalSpeed) currentSpeed *= sprintFactor;
         }
-        else
-        {
-        }
     }
 
     public void crouch()
@@ -302,10 +159,5 @@ public class PlayerController : MonoBehaviour
             return true;
         }
         return false;
-    }
-
-    private void ResetSpeed()
-    {
-        currentSpeed = originalSpeed;
     }
 }

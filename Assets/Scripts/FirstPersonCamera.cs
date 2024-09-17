@@ -18,8 +18,6 @@ public class FirstPersonCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!player.GetComponent<PlayerController>().UIManager.GetComponent<UIManager>().menuOpen)
-        {
             float inputX = Input.GetAxis("Mouse X") * mouseSensitivity;
             float inputY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
@@ -27,7 +25,6 @@ public class FirstPersonCamera : MonoBehaviour
             cameraVerticalRotation = Mathf.Clamp(cameraVerticalRotation, -90f, 90f);
             transform.localEulerAngles = Vector3.right * cameraVerticalRotation;
 
-            player.Rotate(Vector3.up * inputX);
-        }
+        player.Rotate(Vector3.up * inputX);
     }
 }
