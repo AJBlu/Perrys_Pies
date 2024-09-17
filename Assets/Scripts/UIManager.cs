@@ -34,6 +34,10 @@ public class UIManager : MonoBehaviour
             gameManager = FindObjectOfType<GameManager>();
         }
         player = GameObject.Find("Player");
+        if (elevatorPanelHolder == null)
+        {
+            elevatorPanelHolder = GameObject.Find("ElevatorScreenParent");
+        }
     }
 
     private void FixedUpdate()
@@ -47,20 +51,20 @@ public class UIManager : MonoBehaviour
 
     public void panelUp()
     {
+        elevatorPanelHolder.SetActive(true);
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         menuOpen = true;
-        elevatorPanelHolder.SetActive(true);
     }
 
     public void panelDown()
     {
+        elevatorPanelHolder.SetActive(false);
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         menuOpen = false;
-        elevatorPanelHolder.SetActive(false);
     }
 
     public void moveToBasement()
