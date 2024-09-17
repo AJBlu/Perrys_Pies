@@ -399,16 +399,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   playerCameraTransform: {fileID: 1304140326}
-  hitRange: 3
-  sprintLimit: 1
-  sprintFactor: 1
-  crawlFactor: 1
-  normalHeight: {fileID: 1943215171}
-  crouchHeight: {fileID: 164868124}
+  sprintFactor: 2
+  crawlFactor: 0.5
+  sprintMax: 0
+  normalHeight: 1
+  crouchHeight: 0.5
   isCrouched: 0
   sprinting: 0
   currentSpeed: 0
-  jumpSpeed: 0
+  jumpSpeed: 4
+  hitRange: 3
   interactionInput: {fileID: 4417774981443331334, guid: 7c68a63bb95ef694f95d088a9bc549bd,
     type: 3}
 --- !u!4 &1198715281 stripped
