@@ -13,6 +13,7 @@ public class UIManager : MonoBehaviour
     public bool menuOpen;
 
     public List<Button> elevatorButtons;
+    public List<GameObject> inventorySlots;
 
     // Start is called before the first frame update
     void Start()

@@ -59,6 +59,11 @@ public class PlayerController : MonoBehaviour
 
     public static GameObject playerInstance;
 
+    public GameObject ballDeter;
+    public GameObject bagDeter;
+    public GameObject bellAttract;
+    public GameObject canAttract;
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -157,13 +162,13 @@ public class PlayerController : MonoBehaviour
                 {
                     if (inventory[i] == null)
                     {
-                        inventory[i] = hit.collider.gameObject;
+                        //inventory[i] = hit.collider.gameObject;
+                        if (hit.collider.tag == "BallDeter" || hit.collider.tag == "KeyDeter") inventory[i] = ballDeter;
+                        else if (hit.collider.tag == "BagDeter") inventory[i] = bagDeter;
+                        else if (hit.collider.tag == "BellAttract") inventory[i] = bellAttract;
+                        else if (hit.collider.tag == "CanAttract") inventory[i] = canAttract;
                         hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
                         hit.collider.enabled = false;
-                        if (hit.collider.tag == "BallDeter" || hit.collider.tag == "KeyDeter") return;
-                        else if (hit.collider.tag == "BagDeter") return;
-                        else if (hit.collider.tag == "BellAttract") return;
-                        else if (hit.collider.tag == "CanAttract") return;
                         isStored = true;
                     }
                 }
