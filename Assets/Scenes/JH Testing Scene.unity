@@ -139,7 +139,7 @@ PrefabInstance:
     - target: {fileID: 5010966276305397424, guid: e6132244f6c381c44b82426c2f31e7f5,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: KeyDeter
       objectReference: {fileID: 0}
     - target: {fileID: 7778031218064203738, guid: e6132244f6c381c44b82426c2f31e7f5,
         type: 3}
@@ -652,7 +652,7 @@ PrefabInstance:
     - target: {fileID: 3377830441188796269, guid: 0a4e96d56b341804886d0a8c83a3029f,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: BellAttract
       objectReference: {fileID: 0}
     - target: {fileID: 4448967617229102349, guid: 0a4e96d56b341804886d0a8c83a3029f,
         type: 3}
@@ -3026,7 +3026,7 @@ PrefabInstance:
     - target: {fileID: 875158317567215946, guid: 876b867d696a40d4b97fd2d6e0794390,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: BagDeter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3291,7 +3291,7 @@ PrefabInstance:
     - target: {fileID: 736113820545745498, guid: bda402b05d9835e428c7efe994de1a3e,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: CanAttract
       objectReference: {fileID: 0}
     - target: {fileID: 4901786631865875705, guid: bda402b05d9835e428c7efe994de1a3e,
         type: 3}
@@ -3631,7 +3631,7 @@ PrefabInstance:
     - target: {fileID: 5010966276305397424, guid: e6132244f6c381c44b82426c2f31e7f5,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: BallDeter
       objectReference: {fileID: 0}
     - target: {fileID: 7778031218064203738, guid: e6132244f6c381c44b82426c2f31e7f5,
         type: 3}
@@ -3704,7 +3704,7 @@ PrefabInstance:
     - target: {fileID: 736113820545745498, guid: bda402b05d9835e428c7efe994de1a3e,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: CanAttract
       objectReference: {fileID: 0}
     - target: {fileID: 4901786631865875705, guid: bda402b05d9835e428c7efe994de1a3e,
         type: 3}
@@ -3777,7 +3777,7 @@ PrefabInstance:
     - target: {fileID: 3377830441188796269, guid: 0a4e96d56b341804886d0a8c83a3029f,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: BellAttract
       objectReference: {fileID: 0}
     - target: {fileID: 4448967617229102349, guid: 0a4e96d56b341804886d0a8c83a3029f,
         type: 3}
@@ -3850,7 +3850,7 @@ PrefabInstance:
     - target: {fileID: 5010966276305397424, guid: e6132244f6c381c44b82426c2f31e7f5,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: BallDeter
       objectReference: {fileID: 0}
     - target: {fileID: 7778031218064203738, guid: e6132244f6c381c44b82426c2f31e7f5,
         type: 3}
@@ -4061,7 +4061,7 @@ PrefabInstance:
     - target: {fileID: 875158317567215946, guid: 876b867d696a40d4b97fd2d6e0794390,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: BagDeter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
