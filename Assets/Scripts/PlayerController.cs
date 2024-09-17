@@ -142,6 +142,11 @@ public class PlayerController : MonoBehaviour
                 UIManager.GetComponent<UIManager>().panelUp();
                 return;
             }
+            if (hit.collider.tag == "RoomDoor")
+            {
+                hit.collider.gameObject.GetComponent<RoomDoor>().isOpen = !hit.collider.gameObject.GetComponent<RoomDoor>().isOpen;
+                return;
+            }
             if (hit.collider.tag == "Key")
             {
                 hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
@@ -170,10 +175,8 @@ public class PlayerController : MonoBehaviour
                         }
                     }
                 }
+                if (!isStored) Debug.Log("Inventory is full.");
             }
-            
-            
-            if (!isStored) Debug.Log("Inventory is full.");
         }
     }
 
