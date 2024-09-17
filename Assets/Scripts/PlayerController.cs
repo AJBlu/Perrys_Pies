@@ -63,6 +63,7 @@ public class PlayerController : MonoBehaviour
     public GameObject bagDeter;
     public GameObject bellAttract;
     public GameObject canAttract;
+    public GameObject tinReference;
 
     private void Awake()
     {
@@ -88,7 +89,6 @@ public class PlayerController : MonoBehaviour
         hasPieTin = false;
         isCrouched = false;
         keyDeterGrabbed = false;
-        pieTin = GameObject.FindGameObjectWithTag("PieTin");
         currentFloor = 1;
         findUI();
         canInteract = true;
@@ -122,7 +122,7 @@ public class PlayerController : MonoBehaviour
         bool isStored = false;
         if (canInteract)
         {
-            if (hit.collider.gameObject == pieTin)
+            if (hit.collider.tag == "PieTin")
             {
                 if (!keyDeterGrabbed)
                 {
@@ -133,6 +133,7 @@ public class PlayerController : MonoBehaviour
                 {
                     hit.collider.gameObject.SetActive(false);
                     hasPieTin = true;
+                    pieTin = tinReference;
                     Debug.Log("Better start running!");
                     return;
                 }

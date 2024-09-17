@@ -1165,6 +1165,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4389873307277588665, guid: cd638d44627ae154bb988bbc77d2c709,
         type: 3}
+      propertyPath: tinReference
+      value: 
+      objectReference: {fileID: 1512990660793436739, guid: 34c8742ba3ce3424595d0a4cf3fb5a80,
+        type: 3}
+    - target: {fileID: 4389873307277588665, guid: cd638d44627ae154bb988bbc77d2c709,
+        type: 3}
       propertyPath: interactionInput
       value: 
       objectReference: {fileID: 4417774981443331334, guid: 7c68a63bb95ef694f95d088a9bc549bd,
