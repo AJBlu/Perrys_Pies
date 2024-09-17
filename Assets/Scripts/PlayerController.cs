@@ -168,6 +168,7 @@ public class PlayerController : MonoBehaviour
                         else if (hit.collider.tag == "BagDeter") inventory[i] = bagDeter;
                         else if (hit.collider.tag == "BellAttract") inventory[i] = bellAttract;
                         else if (hit.collider.tag == "CanAttract") inventory[i] = canAttract;
+                        UIManager.GetComponent<UIManager>().slotUpdate(i, hit.collider.tag);
                         hit.collider.gameObject.SetActive(false);
                         isStored = true;
                         if (hit.collider.tag == "KeyDeter")
@@ -176,8 +177,8 @@ public class PlayerController : MonoBehaviour
                         }
                     }
                 }
-                if (!isStored) Debug.Log("Inventory is full.");
             }
+            if (!isStored) Debug.Log("Inventory is full.");
         }
     }
 

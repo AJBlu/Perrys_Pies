@@ -31,7 +31,10 @@ public class UIManager : MonoBehaviour
 
     public void slotUpdate(int slotNumber, string slotName)
     {
-        inventorySlots[slotNumber].GetComponent<Image>().color = Color.blue;
+        if (slotName == "BallDeter" || slotName == "KeyDeter") inventorySlots[slotNumber].GetComponent<Image>().color = Color.blue;
+        else if (slotName == "BagDeter") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(238, 229, 190, 255);
+        else if (slotName == "BellAttract") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(210, 180, 140, 255);
+        else if (slotName == "CanAttract") inventorySlots[slotNumber].GetComponent<Image>().color = Color.red;
     }
 
     public void checkForMissingStuff()
