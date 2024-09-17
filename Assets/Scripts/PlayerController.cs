@@ -8,25 +8,32 @@ public class PlayerController : MonoBehaviour
 {
     public LayerMask pickableLayerMask;
     public Transform playerCameraTransform;
-    [Min(1)]
-    public float hitRange = 3f;
-    public float sprintLimit;
-    public float sprintFactor;
-    public float crawlFactor;
-    private RaycastHit hit;
 
-    public GameObject normalHeight;
-    public GameObject crouchHeight;
+    [Header("Movement Settings")]
+    [Tooltip("Velocity of player while moving (default 10)")]
+    [Range(1,20)]
+    private float originalSpeed;
+    [Tooltip("Changes how fast the player moves while sprinting (Sprint Factor 2 = Twice as fast as walking speed).")]
+    [Range(1,5)]
+    public float sprintFactor;
+    [Tooltip("Changes how fast the player moves while crouching (Crouch Factor .75 = 3/4ths as fast as walking speed.")]
+    public float crawlFactor;
+    [Tooltip("Amount of time player can sprint in seconds.")]
+    public float sprintMax;
+    [Tooltip("Player height while not crouching.")]
+    public float normalHeight;
+    [Tooltip("Player height while crouching.")]
+    public float crouchHeight;
+
 
     public bool isCrouched;
     public bool sprinting;
 
-    private Transform interactedItem;
 
     private bool canMove = true;
-
     private Rigidbody rigid;
-
+    private RaycastHit hit;
+    private float _sprint;
     //public Transform pickupParent;
 
     //private Transform inHandItem;
@@ -35,8 +42,10 @@ public class PlayerController : MonoBehaviour
     private float xInput;
     private float zInput;
     public float currentSpeed;
-    private float originalSpeed;
     public float jumpSpeed;
+
+    [Min(1)]
+    public float hitRange = 3f;
 
     public InputActionReference interactionInput;
 
@@ -44,6 +53,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
+        Debug.Log("WARNING: This is a version of the Player prefab without advanced functionality, like interaction with outside objects. Use only for checking scene blocking and Perry navigation.");
         DontDestroyOnLoad(this);
 
         if (playerInstance == null)
@@ -54,14 +64,15 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        rigid = GetComponent<Rigidbody>();
+        originalSpeed = currentSpeed;
+        isCrouched = false;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        rigid = GetComponent<Rigidbody>();
-        originalSpeed = currentSpeed = 10;
-        isCrouched = false;
+
     }
 
     // Update is called once per frame
@@ -95,20 +106,20 @@ public class PlayerController : MonoBehaviour
 
         if (sprinting)
         {
-            if (sprintLimit > 0)
+            if (_sprint > 0)
             {
-                sprintLimit -= 0.01f;
+                _sprint -= 0.02f;
             }
         }
         else
         {
-            if (sprintLimit < 1)
+            if (_sprint < sprintMax )
             {
-                sprintLimit += 0.01f;
+                _sprint += 0.02f;
             }
         }
 
-        if (sprintLimit <= 0)
+        if (_sprint <= 0)
         {
             resetMovement();
         }
@@ -129,7 +140,7 @@ public class PlayerController : MonoBehaviour
 
     public void sprint()
     {
-        if (sprintLimit > 0 && rigid.velocity != Vector3.zero)
+        if (_sprint > 0 && rigid.velocity != Vector3.zero)
         {
             sprinting = true;
             if (currentSpeed == originalSpeed) currentSpeed *= sprintFactor;
@@ -139,7 +150,7 @@ public class PlayerController : MonoBehaviour
     public void crouch()
     {
         isCrouched = true;
-        playerCameraTransform.transform.position = crouchHeight.transform.position;
+        playerCameraTransform.transform.localPosition = new Vector3(0f, crouchHeight, 0f);
         if (currentSpeed == originalSpeed) currentSpeed *= crawlFactor;
     }
 
@@ -148,7 +159,7 @@ public class PlayerController : MonoBehaviour
         isCrouched = false;
         sprinting = false;
         if (currentSpeed != originalSpeed) currentSpeed = originalSpeed;
-        playerCameraTransform.transform.position = normalHeight.transform.position;
+        playerCameraTransform.transform.localPosition = new Vector3(0f, normalHeight, 0f);
     }
 
     private bool IsGround()
