@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 7117894586877242552}
   m_Layer: 6
   m_Name: PieBell
-  m_TagString: Attract
+  m_TagString: BellAttract
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

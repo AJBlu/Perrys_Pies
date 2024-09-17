@@ -160,6 +160,10 @@ public class PlayerController : MonoBehaviour
                         inventory[i] = hit.collider.gameObject;
                         hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
                         hit.collider.enabled = false;
+                        if (hit.collider.tag == "BallDeter" || hit.collider.tag == "KeyDeter") return;
+                        else if (hit.collider.tag == "BagDeter") return;
+                        else if (hit.collider.tag == "BellAttract") return;
+                        else if (hit.collider.tag == "CanAttract") return;
                         isStored = true;
                     }
                 }

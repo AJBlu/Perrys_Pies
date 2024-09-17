@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 3839692194663701493}
   m_Layer: 6
   m_Name: IcingBag
-  m_TagString: Deter
+  m_TagString: BagDeter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
