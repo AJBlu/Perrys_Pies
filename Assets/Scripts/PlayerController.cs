@@ -92,7 +92,7 @@ public class PlayerController : MonoBehaviour
         currentFloor = 1;
         findUI();
         canInteract = true;
-        pickupUI = GameObject.Find("HintSource");
+        pickupUI.SetActive(false);
     }
 
     public void findUI()
@@ -100,6 +100,10 @@ public class PlayerController : MonoBehaviour
         if (UIManager == null)
         {
             UIManager = GameObject.Find("UIManager");
+        }
+        if (pickupUI == null)
+        {
+            pickupUI = GameObject.Find("HintSource");
         }
     }
 

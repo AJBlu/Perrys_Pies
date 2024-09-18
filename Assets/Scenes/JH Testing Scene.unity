@@ -1260,7 +1260,7 @@ PrefabInstance:
         type: 3}
       propertyPath: pickupUI
       value: 
-      objectReference: {fileID: 1136731852}
+      objectReference: {fileID: 0}
     - target: {fileID: 4389873307277588665, guid: cd638d44627ae154bb988bbc77d2c709,
         type: 3}
       propertyPath: UIManager
@@ -1938,7 +1938,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1136731853
 RectTransform:
   m_ObjectHideFlags: 0
