@@ -401,12 +401,12 @@ MonoBehaviour:
   playerCameraTransform: {fileID: 1304140326}
   sprintFactor: 2
   crawlFactor: 0.5
-  sprintMax: 0
+  sprintMax: 2
   normalHeight: 1
   crouchHeight: 0.5
   isCrouched: 0
   sprinting: 0
-  currentSpeed: 0
+  currentSpeed: 10
   jumpSpeed: 4
   hitRange: 3
   interactionInput: {fileID: 4417774981443331334, guid: 7c68a63bb95ef694f95d088a9bc549bd,
