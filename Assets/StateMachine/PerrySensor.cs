@@ -158,15 +158,14 @@ public class PerrySensor : MonoBehaviour
         if(_player != null)
         {
             //if player is confirmed to exist in space, check if player is within vision cone
-            if(Vector3.Dot(gameObject.transform.position, _player.transform.position) < VISIONANGLE)
-            {
+            if(Vector3.Dot(gameObject.transform.position, _player.transform.position) < VISIONANGLE){
                 transform.LookAt(_player.transform);
                 if (!playerSeen)
                 {
                     //then send raycast
-                    if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) * radius, out hit, radius))
+                    if (Physics.Raycast(transform.position, _player.transform.position, out hit, radius))
                     {
-                        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * radius, Color.green);
+                        Debug.DrawRay(transform.position, _player.transform.position, Color.green);
                         //invoke events depending on radius used
                         if (radius == CloseSightRadius)
                         {
@@ -242,8 +241,6 @@ public class PerrySensor : MonoBehaviour
 
     public void OnPatrol()
     {
-        if(_perryNav.DebugEnabled)
-            Debug.LogFormat($"{gameObject.name} [PerrySensor.cs:OnPatrol()] Adding PlayerSeen_Close, PlayerSeen_Distant, and AudioCueHeard to Patrol State.");
         PlayerSeen_Close.AddListener(gameObject.GetComponent<Patrol>().OnClosePlayerSeen);
         PlayerSeen_Distant.AddListener(gameObject.GetComponent<Patrol>().OnDistantPlayerSeen);
         AudioCueHeard.AddListener(gameObject.GetComponent<Patrol>().OnAudioCueHeard);
@@ -294,7 +291,7 @@ public class PerrySensor : MonoBehaviour
     public void OnPursuitExit()
     {
         if (_perryNav.DebugEnabled)
-            Debug.LogFormat($"{gameObject.name} [PerrySensor.cs:OnPursuitExit()] Adding LineOfSightBroken and AudioCueHeard to Patrol State.");
+            Debug.LogFormat($"{gameObject.name} [PerrySensor.cs:OnPursuitExit()] Removing LineOfSightBroken and AudioCueHeard from Patrol State.");
         LineOfSightBroken.RemoveListener(gameObject.GetComponent<Pursuit>().OnLineOfSightBroken);
         AudioCueHeard.RemoveListener(gameObject.GetComponent<Pursuit>().OnAudioCueHeard);
         InstantiatePOI();

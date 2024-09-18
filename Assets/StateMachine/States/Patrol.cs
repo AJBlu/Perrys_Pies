@@ -17,15 +17,15 @@ public class Patrol : State
         ComponentAssignment();
 
         //added in awake so entered and exited state can be actually invoked
-        EnteredState.AddListener(gameObject.GetComponent<PerryNav>().OnPatrol);
-        EnteredState.AddListener(gameObject.GetComponent<PerrySensor>().OnPatrol);
-        ExitedState.AddListener(gameObject.GetComponent<PerryNav>().OnPatrolExit);
-        ExitedState.AddListener(gameObject.GetComponent<PerrySensor>().OnPatrolExit);
+
     }
     public override void InitializeState()
     {
         gameObject.GetComponent<Renderer>().material.color = Color.green;
-        
+        EnteredState.AddListener(gameObject.GetComponent<PerryNav>().OnPatrol);
+        EnteredState.AddListener(gameObject.GetComponent<PerrySensor>().OnPatrol);
+        ExitedState.AddListener(gameObject.GetComponent<PerryNav>().OnPatrolExit);
+        ExitedState.AddListener(gameObject.GetComponent<PerrySensor>().OnPatrolExit);
         //implement deafness
         StartCoroutine("deafenPerry");
         //add entered and exited states to Nav and Sensor
@@ -74,6 +74,8 @@ public class Patrol : State
     {
         if (isActive)
         {
+            if (_perry.DebugEnabled)
+                Debug.LogFormat($"{gameObject.name} [Patrol.cs:OnDistantPlayerSeen()] Seeing player from afar in patrol state.");
             //change state to search
             _statemachine.ChangeState(_search);
         }
