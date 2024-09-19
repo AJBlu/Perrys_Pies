@@ -65,6 +65,11 @@ public class PlayerController : MonoBehaviour
     public GameObject canAttract;
     public GameObject tinReference;
 
+    public float ballThrowStrength;
+    public float bagThrowStrength;
+    public float bellThrowStrength;
+    public float canThrowStrength;
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -251,6 +256,42 @@ public class PlayerController : MonoBehaviour
             {
                 resetMovement();
             }
+            if (Input.GetKeyDown("1"))
+            {
+                //throwDistraction(ballDeter);
+            }
+            if (Input.GetKeyDown("2"))
+            {
+                //throwDistraction(bagDeter);
+            }
+            if (Input.GetKeyDown("3"))
+            {
+                //throwDistraction(bellAttract);
+            }
+            if (Input.GetKeyDown("4"))
+            {
+                //throwDistraction(canAttract);
+            }
+        }
+    }
+
+    public void throwDistraction(GameObject throwable)
+    {
+        if (throwable == ballDeter)
+        {
+
+        }
+        if (throwable == bagDeter)
+        {
+
+        }
+        if (throwable == bellAttract)
+        {
+
+        }
+        if (throwable == canAttract)
+        {
+
         }
     }
 
