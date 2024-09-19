@@ -54,16 +54,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         Debug.Log("WARNING: This is a version of the Player prefab without advanced functionality, like interaction with outside objects. Use only for checking scene blocking and Perry navigation.");
-        DontDestroyOnLoad(this);
-
-        if (playerInstance == null)
-        {
-            playerInstance = this.gameObject;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
         rigid = GetComponent<Rigidbody>();
         originalSpeed = currentSpeed;
         isCrouched = false;
