@@ -275,28 +275,25 @@ public class PlayerController : MonoBehaviour
 
     public void throwDistraction(GameObject throwable)
     {
+        target.transform.forward = this.transform.forward;
         if (throwable == ballDeter)
         {
-            target.transform.forward = this.transform.forward;
-            target.transform.position = this.transform.position + (Vector3.forward * ballThrowStrength); 
+            target.transform.position = this.transform.position + (this.transform.forward * ballThrowStrength); 
             Debug.Log("Throwing Blueberry Ball");
         }
         if (throwable == bagDeter)
         {
-            target.transform.forward = this.transform.forward;
-            target.transform.position = this.transform.position + (Vector3.forward * bagThrowStrength);
+            target.transform.position = this.transform.position + (this.transform.forward * bagThrowStrength);
             Debug.Log("Throwing Hardened Icing Bag");
         }
         if (throwable == bellAttract)
         {
-            target.transform.forward = this.transform.forward;
-            target.transform.position = this.transform.position + (Vector3.forward * bellThrowStrength);
+            target.transform.position = this.transform.position + (this.transform.forward * bellThrowStrength);
             Debug.Log("Throwing Pie Bell");
         }
         if (throwable == canAttract)
         {
-            target.transform.forward = this.transform.forward;
-            target.transform.position = this.transform.position + (Vector3.forward * canThrowStrength);
+            target.transform.position = this.transform.position + (this.transform.forward * canThrowStrength);
             Debug.Log("Throwing Pie Scent");
         }
         StartCoroutine(SimulateProjectile(throwable));
