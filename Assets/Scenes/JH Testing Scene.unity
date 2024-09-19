@@ -123,6 +123,37 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &48894589
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 48894590}
+  m_Layer: 0
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &48894590
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 48894589}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1492310329}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &56836151
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1252,6 +1283,17 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 4389873307277588665, guid: cd638d44627ae154bb988bbc77d2c709,
         type: 3}
+      propertyPath: pieTin
+      value: 
+      objectReference: {fileID: 1512990660793436739, guid: 34c8742ba3ce3424595d0a4cf3fb5a80,
+        type: 3}
+    - target: {fileID: 4389873307277588665, guid: cd638d44627ae154bb988bbc77d2c709,
+        type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 48894589}
+    - target: {fileID: 4389873307277588665, guid: cd638d44627ae154bb988bbc77d2c709,
+        type: 3}
       propertyPath: bagDeter
       value: 
       objectReference: {fileID: 875158317567215946, guid: 876b867d696a40d4b97fd2d6e0794390,
@@ -1662,6 +1704,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 231696036}
+    - targetCorrespondingSourceObject: {fileID: 4932923506114199505, guid: cd638d44627ae154bb988bbc77d2c709,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 48894590}
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd638d44627ae154bb988bbc77d2c709, type: 3}
 --- !u!1001 &922382671

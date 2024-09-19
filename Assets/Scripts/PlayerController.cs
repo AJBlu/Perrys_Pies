@@ -70,6 +70,9 @@ public class PlayerController : MonoBehaviour
     public float bellThrowStrength;
     public float canThrowStrength;
 
+    public float firingAngle = 45.0f;
+    public GameObject target;
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -216,11 +219,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Drop(InputAction.CallbackContext obj)
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -279,19 +277,66 @@ public class PlayerController : MonoBehaviour
     {
         if (throwable == ballDeter)
         {
+            target.transform.forward = this.transform.forward;
+            target.transform.position = this.transform.position + (Vector3.forward * ballThrowStrength); 
             Debug.Log("Throwing Blueberry Ball");
         }
         if (throwable == bagDeter)
         {
+            target.transform.forward = this.transform.forward;
+            target.transform.position = this.transform.position + (Vector3.forward * bagThrowStrength);
             Debug.Log("Throwing Hardened Icing Bag");
         }
         if (throwable == bellAttract)
         {
+            target.transform.forward = this.transform.forward;
+            target.transform.position = this.transform.position + (Vector3.forward * bellThrowStrength);
             Debug.Log("Throwing Pie Bell");
         }
         if (throwable == canAttract)
         {
+            target.transform.forward = this.transform.forward;
+            target.transform.position = this.transform.position + (Vector3.forward * canThrowStrength);
             Debug.Log("Throwing Pie Scent");
+        }
+        StartCoroutine(SimulateProjectile(throwable));
+    }
+
+    IEnumerator SimulateProjectile(GameObject Projectile)
+    {
+        // Short delay added before Projectile is thrown
+        //yield return new WaitForSeconds(1.5f);
+
+        Instantiate(Projectile, this.transform.position, Quaternion.identity);
+
+        // Move projectile to the position of throwing object + add some offset if needed.
+        Projectile.transform.position = this.transform.position + new Vector3(0, 0.0f, 0);
+
+        // Calculate distance to target
+        float target_Distance = Vector3.Distance(Projectile.transform.position, target.transform.position);
+
+        // Calculate the velocity needed to throw the object to the target at specified angle.
+        float projectile_Velocity = target_Distance / (Mathf.Sin(2 * firingAngle * Mathf.Deg2Rad) / 9.8f);
+
+        // Extract the X  Y componenent of the velocity
+        float Vx = Mathf.Sqrt(projectile_Velocity) * Mathf.Cos(firingAngle * Mathf.Deg2Rad);
+        float Vy = Mathf.Sqrt(projectile_Velocity) * Mathf.Sin(firingAngle * Mathf.Deg2Rad);
+
+        // Calculate flight time.
+        float flightDuration = target_Distance / Vx;
+
+        // Rotate projectile to face the target.
+        Projectile.transform.rotation = Quaternion.LookRotation(target.transform.position - Projectile.transform.position);
+
+        float elapse_time = 0;
+
+        while (elapse_time < flightDuration)
+        {
+            Projectile.transform.Translate(0, (Vy - (9.8f * elapse_time)) * Time.deltaTime, Vx * Time.deltaTime);
+
+            elapse_time += Time.deltaTime;
+
+            yield return null;
         }
     }
 
