@@ -256,19 +256,19 @@ public class PlayerController : MonoBehaviour
             {
                 resetMovement();
             }
-            if (Input.GetKeyDown("1"))
+            if (Input.GetKeyDown("u"))
             {
                 throwDistraction(ballDeter);
             }
-            if (Input.GetKeyDown("2"))
+            if (Input.GetKeyDown("i"))
             {
                 throwDistraction(bagDeter);
             }
-            if (Input.GetKeyDown("3"))
+            if (Input.GetKeyDown("o"))
             {
                 throwDistraction(bellAttract);
             }
-            if (Input.GetKeyDown("4"))
+            if (Input.GetKeyDown("p"))
             {
                 throwDistraction(canAttract);
             }
@@ -279,19 +279,19 @@ public class PlayerController : MonoBehaviour
     {
         if (throwable == ballDeter)
         {
-
+            Debug.Log("Throwing Blueberry Ball");
         }
         if (throwable == bagDeter)
         {
-
+            Debug.Log("Throwing Hardened Icing Bag");
         }
         if (throwable == bellAttract)
         {
-
+            Debug.Log("Throwing Pie Bell");
         }
         if (throwable == canAttract)
         {
-
+            Debug.Log("Throwing Pie Scent");
         }
     }
 
