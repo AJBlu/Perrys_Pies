@@ -70,7 +70,6 @@ public class PlayerController : MonoBehaviour
     public float bellThrowStrength;
     public float canThrowStrength;
 
-    public float firingAngle = 45.0f;
     public GameObject target;
 
     private void Awake()
@@ -296,10 +295,25 @@ public class PlayerController : MonoBehaviour
             target.transform.position = this.transform.position + (this.transform.forward * canThrowStrength);
             Debug.Log("Throwing Pie Scent");
         }
-        
+        StartCoroutine(throwObject(throwable));
     }
 
-    
+    public IEnumerator throwObject(GameObject distraction)
+    {
+        Instantiate(distraction, this.transform.position, Quaternion.identity);
+
+        float target_Distance = Vector3.Distance(distraction.transform.position, target.transform.position);
+
+        Vector3 interpolatedPosition = Vector3.Lerp(this.transform.position, target.transform.position, target_Distance);
+
+        while (Mathf.Approximately(target_Distance, 0f))
+        {
+
+
+            yield return null;
+        }
+        
+    }
 
     private void FixedUpdate()
     {
