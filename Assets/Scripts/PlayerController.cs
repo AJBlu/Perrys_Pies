@@ -258,19 +258,19 @@ public class PlayerController : MonoBehaviour
             }
             if (Input.GetKeyDown("1"))
             {
-                //throwDistraction(ballDeter);
+                throwDistraction(ballDeter);
             }
             if (Input.GetKeyDown("2"))
             {
-                //throwDistraction(bagDeter);
+                throwDistraction(bagDeter);
             }
             if (Input.GetKeyDown("3"))
             {
-                //throwDistraction(bellAttract);
+                throwDistraction(bellAttract);
             }
             if (Input.GetKeyDown("4"))
             {
-                //throwDistraction(canAttract);
+                throwDistraction(canAttract);
             }
         }
     }
