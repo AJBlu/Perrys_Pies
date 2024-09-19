@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")]
     [Tooltip("Velocity of player while moving (default 10)")]
     [Range(1,20)]
-    private float originalSpeed;
+    public float originalSpeed;
     [Tooltip("Changes how fast the player moves while sprinting (Sprint Factor 2 = Twice as fast as walking speed).")]
     [Range(1,5)]
     public float sprintFactor;
