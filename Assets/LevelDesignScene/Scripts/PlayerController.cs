@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [Header("Movement Settings")]
     [Tooltip("Velocity of player while moving (default 10)")]
     [Range(1,20)]
-    private float originalSpeed;
+    public float originalSpeed;
     [Tooltip("Changes how fast the player moves while sprinting (Sprint Factor 2 = Twice as fast as walking speed).")]
     [Range(1,5)]
     public float sprintFactor;
@@ -54,16 +54,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         Debug.Log("WARNING: This is a version of the Player prefab without advanced functionality, like interaction with outside objects. Use only for checking scene blocking and Perry navigation.");
-        DontDestroyOnLoad(this);
-
-        if (playerInstance == null)
-        {
-            playerInstance = this.gameObject;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
         rigid = GetComponent<Rigidbody>();
         originalSpeed = currentSpeed;
         isCrouched = false;
