@@ -298,15 +298,24 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(throwObject(throwable));
     }
 
+    public float lerpFloat = 0f;
+
     public IEnumerator throwObject(GameObject distraction)
     {
         Instantiate(distraction, this.transform.position, Quaternion.identity);
 
-        float target_Distance = Vector3.Distance(distraction.transform.position, target.transform.position);
+        Vector3 initPlayerPos = this.transform.position;
+        Vector3 initTargetPos = target.transform.position;
 
-        Vector3 interpolatedPosition = Vector3.Lerp(this.transform.position, target.transform.position, target_Distance);
+        float target_Distance = Vector3.Distance(distraction.transform.position, initTargetPos);
+        
+        //float fraction = target_Distance
 
-        while (Mathf.Approximately(target_Distance, 0f))
+        Vector3 interpolatedPosition = Vector3.Lerp(initPlayerPos, initTargetPos, target_Distance);
+
+        lerpFloat += .01f;
+
+        while (!Mathf.Approximately(target_Distance, 0f))
         {
 
 
