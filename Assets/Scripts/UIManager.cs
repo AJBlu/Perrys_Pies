@@ -16,6 +16,8 @@ public class UIManager : MonoBehaviour
     public List<Button> elevatorButtons;
     public List<GameObject> inventorySlots;
 
+    public GameObject slotIdentifyer;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -26,7 +28,13 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        for (int i = 0; i < 5; i++)
+        {
+            if (i + 1 == player.GetComponent<PlayerController>().selectedSlot)
+            {
+                slotIdentifyer.transform.localPosition = new Vector3((-450 + (85 * i)), -256, 0);
+            }
+        }
     }
 
     public void slotUpdate(int slotNumber, string slotName)

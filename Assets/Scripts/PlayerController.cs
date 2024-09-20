@@ -72,6 +72,8 @@ public class PlayerController : MonoBehaviour
 
     public GameObject target;
 
+    public int selectedSlot;
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -100,6 +102,7 @@ public class PlayerController : MonoBehaviour
         findUI();
         canInteract = true;
         pickupUI.SetActive(false);
+        selectedSlot = 1;
     }
 
     public void findUI()
@@ -269,6 +272,65 @@ public class PlayerController : MonoBehaviour
             {
                 throwDistraction(canAttract);
             }
+            if (Input.GetKeyDown("1"))
+            {
+                selectedSlot = 1;
+            }
+            if (Input.GetKeyDown("2"))
+            {
+                selectedSlot = 2;
+            }
+            if (Input.GetKeyDown("3"))
+            {
+                selectedSlot = 3;
+            }
+            if (Input.GetKeyDown("4"))
+            {
+                selectedSlot = 4;
+            }
+            if (Input.GetKeyDown("5"))
+            {
+                selectedSlot = 5;
+            }
+            if (Input.GetAxis("Mouse ScrollWheel") > 0)
+            {
+                slotByOne(false);
+            }
+            if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            {
+                slotByOne(true);
+            }
+            if (Input.GetMouseButtonDown(0))
+            {
+                for (int i = 0; i < 5; i++)
+                {
+                    if (i + 1 == selectedSlot)
+                    {
+                        throwDistraction(inventory[i]);
+                        return;
+                    }
+                }
+            }
+        }
+    }
+
+    public void slotByOne(bool isScrollUp)
+    {
+        if (isScrollUp)
+        {
+            selectedSlot++;
+        }
+        else
+        {
+            selectedSlot--;
+        }
+        if (selectedSlot == 6)
+        {
+            selectedSlot = 1;
+        }
+        else if (selectedSlot == 0)
+        {
+            selectedSlot = 5;
         }
     }
 
