@@ -396,33 +396,6 @@ public class PlayerController : MonoBehaviour
         projectile.GetComponent<Projectile>().Fire(projectileSpeed, transform.forward);
     }
 
-    public float lerpFloat = 0f;
-
-    //THIS CODE IS COMPLETE AND UTTER GARBAGE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-    /*
-    public IEnumerator throwObject(GameObject distraction)
-    {
-        Instantiate(distraction, this.transform.position, Quaternion.identity);
-
-        Vector3 initPlayerPos = this.transform.position;
-        Vector3 initTargetPos = target.transform.position;
-
-        float target_Distance = Vector3.Distance(distraction.transform.position, initTargetPos);
-
-        Vector3 interpolatedPosition = Vector3.Lerp(initPlayerPos, initTargetPos, target_Distance);
-
-        lerpFloat += .01f;
-
-        while (!Mathf.Approximately(target_Distance, lerpFloat))
-        {
-            Debug.Log("Moving forward a bit.");
-            distraction.transform.position += (distraction.transform.forward);
-            lerpFloat += .01f;
-        }
-        yield return null;
-    }
-    */
-
     private void FixedUpdate()
     {
         if (canMove)
