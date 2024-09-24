@@ -1446,6 +1446,7 @@ GameObject:
   - component: {fileID: 811213608}
   - component: {fileID: 811213607}
   - component: {fileID: 811213611}
+  - component: {fileID: 811213612}
   m_Layer: 6
   m_Name: ElevatorDoor
   m_TagString: EleDoor
@@ -1554,6 +1555,19 @@ MonoBehaviour:
   renderers:
   - {fileID: 811213608}
   color: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &811213612
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811213606}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2743a355df5b31408368f32ffafe79b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elevatorLock: {fileID: 0}
 --- !u!1001 &830109297
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4496,6 +4510,74 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1930173230}
   m_CullTransparentMesh: 1
+--- !u!1001 &2104643185
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3813954408933433784, guid: 992aa536565283143bad768546152ef5,
+        type: 3}
+      propertyPath: m_Name
+      value: EleLock
+      objectReference: {fileID: 0}
+    - target: {fileID: 5310909001979041645, guid: 992aa536565283143bad768546152ef5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 5310909001979041645, guid: 992aa536565283143bad768546152ef5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.93
+      objectReference: {fileID: 0}
+    - target: {fileID: 5310909001979041645, guid: 992aa536565283143bad768546152ef5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 26.85
+      objectReference: {fileID: 0}
+    - target: {fileID: 5310909001979041645, guid: 992aa536565283143bad768546152ef5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5310909001979041645, guid: 992aa536565283143bad768546152ef5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5310909001979041645, guid: 992aa536565283143bad768546152ef5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5310909001979041645, guid: 992aa536565283143bad768546152ef5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5310909001979041645, guid: 992aa536565283143bad768546152ef5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5310909001979041645, guid: 992aa536565283143bad768546152ef5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5310909001979041645, guid: 992aa536565283143bad768546152ef5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 992aa536565283143bad768546152ef5, type: 3}
 --- !u!1001 &2119510601
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5042,5 +5124,6 @@ SceneRoots:
   - {fileID: 1679832183}
   - {fileID: 703929696}
   - {fileID: 811213610}
+  - {fileID: 2104643185}
   - {fileID: 810438598}
   - {fileID: 1563099875}

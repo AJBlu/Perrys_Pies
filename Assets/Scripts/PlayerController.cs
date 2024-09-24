@@ -184,7 +184,7 @@ public class PlayerController : MonoBehaviour
                         else if (hit.collider.tag == "BellAttract") inventory[i] = bellAttract;
                         else if (hit.collider.tag == "CanAttract") inventory[i] = canAttract;
                         UIManager.GetComponent<UIManager>().slotUpdate(i, hit.collider.tag);
-                        hit.collider.gameObject.SetActive(false);
+                        Destroy(hit.collider.gameObject);
                         isStored = true;
                         if (hit.collider.tag == "KeyDeter")
                         {
@@ -218,6 +218,19 @@ public class PlayerController : MonoBehaviour
                 other.gameObject.SetActive(false);
             }
             else Debug.Log("Not enough keys.");
+        }
+
+        if (other.transform.tag == "ElevatorLock")
+        {
+            if (keyCount != 0)
+            {
+                keyCount--;
+                Destroy(other.gameObject);
+            }
+            else
+            {
+                Debug.Log("I need a key");
+            }
         }
     }
 

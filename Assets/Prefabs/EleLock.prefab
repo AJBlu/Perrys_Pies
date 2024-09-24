@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 2161625278129084305}
   - component: {fileID: 2475872233182132152}
   m_Layer: 0
-  m_Name: Lock
-  m_TagString: Lock
+  m_Name: EleLock
+  m_TagString: ElevatorLock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -64,7 +64,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7ab125c8da604db48a5ac170dfe9d404, type: 2}
+  - {fileID: 2100000, guid: f79070c53727b534c84031aae7eb3cdf, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
