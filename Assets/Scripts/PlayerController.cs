@@ -360,30 +360,40 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    float projectileSpeed;
+
     public void throwDistraction(GameObject throwable)
     {
+        
         target.transform.forward = this.transform.forward;
         if (throwable == ballDeter)
         {
-            target.transform.position = this.transform.position + (this.transform.forward * ballThrowStrength); 
+            //target.transform.position = this.transform.position + (this.transform.forward * ballThrowStrength);
+            projectileSpeed = ballThrowStrength;
             Debug.Log("Throwing Blueberry Ball");
         }
         if (throwable == bagDeter)
         {
-            target.transform.position = this.transform.position + (this.transform.forward * bagThrowStrength);
+            //target.transform.position = this.transform.position + (this.transform.forward * bagThrowStrength);
+            projectileSpeed = bagThrowStrength;
             Debug.Log("Throwing Hardened Icing Bag");
         }
         if (throwable == bellAttract)
         {
-            target.transform.position = this.transform.position + (this.transform.forward * bellThrowStrength);
+            //target.transform.position = this.transform.position + (this.transform.forward * bellThrowStrength);
+            projectileSpeed = bellThrowStrength;
             Debug.Log("Throwing Pie Bell");
         }
         if (throwable == canAttract)
         {
-            target.transform.position = this.transform.position + (this.transform.forward * canThrowStrength);
+            //target.transform.position = this.transform.position + (this.transform.forward * canThrowStrength);
+            projectileSpeed = canThrowStrength;
             Debug.Log("Throwing Pie Scent");
         }
-        //StartCoroutine(throwObject(throwable));
+        var position = transform.position + transform.forward;
+        var rotation = transform.rotation;
+        var projectile = Instantiate(throwable, position, rotation);
+        projectile.GetComponent<Projectile>().Fire(projectileSpeed, transform.forward);
     }
 
     public float lerpFloat = 0f;

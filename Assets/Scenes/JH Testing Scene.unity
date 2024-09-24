@@ -1740,7 +1740,7 @@ PrefabInstance:
         type: 3}
       propertyPath: bagDeter
       value: 
-      objectReference: {fileID: 875158317567215946, guid: 876b867d696a40d4b97fd2d6e0794390,
+      objectReference: {fileID: 875158317567215946, guid: b7bbb88033bd0b04088802ebff9cf94b,
         type: 3}
     - target: {fileID: 4389873307277588665, guid: cd638d44627ae154bb988bbc77d2c709,
         type: 3}
@@ -1756,19 +1756,19 @@ PrefabInstance:
         type: 3}
       propertyPath: ballDeter
       value: 
-      objectReference: {fileID: 5010966276305397424, guid: e6132244f6c381c44b82426c2f31e7f5,
+      objectReference: {fileID: 5010966276305397424, guid: 6a80c7ac3b7f8684381ca523682d5acf,
         type: 3}
     - target: {fileID: 4389873307277588665, guid: cd638d44627ae154bb988bbc77d2c709,
         type: 3}
       propertyPath: canAttract
       value: 
-      objectReference: {fileID: 736113820545745498, guid: bda402b05d9835e428c7efe994de1a3e,
+      objectReference: {fileID: 736113820545745498, guid: 4a7c9718076f85148a8963f8bc591379,
         type: 3}
     - target: {fileID: 4389873307277588665, guid: cd638d44627ae154bb988bbc77d2c709,
         type: 3}
       propertyPath: bellAttract
       value: 
-      objectReference: {fileID: 3377830441188796269, guid: 0a4e96d56b341804886d0a8c83a3029f,
+      objectReference: {fileID: 3377830441188796269, guid: 9f71130fca637324da6a65fa13befefe,
         type: 3}
     - target: {fileID: 4389873307277588665, guid: cd638d44627ae154bb988bbc77d2c709,
         type: 3}
