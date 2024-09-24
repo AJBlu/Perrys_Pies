@@ -394,6 +394,15 @@ public class PlayerController : MonoBehaviour
         var rotation = transform.rotation;
         var projectile = Instantiate(throwable, position, rotation);
         projectile.GetComponent<Projectile>().Fire(projectileSpeed, transform.forward);
+
+        for (int i = 0; i < inventory.Count; i++)
+        {
+            if (i + 1 == selectedSlot)
+            {
+                inventory[i] = null;
+                UIManager.GetComponent<UIManager>().slotUpdate(i, null);
+            }
+        }
     }
 
     private void FixedUpdate()

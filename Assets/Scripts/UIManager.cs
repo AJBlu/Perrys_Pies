@@ -45,6 +45,7 @@ public class UIManager : MonoBehaviour
         else if (slotName == "BagDeter") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(238, 229, 190, 255);
         else if (slotName == "BellAttract") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(210, 180, 140, 255);
         else if (slotName == "CanAttract") inventorySlots[slotNumber].GetComponent<Image>().color = Color.red;
+        else if (slotName == null) inventorySlots[slotNumber].GetComponent<Image>().color = Color.white;
     }
 
     public void checkForMissingStuff()
