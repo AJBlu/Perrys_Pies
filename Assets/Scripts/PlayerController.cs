@@ -197,6 +197,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void verifyInventory()
+    {
+        for (int i = 0; i < inventory.Count; i++)
+        {
+            if (inventory[i] != null)
+            {
+                UIManager.GetComponent<UIManager>().slotUpdate(i, inventory[i].gameObject.tag);
+            }
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.transform.tag == "Lock")
