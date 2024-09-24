@@ -5,16 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test Basement.unity
     guid: 0d33177506b45d145bb5ad6c6125f355
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/JH Testing Scene.unity
     guid: 96bc432f782646446bc9674eb89eccb2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test Floor 2.unity
     guid: d3bf3a77714628441a60343650266db2
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Test Floor 3.unity
     guid: ab089a34c0ffab544b11f35d232837e8
   m_configObjects: {}
