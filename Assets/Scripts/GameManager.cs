@@ -80,6 +80,7 @@ public class GameManager : MonoBehaviour
         UIManager.GetComponent<UIManager>().checkForMissingStuff();
         StartCoroutine(UIManager.GetComponent<UIManager>().waitAndCheck());
         player.GetComponent<PlayerController>().findUI();
+        player.GetComponent<PlayerController>().verifyInventory();
     }
 
     public IEnumerator destroySingleObjects()
