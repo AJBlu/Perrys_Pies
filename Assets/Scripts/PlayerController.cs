@@ -190,6 +190,7 @@ public class PlayerController : MonoBehaviour
                         {
                             keyDeterGrabbed = true;
                         }
+                        pickupUI.SetActive(false);
                     }
                 }
             }
