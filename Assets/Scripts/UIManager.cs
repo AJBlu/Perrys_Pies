@@ -20,11 +20,25 @@ public class UIManager : MonoBehaviour
 
     public GameObject fadingText;
 
+    public GameObject keyImageHolder;
+    public List<Image> keyImages;
+
     // Start is called before the first frame update
     void Start()
     {
-        panelDown();
         checkForMissingStuff();
+        for (int i = 0; i < keyImages.Count; i++)
+        {
+            keyColor(i, false);
+        }
+        panelDown();
+        
+    }
+
+    public void keyColor(int keySlot, bool isObtained)
+    {
+        if (isObtained) keyImages[keySlot].color = Color.white;
+        else keyImages[keySlot].color = Color.black;
     }
 
     // Update is called once per frame
@@ -68,6 +82,14 @@ public class UIManager : MonoBehaviour
         if (elevatorButtons[2] == null) elevatorButtons[2] = GameObject.Find("Floor 2").GetComponent<Button>();
         if (elevatorButtons[3] == null) elevatorButtons[3] = GameObject.Find("Floor 3").GetComponent<Button>();
         if (fadingText == null) fadingText = GameObject.Find("KeyNeeded");
+        if (keyImageHolder == null) keyImageHolder = GameObject.Find("KeysHolder");
+        for (int i = 0; i < 3; i++)
+        {
+            if (keyImages[i] == null)
+            {
+                keyImages[i] = GameObject.FindGameObjectWithTag("Key" + (i + 1) + "Image").GetComponent<Image>();
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -84,6 +106,7 @@ public class UIManager : MonoBehaviour
         elevatorPanelHolder.SetActive(true);
         inventoryHolder.SetActive(false);
         slotIdentifyer.SetActive(false);
+        keyImageHolder.SetActive(false);
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -95,6 +118,7 @@ public class UIManager : MonoBehaviour
         elevatorPanelHolder.SetActive(false);
         inventoryHolder.SetActive(true);
         slotIdentifyer.SetActive(true);
+        keyImageHolder.SetActive(true);
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;

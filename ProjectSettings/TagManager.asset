@@ -15,6 +15,10 @@ TagManager:
   - BellAttract
   - CanAttract
   - ElevatorLock
+  - Key1Image
+  - Key2Image
+  - Key3Image
+  - KeyImageHolder
   layers:
   - Default
   - TransparentFX

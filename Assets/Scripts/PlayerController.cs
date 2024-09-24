@@ -169,6 +169,10 @@ public class PlayerController : MonoBehaviour
                 hit.collider.enabled = false;
                 keySpace[keyCount] = hit.collider.gameObject;
                 keyCount++;
+                for (int i = 0; i < 3; i++)
+                {
+                    if (hit.collider.name == "Key" + (i + 1)) UIManager.GetComponent<UIManager>().keyColor(i, true);
+                }
                 return;
             }
             for (int i = 0; i < inventory.Count; i++)
