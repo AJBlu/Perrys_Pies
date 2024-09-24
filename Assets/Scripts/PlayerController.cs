@@ -229,6 +229,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                UIManager.GetComponent<UIManager>().fadingText.GetComponent<FadeText>().fadeTime = 2;
                 Debug.Log("I need a key");
             }
         }

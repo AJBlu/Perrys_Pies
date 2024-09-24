@@ -18,6 +18,8 @@ public class UIManager : MonoBehaviour
 
     public GameObject slotIdentifyer;
 
+    public GameObject fadingText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -64,6 +66,7 @@ public class UIManager : MonoBehaviour
         if (elevatorButtons[1] == null) elevatorButtons[1] = GameObject.Find("Ground").GetComponent<Button>();
         if (elevatorButtons[2] == null) elevatorButtons[2] = GameObject.Find("Floor 2").GetComponent<Button>();
         if (elevatorButtons[3] == null) elevatorButtons[3] = GameObject.Find("Floor 3").GetComponent<Button>();
+        if (fadingText == null) fadingText = GameObject.Find("KeyNeeded");
     }
 
     private void FixedUpdate()
@@ -79,6 +82,7 @@ public class UIManager : MonoBehaviour
     {
         elevatorPanelHolder.SetActive(true);
         inventoryHolder.SetActive(false);
+        slotIdentifyer.SetActive(false);
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -89,6 +93,7 @@ public class UIManager : MonoBehaviour
     {
         elevatorPanelHolder.SetActive(false);
         inventoryHolder.SetActive(true);
+        slotIdentifyer.SetActive(true);
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
