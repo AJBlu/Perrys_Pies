@@ -292,7 +292,6 @@ GameObject:
   - component: {fileID: 5999952661318782115}
   - component: {fileID: 6871891509075842663}
   - component: {fileID: 114818433427423541}
-  - component: {fileID: 1929329323651190786}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -479,36 +478,7 @@ MonoBehaviour:
   crouchHeight: 0.5
   isCrouched: 0
   sprinting: 0
-  currentSpeed: 10
-  jumpSpeed: 4
-  hitRange: 3
-  interactionInput: {fileID: 4417774981443331334, guid: 7c68a63bb95ef694f95d088a9bc549bd,
-    type: 3}
---- !u!114 &1929329323651190786
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5453285288729053333}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a9376465fedb3749b3ff7bc064e9712, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pickableLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  playerCameraTransform: {fileID: 2353446158679785555}
-  originalSpeed: 0
-  sprintFactor: 2
-  crawlFactor: 0.5
-  sprintMax: 2
-  normalHeight: 1
-  crouchHeight: 0.5
-  isCrouched: 0
-  sprinting: 0
-  currentSpeed: 10
+  currentSpeed: 5
   jumpSpeed: 4
   hitRange: 3
   interactionInput: {fileID: 4417774981443331334, guid: 7c68a63bb95ef694f95d088a9bc549bd,

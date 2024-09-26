@@ -296,7 +296,7 @@ public class PerrySensor : MonoBehaviour
         AudioCueHeard.RemoveListener(gameObject.GetComponent<Pursuit>().OnAudioCueHeard);
         InstantiatePOI();
     }
-
+    /*
     private void OnDrawGizmosSelected()
     {
 
@@ -308,6 +308,6 @@ public class PerrySensor : MonoBehaviour
             UnityEditor.Handles.color = Color.red;
             UnityEditor.Handles.DrawLine(transform.position, closeExtends);
     }
-
+    */
 
 }
