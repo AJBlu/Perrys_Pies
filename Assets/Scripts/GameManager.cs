@@ -94,9 +94,14 @@ public class GameManager : MonoBehaviour
         player.GetComponent<PlayerController>().verifyInventory();
     }
 
+    public IEnumerator waitFor(float seconds)
+    {
+        yield return new WaitForSeconds(seconds);
+    }
+
     public IEnumerator destroySingleObjects()
     {
-        yield return new WaitForSeconds(0.5f);
+        StartCoroutine(waitFor(0.5f));
         if (player.GetComponent<PlayerController>().keyDeterGrabbed) Destroy(GameObject.FindGameObjectWithTag("KeyDeter"));
         if (player.GetComponent<PlayerController>().hasPieTin) Destroy(GameObject.FindGameObjectWithTag("PieTin"));
         yield return null;
