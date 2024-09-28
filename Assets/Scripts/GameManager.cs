@@ -36,19 +36,8 @@ public class GameManager : MonoBehaviour
         if (pressedButton == 1)
         {
             checkForDupes();
-            //destroySingleObjects();
             StartCoroutine(destroySingleObjects());
         }
-    }
-
-    public IEnumerator destroyProgressionalStuff()
-    {
-        yield return new WaitForSeconds(0.5f);
-        if (player.GetComponent<PlayerController>().hasPieTin)
-        {
-            Destroy(GameObject.FindGameObjectWithTag("PieTin"));
-        }
-        yield return null;
     }
 
     public void checkForDupes()
