@@ -219,17 +219,9 @@ public class PlayerController : MonoBehaviour
         {
             if (keyCount == 3)
             {
-                for (int i = 0; i < keySpace.Count; i++)
+                for (int i = keySpace.Count; i > 0; i--)
                 {
-                    if (keySpace[i].tag == "Key")
-                    {
-                        keySpace[i] = null;
-                        keyCount--;
-                    }
-                    if (keyCount == 0)
-                    {
-                        i = 10;
-                    }
+                    UIManager.GetComponent<UIManager>().keyColor(i, false);
                 }
                 other.gameObject.SetActive(false);
             }

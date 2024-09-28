@@ -93,6 +93,13 @@ public class GameManager : MonoBehaviour
         StartCoroutine(waitFor(0.5f));
         if (player.GetComponent<PlayerController>().keyDeterGrabbed) Destroy(GameObject.FindGameObjectWithTag("KeyDeter"));
         if (player.GetComponent<PlayerController>().hasPieTin) Destroy(GameObject.FindGameObjectWithTag("PieTin"));
+        for (int i = 0; i < player.GetComponent<PlayerController>().keySpace.Count; i++)
+        {
+            if (player.GetComponent<PlayerController>().keySpace[i] != null)
+            {
+                Destroy(GameObject.FindGameObjectWithTag(player.GetComponent<PlayerController>().keySpace[i].tag));
+            }
+        }
         yield return null;
     }
 }
