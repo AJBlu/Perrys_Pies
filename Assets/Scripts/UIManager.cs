@@ -23,6 +23,11 @@ public class UIManager : MonoBehaviour
     public GameObject keyImageHolder;
     public List<Image> keyImages;
 
+    public GameObject skeletonHintHolder;
+    public GameObject skeletonHintText;
+
+    public bool givingHint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +37,8 @@ public class UIManager : MonoBehaviour
             keyColor(i, false);
         }
         panelDown();
-        
+        skeletonHintHolder.SetActive(false);
+        givingHint = false;
     }
 
     public void keyColor(int keySlot, bool isObtained)
@@ -51,6 +57,12 @@ public class UIManager : MonoBehaviour
                 slotIdentifyer.transform.localPosition = new Vector3((-450 + (85 * i)), -256, 0);
             }
         }
+
+        if (givingHint)
+        {
+            Time.timeScale = 0;
+        }
+        else Time.timeScale = 1;
     }
 
     public void slotUpdate(int slotNumber, string slotName)
@@ -90,6 +102,14 @@ public class UIManager : MonoBehaviour
                 keyImages[i] = GameObject.FindGameObjectWithTag("Key" + (i + 1) + "Image").GetComponent<Image>();
             }
         }
+        if (skeletonHintHolder == null)
+        {
+            GameObject.Find("HintHolder");
+        }
+        if (skeletonHintText == null)
+        {
+            GameObject.Find("Hint Text");
+        }
     }
 
     private void FixedUpdate()
@@ -99,6 +119,15 @@ public class UIManager : MonoBehaviour
             if (i == player.GetComponent<PlayerController>().currentFloor) elevatorButtons[i].interactable = false;
             else elevatorButtons[i].interactable = true;
         }
+    }
+
+    public void skeletonHint(GameObject skeleton)
+    {
+        skeletonHintHolder.SetActive(true);
+        //this is where the logic for determining the string would go
+
+        skeleton.GetComponent<SkeletonDialog>().setHintText(skeletonHintText.GetComponent<Text>(), "Lorem ipsum dolor sit amet");
+        givingHint = true;
     }
 
     public void panelUp()

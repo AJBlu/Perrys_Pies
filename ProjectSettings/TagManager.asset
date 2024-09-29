@@ -19,6 +19,7 @@ TagManager:
   - Key2Image
   - Key3Image
   - KeyImageHolder
+  - Skeleton
   layers:
   - Default
   - TransparentFX

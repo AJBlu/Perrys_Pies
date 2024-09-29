@@ -175,6 +175,11 @@ public class PlayerController : MonoBehaviour
                 }
                 return;
             }
+            if (hit.collider.tag == "Skeleton")
+            {
+                UIManager.GetComponent<UIManager>().skeletonHint(hit.collider.gameObject);
+                return;
+            }
             for (int i = 0; i < inventory.Count; i++)
             {
                 if (isStored) return;
@@ -324,12 +329,19 @@ public class PlayerController : MonoBehaviour
             }
             if (Input.GetMouseButtonDown(0))
             {
-                for (int i = 0; i < 5; i++)
+                if (UIManager.GetComponent<UIManager>().givingHint)
                 {
-                    if (i + 1 == selectedSlot)
+                    UIManager.GetComponent<UIManager>().givingHint = false;
+                }
+                else
+                {
+                    for (int i = 0; i < 5; i++)
                     {
-                        throwDistraction(inventory[i]);
-                        return;
+                        if (i + 1 == selectedSlot)
+                        {
+                            throwDistraction(inventory[i]);
+                            return;
+                        }
                     }
                 }
             }
