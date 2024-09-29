@@ -58,10 +58,17 @@ public class UIManager : MonoBehaviour
             }
         }
 
-        if (givingHint)
+        if ((givingHint && !menuOpen))
         {
             Time.timeScale = 0;
             skeletonHintHolder.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else if (menuOpen)
+        {
+            Time.timeScale = 0;
+            skeletonHintHolder.SetActive(false);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
