@@ -61,8 +61,17 @@ public class UIManager : MonoBehaviour
         if (givingHint)
         {
             Time.timeScale = 0;
+            skeletonHintHolder.SetActive(true);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
         }
-        else Time.timeScale = 1;
+        else
+        {
+            Time.timeScale = 1;
+            skeletonHintHolder.SetActive(false);
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
     }
 
     public void slotUpdate(int slotNumber, string slotName)
@@ -123,11 +132,11 @@ public class UIManager : MonoBehaviour
 
     public void skeletonHint(GameObject skeleton)
     {
-        skeletonHintHolder.SetActive(true);
+        givingHint = true;
         //this is where the logic for determining the string would go
 
         skeleton.GetComponent<SkeletonDialog>().setHintText(skeletonHintText.GetComponent<Text>(), "Lorem ipsum dolor sit amet");
-        givingHint = true;
+        
     }
 
     public void panelUp()
