@@ -143,7 +143,6 @@ public class UIManager : MonoBehaviour
         //this is where the logic for determining the string would go
 
         skeleton.GetComponent<SkeletonDialog>().setHintText(skeletonHintText.GetComponent<Text>(), "Lorem ipsum dolor sit amet");
-        
     }
 
     public void panelUp()
