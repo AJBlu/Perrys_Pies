@@ -102,13 +102,19 @@ public class PerrySensor : MonoBehaviour
     private void CheckHearing(float radius)
     {
         List<GameObject> POIs = CheckNearbyAudioSources(HearingRadius);
+        PatrolManager _patrolManager = GameObject.Find("PatrolManager").GetComponent<PatrolManager>();
+        if (_patrolManager == null)
+        {
+            Debug.LogFormat($"{gameObject.name} [PerrySensor.cs:CheckNearbyAudioSources()] WARNING!" +
+                $"  Patrol and Search Node manager is not attached, gameobject is not in scene, or unable to be found.");
+        }
         if (POIs.Count != 0)
         {
            foreach (GameObject POI in POIs)
            {
                if (_perryNav.DebugEnabled)
                    Debug.LogFormat($"POI at location {POI.transform.position} added to searchThese");
-               _perryNav.searchThese.Add(POI);
+               _patrolManager.SearchNodes.Add(POI.transform);
            }
            AudioCueHeard.Invoke();
         }
@@ -121,21 +127,22 @@ public class PerrySensor : MonoBehaviour
     private List<GameObject> CheckNearbyAudioSources(float radius)
     {
         Collider[] hit = Physics.OverlapSphere(transform.position, radius);
-        List<GameObject> POIs = new List<GameObject>(); 
-        foreach(Collider col in hit)
-        {
-            if (col.tag == "POI")
+        List<GameObject> POIs = new List<GameObject>();
+            foreach (Collider col in hit)
             {
-                if (!col.GetComponent<PointOfInterest>().willBeSearched)
-                {     
-                    col.gameObject.GetComponent<PointOfInterest>().willBeSearched = true;
-                    POIs.Add(col.gameObject);
-                    //Debug.LogFormat($"{POIs.Count}");
+                if (col.tag == "POI")
+                {
+                    if (!col.GetComponent<PointOfInterest>().willBeSearched)
+                    {
+                        col.gameObject.GetComponent<PointOfInterest>().willBeSearched = true;
+                        POIs.Add(col.gameObject);
+                        //Debug.LogFormat($"{POIs.Count}");
+                    }
                 }
-            }
-        }
 
-        return POIs;
+            }
+
+       return POIs;
     }
 
     private GameObject CheckDistance(float radius, string tagname)
@@ -213,7 +220,7 @@ public class PerrySensor : MonoBehaviour
         RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) * CloseSightRadius, out hit, CloseSightRadius))
             {
-                Debug.LogFormat($"{gameObject.name} [Perrsensor.cs:DelayedRaycast()] Player has been seen up close.");
+                Debug.LogFormat($"{gameObject.name} [Perrysensor.cs:DelayedRaycast()] Player has been seen up close.");
                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * CloseSightRadius, Color.red);
                 PlayerSeen_Close.Invoke();
             }
