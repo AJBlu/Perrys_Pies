@@ -5,13 +5,22 @@ using UnityEditor;
 public class PointOfInterest : MonoBehaviour
 {
     public bool willBeSearched = false;
+    private PerryNav _pn;
+    private float _hearingRadius;
+    private void Awake()
+    {
+        _pn = GameObject.FindGameObjectWithTag("Perry").GetComponent<PerryNav>();
+        _hearingRadius = GameObject.FindGameObjectWithTag("Perry").GetComponent<PerrySensor>().HearingRadius;
+        if (Vector3.Distance(this.transform.position, _pn.gameObject.transform.position) < _hearingRadius)
+            _pn.searchThese.Add(this.gameObject);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Perry")
         {
-
-            //Destroy(this.gameObject);
+            _pn.searchThese.Remove(this.gameObject);
+            Destroy(this.gameObject);
             
         }
     }

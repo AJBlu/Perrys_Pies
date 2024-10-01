@@ -35,7 +35,7 @@ public class Search : State
 
     public override void UpdateState()
     {
-        if(!stillSearching && !playerEyeContact)
+        if(!stillSearching)
         {
             _statemachine.ChangeState(_patrol);
         }

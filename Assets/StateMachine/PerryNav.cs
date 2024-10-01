@@ -27,6 +27,17 @@ public class PerryNav : MonoBehaviour
     public State _Search;
 
 
+    //pursuit and speed
+    [Range(0f, 10f)]
+    public float _speed;
+
+    [Range(0f, 20f)]
+    public float _chaseSpeed;
+
+    private bool _isChasing = false;
+
+    private bool _isTrackingPlayerPosition = false;
+
     public UnityEvent allDestinationsSearched;
 
     private void Awake()
@@ -55,7 +66,7 @@ public class PerryNav : MonoBehaviour
         //if there are still nodes to be searched and nav agent has no path
         if (searchThese.Count != 0 && !NavMeshAgent.hasPath)
         {
-            OnAudioCueHeard();
+            //OnAudioCueHeard();
 
         }
         //if there are no more nodes to search and nav agent has reached last destination
@@ -64,8 +75,23 @@ public class PerryNav : MonoBehaviour
             allDestinationsSearched.Invoke();
         }
 
+        if (_isChasing)
+        {
+            if (!_isTrackingPlayerPosition)
+                StartCoroutine("TrackPlayerPosition");
+
+        }
+
     }        
     
+    private IEnumerator TrackPlayerPosition()
+    {
+        _isTrackingPlayerPosition = true;
+        NavMeshAgent.SetDestination(player.transform.position);
+
+        yield return new WaitForSeconds(2.5f);
+        _isTrackingPlayerPosition = false;
+    }
 
     private void AddStates()
     {
@@ -92,11 +118,12 @@ public class PerryNav : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         NavMeshAgent.SetDestination(player.transform.position);
+        NavMeshAgent.speed = _chaseSpeed;
     }
 
     public void OnPursuitExit()
     {
-
+        NavMeshAgent.speed = _speed;
     }
 
     public void OnAudioCueHeard()
@@ -126,8 +153,10 @@ public class PerryNav : MonoBehaviour
     {
         if(DebugEnabled)
             Debug.Log("Patrolling now.");
+        NavMeshAgent.speed = _speed;
+
     }
-        
+
 
     public void OnPatrolExit()
     {
@@ -137,6 +166,8 @@ public class PerryNav : MonoBehaviour
     public void OnSearch()
     {
         allDestinationsSearched.AddListener(gameObject.GetComponent<Search>().OnSearchCompleted);
+        NavMeshAgent.speed = _speed;
+
 
     }
 
