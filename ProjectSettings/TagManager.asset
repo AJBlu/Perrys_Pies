@@ -20,6 +20,7 @@ TagManager:
   - Key3Image
   - KeyImageHolder
   - Skeleton
+  - SkeletonText
   layers:
   - Default
   - TransparentFX
