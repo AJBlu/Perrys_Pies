@@ -345,6 +345,11 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                if (!UIManager.GetComponent<UIManager>().gamePaused) UIManager.GetComponent<UIManager>().pauseGame();
+                else UIManager.GetComponent<UIManager>().panelDown();
+            }
         }
     }
 

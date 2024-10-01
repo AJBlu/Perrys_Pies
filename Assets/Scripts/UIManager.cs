@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 //using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
     public GameObject elevatorPanelHolder;
+    public GameObject pauseHolder;
     public GameObject inventoryHolder;
     public GameObject player;
     private static GameManager gameManager;
 
     public bool menuOpen;
+    public bool gamePaused;
 
     public List<Button> elevatorButtons;
     public List<GameObject> inventorySlots;
@@ -122,6 +125,10 @@ public class UIManager : MonoBehaviour
         {
             GameObject.Find("HintHolder");
         }
+        if (pauseHolder == null)
+        {
+            GameObject.Find("PauseMenuHolder");
+        }
         if (skeletonHintText == null)
         {
             GameObject.Find("Hint Text");
@@ -151,6 +158,7 @@ public class UIManager : MonoBehaviour
         inventoryHolder.SetActive(false);
         slotIdentifyer.SetActive(false);
         keyImageHolder.SetActive(false);
+        pauseHolder.SetActive(false);
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
@@ -160,6 +168,7 @@ public class UIManager : MonoBehaviour
     public void panelDown()
     {
         elevatorPanelHolder.SetActive(false);
+        pauseHolder.SetActive(false);
         inventoryHolder.SetActive(true);
         slotIdentifyer.SetActive(true);
         keyImageHolder.SetActive(true);
@@ -167,6 +176,31 @@ public class UIManager : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
         menuOpen = false;
+        gamePaused = false;
+    }
+
+    public void pauseGame()
+    {
+        elevatorPanelHolder.SetActive(false);
+        inventoryHolder.SetActive(false);
+        slotIdentifyer.SetActive(false);
+        keyImageHolder.SetActive(false);
+        pauseHolder.SetActive(true);
+        Time.timeScale = 0;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        menuOpen = true;
+        gamePaused = true;
+    }
+    public void quitGame()
+    {
+        Application.Quit();
+    }
+    public void restartGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        player.GetComponent<PlayerController>().keyDeterGrabbed = false;
+        player.GetComponent<PlayerController>().hasPieTin = false;
     }
 
     public void moveToBasement()
