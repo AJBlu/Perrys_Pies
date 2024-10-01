@@ -22,7 +22,7 @@ public class SkeletonDialog : MonoBehaviour
         
     }
 
-    public void setHintText(Text text, string givenHint)
+    public void setHintText(TMPro.TextMeshProUGUI text, string givenHint)
     {
         text.text = givenHint;
     }
