@@ -198,7 +198,7 @@ public class UIManager : MonoBehaviour
     }
     public void restartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        gameManager.GetComponent<GameManager>().moveToFloor(1);
         player.GetComponent<PlayerController>().keyDeterGrabbed = false;
         player.GetComponent<PlayerController>().hasPieTin = false;
     }
