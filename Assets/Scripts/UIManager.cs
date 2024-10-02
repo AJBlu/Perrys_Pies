@@ -194,7 +194,7 @@ public class UIManager : MonoBehaviour
     }
     public void quitGame()
     {
-        Debug.Log("You can stop the game, but not the fear.");
+        Debug.Log("You'll be back... and I'll be waiting.");
         Application.Quit();
     }
     public void restartGame()
