@@ -74,6 +74,9 @@ public class PlayerController : MonoBehaviour
 
     public int selectedSlot;
 
+    public Vector3 ogPos;
+    
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -86,6 +89,8 @@ public class PlayerController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        ogPos = this.gameObject.transform.position;
     }
 
     // Start is called before the first frame update

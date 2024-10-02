@@ -8,11 +8,15 @@ public class FirstPersonCamera : MonoBehaviour
     public float mouseSensitivity = 2f;
     float cameraVerticalRotation = 0f;
 
+    public Quaternion ogRotation;
+
     // Start is called before the first frame update
     void Start()
     {
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
+
+        ogRotation = Quaternion.Euler(0, 0, 0);
     }
 
     // Update is called once per frame

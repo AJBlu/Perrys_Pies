@@ -194,13 +194,20 @@ public class UIManager : MonoBehaviour
     }
     public void quitGame()
     {
+        Debug.Log("You can stop the game, but not the fear.");
         Application.Quit();
     }
     public void restartGame()
     {
+        GameObject playerCam = GameObject.FindGameObjectWithTag("MainCamera");
+
         gameManager.GetComponent<GameManager>().moveToFloor(1);
+        player.GetComponent<PlayerController>().transform.position = player.GetComponent<PlayerController>().ogPos;
+        Debug.Log("PlayerCam should reset rotation.");
+        playerCam.transform.rotation = playerCam.GetComponent<FirstPersonCamera>().ogRotation;
         player.GetComponent<PlayerController>().keyDeterGrabbed = false;
         player.GetComponent<PlayerController>().hasPieTin = false;
+        player.GetComponent<PlayerController>().pickupUI.SetActive(false);
     }
 
     public void moveToBasement()
