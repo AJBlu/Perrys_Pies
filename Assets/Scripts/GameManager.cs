@@ -28,6 +28,19 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(EventSystemInstance);
     }
 
+    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        UI = GameObject.Find("Canvas");
+        UIManager = GameObject.Find("UIManager");
+        EventSystem = GameObject.Find("EventSystem");
+        checkForDupes();
+        DontDestroyOnLoad(UIinstance);
+        DontDestroyOnLoad(UIManager);
+        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(EventSystemInstance);
+    }
+
     public void moveToFloor(int pressedButton)
     {
         UIManager.GetComponent<UIManager>().panelDown();

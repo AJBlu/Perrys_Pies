@@ -200,7 +200,12 @@ public class UIManager : MonoBehaviour
 
     public void mainMenu()
     {
+        GameObject eventSystem = GameObject.Find("EventSystem");
         SceneManager.LoadScene("MainMenu");
+        Destroy(player);
+        Destroy(eventSystem);
+        Destroy(pauseHolder.transform.parent.gameObject);
+        Destroy(this.gameObject);
     }
 
     public void restartGame()
