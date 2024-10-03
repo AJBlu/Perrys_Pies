@@ -7,13 +7,15 @@ using UnityEngine.AI;
 public class PatrolManager : MonoBehaviour
 {
     public GameObject Perry;
-    public Transform[] nodes;
+    public List<Transform> PatrolNodes = new List<Transform>();
+    public List<Transform> SearchNodes = new List<Transform>();
 
-    public NavMeshAgent _perryAgent;
-    public Patrol _patrol;
+    private NavMeshAgent _perryAgent;
+    private Patrol _patrol;
+    private Search _search;
 
     private bool _isPathfinding;
-    private int _nodePlayerIsApproaching;
+    private int _nextNode;
     private void Awake()
     {
         if (Perry == null)
@@ -21,19 +23,39 @@ public class PatrolManager : MonoBehaviour
 
         _perryAgent = Perry.GetComponent<NavMeshAgent>();
         _patrol = Perry.GetComponent<Patrol>();
-        _nodePlayerIsApproaching = 0;
+        _search = Perry.GetComponent<Search>();
+        _nextNode = GetClosestPatrolNode(PatrolNodes);
+        Perry.GetComponent<PerrySensor>().AudioCueHeard.AddListener(OnAudioCueHeard);
     }
 
     public void Update()
     {
-        if(!_isPathfinding && _patrol.isActive)
+        if (!_isPathfinding && _search.isActive && SearchNodes.Count > 0)
+            StartCoroutine("SearchRoute");
+        if (!_isPathfinding && _patrol.isActive && PatrolNodes.Count > 0)
             StartCoroutine("PatrolRoute");
 
-    }
-    public void GetClosestPatrolNode()
-    {
+
 
     }
+    public int GetClosestPatrolNode(List<Transform> nodeList)
+    {
+        int targetNode = 0;
+        float distance = float.MaxValue;
+        for(int i = 0; i < nodeList.Count; i++)
+        {
+            float _perryDistance = Vector3.Distance(Perry.transform.position, nodeList[i].position);
+            if (distance > _perryDistance)
+            {
+                distance = _perryDistance;
+            }
+            targetNode = i;
+        }
+
+        return targetNode;
+    }
+
+
 
     public IEnumerator PatrolRoute()
     {
@@ -44,16 +66,45 @@ public class PatrolManager : MonoBehaviour
             {
 
                 Debug.Log("Setting Destination");
-                _perryAgent.SetDestination(nodes[_nodePlayerIsApproaching].position);
-                _nodePlayerIsApproaching++;
+                _perryAgent.SetDestination(PatrolNodes[_nextNode].position);
+                _nextNode++;
             }
 
-            if (_nodePlayerIsApproaching == nodes.Length)
-                _nodePlayerIsApproaching = 0;
+            if (_nextNode == PatrolNodes.Count)
+                _nextNode = 0;
 
         }
         _isPathfinding = false;
         yield return null;
+    }
+
+    public IEnumerator SearchRoute()
+    {
+        _isPathfinding = true;
+
+        //this could probably fuck things up
+        _nextNode = GetClosestPatrolNode(SearchNodes);
+        if (_search.isActive)
+        {
+            if (!_perryAgent.hasPath)
+            {
+
+                Debug.Log("Setting Destination");
+                _perryAgent.SetDestination(PatrolNodes[_nextNode].position);
+                _nextNode++;
+            }
+
+            if (_nextNode == PatrolNodes.Count)
+                _nextNode = 0;
+
+        }
+        _isPathfinding = false;
+        yield return null;
+    }
+
+    public void OnAudioCueHeard()
+    {
+
     }
 
 }
