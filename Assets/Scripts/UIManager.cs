@@ -202,7 +202,7 @@ public class UIManager : MonoBehaviour
         GameObject playerCam = GameObject.FindGameObjectWithTag("MainCamera");
 
         gameManager.GetComponent<GameManager>().moveToFloor(1);
-        player.GetComponent<PlayerController>().transform.position = player.GetComponent<PlayerController>().ogPos;
+        //player.GetComponent<PlayerController>().transform.position = player.GetComponent<PlayerController>().ogPos;
         Debug.Log("PlayerCam should reset rotation.");
         playerCam.gameObject.GetComponent<FirstPersonCamera>().resetRotation();
         player.GetComponent<PlayerController>().keyDeterGrabbed = false;

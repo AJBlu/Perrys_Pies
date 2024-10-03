@@ -6,7 +6,7 @@ public class FirstPersonCamera : MonoBehaviour
 {
     public Transform player;
     public float mouseSensitivity = 2f;
-    public float cameraVerticalRotation = 0f;
+    float cameraVerticalRotation = 0f;
 
     public Quaternion ogRotation;
 
@@ -39,7 +39,6 @@ public class FirstPersonCamera : MonoBehaviour
     public void resetRotation()
     {
         cameraVerticalRotation = 0;
-        player.SetPositionAndRotation(player.transform.position, ogRotation);
-        //transform.localEulerAngles = Vector3.zero;
+        player.SetPositionAndRotation(player.gameObject.GetComponent<PlayerController>().ogPos, ogRotation);
     }
 }
