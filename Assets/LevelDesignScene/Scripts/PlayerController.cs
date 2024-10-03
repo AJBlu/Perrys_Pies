@@ -86,6 +86,7 @@ public class PlayerController : MonoBehaviour
         if (canMove)
         {
             rigid.velocity = transform.TransformDirection(movement);
+            //Debug.Log(rigid.velocity.magnitude);
         }
 
         if (sprinting)

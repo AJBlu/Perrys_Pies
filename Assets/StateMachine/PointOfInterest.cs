@@ -5,13 +5,18 @@ using UnityEditor;
 public class PointOfInterest : MonoBehaviour
 {
     public bool willBeSearched = false;
+    private PatrolManager _patrolManager;
+    private void Awake()
+    {
+        _patrolManager = GameObject.Find("PatrolManager").GetComponent<PatrolManager>(); 
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Perry")
         {
-
-            //Destroy(this.gameObject);
+            _patrolManager.SearchNodes.Remove(this.transform);
+            Destroy(this.gameObject);
             
         }
     }

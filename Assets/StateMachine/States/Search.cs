@@ -9,7 +9,6 @@ public class Search : State
 
     public float SearchToPatrolDelay;
     bool stillSearching;
-    bool playerEyeContact;
     private void Awake()
     {
         _perry = GetComponent<PerryNav>();
@@ -19,7 +18,6 @@ public class Search : State
         _pursuit = GetComponent<Pursuit>();
         isActive = false;
         stillSearching = false;
-        playerEyeContact = false;
     }
     public override void InitializeState()
     {
@@ -35,7 +33,7 @@ public class Search : State
 
     public override void UpdateState()
     {
-        if(!stillSearching && !playerEyeContact)
+        if(!stillSearching)
         {
             _statemachine.ChangeState(_patrol);
         }
@@ -55,7 +53,6 @@ public class Search : State
 
     public void OnDistantPlayerSeen()
     {
-        playerEyeContact = true;
     }
 
     public void OnLineOfSightBroken()
@@ -63,7 +60,6 @@ public class Search : State
         if (isActive)
         {
             Debug.Log("No longer seeing the player at distance");
-            playerEyeContact = false;
             //continue searching for player
             //code for checking destinations will be here, for now returns to patrol
         }

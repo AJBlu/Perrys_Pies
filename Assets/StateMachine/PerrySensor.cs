@@ -27,7 +27,7 @@ public class PerrySensor : MonoBehaviour
 
     const float VISIONANGLE = .707f;
 
-    private bool playerSeen;
+    public bool playerSeen;
     private bool runningDelayedRaycast;
 
     public GameObject _player;
@@ -112,7 +112,7 @@ public class PerrySensor : MonoBehaviour
            foreach (GameObject POI in POIs)
            {
                if (_perryNav.DebugEnabled)
-                   Debug.LogFormat($"POI at location {POI.transform.position} added to searchThese");
+                   Debug.LogFormat($"POI at location {POI.transform.position} added to Search Nodes in Patrol Manager.");
                _patrolManager.SearchNodes.Add(POI.transform);
            }
            AudioCueHeard.Invoke();
@@ -165,14 +165,14 @@ public class PerrySensor : MonoBehaviour
         if(_player != null)
         {
             //if player is confirmed to exist in space, check if player is within vision cone
-            if(Vector3.Dot(gameObject.transform.position, _player.transform.position) < VISIONANGLE){
+            if(Vector3.Dot(gameObject.transform.position, transform.TransformDirection(Vector3.forward) * radius) < VISIONANGLE){
                 transform.LookAt(_player.transform);
                 if (!playerSeen)
                 {
                     //then send raycast
-                    if (Physics.Raycast(transform.position, _player.transform.position, out hit, radius))
+                    if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) * radius, out hit, radius))
                     {
-                        Debug.DrawRay(transform.position, _player.transform.position, Color.green);
+                        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * radius, Color.green);
                         //invoke events depending on radius used
                         if (radius == CloseSightRadius)
                         {
@@ -203,8 +203,11 @@ public class PerrySensor : MonoBehaviour
     private void InstantiatePOI()
     {
         var _distantPlayer = GameObject.Find("Player");
+        var _patrolmanager = GameObject.Find("PatrolManager");
         var lastKnownPosition = Instantiate(POI, _distantPlayer.transform.position, _distantPlayer.transform.rotation);
-        _perryNav.searchThese.Add(lastKnownPosition);
+        lastKnownPosition.transform.SetParent(_patrolmanager.transform);
+        _patrolmanager.GetComponent<PatrolManager>().SearchNodes.Add(lastKnownPosition.transform);
+        
         AudioCueHeard.Invoke();
     }
 
@@ -303,7 +306,7 @@ public class PerrySensor : MonoBehaviour
         AudioCueHeard.RemoveListener(gameObject.GetComponent<Pursuit>().OnAudioCueHeard);
         InstantiatePOI();
     }
-    /*
+    
     private void OnDrawGizmosSelected()
     {
 
@@ -315,6 +318,6 @@ public class PerrySensor : MonoBehaviour
             UnityEditor.Handles.color = Color.red;
             UnityEditor.Handles.DrawLine(transform.position, closeExtends);
     }
-    */
+    
 
 }

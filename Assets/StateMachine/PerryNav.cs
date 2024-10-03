@@ -11,27 +11,41 @@ public class PerryNav : MonoBehaviour
     [Header("Enable Debug Messages")]
     public bool DebugEnabled;
 
-    public List<GameObject> searchThese;
+    [Header("Node")]
+    public PatrolManager PatrolManager;
 
-    private GameObject player;
-
-    //Critical Components
+    [Header("Perry AI Components")]
     public PerrySensor PerrySensor;
     public State_Machine StateMachine;
     public NavMeshAgent NavMeshAgent;
 
 
-    //States
+    [Header("States")]
     public State _Patrol;
     public State _Pursuit;
     public State _Search;
 
+    [Header("Perry Movement")]
+    [Range(1f, 10f)]
+    [Tooltip("Adjusts speed of Perry in the patrol state.")]
+    public float PerryPatrolSpeed;
+    [Range(1f, 10f)]
+    [Tooltip("Adjusts speed of Perry in the search state.")]
+    public float PerrySearchSpeed;
+    [Range(1f, 10f)]
+    [Tooltip("Adjusts speed of Perry in the pursuit state.")]
+    public float PerryPursuitSpeed;
 
     public UnityEvent allDestinationsSearched;
 
+
     private void Awake()
     {
-        searchThese = new List<GameObject>();
+        if(PatrolManager == null)
+        {
+            print("Warning [PerryNav.cs]: PatrolManager not attached. Attempting to find in scene.");
+            PatrolManager = GameObject.Find("PatrolManager").GetComponent<PatrolManager>();
+        }
         if (!PerrySensor)
         {
             print("Warning [PerryNav.cs]: PerrySensor not attached. Instancing it instead.");
@@ -46,22 +60,29 @@ public class PerryNav : MonoBehaviour
 
         AddStates();
 
-        StateMachine.ChangeState(_Patrol);
+        StateMachine.ChangeState(_Search);
     }
 
     private void FixedUpdate()
     {
-
-        //if there are still nodes to be searched and nav agent has no path
-        if (searchThese.Count != 0 && !NavMeshAgent.hasPath)
+        if (StateMachine._activeState == gameObject.GetComponent<Pursuit>())
         {
-            OnAudioCueHeard();
-
+            NavMeshAgent.SetDestination(GameObject.FindGameObjectWithTag("Player").transform.position);
         }
-        //if there are no more nodes to search and nav agent has reached last destination
-        if (searchThese.Count == 0 && !NavMeshAgent.hasPath)
+        else
         {
-            allDestinationsSearched.Invoke();
+
+            //if there are still nodes to be searched and nav agent has no path
+            if (PatrolManager.SearchNodes.Count != 0 && !NavMeshAgent.hasPath)
+            {
+                OnAudioCueHeard();
+
+            }
+            //if there are no more nodes to search and nav agent has reached last destination
+            if (PatrolManager.SearchNodes.Count == 0 && !NavMeshAgent.hasPath)
+            {
+                allDestinationsSearched.Invoke();
+            }
         }
 
     }        
@@ -90,7 +111,8 @@ public class PerryNav : MonoBehaviour
 
     public void OnPursuit()
     {
-        player = GameObject.FindWithTag("Player");
+        NavMeshAgent.speed = PerryPursuitSpeed;
+        var player = GameObject.FindWithTag("Player");
         NavMeshAgent.SetDestination(player.transform.position);
     }
 
@@ -106,16 +128,16 @@ public class PerryNav : MonoBehaviour
             float shortest = float.MaxValue;
             int index = 0;
             //search 
-            for (int i = 0; i < searchThese.Count; i++)
+            for (int i = 0; i < PatrolManager.SearchNodes.Count; i++)
             {
-                if (Vector3.Distance(transform.position, searchThese[i].transform.position) < shortest)
+                if (Vector3.Distance(transform.position, PatrolManager.SearchNodes[i].transform.position) < shortest)
                 {
-                    shortest = Vector3.Distance(transform.position, searchThese[i].transform.position);
+                    shortest = Vector3.Distance(transform.position, PatrolManager.SearchNodes[i].transform.position);
                     index = i;
                 }
             }
-            NavMeshAgent.SetDestination(searchThese[index].transform.position);
-            searchThese.Remove(searchThese[index]);
+            NavMeshAgent.SetDestination(PatrolManager.SearchNodes[index].transform.position);
+            PatrolManager.SearchNodes.Remove(PatrolManager.SearchNodes[index]);
 
         }
     }
@@ -124,6 +146,7 @@ public class PerryNav : MonoBehaviour
 
     public void OnPatrol()
     {
+        NavMeshAgent.speed = PerryPatrolSpeed;
         if(DebugEnabled)
             Debug.Log("Patrolling now.");
     }
@@ -136,6 +159,7 @@ public class PerryNav : MonoBehaviour
 
     public void OnSearch()
     {
+        NavMeshAgent.speed = PerrySearchSpeed;
         allDestinationsSearched.AddListener(gameObject.GetComponent<Search>().OnSearchCompleted);
 
     }

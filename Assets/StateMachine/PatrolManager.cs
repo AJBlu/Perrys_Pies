@@ -7,6 +7,7 @@ using UnityEngine.AI;
 public class PatrolManager : MonoBehaviour
 {
     public GameObject Perry;
+    public GameObject Player;
     public List<Transform> PatrolNodes = new List<Transform>();
     public List<Transform> SearchNodes = new List<Transform>();
 
@@ -18,9 +19,9 @@ public class PatrolManager : MonoBehaviour
     private int _nextNode;
     private void Awake()
     {
-        if (Perry == null)
-            GameObject.Find("Perry");
-
+        GameObject.FindGameObjectWithTag("Player");
+        GameObject.FindGameObjectWithTag("Perry");
+        
         _perryAgent = Perry.GetComponent<NavMeshAgent>();
         _patrol = Perry.GetComponent<Patrol>();
         _search = Perry.GetComponent<Search>();
@@ -32,7 +33,7 @@ public class PatrolManager : MonoBehaviour
     {
         if (!_isPathfinding && _search.isActive && SearchNodes.Count > 0)
             StartCoroutine("SearchRoute");
-        if (!_isPathfinding && _patrol.isActive && PatrolNodes.Count > 0)
+        if (!_isPathfinding && _patrol.isActive && PatrolNodes.Count > 0 && SearchNodes.Count == 0)
             StartCoroutine("PatrolRoute");
 
 
@@ -90,11 +91,11 @@ public class PatrolManager : MonoBehaviour
             {
 
                 Debug.Log("Setting Destination");
-                _perryAgent.SetDestination(PatrolNodes[_nextNode].position);
+                _perryAgent.SetDestination(SearchNodes[_nextNode].position);
                 _nextNode++;
             }
 
-            if (_nextNode == PatrolNodes.Count)
+            if (_nextNode == SearchNodes.Count)
                 _nextNode = 0;
 
         }
@@ -104,7 +105,7 @@ public class PatrolManager : MonoBehaviour
 
     public void OnAudioCueHeard()
     {
-
+        _perryAgent.SetDestination(SearchNodes[0].position);
     }
 
 }
