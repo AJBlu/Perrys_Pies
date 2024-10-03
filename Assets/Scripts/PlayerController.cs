@@ -119,6 +119,7 @@ public class PlayerController : MonoBehaviour
         if (pickupUI == null)
         {
             pickupUI = GameObject.Find("HintSource");
+            pickupUI.SetActive(false);
         }
     }
 
