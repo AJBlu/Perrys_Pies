@@ -65,6 +65,14 @@ public class PlayerController : MonoBehaviour
     public GameObject canAttract;
     public GameObject tinReference;
 
+    public GameObject key1Reference;
+    public GameObject key2Reference;
+    public GameObject key3Reference;
+
+    public bool key1Grabbed;
+    public bool key2Grabbed;
+    public bool key3Grabbed;
+
     public float ballThrowStrength;
     public float bagThrowStrength;
     public float bellThrowStrength;
@@ -173,12 +181,17 @@ public class PlayerController : MonoBehaviour
             {
                 hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
                 hit.collider.enabled = false;
-                keySpace[keyCount] = hit.collider.gameObject;
-                keyCount++;
                 for (int i = 0; i < 3; i++)
                 {
-                    if (hit.collider.name == "Key" + (i + 1)) UIManager.GetComponent<UIManager>().keyColor(i, true);
+                    //bool tempActivation = 
+                    if (hit.collider.name == "Key" + (i + 1))
+                    {
+                        //keySpace[keyCount] = ("key" + (i + 1) + "Reference");
+                        UIManager.GetComponent<UIManager>().keyColor(i, true);
+                        //("key" + (i + 1) + "Grabbed") = true;
+                    }
                 }
+                keyCount++;
                 return;
             }
             if (hit.collider.tag == "Skeleton")
