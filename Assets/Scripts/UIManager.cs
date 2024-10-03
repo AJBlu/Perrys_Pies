@@ -197,6 +197,12 @@ public class UIManager : MonoBehaviour
         Debug.Log("You'll be back... and I'll be waiting.");
         Application.Quit();
     }
+
+    public void mainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
+
     public void restartGame()
     {
         GameObject playerCam = GameObject.FindGameObjectWithTag("MainCamera");
