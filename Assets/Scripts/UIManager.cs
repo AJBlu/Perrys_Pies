@@ -204,7 +204,7 @@ public class UIManager : MonoBehaviour
         gameManager.GetComponent<GameManager>().moveToFloor(1);
         player.GetComponent<PlayerController>().transform.position = player.GetComponent<PlayerController>().ogPos;
         Debug.Log("PlayerCam should reset rotation.");
-        playerCam.transform.rotation = playerCam.GetComponent<FirstPersonCamera>().ogRotation;
+        playerCam.gameObject.GetComponent<FirstPersonCamera>().resetRotation();
         player.GetComponent<PlayerController>().keyDeterGrabbed = false;
         player.GetComponent<PlayerController>().hasPieTin = false;
         player.GetComponent<PlayerController>().pickupUI.SetActive(false);
