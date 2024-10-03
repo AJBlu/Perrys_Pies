@@ -207,7 +207,6 @@ public class UIManager : MonoBehaviour
         playerCam.gameObject.GetComponent<FirstPersonCamera>().resetRotation();
         player.GetComponent<PlayerController>().keyDeterGrabbed = false;
         player.GetComponent<PlayerController>().hasPieTin = false;
-        player.GetComponent<PlayerController>().pickupUI.SetActive(false);
     }
 
     public void moveToBasement()
