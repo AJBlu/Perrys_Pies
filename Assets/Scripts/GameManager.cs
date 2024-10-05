@@ -67,7 +67,7 @@ public class GameManager : MonoBehaviour
         if (pressedButton == 1)
         {
             checkForDupes();
-            StartCoroutine(destroySingleObjects());
+            StartCoroutine(destroyProgressObjects());
         }
     }
 
@@ -101,7 +101,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(seconds);
     }
 
-    public IEnumerator destroySingleObjects()
+    public IEnumerator destroyProgressObjects()
     {
         StartCoroutine(waitFor(0.5f));
         if (player.GetComponent<PlayerController>().keyDeterGrabbed) Destroy(GameObject.FindGameObjectWithTag("KeyDeter"));
