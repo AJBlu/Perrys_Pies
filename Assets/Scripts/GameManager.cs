@@ -8,15 +8,26 @@ public class GameManager : MonoBehaviour
     public GameObject player;
     public GameObject UI;
     public static GameObject UIinstance;
-    public GameObject UIManager;
-    public static GameObject InterManageInstance;
+    //public GameObject UIManager;
+    public static UIManager uiManager;
     public GameObject EventSystem;
     public static GameObject EventSystemInstance;
-    public static GameObject gmInstance;
+    public static GameManager gmInstance;
+
+    private void Awake()
+    {
+        if (gmInstance == null)
+        {
+            gmInstance = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (gmInstance != this) Destroy(gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
+        /*
         player = GameObject.FindGameObjectWithTag("Player");
         UI = GameObject.Find("Canvas");
         UIManager = GameObject.Find("UIManager");
@@ -24,26 +35,33 @@ public class GameManager : MonoBehaviour
         checkForDupes();
         DontDestroyOnLoad(UIinstance);
         DontDestroyOnLoad(UIManager);
+        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(EventSystemInstance);
+        */
+        seekDestroyAndDont();
+    }
+
+    public void seekDestroyAndDont()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        UI = GameObject.Find("Canvas");
+        uiManager = UIManager.UImanager;
+        EventSystem = GameObject.Find("EventSystem");
+        checkForDupes();
+        DontDestroyOnLoad(UIinstance);
+        DontDestroyOnLoad(uiManager);
         DontDestroyOnLoad(this);
         DontDestroyOnLoad(EventSystemInstance);
     }
 
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void destroyThis()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        UI = GameObject.Find("Canvas");
-        UIManager = GameObject.Find("UIManager");
-        EventSystem = GameObject.Find("EventSystem");
-        checkForDupes();
-        DontDestroyOnLoad(UIinstance);
-        DontDestroyOnLoad(UIManager);
-        DontDestroyOnLoad(this);
-        DontDestroyOnLoad(EventSystemInstance);
+        Destroy(this.gameObject);
     }
 
     public void moveToFloor(int pressedButton)
     {
-        UIManager.GetComponent<UIManager>().panelDown();
+        UIManager.UImanager.panelDown();
         SceneManager.LoadScene(pressedButton);
         player.GetComponent<PlayerController>().currentFloor = pressedButton;
         if (pressedButton == 1)
@@ -72,26 +90,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(UI.gameObject);
         }
-
-        if (gmInstance == null)
-        {
-            gmInstance = this.gameObject;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
-        if (InterManageInstance == null)
-        {
-            InterManageInstance = UIManager;
-        }
-        else
-        {
-            Destroy(UIManager.gameObject);
-        }
-        UIManager.GetComponent<UIManager>().checkForMissingStuff();
-        StartCoroutine(UIManager.GetComponent<UIManager>().waitAndCheck());
+        UIManager.UImanager.checkForMissingStuff();
+        StartCoroutine(UIManager.UImanager.waitAndCheck());
         player.GetComponent<PlayerController>().findUI();
         player.GetComponent<PlayerController>().verifyInventory();
     }

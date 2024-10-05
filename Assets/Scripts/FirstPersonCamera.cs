@@ -22,8 +22,8 @@ public class FirstPersonCamera : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!player.GetComponent<PlayerController>().UIManager.GetComponent<UIManager>().menuOpen &&
-            !player.GetComponent<PlayerController>().UIManager.GetComponent<UIManager>().givingHint)
+        if (!player.GetComponent<PlayerController>().uiManager.menuOpen &&
+            !player.GetComponent<PlayerController>().uiManager.givingHint)
         {
             float inputX = Input.GetAxis("Mouse X") * mouseSensitivity;
             float inputY = Input.GetAxis("Mouse Y") * mouseSensitivity;

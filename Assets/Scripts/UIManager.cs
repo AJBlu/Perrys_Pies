@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     public GameObject player;
     private static GameManager gameManager;
 
+    public static UIManager UImanager;
+
     public bool menuOpen;
     public bool gamePaused;
 
@@ -31,6 +33,16 @@ public class UIManager : MonoBehaviour
 
     public bool givingHint;
 
+    private void Awake()
+    {
+        if (UImanager == null)
+        {
+            UImanager = this;
+            DontDestroyOnLoad(this);
+        }
+        else if (UImanager != this) Destroy(gameObject);
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -42,6 +54,8 @@ public class UIManager : MonoBehaviour
         panelDown();
         skeletonHintHolder.SetActive(false);
         givingHint = false;
+
+        gameManager = GameManager.gmInstance;
     }
 
     public void keyColor(int keySlot, bool isObtained)
@@ -95,10 +109,6 @@ public class UIManager : MonoBehaviour
 
     public void checkForMissingStuff()
     {
-        if (gameManager == null)
-        {
-            gameManager = FindObjectOfType<GameManager>();
-        }
         player = GameObject.Find("Player");
         if (elevatorPanelHolder == null)
         {
@@ -202,6 +212,7 @@ public class UIManager : MonoBehaviour
     {
         GameObject eventSystem = GameObject.Find("EventSystem");
         SceneManager.LoadScene("MainMenu");
+        GameManager.gmInstance.destroyThis();
         Destroy(player);
         Destroy(eventSystem);
         Destroy(pauseHolder.transform.parent.gameObject);
@@ -212,7 +223,7 @@ public class UIManager : MonoBehaviour
     {
         GameObject playerCam = GameObject.FindGameObjectWithTag("MainCamera");
 
-        gameManager.GetComponent<GameManager>().moveToFloor(1);
+        GameManager.gmInstance.moveToFloor(1);
         //player.GetComponent<PlayerController>().transform.position = player.GetComponent<PlayerController>().ogPos;
         Debug.Log("PlayerCam should reset rotation.");
         playerCam.gameObject.GetComponent<FirstPersonCamera>().resetRotation();
@@ -222,22 +233,22 @@ public class UIManager : MonoBehaviour
 
     public void moveToBasement()
     {
-        gameManager.GetComponent<GameManager>().moveToFloor(0);
+        GameManager.gmInstance.moveToFloor(0);
     }
 
     public void moveToGround()
     {
-        gameManager.GetComponent<GameManager>().moveToFloor(1);
+        GameManager.gmInstance.moveToFloor(1);
     }
 
     public void moveToFloor2()
     {
-        gameManager.GetComponent<GameManager>().moveToFloor(2);
+        GameManager.gmInstance.moveToFloor(2);
     }
 
     public void moveToFloor3()
     {
-        gameManager.GetComponent<GameManager>().moveToFloor(3);
+        GameManager.gmInstance.moveToFloor(3);
     }
     public IEnumerator waitAndCheck()
     {
