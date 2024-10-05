@@ -73,18 +73,26 @@ public class GameManager : MonoBehaviour
 
     public void checkForDupes()
     {
-        if (EventSystemInstance == null)
+        if (EventSystemInstance == null && EventSystemInstance != EventSystem)
         {
             EventSystemInstance = EventSystem;
+        }
+        else if (EventSystemInstance == EventSystem)
+        {
+            Debug.Log("We're destroying the wrong Event System!!!");
         }
         else
         {
             Destroy(EventSystem.gameObject);
         }
 
-        if (UIinstance == null)
+        if (UIinstance == null && UIinstance != UI)
         {
             UIinstance = UI;
+        }
+        else if (UIinstance == UI)
+        {
+            Debug.Log("We're destroying the wrong UI!!!");
         }
         else
         {
