@@ -359,16 +359,6 @@ public class PlayerController : MonoBehaviour
                         throwDistraction(inventory[selectedSlot - 1]);
                     }
                     else return;
-                    /*
-                    for (int i = 0; i < 5; i++)
-                    {
-                        if (i + 1 == selectedSlot)
-                        {
-                            throwDistraction(inventory[i]);
-                            return;
-                        }
-                    }
-                    */
                 }
             }
             if (Input.GetKeyDown(KeyCode.Escape))
