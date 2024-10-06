@@ -44,9 +44,9 @@ public class GameManager : MonoBehaviour
     public void seekDestroyAndDont()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        UI = GameObject.Find("Canvas");
+        EventSystem = GameObject.FindGameObjectWithTag("EventSystem");
+        UI = GameObject.FindGameObjectWithTag("UI");
         uiManager = UIManager.UImanager;
-        EventSystem = GameObject.Find("EventSystem");
         checkForDupes();
         DontDestroyOnLoad(UIinstance);
         DontDestroyOnLoad(uiManager);
@@ -73,26 +73,28 @@ public class GameManager : MonoBehaviour
 
     public void checkForDupes()
     {
-        if (EventSystemInstance == null && EventSystemInstance != EventSystem)
+        if (EventSystemInstance == null)
         {
             EventSystemInstance = EventSystem;
+            EventSystemInstance.tag = "TrueEventSystem";
         }
-        else if (EventSystemInstance == EventSystem)
+        else if (EventSystem.tag != "TrueEventSystem")
         {
-            Debug.Log("We're destroying the wrong Event System!!!");
+            Debug.Log("Something has gone wrong here");
         }
         else
         {
             Destroy(EventSystem.gameObject);
         }
 
-        if (UIinstance == null && UIinstance != UI)
+        if (UIinstance == null)
         {
             UIinstance = UI;
+            UIinstance.tag = "TrUI";
         }
-        else if (UIinstance == UI)
+        else if (UI.tag != "TrUI")
         {
-            Debug.Log("We're destroying the wrong UI!!!");
+            Debug.Log("Something has gone wrong here");
         }
         else
         {

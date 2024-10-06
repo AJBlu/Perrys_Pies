@@ -21,6 +21,10 @@ TagManager:
   - KeyImageHolder
   - Skeleton
   - SkeletonText
+  - TrueEventSystem
+  - TrUI
+  - EventSystem
+  - UI
   layers:
   - Default
   - TransparentFX
