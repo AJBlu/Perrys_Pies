@@ -43,10 +43,7 @@ public class GameManager : MonoBehaviour
 
     public void seekDestroyAndDont()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
-        EventSystem = GameObject.FindGameObjectWithTag("EventSystem");
-        UI = GameObject.FindGameObjectWithTag("UI");
-        uiManager = UIManager.UImanager;
+        findCrucialStuff();
         checkForDupes();
         DontDestroyOnLoad(UIinstance);
         DontDestroyOnLoad(uiManager);
@@ -66,9 +63,22 @@ public class GameManager : MonoBehaviour
         player.GetComponent<PlayerController>().currentFloor = pressedButton;
         if (pressedButton == 1)
         {
-            checkForDupes();
+            StartCoroutine(waitFor(1f));
+            findCrucialStuff();
+            //checkForDupes();
             StartCoroutine(destroyProgressObjects());
         }
+    }
+
+    public void findCrucialStuff()
+    {
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (EventSystem != null) EventSystem = null;
+        EventSystem = GameObject.FindGameObjectWithTag("EventSystem");
+        if (UI != null) UI = null;
+        UI = GameObject.FindGameObjectWithTag("UI");
+        uiManager = UIManager.UImanager;
+        checkForDupes();
     }
 
     public void checkForDupes()
@@ -78,14 +88,9 @@ public class GameManager : MonoBehaviour
             EventSystemInstance = EventSystem;
             EventSystemInstance.tag = "TrueEventSystem";
         }
-        else if (EventSystem.tag == "TrueEventSystem")
+        else
         {
-            Debug.Log("Something has gone wrong here, because EventSystemInstance's tag is: " + EventSystemInstance.tag);
-            
-        }
-        else if ((EventSystemInstance.tag == "TrueEventSystem") && (EventSystem.tag == "EventSystem"))
-        {
-            Destroy(EventSystem.gameObject);
+            Destroy(GameObject.FindGameObjectWithTag("EventSystem"));
         }
 
         if (UIinstance == null)
@@ -93,13 +98,9 @@ public class GameManager : MonoBehaviour
             UIinstance = UI;
             UIinstance.tag = "TrUI";
         }
-        else if (UI.tag == "TrUI")
+        else
         {
-            Debug.Log("Something has gone wrong herebecause UIinstance's tag is: " + UIinstance.tag);
-        }
-        else if ((UIinstance.tag == "TrUI") && (UI.tag == "UI"))
-        {
-            Destroy(UI.gameObject);
+            Destroy(GameObject.FindGameObjectWithTag("UI"));
         }
         UIManager.UImanager.checkForMissingStuff();
         StartCoroutine(UIManager.UImanager.waitAndCheck());
