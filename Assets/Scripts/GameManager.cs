@@ -78,11 +78,12 @@ public class GameManager : MonoBehaviour
             EventSystemInstance = EventSystem;
             EventSystemInstance.tag = "TrueEventSystem";
         }
-        else if (EventSystem.tag != "TrueEventSystem")
+        else if (EventSystem.tag == "TrueEventSystem")
         {
-            Debug.Log("Something has gone wrong here");
+            Debug.Log("Something has gone wrong here, because EventSystemInstance's tag is: " + EventSystemInstance.tag);
+            
         }
-        else
+        else if ((EventSystemInstance.tag == "TrueEventSystem") && (EventSystem.tag == "EventSystem"))
         {
             Destroy(EventSystem.gameObject);
         }
@@ -92,11 +93,11 @@ public class GameManager : MonoBehaviour
             UIinstance = UI;
             UIinstance.tag = "TrUI";
         }
-        else if (UI.tag != "TrUI")
+        else if (UI.tag == "TrUI")
         {
-            Debug.Log("Something has gone wrong here");
+            Debug.Log("Something has gone wrong herebecause UIinstance's tag is: " + UIinstance.tag);
         }
-        else
+        else if ((UIinstance.tag == "TrUI") && (UI.tag == "UI"))
         {
             Destroy(UI.gameObject);
         }
