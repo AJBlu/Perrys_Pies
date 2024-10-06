@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(waitFor(1f));
             findCrucialStuff();
-            //checkForDupes();
+            checkForDupes();
             StartCoroutine(destroyProgressObjects());
         }
     }
@@ -76,7 +76,11 @@ public class GameManager : MonoBehaviour
         EventSystem = GameObject.FindGameObjectWithTag("EventSystem");
         UI = GameObject.FindGameObjectWithTag("UI");
         uiManager = UIManager.UImanager;
-        checkForDupes();
+    }
+
+    public void destroyProblem(string tag)
+    {
+        Destroy(GameObject.FindGameObjectWithTag(tag));
     }
 
     public void checkForDupes()
@@ -88,7 +92,10 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Destroy(GameObject.FindGameObjectWithTag("EventSystem"));
+            Debug.Log("Problematic Event System should be destroyed.");
+            StartCoroutine(waitFor(1f));
+            //Destroy(GameObject.FindGameObjectWithTag("EventSystem"));
+            destroyProblem("EventSystem");
         }
 
         if (UIinstance == null)
@@ -98,7 +105,10 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            Destroy(GameObject.FindGameObjectWithTag("UI"));
+            Debug.Log("Problematic UI should be destroyed.");
+            StartCoroutine(waitFor(1f));
+            //Destroy(GameObject.FindGameObjectWithTag("UI"));
+            destroyProblem("EventSystem");
         }
         UIManager.UImanager.checkForMissingStuff();
         StartCoroutine(UIManager.UImanager.waitAndCheck());
