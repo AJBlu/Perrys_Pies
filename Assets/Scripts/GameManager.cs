@@ -73,9 +73,7 @@ public class GameManager : MonoBehaviour
     public void findCrucialStuff()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        if (EventSystem != null) EventSystem = null;
         EventSystem = GameObject.FindGameObjectWithTag("EventSystem");
-        if (UI != null) UI = null;
         UI = GameObject.FindGameObjectWithTag("UI");
         uiManager = UIManager.UImanager;
         checkForDupes();
