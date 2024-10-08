@@ -137,12 +137,12 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(seconds);
     }
 
-    public IEnumerator destroyByName(string name)
+    public IEnumerator deactivateByName(string name)
     {
         yield return new WaitForSeconds(0.001f);
         tempHolder = GameObject.Find(name);
         if (tempHolder == null) StopAllCoroutines();
-        Destroy(tempHolder);
+        tempHolder.SetActive(false);
         yield return new WaitForSeconds(0.001f);
     }
 
@@ -155,17 +155,54 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.001f);
     }
 
+    public IEnumerator deactivateByTag(string tag)
+    {
+        yield return new WaitForSeconds(0.001f);
+        tempHolder = GameObject.FindWithTag(tag);
+        if (tempHolder == null) StopAllCoroutines();
+        tempHolder.SetActive(false);
+        yield return new WaitForSeconds(0.001f);
+    }
+    
+    public void resetProgress()
+    {
+        StartCoroutine(respawnItemByTag("Lock"));
+        StartCoroutine(respawnItemByTag("PieTin"));
+        StartCoroutine(respawnItemByTag("KeyDeter"));
+        for (int i = 0; i < player.GetComponent<PlayerController>().keysGrabbed.Count; i++)
+        {
+            StartCoroutine(respawnItemByName("Key" + (i + 1)));
+        }
+    }
+
+    private IEnumerator respawnItemByTag(string tag)
+    {
+        yield return new WaitForSeconds(0.001f);
+        tempHolder = GameObject.FindWithTag(tag);
+        tempHolder.SetActive(true);
+        yield return new WaitForSeconds(0.001f);
+    }
+
+    private IEnumerator respawnItemByName(string name)
+    {
+        yield return new WaitForSeconds(0.001f);
+        tempHolder = GameObject.Find(name);
+        tempHolder.SetActive(true);
+        yield return new WaitForSeconds(0.001f);
+    }
+
+
     public IEnumerator destroyProgressObjects()
     {
-        if (player.GetComponent<PlayerController>().keyDeterGrabbed) StartCoroutine(destroyByTag("KeyDeter"));
-        if (player.GetComponent<PlayerController>().hasPieTin) StartCoroutine(destroyByTag("PieTin"));
+        if (player.GetComponent<PlayerController>().keyDeterGrabbed) StartCoroutine(deactivateByTag("KeyDeter"));
+        if (player.GetComponent<PlayerController>().hasPieTin) StartCoroutine(deactivateByTag("PieTin"));
 
         for (int i = 0; i < player.GetComponent<PlayerController>().keysGrabbed.Count; i++)
         {
-            if (player.GetComponent<PlayerController>().keysGrabbed[i]) StartCoroutine(destroyByName("Key" + (i + 1)));
+            if (player.GetComponent<PlayerController>().keysGrabbed[i]) StartCoroutine(deactivateByName("Key" + (i + 1)));
         }
 
-        if (exitUnlocked) StartCoroutine(destroyByTag("Lock"));
+        if (exitUnlocked) StartCoroutine(deactivateByTag("Lock"));
 
         yield return null;
     }

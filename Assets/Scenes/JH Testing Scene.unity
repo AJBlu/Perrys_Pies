@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 264348101}
   - component: {fileID: 264348100}
   m_Layer: 5
-  m_Name: Key3
+  m_Name: Key3Image
   m_TagString: Key3Image
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3379,7 +3379,7 @@ GameObject:
   - component: {fileID: 1048776013}
   - component: {fileID: 1048776012}
   m_Layer: 5
-  m_Name: Key1
+  m_Name: Key1Image
   m_TagString: Key1Image
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6394,7 +6394,7 @@ GameObject:
   - component: {fileID: 1981345370}
   - component: {fileID: 1981345369}
   m_Layer: 5
-  m_Name: Key2
+  m_Name: Key2Image
   m_TagString: Key2Image
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

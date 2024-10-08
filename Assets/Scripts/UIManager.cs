@@ -229,6 +229,21 @@ public class UIManager : MonoBehaviour
         playerCam.gameObject.GetComponent<FirstPersonCamera>().resetRotation();
         player.GetComponent<PlayerController>().keyDeterGrabbed = false;
         player.GetComponent<PlayerController>().hasPieTin = false;
+        for (int i = 0; i < player.GetComponent<PlayerController>().keysGrabbed.Count; i++)
+        {
+            player.GetComponent<PlayerController>().keySpace[i] = null;
+            player.GetComponent<PlayerController>().keysGrabbed[i] = false;
+            keyColor(i, false);
+        }
+        for (int i = 0; i < player.GetComponent<PlayerController>().inventory.Count; i++)
+        {
+            if (player.GetComponent<PlayerController>().inventory[i] == null)
+            {
+                player.GetComponent<PlayerController>().inventory[i] = null;
+            }
+        }
+
+        GameManager.gmInstance.resetProgress();
     }
 
     public void moveToBasement()
