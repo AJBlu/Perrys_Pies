@@ -78,10 +78,25 @@ public class GameManager : MonoBehaviour
         uiManager = UIManager.UImanager;
     }
 
+    public GameObject tempHolder;
+
+    /*
     public void destroyProblem(string tag)
     {
-        Destroy(GameObject.FindGameObjectWithTag(tag));
+        StartCoroutine(waitFor(1f));
+        Debug.Log("Searching for a GameObject with the tag: " + tag);
+        tempHolder = GameObject.FindWithTag(tag);
+        if (tempHolder == null)
+        {
+            Debug.Log("For some reason, the game is stupid and didn't want to find it.");
+            return;
+        }
+        else Debug.Log("Found the object in question. It's called: " + tempHolder);
+        Destroy(tempHolder);
+        if (tempHolder == null) Debug.Log("Successfully deleted.");
+        else Debug.Log("The game is being stupid once again!");
     }
+    */
 
     public void checkForDupes()
     {
@@ -89,26 +104,26 @@ public class GameManager : MonoBehaviour
         {
             EventSystemInstance = EventSystem;
             EventSystemInstance.tag = "TrueEventSystem";
+            EventSystem = null;
         }
         else
         {
-            Debug.Log("Problematic Event System should be destroyed.");
-            StartCoroutine(waitFor(1f));
+            //Debug.Log("Problematic Event System should be destroyed.");
+            StartCoroutine(destroyProblem("EventSystem"));
             //Destroy(GameObject.FindGameObjectWithTag("EventSystem"));
-            destroyProblem("EventSystem");
         }
 
         if (UIinstance == null)
         {
             UIinstance = UI;
             UIinstance.tag = "TrUI";
+            UI = null;
         }
         else
         {
-            Debug.Log("Problematic UI should be destroyed.");
-            StartCoroutine(waitFor(1f));
+            //Debug.Log("Problematic UI should be destroyed.");
             //Destroy(GameObject.FindGameObjectWithTag("UI"));
-            destroyProblem("EventSystem");
+            StartCoroutine(destroyProblem("UI"));
         }
         UIManager.UImanager.checkForMissingStuff();
         StartCoroutine(UIManager.UImanager.waitAndCheck());
@@ -119,6 +134,24 @@ public class GameManager : MonoBehaviour
     public IEnumerator waitFor(float seconds)
     {
         yield return new WaitForSeconds(seconds);
+    }
+
+    public IEnumerator destroyProblem(string tag)
+    {
+        yield return new WaitForSeconds(0.001f);
+        Debug.Log("Searching for a GameObject with the tag: " + tag);
+        tempHolder = GameObject.FindWithTag(tag);
+        if (tempHolder == null)
+        {
+            Debug.Log("For some reason, the game is stupid and didn't want to find it.");
+            StopAllCoroutines();
+        }
+        else Debug.Log("Found the object in question. It's called: " + tempHolder);
+        Destroy(tempHolder);
+        yield return new WaitForSeconds(0.001f);
+        if (tempHolder == null) Debug.Log("Successfully deleted.");
+        else Debug.Log("The game is being stupid once again!");
+        yield return null;
     }
 
     public IEnumerator destroyProgressObjects()
