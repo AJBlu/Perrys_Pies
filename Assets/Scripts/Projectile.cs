@@ -5,7 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     private Rigidbody _rb;
-    public float decelleration;
+    
 
     private void Awake()
     {
@@ -19,9 +19,6 @@ public class Projectile : MonoBehaviour
 
     public void Update()
     {
-        if (Mathf.Approximately(_rb.velocity.y, 0f))
-        {
-            _rb.AddRelativeForce(-_rb.velocity * decelleration);
-        }
+        
     }
 }
