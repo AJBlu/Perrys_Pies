@@ -179,6 +179,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.001f);
         tempHolder = GameObject.FindWithTag(tag);
+        Debug.Log(tempHolder);
         tempHolder.SetActive(true);
         yield return new WaitForSeconds(0.001f);
     }
@@ -187,6 +188,7 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.001f);
         tempHolder = GameObject.Find(name);
+        Debug.Log(tempHolder);
         tempHolder.SetActive(true);
         yield return new WaitForSeconds(0.001f);
     }
