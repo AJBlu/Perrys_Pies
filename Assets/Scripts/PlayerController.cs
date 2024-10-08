@@ -65,13 +65,9 @@ public class PlayerController : MonoBehaviour
     public GameObject canAttract;
     public GameObject tinReference;
 
-    public GameObject key1Reference;
-    public GameObject key2Reference;
-    public GameObject key3Reference;
+    public List<GameObject> keyReferences;
 
-    public bool key1Grabbed;
-    public bool key2Grabbed;
-    public bool key3Grabbed;
+    public List<bool> keysGrabbed;
 
     public float ballThrowStrength;
     public float bagThrowStrength;
@@ -143,7 +139,6 @@ public class PlayerController : MonoBehaviour
         //Debug.Log("Interacted with: " + hit.collider.name);
         //hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
         storeLogic();
-
     }
 
     public void storeLogic()
@@ -183,12 +178,11 @@ public class PlayerController : MonoBehaviour
                 hit.collider.enabled = false;
                 for (int i = 0; i < 3; i++)
                 {
-                    //bool tempActivation = 
                     if (hit.collider.name == "Key" + (i + 1))
                     {
-                        //keySpace[keyCount] = ("key" + (i + 1) + "Reference");
+                        keySpace[keyCount] = keyReferences[i];
                         UIManager.UImanager.keyColor(i, true);
-                        //("key" + (i + 1) + "Grabbed") = true;
+                        keysGrabbed[i] = true;
                     }
                 }
                 keyCount++;
@@ -245,9 +239,11 @@ public class PlayerController : MonoBehaviour
             {
                 for (int i = keySpace.Count; i > 0; i--)
                 {
-                    UIManager.UImanager.keyColor(i, false);
+                    UIManager.UImanager.keyColor(i - 1, false);
                 }
                 other.gameObject.SetActive(false);
+                GameManager gameManager = FindObjectOfType<GameManager>();
+                gameManager.GetComponent<GameManager>().exitUnlocked = true;
             }
             else Debug.Log("Not enough keys.");
         }

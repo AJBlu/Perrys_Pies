@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     public GameObject pauseHolder;
     public GameObject inventoryHolder;
     public GameObject player;
-    private static GameManager gameManager;
+    public static GameManager gameManager;
 
     public static UIManager UImanager;
 

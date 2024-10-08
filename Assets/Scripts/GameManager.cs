@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject EventSystem;
     public static GameObject EventSystemInstance;
     public static GameManager gmInstance;
+    public bool exitUnlocked;
 
     private void Awake()
     {
@@ -78,7 +79,7 @@ public class GameManager : MonoBehaviour
         uiManager = UIManager.UImanager;
     }
 
-    public GameObject tempHolder;
+    private GameObject tempHolder;
 
     /*
     public void destroyProblem(string tag)
@@ -109,7 +110,7 @@ public class GameManager : MonoBehaviour
         else
         {
             //Debug.Log("Problematic Event System should be destroyed.");
-            StartCoroutine(destroyProblem("EventSystem"));
+            StartCoroutine(destroyByTag("EventSystem"));
             //Destroy(GameObject.FindGameObjectWithTag("EventSystem"));
         }
 
@@ -123,7 +124,7 @@ public class GameManager : MonoBehaviour
         {
             //Debug.Log("Problematic UI should be destroyed.");
             //Destroy(GameObject.FindGameObjectWithTag("UI"));
-            StartCoroutine(destroyProblem("UI"));
+            StartCoroutine(destroyByTag("UI"));
         }
         UIManager.UImanager.checkForMissingStuff();
         StartCoroutine(UIManager.UImanager.waitAndCheck());
@@ -136,36 +137,36 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(seconds);
     }
 
-    public IEnumerator destroyProblem(string tag)
+    public IEnumerator destroyByName(string name)
     {
         yield return new WaitForSeconds(0.001f);
-        Debug.Log("Searching for a GameObject with the tag: " + tag);
-        tempHolder = GameObject.FindWithTag(tag);
-        if (tempHolder == null)
-        {
-            Debug.Log("For some reason, the game is stupid and didn't want to find it.");
-            StopAllCoroutines();
-        }
-        else Debug.Log("Found the object in question. It's called: " + tempHolder);
+        tempHolder = GameObject.Find(name);
+        if (tempHolder == null) StopAllCoroutines();
         Destroy(tempHolder);
         yield return new WaitForSeconds(0.001f);
-        if (tempHolder == null) Debug.Log("Successfully deleted.");
-        else Debug.Log("The game is being stupid once again!");
-        yield return null;
+    }
+
+    public IEnumerator destroyByTag(string tag)
+    {
+        yield return new WaitForSeconds(0.001f);
+        tempHolder = GameObject.FindWithTag(tag);
+        if (tempHolder == null) StopAllCoroutines();
+        Destroy(tempHolder);
+        yield return new WaitForSeconds(0.001f);
     }
 
     public IEnumerator destroyProgressObjects()
     {
-        StartCoroutine(waitFor(0.5f));
-        if (player.GetComponent<PlayerController>().keyDeterGrabbed) Destroy(GameObject.FindGameObjectWithTag("KeyDeter"));
-        if (player.GetComponent<PlayerController>().hasPieTin) Destroy(GameObject.FindGameObjectWithTag("PieTin"));
-        for (int i = 0; i < player.GetComponent<PlayerController>().keySpace.Count; i++)
+        if (player.GetComponent<PlayerController>().keyDeterGrabbed) StartCoroutine(destroyByTag("KeyDeter"));
+        if (player.GetComponent<PlayerController>().hasPieTin) StartCoroutine(destroyByTag("PieTin"));
+
+        for (int i = 0; i < player.GetComponent<PlayerController>().keysGrabbed.Count; i++)
         {
-            if (player.GetComponent<PlayerController>().keySpace[i] != null)
-            {
-                Destroy(GameObject.FindGameObjectWithTag(player.GetComponent<PlayerController>().keySpace[i].tag));
-            }
+            if (player.GetComponent<PlayerController>().keysGrabbed[i]) StartCoroutine(destroyByName("Key" + (i + 1)));
         }
+
+        if (exitUnlocked) StartCoroutine(destroyByTag("Lock"));
+
         yield return null;
     }
 }
