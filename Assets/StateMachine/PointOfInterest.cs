@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEditor;
 public class PointOfInterest : MonoBehaviour
 {
-    public bool willBeSearched = false;
     private PatrolManager _patrolManager;
+    public bool willBeSearched = false;
+    public Priority priority;
+
     private void Awake()
     {
         _patrolManager = GameObject.Find("PatrolManager").GetComponent<PatrolManager>(); 
@@ -16,7 +18,7 @@ public class PointOfInterest : MonoBehaviour
         if(other.tag == "Perry")
         {
             _patrolManager.SearchNodes.Remove(this.transform);
-            Destroy(this.gameObject);
+            StartCoroutine("DestroyThis");
             
         }
     }
@@ -26,5 +28,11 @@ public class PointOfInterest : MonoBehaviour
     {
         Gizmos.color = Color.blue;
         Gizmos.DrawSphere(transform.position, 1f);
+    }
+
+    private IEnumerator DestroyThis()
+    {
+        yield return new WaitForSeconds(5.0f);
+        gameObject.SetActive(false);
     }
 }
