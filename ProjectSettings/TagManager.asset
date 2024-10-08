@@ -12,6 +12,7 @@ TagManager:
   - KeyDeter
   - EleDoor
   - RoomDoor
+  - Perry
   layers:
   - Default
   - TransparentFX

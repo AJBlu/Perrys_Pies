@@ -478,7 +478,7 @@ MonoBehaviour:
   crouchHeight: 0.5
   isCrouched: 0
   sprinting: 0
-  currentSpeed: 10
+  currentSpeed: 5
   jumpSpeed: 4
   hitRange: 3
   interactionInput: {fileID: 4417774981443331334, guid: 7c68a63bb95ef694f95d088a9bc549bd,
