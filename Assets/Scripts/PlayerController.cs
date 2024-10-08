@@ -172,11 +172,6 @@ public class PlayerController : MonoBehaviour
                 UIManager.UImanager.panelUp();
                 return;
             }
-            if (hit.collider.tag == "RoomDoor")
-            {
-                hit.collider.gameObject.GetComponent<RoomDoor>().isOpen = !hit.collider.gameObject.GetComponent<RoomDoor>().isOpen;
-                return;
-            }
             if (hit.collider.tag == "Key")
             {
                 hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
@@ -286,13 +281,11 @@ public class PlayerController : MonoBehaviour
 
             if (hit.collider != null)
             {
-                hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
                 pickupUI.SetActive(false);
             }
 
             if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit, hitRange, pickableLayerMask))
             {
-                hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
                 pickupUI.SetActive(true);
             }
 

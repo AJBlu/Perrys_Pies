@@ -35,8 +35,7 @@ public class PatrolManager : MonoBehaviour
         _search = Perry.GetComponent<Search>();
         _nextNode = GetClosestPatrolNode(PatrolNodes);
         Perry.GetComponent<PerrySensor>().AudioCueHeard.AddListener(OnAudioCueHeard);
-        Player.GetComponent<PlayerController>().PlayerJump.AddListener(OnPlayerJump);
-        Player.GetComponent<PlayerController>().PlayerSprint.AddListener(OnPlayerSprint);
+
     }
 
     public void Update()
