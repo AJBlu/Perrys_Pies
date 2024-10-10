@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2648553352392345026}
   - component: {fileID: 2500383085316302454}
   - component: {fileID: 733153785943986665}
-  - component: {fileID: 5280772245154035641}
+  - component: {fileID: 7209320268194644347}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -139,7 +139,7 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
---- !u!114 &5280772245154035641
+--- !u!114 &7209320268194644347
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,7 +168,7 @@ GameObject:
   - component: {fileID: 1627412143460251751}
   - component: {fileID: 5999952661318782115}
   - component: {fileID: 6871891509075842663}
-  - component: {fileID: 5395156193006947011}
+  - component: {fileID: 8350863762394929466}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -327,7 +327,7 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerControls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &5395156193006947011
+--- !u!114 &8350863762394929466
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
