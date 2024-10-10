@@ -13,6 +13,20 @@ TagManager:
   - EleDoor
   - RoomDoor
   - Perry
+  - BallDeter
+  - BagDeter
+  - BellAttract
+  - CanAttract
+  - Key3Image
+  - KeyImageHolder
+  - EventSystem
+  - Skeleton
+  - Key1Image
+  - UI
+  - Key2Image
+  - SkeletonText
+  - TrueEventSystem
+  - TrUI
   layers:
   - Default
   - TransparentFX
