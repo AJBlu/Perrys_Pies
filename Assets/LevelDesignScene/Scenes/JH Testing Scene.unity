@@ -2589,6 +2589,16 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 8350863762394929466, guid: 36998493345497e43b89ec2c7a876e63,
         type: 3}
+      propertyPath: crawlFactor
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350863762394929466, guid: 36998493345497e43b89ec2c7a876e63,
+        type: 3}
+      propertyPath: sprintLimit
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350863762394929466, guid: 36998493345497e43b89ec2c7a876e63,
+        type: 3}
       propertyPath: crouchHeight
       value: 
       objectReference: {fileID: 231696035}
@@ -2597,6 +2607,11 @@ PrefabInstance:
       propertyPath: normalHeight
       value: 
       objectReference: {fileID: 595682718}
+    - target: {fileID: 8350863762394929466, guid: 36998493345497e43b89ec2c7a876e63,
+        type: 3}
+      propertyPath: sprintFactor
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8350863762394929466, guid: 36998493345497e43b89ec2c7a876e63,
         type: 3}
       propertyPath: tinReference
