@@ -2565,6 +2565,11 @@ PrefabInstance:
       objectReference: {fileID: 1492310329}
     - target: {fileID: 8350863762394929466, guid: 36998493345497e43b89ec2c7a876e63,
         type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 48894589}
+    - target: {fileID: 8350863762394929466, guid: 36998493345497e43b89ec2c7a876e63,
+        type: 3}
       propertyPath: bagDeter
       value: 
       objectReference: {fileID: 875158317567215946, guid: b7bbb88033bd0b04088802ebff9cf94b,
@@ -2620,6 +2625,16 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 8350863762394929466, guid: 36998493345497e43b89ec2c7a876e63,
         type: 3}
+      propertyPath: bagThrowStrength
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350863762394929466, guid: 36998493345497e43b89ec2c7a876e63,
+        type: 3}
+      propertyPath: canThrowStrength
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350863762394929466, guid: 36998493345497e43b89ec2c7a876e63,
+        type: 3}
       propertyPath: interactionInput
       value: 
       objectReference: {fileID: 4417774981443331334, guid: 7c68a63bb95ef694f95d088a9bc549bd,
@@ -2627,7 +2642,12 @@ PrefabInstance:
     - target: {fileID: 8350863762394929466, guid: 36998493345497e43b89ec2c7a876e63,
         type: 3}
       propertyPath: ballThrowStrength
-      value: 5
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8350863762394929466, guid: 36998493345497e43b89ec2c7a876e63,
+        type: 3}
+      propertyPath: bellThrowStrength
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8350863762394929466, guid: 36998493345497e43b89ec2c7a876e63,
         type: 3}
