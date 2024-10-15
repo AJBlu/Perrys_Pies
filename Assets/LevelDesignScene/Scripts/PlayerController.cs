@@ -144,7 +144,7 @@ public class PlayerController : MonoBehaviour
     public void storeLogic()
     {
         bool isStored = false;
-        if (canInteract)
+        if (canInteract && (pickupUI.activeInHierarchy))
         {
             if (hit.collider.tag == "PieTin")
             {
@@ -195,12 +195,16 @@ public class PlayerController : MonoBehaviour
             }
             for (int i = 0; i < inventory.Count; i++)
             {
-                if (isStored) return;
+                if (isStored)
+                {
+                    
+                    return;
+                }
                 else
                 {
                     if (inventory[i] == null)
                     {
-                        //inventory[i] = hit.collider.gameObject;
+                        deactivatePickup();
                         if (hit.collider.tag == "BallDeter" || hit.collider.tag == "KeyDeter") inventory[i] = ballDeter;
                         else if (hit.collider.tag == "BagDeter") inventory[i] = bagDeter;
                         else if (hit.collider.tag == "BellAttract") inventory[i] = bellAttract;
@@ -212,7 +216,6 @@ public class PlayerController : MonoBehaviour
                         {
                             keyDeterGrabbed = true;
                         }
-                        pickupUI.SetActive(false);
                     }
                 }
             }
@@ -229,6 +232,11 @@ public class PlayerController : MonoBehaviour
                 UIManager.UImanager.slotUpdate(i, inventory[i].gameObject.tag);
             }
         }
+    }
+
+    public void deactivatePickup()
+    {
+        StartCoroutine(interactBuffer());
     }
 
     private void OnTriggerEnter(Collider other)
@@ -286,7 +294,12 @@ public class PlayerController : MonoBehaviour
                 pickupUI.SetActive(false);
             }
 
-            if (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit, hitRange, pickableLayerMask))
+            if (!canInteract)
+            {
+                pickupUI.SetActive(false);
+            }
+
+            if (canInteract && (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit, hitRange, pickableLayerMask)))
             {
                 hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
                 pickupUI.SetActive(true);
