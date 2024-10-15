@@ -144,8 +144,8 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.001f);
         tempHolder = GameObject.Find(name);
         if (tempHolder == null) StopAllCoroutines();
-        tempHolder.SetActive(false);
         addHiddenItem(tempHolder);
+        tempHolder.SetActive(false);
         yield return new WaitForSeconds(0.001f);
     }
 
@@ -154,8 +154,8 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.001f);
         tempHolder = GameObject.FindWithTag(tag);
         if (tempHolder == null) StopAllCoroutines();
-        tempHolder.SetActive(false);
         addHiddenItem(tempHolder);
+        tempHolder.SetActive(false);
         yield return new WaitForSeconds(0.001f);
     }
 
@@ -170,7 +170,7 @@ public class GameManager : MonoBehaviour
 
     void addHiddenItem(GameObject currentItem)
     {
-        if (!hiddenObjects.Contains(currentItem)) hiddenObjects.Add(currentItem);
+        hiddenObjects.Add(currentItem);
     }
 
     public void resetProgress()
@@ -187,6 +187,7 @@ public class GameManager : MonoBehaviour
         for (int i = 0; i < hiddenObjects.Count; i++)
         {
             hiddenObjects[i].SetActive(true);
+            Debug.Log(hiddenObjects[i] + " should be active.");
         }
         hiddenObjects = new List<GameObject>(0);
     }
