@@ -237,9 +237,10 @@ public class UIManager : MonoBehaviour
         }
         for (int i = 0; i < player.GetComponent<PlayerController>().inventory.Count; i++)
         {
-            if (player.GetComponent<PlayerController>().inventory[i] == null)
+            if (player.GetComponent<PlayerController>().inventory[i] != null)
             {
                 player.GetComponent<PlayerController>().inventory[i] = null;
+                slotUpdate(i, null);
             }
         }
         player.GetComponent<PlayerController>().keyCount = 0;
