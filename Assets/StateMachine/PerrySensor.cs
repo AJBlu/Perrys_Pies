@@ -202,7 +202,7 @@ public class PerrySensor : MonoBehaviour
 
     private void InstantiatePOI()
     {
-        var _distantPlayer = GameObject.Find("Player");
+        var _distantPlayer = GameObject.FindGameObjectWithTag("Player");
         var _patrolmanager = GameObject.Find("PatrolManager");
         var lastKnownPosition = Instantiate(POI, _distantPlayer.transform.position, _distantPlayer.transform.rotation);
         lastKnownPosition.transform.SetParent(_patrolmanager.transform);
