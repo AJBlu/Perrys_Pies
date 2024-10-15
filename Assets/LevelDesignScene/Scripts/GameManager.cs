@@ -64,6 +64,7 @@ public class GameManager : MonoBehaviour
         UIManager.UImanager.panelDown();
         SceneManager.LoadScene(pressedButton);
         player.GetComponent<PlayerController>().currentFloor = pressedButton;
+        StartCoroutine(player.GetComponent<PlayerController>().interactBuffer());
         if (pressedButton == 1)
         {
             StartCoroutine(waitFor(1f));
@@ -72,6 +73,7 @@ public class GameManager : MonoBehaviour
             if (!restarting)
             {
                 StartCoroutine(destroyProgressObjects());
+
             }
         }
     }
