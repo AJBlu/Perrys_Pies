@@ -223,7 +223,7 @@ public class UIManager : MonoBehaviour
     {
         GameObject playerCam = GameObject.FindGameObjectWithTag("MainCamera");
 
-        GameManager.gmInstance.moveToFloor(1);
+        GameManager.gmInstance.moveToFloor(1, true);
         //player.GetComponent<PlayerController>().transform.position = player.GetComponent<PlayerController>().ogPos;
         Debug.Log("PlayerCam should reset rotation.");
         playerCam.gameObject.GetComponent<FirstPersonCamera>().resetRotation();
@@ -242,28 +242,29 @@ public class UIManager : MonoBehaviour
                 player.GetComponent<PlayerController>().inventory[i] = null;
             }
         }
+        player.GetComponent<PlayerController>().keyCount = 0;
 
         GameManager.gmInstance.resetProgress();
     }
 
     public void moveToBasement()
     {
-        GameManager.gmInstance.moveToFloor(0);
+        GameManager.gmInstance.moveToFloor(0, false);
     }
 
     public void moveToGround()
     {
-        GameManager.gmInstance.moveToFloor(1);
+        GameManager.gmInstance.moveToFloor(1, false);
     }
 
     public void moveToFloor2()
     {
-        GameManager.gmInstance.moveToFloor(2);
+        GameManager.gmInstance.moveToFloor(2, false);
     }
 
     public void moveToFloor3()
     {
-        GameManager.gmInstance.moveToFloor(3);
+        GameManager.gmInstance.moveToFloor(3, false);
     }
     public IEnumerator waitAndCheck()
     {

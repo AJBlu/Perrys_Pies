@@ -59,7 +59,7 @@ public class GameManager : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void moveToFloor(int pressedButton)
+    public void moveToFloor(int pressedButton, bool restarting)
     {
         UIManager.UImanager.panelDown();
         SceneManager.LoadScene(pressedButton);
@@ -69,7 +69,10 @@ public class GameManager : MonoBehaviour
             StartCoroutine(waitFor(1f));
             findCrucialStuff();
             checkForDupes();
-            StartCoroutine(destroyProgressObjects());
+            if (!restarting)
+            {
+                StartCoroutine(destroyProgressObjects());
+            }
         }
     }
 
@@ -144,7 +147,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.001f);
         tempHolder = GameObject.Find(name);
         if (tempHolder == null) StopAllCoroutines();
-        addHiddenItem(tempHolder);
         tempHolder.SetActive(false);
         yield return new WaitForSeconds(0.001f);
     }
@@ -154,7 +156,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.001f);
         tempHolder = GameObject.FindWithTag(tag);
         if (tempHolder == null) StopAllCoroutines();
-        addHiddenItem(tempHolder);
         tempHolder.SetActive(false);
         yield return new WaitForSeconds(0.001f);
     }
@@ -168,9 +169,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.001f);
     }
 
-    void addHiddenItem(GameObject currentItem)
+    public void addHiddenItem(GameObject currentItem)
     {
         hiddenObjects.Add(currentItem);
+        Debug.Log("Added: " + currentItem);
     }
 
     public void resetProgress()
@@ -184,6 +186,7 @@ public class GameManager : MonoBehaviour
             StartCoroutine(respawnItemByName("Key" + (i + 1)));
         }
         */
+
         for (int i = 0; i < hiddenObjects.Count; i++)
         {
             hiddenObjects[i].SetActive(true);
@@ -192,6 +195,7 @@ public class GameManager : MonoBehaviour
         hiddenObjects = new List<GameObject>(0);
     }
 
+    /*
     private IEnumerator respawnItemByTag(string tag)
     {
         yield return new WaitForSeconds(0.001f);
@@ -209,6 +213,7 @@ public class GameManager : MonoBehaviour
         tempHolder.SetActive(true);
         yield return new WaitForSeconds(0.001f);
     }
+    */
 
 
     public IEnumerator destroyProgressObjects()

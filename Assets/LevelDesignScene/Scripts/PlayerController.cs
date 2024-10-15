@@ -54,8 +54,7 @@ public class PlayerController : MonoBehaviour
 
     public InputActionReference interactionInput;
 
-    [SerializeField]
-    private int keyCount;
+    public int keyCount;
 
     public static GameObject playerInstance;
 
@@ -159,6 +158,8 @@ public class PlayerController : MonoBehaviour
                     hasPieTin = true;
                     pieTin = tinReference;
                     Debug.Log("Better start running!");
+                    GameManager gameManager = FindObjectOfType<GameManager>();
+                    gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
                     return;
                 }
             }
@@ -183,6 +184,8 @@ public class PlayerController : MonoBehaviour
                         keySpace[keyCount] = keyReferences[i];
                         UIManager.UImanager.keyColor(i, true);
                         keysGrabbed[i] = true;
+                        GameManager gameManager = FindObjectOfType<GameManager>();
+                        gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
                     }
                 }
                 keyCount++;
@@ -210,12 +213,16 @@ public class PlayerController : MonoBehaviour
                         else if (hit.collider.tag == "BellAttract") inventory[i] = bellAttract;
                         else if (hit.collider.tag == "CanAttract") inventory[i] = canAttract;
                         UIManager.UImanager.slotUpdate(i, hit.collider.tag);
-                        Destroy(hit.collider.gameObject);
-                        isStored = true;
                         if (hit.collider.tag == "KeyDeter")
                         {
                             keyDeterGrabbed = true;
+                            GameManager gameManager = FindObjectOfType<GameManager>();
+                            StartCoroutine(gameManager.GetComponent<GameManager>().deactivateByTag(hit.collider.tag));
+                            gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
                         }
+                        else Destroy(hit.collider.gameObject);
+                        isStored = true;
+                        
                     }
                 }
             }
@@ -252,6 +259,7 @@ public class PlayerController : MonoBehaviour
                 other.gameObject.SetActive(false);
                 GameManager gameManager = FindObjectOfType<GameManager>();
                 gameManager.GetComponent<GameManager>().exitUnlocked = true;
+                gameManager.GetComponent<GameManager>().addHiddenItem(other.gameObject);
             }
             else Debug.Log("Not enough keys.");
         }
