@@ -15,6 +15,8 @@ public class GameManager : MonoBehaviour
     public static GameManager gmInstance;
     public bool exitUnlocked;
 
+    public List<GameObject> hiddenObjects;
+
     private void Awake()
     {
         if (gmInstance == null)
@@ -143,6 +145,17 @@ public class GameManager : MonoBehaviour
         tempHolder = GameObject.Find(name);
         if (tempHolder == null) StopAllCoroutines();
         tempHolder.SetActive(false);
+        addHiddenItem(tempHolder);
+        yield return new WaitForSeconds(0.001f);
+    }
+
+    public IEnumerator deactivateByTag(string tag)
+    {
+        yield return new WaitForSeconds(0.001f);
+        tempHolder = GameObject.FindWithTag(tag);
+        if (tempHolder == null) StopAllCoroutines();
+        tempHolder.SetActive(false);
+        addHiddenItem(tempHolder);
         yield return new WaitForSeconds(0.001f);
     }
 
@@ -155,17 +168,14 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.001f);
     }
 
-    public IEnumerator deactivateByTag(string tag)
+    void addHiddenItem(GameObject currentItem)
     {
-        yield return new WaitForSeconds(0.001f);
-        tempHolder = GameObject.FindWithTag(tag);
-        if (tempHolder == null) StopAllCoroutines();
-        tempHolder.SetActive(false);
-        yield return new WaitForSeconds(0.001f);
+        if (!hiddenObjects.Contains(currentItem)) hiddenObjects.Add(currentItem);
     }
-    
+
     public void resetProgress()
     {
+        /*
         StartCoroutine(respawnItemByTag("Lock"));
         StartCoroutine(respawnItemByTag("PieTin"));
         StartCoroutine(respawnItemByTag("KeyDeter"));
@@ -173,6 +183,12 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(respawnItemByName("Key" + (i + 1)));
         }
+        */
+        for (int i = 0; i < hiddenObjects.Count; i++)
+        {
+            hiddenObjects[i].SetActive(true);
+        }
+        hiddenObjects = new List<GameObject>(0);
     }
 
     private IEnumerator respawnItemByTag(string tag)
