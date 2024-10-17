@@ -169,6 +169,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StopDuration: 4
   DeterrentDelay: 10
+  DeterrentRadius: 10
   DeterrentItemHit:
     m_PersistentCalls:
       m_Calls: []
@@ -252,7 +253,7 @@ Transform:
   m_GameObject: {fileID: 990982416}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.5374136, y: 1.2256346, z: 8.57}
+  m_LocalPosition: {x: -26.27, y: 1.2256346, z: 1.43}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -522,6 +523,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   StopDuration: 4
   DeterrentDelay: 3
+  DeterrentRadius: 20
   DeterrentItemHit:
     m_PersistentCalls:
       m_Calls: []
@@ -542,7 +544,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
@@ -605,7 +607,7 @@ Transform:
   m_GameObject: {fileID: 1304884034}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.5374136, y: 1.2256346, z: -2.01}
+  m_LocalPosition: {x: -0.42, y: 1.2256346, z: -25.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
