@@ -169,17 +169,16 @@ public class PerryNav : MonoBehaviour
         allDestinationsSearched.RemoveListener(gameObject.GetComponent<Search>().OnSearchCompleted);
     }
 
-    public void OnDeterentItemHit()
+    public void OnDeterrentItemHit(float duration)
     {
-        var oldSpeed = NavMeshAgent.speed;
-        StartCoroutine("PauseMovement");
-        NavMeshAgent.speed = oldSpeed;
+        StartCoroutine(PauseMovement(duration));
     }
 
-    private IEnumerator PauseMovement()
+    private IEnumerator PauseMovement(float duration)
     {
-        NavMeshAgent.velocity = Vector3.zero;
-        yield return new WaitForSeconds(4f);
+        NavMeshAgent.isStopped = true;
+        yield return new WaitForSeconds(duration);
+        NavMeshAgent.isStopped = false;
 
     }
 
