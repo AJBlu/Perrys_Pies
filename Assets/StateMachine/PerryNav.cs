@@ -178,7 +178,7 @@ public class PerryNav : MonoBehaviour
 
     private IEnumerator PauseMovement()
     {
-        NavMeshAgent.speed = 0f;
+        NavMeshAgent.velocity = Vector3.zero;
         yield return new WaitForSeconds(4f);
 
     }

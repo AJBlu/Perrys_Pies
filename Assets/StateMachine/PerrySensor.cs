@@ -172,19 +172,22 @@ public class PerrySensor : MonoBehaviour
                     //then send raycast
                     if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) * radius, out hit, radius))
                     {
-                        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * radius, Color.green);
-                        //invoke events depending on radius used
-                        if (radius == CloseSightRadius)
+                        if (hit.collider.gameObject.tag == "Player")
                         {
-                            PlayerSeen_Close.Invoke();
-                        
-                            playerSeen = true;
-                        }
-                        else if (radius == DistantSightRadius)
-                        {
-                            PlayerSeen_Distant.Invoke();
-                            InstantiatePOI();
-                            playerSeen = true;
+                            //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * radius, Color.green);
+                            //invoke events depending on radius used
+                            if (radius == CloseSightRadius)
+                            {
+                                PlayerSeen_Close.Invoke();
+
+                                playerSeen = true;
+                            }
+                            else if (radius == DistantSightRadius)
+                            {
+                                PlayerSeen_Distant.Invoke();
+                                InstantiatePOI();
+                                playerSeen = true;
+                            }
                         }
                     }
                 }
@@ -217,15 +220,21 @@ public class PerrySensor : MonoBehaviour
         RaycastHit hit;
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) * CloseSightRadius, out hit, CloseSightRadius))
             {
-                Debug.LogFormat($"{gameObject.name} [Perrysensor.cs:DelayedRaycast()] Player has been seen up close.");
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * CloseSightRadius, Color.red);
-                PlayerSeen_Close.Invoke();
+                if (hit.collider.gameObject.tag == "Player")
+                {
+                    Debug.LogFormat($"{gameObject.name} [Perrysensor.cs:DelayedRaycast()] Player has been seen up close.");
+                    //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * CloseSightRadius, Color.red);
+                    PlayerSeen_Close.Invoke();
+                }
             }
             else if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) * DistantSightRadius, out hit, DistantSightRadius))
             {
-                Debug.LogFormat($"{gameObject.name} [PerrySensor.cs:DelayedRaycast()] Player has been seen from afar.");
-                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * CloseSightRadius, Color.yellow);
-                PlayerSeen_Distant.Invoke();
+                if (hit.collider.gameObject.tag == "Player")
+                {
+                    Debug.LogFormat($"{gameObject.name} [PerrySensor.cs:DelayedRaycast()] Player has been seen from afar.");
+                    //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * CloseSightRadius, Color.yellow);
+                    PlayerSeen_Distant.Invoke();
+                }
             }
             else
             {
@@ -307,6 +316,7 @@ public class PerrySensor : MonoBehaviour
         InstantiatePOI();
     }
     
+    /*
     private void OnDrawGizmosSelected()
     {
 
@@ -318,6 +328,6 @@ public class PerrySensor : MonoBehaviour
             UnityEditor.Handles.color = Color.red;
             UnityEditor.Handles.DrawLine(transform.position, closeExtends);
     }
-    
+    */
 
 }
