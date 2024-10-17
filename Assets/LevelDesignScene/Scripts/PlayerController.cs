@@ -300,7 +300,6 @@ public class PlayerController : MonoBehaviour
                 hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
                 pickupUI.SetActive(false);
             }
-
             if (!canInteract)
             {
                 pickupUI.SetActive(false);
@@ -336,6 +335,7 @@ public class PlayerController : MonoBehaviour
             }
             */
 
+            /*
             if (Input.GetKeyDown("1"))
             {
                 selectedSlot = 1;
@@ -356,17 +356,14 @@ public class PlayerController : MonoBehaviour
             {
                 selectedSlot = 5;
             }
-            /*
-            if (Input.GetAxis("Mouse ScrollWheel") > 0)
-            {
-                slotByOne(false);
-            }
-            if (Input.GetAxis("Mouse ScrollWheel") < 0)
-            {
-                slotByOne(true);
-            }
             */
         }
+    }
+
+    public void test(InputAction.CallbackContext obj)
+    {
+        string keyName = Input.GetButton("InventoryKeys").ToString();
+        selectedSlot = int.Parse(keyName);
     }
 
     bool canScroll;

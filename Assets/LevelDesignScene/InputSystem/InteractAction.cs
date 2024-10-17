@@ -98,6 +98,15 @@ public partial class @InteractAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""InventoryKeys"",
+                    ""type"": ""Button"",
+                    ""id"": ""894a26f9-95d6-4614-8dfb-dad68ec088e3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -254,6 +263,61 @@ public partial class @InteractAction: IInputActionCollection2, IDisposable
                     ""action"": ""Scroll"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5de9f4d3-21d6-449f-86da-d358d07cc94b"",
+                    ""path"": ""<Keyboard>/1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InventoryKeys"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""81653334-ad09-4b02-a0be-9247d9d60776"",
+                    ""path"": ""<Keyboard>/2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InventoryKeys"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96a82d2f-4d20-425e-8369-5c8a63b7753d"",
+                    ""path"": ""<Keyboard>/3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InventoryKeys"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""815df2ff-8d44-4019-97c8-80242a956ace"",
+                    ""path"": ""<Keyboard>/4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InventoryKeys"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""34218b27-467a-4f8d-b22a-ecc8a8693d79"",
+                    ""path"": ""<Keyboard>/5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""InventoryKeys"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -270,6 +334,7 @@ public partial class @InteractAction: IInputActionCollection2, IDisposable
         m_PlayerControls_UseExitHint = m_PlayerControls.FindAction("Use/ExitHint", throwIfNotFound: true);
         m_PlayerControls_Pause = m_PlayerControls.FindAction("Pause", throwIfNotFound: true);
         m_PlayerControls_Scroll = m_PlayerControls.FindAction("Scroll", throwIfNotFound: true);
+        m_PlayerControls_InventoryKeys = m_PlayerControls.FindAction("InventoryKeys", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -339,6 +404,7 @@ public partial class @InteractAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControls_UseExitHint;
     private readonly InputAction m_PlayerControls_Pause;
     private readonly InputAction m_PlayerControls_Scroll;
+    private readonly InputAction m_PlayerControls_InventoryKeys;
     public struct PlayerControlsActions
     {
         private @InteractAction m_Wrapper;
@@ -351,6 +417,7 @@ public partial class @InteractAction: IInputActionCollection2, IDisposable
         public InputAction @UseExitHint => m_Wrapper.m_PlayerControls_UseExitHint;
         public InputAction @Pause => m_Wrapper.m_PlayerControls_Pause;
         public InputAction @Scroll => m_Wrapper.m_PlayerControls_Scroll;
+        public InputAction @InventoryKeys => m_Wrapper.m_PlayerControls_InventoryKeys;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -384,6 +451,9 @@ public partial class @InteractAction: IInputActionCollection2, IDisposable
             @Scroll.started += instance.OnScroll;
             @Scroll.performed += instance.OnScroll;
             @Scroll.canceled += instance.OnScroll;
+            @InventoryKeys.started += instance.OnInventoryKeys;
+            @InventoryKeys.performed += instance.OnInventoryKeys;
+            @InventoryKeys.canceled += instance.OnInventoryKeys;
         }
 
         private void UnregisterCallbacks(IPlayerControlsActions instance)
@@ -412,6 +482,9 @@ public partial class @InteractAction: IInputActionCollection2, IDisposable
             @Scroll.started -= instance.OnScroll;
             @Scroll.performed -= instance.OnScroll;
             @Scroll.canceled -= instance.OnScroll;
+            @InventoryKeys.started -= instance.OnInventoryKeys;
+            @InventoryKeys.performed -= instance.OnInventoryKeys;
+            @InventoryKeys.canceled -= instance.OnInventoryKeys;
         }
 
         public void RemoveCallbacks(IPlayerControlsActions instance)
@@ -439,5 +512,6 @@ public partial class @InteractAction: IInputActionCollection2, IDisposable
         void OnUseExitHint(InputAction.CallbackContext context);
         void OnPause(InputAction.CallbackContext context);
         void OnScroll(InputAction.CallbackContext context);
+        void OnInventoryKeys(InputAction.CallbackContext context);
     }
 }
