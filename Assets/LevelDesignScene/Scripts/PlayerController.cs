@@ -294,10 +294,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!UIManager.UImanager.menuOpen)
         {
-            canInteract = true;
-
-            ChangeMoveMent();
-
             if (hit.collider != null)
             {
                 hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
@@ -315,22 +311,12 @@ public class PlayerController : MonoBehaviour
                 pickupUI.SetActive(true);
             }
 
-            if (Input.GetKeyDown("space"))
-            {
-                if (IsGround()) HandleJump();
-            }
-            if (Input.GetKeyDown("left shift"))
-            {
-                sprint();
-            }
-            if (Input.GetKeyDown("left ctrl"))
-            {
-                crouch();
-            }
             if (Input.GetKeyUp("left shift") || Input.GetKeyUp("left ctrl"))
             {
                 resetMovement();
             }
+
+            /*
             if (Input.GetKeyDown("u"))
             {
                 throwDistraction(ballDeter);
@@ -347,6 +333,8 @@ public class PlayerController : MonoBehaviour
             {
                 throwDistraction(canAttract);
             }
+            */
+
             if (Input.GetKeyDown("1"))
             {
                 selectedSlot = 1;
@@ -367,6 +355,7 @@ public class PlayerController : MonoBehaviour
             {
                 selectedSlot = 5;
             }
+            /*
             if (Input.GetAxis("Mouse ScrollWheel") > 0)
             {
                 slotByOne(false);
@@ -375,30 +364,35 @@ public class PlayerController : MonoBehaviour
             {
                 slotByOne(true);
             }
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (UIManager.UImanager.givingHint)
-                {
-                    UIManager.UImanager.givingHint = false;
-                }
-                else
-                {
-                    if (inventory[selectedSlot - 1] != null)
-                    {
-                        throwDistraction(inventory[selectedSlot - 1]);
-                    }
-                    else return;
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (!UIManager.UImanager.gamePaused) UIManager.UImanager.pauseGame();
-                else UIManager.UImanager.panelDown();
-            }
+            */
+        }
+    }
+
+    public void scrollCheck(InputAction.CallbackContext obj)
+    {
+        if (Input.GetAxis("Scroll") > 0) slotByOne(true);
+        else slotByOne(false);
+    }
+
+    public void pauseToggle(InputAction.CallbackContext obj)
+    {
+        if (!UIManager.UImanager.gamePaused) UIManager.UImanager.pauseGame();
+        else UIManager.UImanager.panelDown();
+    }
+
+    public void leftMouse(InputAction.CallbackContext obj)
+    {
+        if (UIManager.UImanager.givingHint)
+        {
+            UIManager.UImanager.givingHint = false;
         }
         else
         {
-            canInteract = false;
+            if (inventory[selectedSlot - 1] != null)
+            {
+                throwDistraction(inventory[selectedSlot - 1]);
+            }
+            else return;
         }
     }
 
@@ -495,20 +489,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void ChangeMoveMent()
+
+    public void ChangeMoveMent(InputAction.CallbackContext obj)
     {
         xInput = Input.GetAxisRaw("Horizontal");
         zInput = Input.GetAxisRaw("Vertical");
         movement = new Vector3(xInput * currentSpeed, rigid.velocity.y, zInput * currentSpeed);
     }
 
-    public void HandleJump()
+    public void HandleJump(InputAction.CallbackContext obj)
     {
-        Vector3 jumpVec = new Vector3(0, jumpSpeed, 0);
-        rigid.AddRelativeForce(jumpVec, ForceMode.Impulse);
+        if (IsGround())
+        {
+            Vector3 jumpVec = new Vector3(0, jumpSpeed, 0);
+            rigid.AddRelativeForce(jumpVec, ForceMode.Impulse);
+        }
     }
 
-    public void sprint()
+    public void sprint(InputAction.CallbackContext obj)
     {
         if (sprintLimit > 0 && rigid.velocity != Vector3.zero)
         {
@@ -520,7 +518,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void crouch()
+    public void crouch(InputAction.CallbackContext obj)
     {
         isCrouched = true;
         playerCameraTransform.transform.position = crouchHeight.transform.position;
