@@ -294,6 +294,8 @@ public class PlayerController : MonoBehaviour
     {
         if (!UIManager.UImanager.menuOpen)
         {
+            canInteract = true;
+
             ChangeMoveMent();
 
             if (hit.collider != null)
@@ -393,6 +395,10 @@ public class PlayerController : MonoBehaviour
                 if (!UIManager.UImanager.gamePaused) UIManager.UImanager.pauseGame();
                 else UIManager.UImanager.panelDown();
             }
+        }
+        else
+        {
+            canInteract = false;
         }
     }
 
