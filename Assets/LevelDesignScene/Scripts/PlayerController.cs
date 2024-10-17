@@ -110,6 +110,7 @@ public class PlayerController : MonoBehaviour
         canInteract = true;
         pickupUI.SetActive(false);
         selectedSlot = 1;
+        canScroll = true;
 
         uiManager = UIManager.UImanager;
     }
@@ -368,10 +369,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    bool canScroll;
+
     public void scrollCheck(InputAction.CallbackContext obj)
     {
-        if (Input.GetAxis("Scroll") > 0) slotByOne(true);
-        else slotByOne(false);
+        if (canScroll)
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0) StartCoroutine(slotByOne(true));
+            else StartCoroutine(slotByOne(false));
+        }
     }
 
     public void pauseToggle(InputAction.CallbackContext obj)
@@ -396,8 +402,9 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void slotByOne(bool isScrollUp)
+    public IEnumerator slotByOne(bool isScrollUp)
     {
+        canScroll = false;
         if (isScrollUp)
         {
             selectedSlot++;
@@ -414,6 +421,8 @@ public class PlayerController : MonoBehaviour
         {
             selectedSlot = 5;
         }
+        yield return new WaitForSeconds(0.1f);
+        canScroll = true;
     }
 
     float projectileSpeed;
