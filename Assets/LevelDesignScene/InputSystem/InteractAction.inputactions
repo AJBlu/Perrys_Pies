@@ -78,9 +78,45 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "InventoryKeys",
+                    "name": "Slot1",
                     "type": "Button",
                     "id": "894a26f9-95d6-4614-8dfb-dad68ec088e3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Slot2",
+                    "type": "Button",
+                    "id": "ce6fa262-267a-46b9-b3dc-401572afcb1b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Slot3",
+                    "type": "Button",
+                    "id": "29532c74-8284-4f90-8d76-e0da7171300e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Slot4",
+                    "type": "Button",
+                    "id": "c69a2c2e-f7c7-4369-bdda-95d8c99b1139",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Slot5",
+                    "type": "Button",
+                    "id": "769d8188-a8b7-405f-b4bb-037bbdbfe849",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -244,56 +280,56 @@
                 },
                 {
                     "name": "",
-                    "id": "5de9f4d3-21d6-449f-86da-d358d07cc94b",
+                    "id": "55457a38-693c-434b-8060-d304802b7bf4",
                     "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "InventoryKeys",
+                    "action": "Slot1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "81653334-ad09-4b02-a0be-9247d9d60776",
+                    "id": "d5498ea2-8fc0-496d-9bed-dc369d5f8e9a",
                     "path": "<Keyboard>/2",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "InventoryKeys",
+                    "action": "Slot2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "96a82d2f-4d20-425e-8369-5c8a63b7753d",
+                    "id": "6094899a-1d51-4618-b631-52fe5580af6c",
                     "path": "<Keyboard>/3",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "InventoryKeys",
+                    "action": "Slot3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "815df2ff-8d44-4019-97c8-80242a956ace",
+                    "id": "e4781d60-728f-41e2-b25a-7c6fdf0cea33",
                     "path": "<Keyboard>/4",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "InventoryKeys",
+                    "action": "Slot4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "34218b27-467a-4f8d-b22a-ecc8a8693d79",
+                    "id": "9f2884c1-13e9-4bc2-867e-cecd964559cf",
                     "path": "<Keyboard>/5",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "InventoryKeys",
+                    "action": "Slot5",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

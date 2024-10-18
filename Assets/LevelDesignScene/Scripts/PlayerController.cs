@@ -334,36 +334,28 @@ public class PlayerController : MonoBehaviour
                 throwDistraction(canAttract);
             }
             */
-
-            /*
-            if (Input.GetKeyDown("1"))
-            {
-                selectedSlot = 1;
-            }
-            if (Input.GetKeyDown("2"))
-            {
-                selectedSlot = 2;
-            }
-            if (Input.GetKeyDown("3"))
-            {
-                selectedSlot = 3;
-            }
-            if (Input.GetKeyDown("4"))
-            {
-                selectedSlot = 4;
-            }
-            if (Input.GetKeyDown("5"))
-            {
-                selectedSlot = 5;
-            }
-            */
         }
     }
 
-    public void test(InputAction.CallbackContext obj)
+    public void slot1(InputAction.CallbackContext obj)
     {
-        string keyName = Input.GetButton("InventoryKeys").ToString();
-        selectedSlot = int.Parse(keyName);
+        selectedSlot = 1;
+    }
+    public void slot2(InputAction.CallbackContext obj)
+    {
+        selectedSlot = 2;
+    }
+    public void slot3(InputAction.CallbackContext obj)
+    {
+        selectedSlot = 3;
+    }
+    public void slot4(InputAction.CallbackContext obj)
+    {
+        selectedSlot = 4;
+    }
+    public void slot5(InputAction.CallbackContext obj)
+    {
+        selectedSlot = 5;
     }
 
     bool canScroll;
