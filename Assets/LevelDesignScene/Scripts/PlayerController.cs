@@ -295,6 +295,11 @@ public class PlayerController : MonoBehaviour
     {
         if (!UIManager.UImanager.menuOpen)
         {
+            if (IsGround() && Input.GetKeyDown("space"))
+            {
+                HandleJump();
+            }
+
             if (hit.collider != null)
             {
                 hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
@@ -495,13 +500,11 @@ public class PlayerController : MonoBehaviour
         movement = new Vector3(xInput * currentSpeed, rigid.velocity.y, zInput * currentSpeed);
     }
 
-    public void HandleJump(InputAction.CallbackContext obj)
+    public void HandleJump()
     {
-        if (IsGround())
-        {
-            Vector3 jumpVec = new Vector3(0, jumpSpeed, 0);
-            rigid.AddRelativeForce(jumpVec, ForceMode.Impulse);
-        }
+        
+        Vector3 jumpVec = new Vector3(0, jumpSpeed, 0);
+        rigid.AddRelativeForce(jumpVec, ForceMode.Impulse);
     }
 
     public void sprint(InputAction.CallbackContext obj)
