@@ -295,10 +295,7 @@ public class PlayerController : MonoBehaviour
     {
         if (!UIManager.UImanager.menuOpen)
         {
-            if (Input.GetKeyDown("space"))
-            {
-                if (IsGround()) HandleJump();
-            }
+            ChangeMoveMent();
 
             if (hit.collider != null)
             {
@@ -493,17 +490,20 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void ChangeMoveMent(InputAction.CallbackContext obj)
+    public void ChangeMoveMent()
     {
         xInput = Input.GetAxisRaw("Horizontal");
         zInput = Input.GetAxisRaw("Vertical");
         movement = new Vector3(xInput * currentSpeed, rigid.velocity.y, zInput * currentSpeed);
     }
 
-    public void HandleJump()
+    public void HandleJump(InputAction.CallbackContext obj)
     {
-        Vector3 jumpVec = new Vector3(0, jumpSpeed, 0);
-        rigid.AddRelativeForce(jumpVec, ForceMode.Impulse);
+        if (IsGround())
+        {
+            Vector3 jumpVec = new Vector3(0, jumpSpeed, 0);
+            rigid.AddRelativeForce(jumpVec, ForceMode.Impulse);
+        }
     }
 
     public void sprint(InputAction.CallbackContext obj)
