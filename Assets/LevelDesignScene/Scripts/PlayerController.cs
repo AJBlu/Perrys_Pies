@@ -364,7 +364,7 @@ public class PlayerController : MonoBehaviour
     {
         if (canScroll)
         {
-            if (Input.GetAxis("Mouse ScrollWheel") > 0) StartCoroutine(slotByOne(true));
+            if (Input.GetAxis("Mouse ScrollWheel") < 0) StartCoroutine(slotByOne(true));
             else StartCoroutine(slotByOne(false));
         }
     }
