@@ -295,9 +295,9 @@ public class PlayerController : MonoBehaviour
     {
         if (!UIManager.UImanager.menuOpen)
         {
-            if (IsGround() && Input.GetKeyDown("space"))
+            if (Input.GetKeyDown("space"))
             {
-                HandleJump();
+                if (IsGround()) HandleJump();
             }
 
             if (hit.collider != null)
