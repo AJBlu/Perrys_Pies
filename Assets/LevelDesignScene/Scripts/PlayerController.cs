@@ -502,7 +502,6 @@ public class PlayerController : MonoBehaviour
 
     public void HandleJump()
     {
-        
         Vector3 jumpVec = new Vector3(0, jumpSpeed, 0);
         rigid.AddRelativeForce(jumpVec, ForceMode.Impulse);
     }
