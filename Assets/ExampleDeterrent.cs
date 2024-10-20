@@ -33,7 +33,14 @@ public class ExampleDeterrent : MonoBehaviour
 
         foreach (Collider collider in objectsInRadius)
         {
-            if (collider.tag == "Perry") StartDeterrent();
+            if (collider.tag == "Perry")
+            {
+
+                StartDeterrent();
+                //changes color on deterrent
+                collider.gameObject.GetComponent<Renderer>().material.color = Color.magenta;
+
+            }
         }
     }
 
