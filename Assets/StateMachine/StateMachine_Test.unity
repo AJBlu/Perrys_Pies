@@ -253,6 +253,7 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
+<<<<<<< HEAD
 --- !u!1 &1130380507
 GameObject:
   m_ObjectHideFlags: 0
@@ -390,6 +391,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> origin/RestartButton
 --- !u!1 &1194576390 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3194623580175864131, guid: 3aa9ad3b5534aa246b67e9847fb840cf,
@@ -502,6 +505,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1001 &1503219047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -575,6 +579,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cd638d44627ae154bb988bbc77d2c709, type: 3}
+=======
+>>>>>>> origin/RestartButton
 --- !u!1 &1553347107
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,10 +845,16 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+<<<<<<< HEAD
   - {fileID: 1130380511}
+=======
+>>>>>>> origin/RestartButton
   - {fileID: 1037195524}
   - {fileID: 1295571214}
   - {fileID: 4464049344855486751}
   - {fileID: 1553347109}
   - {fileID: 7336256883251759578}
+<<<<<<< HEAD
   - {fileID: 1503219047}
+=======
+>>>>>>> origin/RestartButton
