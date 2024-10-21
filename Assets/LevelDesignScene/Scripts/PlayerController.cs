@@ -153,7 +153,7 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("I feel like I need something else...");
                     return;
                 }
-                else if (hit.collider.enabled)
+                else
                 {
                     hit.collider.gameObject.SetActive(false);
                     hasPieTin = true;
