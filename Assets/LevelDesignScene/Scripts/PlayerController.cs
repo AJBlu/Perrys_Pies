@@ -110,6 +110,7 @@ public class PlayerController : MonoBehaviour
         canInteract = true;
         pickupUI.SetActive(false);
         selectedSlot = 1;
+        canScroll = true;
 
         uiManager = UIManager.UImanager;
     }
@@ -301,7 +302,6 @@ public class PlayerController : MonoBehaviour
                 hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
                 pickupUI.SetActive(false);
             }
-
             if (!canInteract)
             {
                 pickupUI.SetActive(false);
@@ -313,22 +313,12 @@ public class PlayerController : MonoBehaviour
                 pickupUI.SetActive(true);
             }
 
-            if (Input.GetKeyDown("space"))
-            {
-                if (IsGround()) HandleJump();
-            }
-            if (Input.GetKeyDown("left shift"))
-            {
-                sprint();
-            }
-            if (Input.GetKeyDown("left ctrl"))
-            {
-                crouch();
-            }
             if (Input.GetKeyUp("left shift") || Input.GetKeyUp("left ctrl"))
             {
                 resetMovement();
             }
+
+            /*
             if (Input.GetKeyDown("u"))
             {
                 throwDistraction(ballDeter);
@@ -345,59 +335,67 @@ public class PlayerController : MonoBehaviour
             {
                 throwDistraction(canAttract);
             }
-            if (Input.GetKeyDown("1"))
-            {
-                selectedSlot = 1;
-            }
-            if (Input.GetKeyDown("2"))
-            {
-                selectedSlot = 2;
-            }
-            if (Input.GetKeyDown("3"))
-            {
-                selectedSlot = 3;
-            }
-            if (Input.GetKeyDown("4"))
-            {
-                selectedSlot = 4;
-            }
-            if (Input.GetKeyDown("5"))
-            {
-                selectedSlot = 5;
-            }
-            if (Input.GetAxis("Mouse ScrollWheel") > 0)
-            {
-                slotByOne(false);
-            }
-            if (Input.GetAxis("Mouse ScrollWheel") < 0)
-            {
-                slotByOne(true);
-            }
-            if (Input.GetMouseButtonDown(0))
-            {
-                if (UIManager.UImanager.givingHint)
-                {
-                    UIManager.UImanager.givingHint = false;
-                }
-                else
-                {
-                    if (inventory[selectedSlot - 1] != null)
-                    {
-                        throwDistraction(inventory[selectedSlot - 1]);
-                    }
-                    else return;
-                }
-            }
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                if (!UIManager.UImanager.gamePaused) UIManager.UImanager.pauseGame();
-                else UIManager.UImanager.panelDown();
-            }
+            */
         }
     }
 
-    public void slotByOne(bool isScrollUp)
+    public void slot1(InputAction.CallbackContext obj)
     {
+        selectedSlot = 1;
+    }
+    public void slot2(InputAction.CallbackContext obj)
+    {
+        selectedSlot = 2;
+    }
+    public void slot3(InputAction.CallbackContext obj)
+    {
+        selectedSlot = 3;
+    }
+    public void slot4(InputAction.CallbackContext obj)
+    {
+        selectedSlot = 4;
+    }
+    public void slot5(InputAction.CallbackContext obj)
+    {
+        selectedSlot = 5;
+    }
+
+    bool canScroll;
+
+    public void scrollCheck(InputAction.CallbackContext obj)
+    {
+        if (canScroll)
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") < 0) StartCoroutine(slotByOne(true));
+            else StartCoroutine(slotByOne(false));
+        }
+    }
+
+    public void pauseToggle(InputAction.CallbackContext obj)
+    {
+        if (!UIManager.UImanager.gamePaused) UIManager.UImanager.pauseGame();
+        else UIManager.UImanager.panelDown();
+    }
+
+    public void leftMouse(InputAction.CallbackContext obj)
+    {
+        if (UIManager.UImanager.givingHint)
+        {
+            UIManager.UImanager.givingHint = false;
+        }
+        else
+        {
+            if (inventory[selectedSlot - 1] != null)
+            {
+                throwDistraction(inventory[selectedSlot - 1]);
+            }
+            else return;
+        }
+    }
+
+    public IEnumerator slotByOne(bool isScrollUp)
+    {
+        canScroll = false;
         if (isScrollUp)
         {
             selectedSlot++;
@@ -414,6 +412,8 @@ public class PlayerController : MonoBehaviour
         {
             selectedSlot = 5;
         }
+        yield return new WaitForSeconds(0.1f);
+        canScroll = true;
     }
 
     float projectileSpeed;
@@ -489,20 +489,24 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void ChangeMoveMent()
+
+    public void ChangeMoveMent()
     {
         xInput = Input.GetAxisRaw("Horizontal");
         zInput = Input.GetAxisRaw("Vertical");
         movement = new Vector3(xInput * currentSpeed, rigid.velocity.y, zInput * currentSpeed);
     }
 
-    public void HandleJump()
+    public void HandleJump(InputAction.CallbackContext obj)
     {
-        Vector3 jumpVec = new Vector3(0, jumpSpeed, 0);
-        rigid.AddRelativeForce(jumpVec, ForceMode.Impulse);
+        if (IsGround())
+        {
+            Vector3 jumpVec = new Vector3(0, jumpSpeed, 0);
+            rigid.AddRelativeForce(jumpVec, ForceMode.Impulse);
+        }
     }
 
-    public void sprint()
+    public void sprint(InputAction.CallbackContext obj)
     {
         if (sprintLimit > 0 && rigid.velocity != Vector3.zero)
         {
@@ -514,7 +518,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void crouch()
+    public void crouch(InputAction.CallbackContext obj)
     {
         isCrouched = true;
         playerCameraTransform.transform.position = crouchHeight.transform.position;
