@@ -469,17 +469,17 @@ MonoBehaviour:
   pickableLayerMask:
     serializedVersion: 2
     m_Bits: 0
-  playerCameraTransform: {fileID: 2353446158679785555}
+  playerCameraTransform: {fileID: 0}
   originalSpeed: 0
   sprintFactor: 2
   crawlFactor: 0.5
   sprintMax: 2
   normalHeight: 1
-  crouchHeight: 0.5
+  crouchHeight: 0.25
   isCrouched: 0
   sprinting: 0
-  currentSpeed: 10
-  jumpSpeed: 4
+  currentSpeed: 5
+  jumpSpeed: 5
   hitRange: 3
   interactionInput: {fileID: 4417774981443331334, guid: 7c68a63bb95ef694f95d088a9bc549bd,
     type: 3}
