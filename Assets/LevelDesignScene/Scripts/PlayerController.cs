@@ -230,7 +230,13 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
-            if (!isStored) Debug.Log("Inventory is full.");
+            if (!isStored)
+            {
+                UIManager.UImanager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().text = "There's no more room in my pockets for this.";
+                UIManager.UImanager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().color = Color.white;
+                UIManager.UImanager.fadingText.GetComponent<FadeText>().fadeTime = 2;
+                Debug.Log("Inventory is full.");
+            }
         }
     }
 
@@ -277,6 +283,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                UIManager.UImanager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().text = "I don't have a key to unlock this lock.";
                 UIManager.UImanager.fadingText.GetComponent<FadeText>().fadeTime = 2;
                 Debug.Log("I need a key");
             }

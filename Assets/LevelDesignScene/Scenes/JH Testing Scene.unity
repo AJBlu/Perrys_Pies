@@ -661,7 +661,7 @@ GameObject:
   - component: {fileID: 344844847}
   - component: {fileID: 344844846}
   m_Layer: 5
-  m_Name: KeyNeeded
+  m_Name: FadingText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -683,7 +683,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 54.49}
+  m_AnchoredPosition: {x: 0, y: 146.8}
   m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &344844846
@@ -1492,7 +1492,7 @@ MonoBehaviour:
   - {fileID: 344130968}
   - {fileID: 1126505441}
   slotIdentifyer: {fileID: 923216932}
-  fadingText: {fileID: 0}
+  fadingText: {fileID: 344844844}
   keyImageHolder: {fileID: 0}
   keyImages:
   - {fileID: 0}
