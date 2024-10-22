@@ -176,8 +176,11 @@ public class PlayerController : MonoBehaviour
             }
             if (hit.collider.tag == "Key")
             {
+                //int i = 0;
                 hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
                 hit.collider.enabled = false;
+
+                
                 for (int i = 0; i < 3; i++)
                 {
                     if (hit.collider.name == "Key" + (i + 1))
@@ -192,7 +195,8 @@ public class PlayerController : MonoBehaviour
                 keyCount++;
                 return;
             }
-            if (hit.collider.tag == "Skeleton")
+                
+                if (hit.collider.tag == "Skeleton")
             {
                 UIManager.UImanager.skeletonHint(hit.collider.gameObject);
                 return;
