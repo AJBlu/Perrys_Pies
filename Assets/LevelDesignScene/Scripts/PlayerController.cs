@@ -100,7 +100,7 @@ public class PlayerController : MonoBehaviour
     {
         interactionInput.action.performed += Interact;
         rigid = GetComponent<Rigidbody>();
-        originalSpeed = currentSpeed = 10;
+        originalSpeed = currentSpeed = 5;
         jumpSpeed = 5;
         hasPieTin = false;
         isCrouched = false;
