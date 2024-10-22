@@ -174,17 +174,18 @@ public class PlayerController : MonoBehaviour
                 hit.collider.gameObject.GetComponent<RoomDoor>().isOpen = !hit.collider.gameObject.GetComponent<RoomDoor>().isOpen;
                 return;
             }
-            if (hit.collider.tag == "Key")
+            if ((hit.collider.tag == "Key") && hit.collider.enabled)
             {
-                //int i = 0;
                 hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
                 hit.collider.enabled = false;
-
-                
                 for (int i = 0; i < 3; i++)
                 {
-                    if (hit.collider.name == "Key" + (i + 1))
+                    string keyName = ("Key" + (i + 1));
+                    Debug.Log(keyName);
+                    //if i = 0, then it checks if the name is Key1, and so on
+                    if (hit.collider.name == keyName)
                     {
+                        Debug.Log("Adding a key, but it should be the only one added.");
                         keySpace[keyCount] = keyReferences[i];
                         UIManager.UImanager.keyColor(i, true);
                         keysGrabbed[i] = true;
@@ -195,8 +196,8 @@ public class PlayerController : MonoBehaviour
                 keyCount++;
                 return;
             }
-                
-                if (hit.collider.tag == "Skeleton")
+
+            if (hit.collider.tag == "Skeleton")
             {
                 UIManager.UImanager.skeletonHint(hit.collider.gameObject);
                 return;
