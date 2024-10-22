@@ -33,6 +33,8 @@ public class UIManager : MonoBehaviour
 
     public bool givingHint;
 
+   
+
     private void Awake()
     {
         if (UImanager == null)
@@ -173,6 +175,8 @@ public class UIManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         menuOpen = true;
+
+        
     }
 
     public void panelDown()
