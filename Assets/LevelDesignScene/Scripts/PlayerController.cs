@@ -302,7 +302,9 @@ public class PlayerController : MonoBehaviour
 
             if (hit.collider != null)
             {
-                hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
+                if (hit.collider.tag == "Skeleton") hit.collider.GetComponent<Outline>().OutlineColor = new Color(255, 0, 255, 0);
+                else hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
+
                 pickupUI.SetActive(false);
             }
             if (!canInteract)
@@ -312,7 +314,9 @@ public class PlayerController : MonoBehaviour
 
             if (canInteract && (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit, hitRange, pickableLayerMask)))
             {
-                hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
+                if (hit.collider.tag == "Skeleton") hit.collider.GetComponent<Outline>().OutlineColor = new Color(255, 0, 255, 255);
+                else hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
+
                 pickupUI.SetActive(true);
             }
 
