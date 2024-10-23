@@ -1023,7 +1023,6 @@ GameObject:
   - component: {fileID: 516276032}
   - component: {fileID: 516276031}
   - component: {fileID: 516276030}
-  - component: {fileID: 516276029}
   - component: {fileID: 516276034}
   - component: {fileID: 516276035}
   m_Layer: 6
@@ -1033,21 +1032,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &516276029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 516276028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f040414ac82bc04eb5184add00858ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderers:
-  - {fileID: 516276031}
-  color: {r: 1, g: 0, b: 1, a: 1}
 --- !u!136 &516276030
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1161,7 +1145,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 3
-  outlineColor: {r: 1, g: 0, b: 1, a: 1}
+  outlineColor: {r: 1, g: 0, b: 1, a: 0}
   outlineWidth: 5
   precomputeOutline: 0
   bakeKeys: []
