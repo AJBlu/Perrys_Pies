@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -78,6 +79,10 @@ public class PlayerController : MonoBehaviour
     public int selectedSlot;
 
     public Vector3 ogPos;
+
+    //unity events for Perry hearing
+    public UnityEvent<Vector3> PlayerJump;
+    public UnityEvent<Vector3> PlayerSprint;
 
     private void Awake()
     {
@@ -517,6 +522,7 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 jumpVec = new Vector3(0, jumpSpeed, 0);
             rigid.AddRelativeForce(jumpVec, ForceMode.Impulse);
+            PlayerJump.Invoke(transform.position);
         }
     }
 
@@ -526,6 +532,7 @@ public class PlayerController : MonoBehaviour
         {
             sprinting = true;
             if (currentSpeed == originalSpeed) currentSpeed *= sprintFactor;
+            PlayerSprint.Invoke(transform.position);
         }
         else
         {

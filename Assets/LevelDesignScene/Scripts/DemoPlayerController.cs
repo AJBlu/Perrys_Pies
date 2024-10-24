@@ -26,8 +26,8 @@ public class DemoPlayerController : MonoBehaviour
     [Tooltip("Player height while crouching.")]
     public float crouchHeight;
 
-    public UnityEvent PlayerJump;
-    public UnityEvent PlayerSprint;
+    public UnityEvent<Vector3> PlayerJump;
+    public UnityEvent<Vector3> PlayerSprint;
 
     public bool isCrouched;
     public bool sprinting;
@@ -123,6 +123,8 @@ public class DemoPlayerController : MonoBehaviour
     {
         Vector3 jumpVec = new Vector3(0, jumpSpeed, 0);
         rigid.AddRelativeForce(jumpVec, ForceMode.Impulse);
+        PlayerJump.Invoke(transform.position);
+
     }
 
     public void sprint()
@@ -131,6 +133,7 @@ public class DemoPlayerController : MonoBehaviour
         {
             sprinting = true;
             if (currentSpeed == originalSpeed) currentSpeed *= sprintFactor;
+            PlayerSprint.Invoke(transform.position);
         }
     }
 
