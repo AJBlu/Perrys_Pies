@@ -310,6 +310,10 @@ public class PlayerController : MonoBehaviour
             if (hit.collider != null)
             {
                 if (hit.collider.tag == "Skeleton") hit.collider.GetComponent<Outline>().OutlineColor = new Color(255, 0, 255, 0);
+                else if ((hit.collider.tag == "BallDeter") || (hit.collider.tag == "BagDeter"))
+                    hit.collider.GetComponent<Outline>().OutlineColor = new Color32(0, 0, 128, 0);
+                else if ((hit.collider.tag == "BellAttract") || (hit.collider.tag == "CanAttract"))
+                    hit.collider.GetComponent<Outline>().OutlineColor = new Color(255, 0, 0, 0);
                 else hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
 
                 pickupUI.SetActive(false);
@@ -322,6 +326,10 @@ public class PlayerController : MonoBehaviour
             if (canInteract && (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit, hitRange, pickableLayerMask)))
             {
                 if (hit.collider.tag == "Skeleton") hit.collider.GetComponent<Outline>().OutlineColor = new Color(255, 0, 255, 255);
+                else if ((hit.collider.tag == "BallDeter") || (hit.collider.tag == "BagDeter"))
+                    hit.collider.GetComponent<Outline>().OutlineColor = new Color32(0, 0, 128, 255);
+                else if ((hit.collider.tag == "BellAttract") || (hit.collider.tag == "CanAttract"))
+                    hit.collider.GetComponent<Outline>().OutlineColor = new Color(255, 0, 0, 255);
                 else hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
 
                 pickupUI.SetActive(true);
