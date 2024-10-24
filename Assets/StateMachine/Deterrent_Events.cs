@@ -8,7 +8,7 @@ using UnityEngine.PlayerLoop;
 public class Deterrent_Events : MonoBehaviour
 {
 
-    public bool isSightBased;
+    public bool isSightBased, isAttractant;
 
     public float DeterrentDuration;
 
