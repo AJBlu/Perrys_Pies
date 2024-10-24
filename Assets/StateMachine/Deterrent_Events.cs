@@ -58,6 +58,7 @@ public class Deterrent_Events : MonoBehaviour
         {
             if (collider.tag == "Perry")
             {
+                Debug.Log("Perry found in radius.");
                 if (!isSightBased)
                 {
                     _deterrentAction();
@@ -65,7 +66,16 @@ public class Deterrent_Events : MonoBehaviour
                 //if deterrent is based on LOS with perry, see if there is an unbroken line between it and perry
                 else
                 {
-
+                    RaycastHit hit;
+                    var Perry = GameObject.Find("Perry");
+                    if (Physics.Raycast(gameObject.transform.position, (Perry.transform.position - gameObject.transform.position), out hit, DeterrentRadius))
+                    {
+                        if (hit.collider.gameObject.tag == "Perry")
+                        {
+                            Debug.Log("Perry found and starting deterrent action.");
+                            _deterrentAction();
+                        }
+                    }
                 }
             }
         }
