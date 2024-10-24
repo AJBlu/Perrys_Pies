@@ -138,7 +138,11 @@ public class PlayerController : MonoBehaviour
     {
         //Debug.Log("Interacted with: " + hit.collider.name);
         //hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
-        storeLogic();
+        if (canInteract)
+        {
+            storeLogic();
+            deactivatePickup();
+        }
     }
 
     public void storeLogic()
@@ -309,11 +313,11 @@ public class PlayerController : MonoBehaviour
 
             if (hit.collider != null)
             {
-                if (hit.collider.tag == "Skeleton") hit.collider.GetComponent<Outline>().OutlineWidth = 5;
+                if (hit.collider.tag == "Skeleton") hit.collider.GetComponent<Outline>().OutlineWidth = 0;
                 else if ((hit.collider.tag == "BallDeter") || (hit.collider.tag == "BagDeter")) 
-                    hit.collider.GetComponent<Outline>().OutlineWidth = 5;
+                    hit.collider.GetComponent<Outline>().OutlineWidth = 0;
                 else if ((hit.collider.tag == "BellAttract") || (hit.collider.tag == "CanAttract"))
-                    hit.collider.GetComponent<Outline>().OutlineWidth = 5;
+                    hit.collider.GetComponent<Outline>().OutlineWidth = 0;
                 else hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
 
                 pickupUI.SetActive(false);
