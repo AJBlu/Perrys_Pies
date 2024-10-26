@@ -140,13 +140,13 @@ public class PatrolManager : MonoBehaviour
         _perryAgent.SetDestination(SearchNodes[0].position);
     }
 
-    public void OnPlayerJump()
+    public void OnPlayerJump(Vector3 playerPostion)
     {
-
+        InstantiatePOI(playerPostion, Priority.RUNNING);
     }
 
-    public void OnPlayerSprint()
+    public void OnPlayerSprint(Vector3 playerPosition)
     {
-
+        InstantiatePOI(playerPosition, Priority.RUNNING);
     }
 }

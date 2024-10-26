@@ -496,6 +496,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1888552991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5453285288729053333, guid: cd638d44627ae154bb988bbc77d2c709,
+    type: 3}
+  m_PrefabInstance: {fileID: 275448505}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1924456170 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3218737308177219541, guid: 4f0cf8c35bd4f514e908257a9714adf5,
@@ -595,13 +601,34 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2784488716243932058, guid: 4f0cf8c35bd4f514e908257a9714adf5,
         type: 3}
+      propertyPath: POI
+      value: 
+      objectReference: {fileID: 7379312070594583292, guid: 201b74824aa47d84291b1b68596d0d4a,
+        type: 3}
+    - target: {fileID: 2784488716243932058, guid: 4f0cf8c35bd4f514e908257a9714adf5,
+        type: 3}
       propertyPath: Perry
       value: 
       objectReference: {fileID: 1194576390}
     - target: {fileID: 2784488716243932058, guid: 4f0cf8c35bd4f514e908257a9714adf5,
         type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1888552991}
+    - target: {fileID: 2784488716243932058, guid: 4f0cf8c35bd4f514e908257a9714adf5,
+        type: 3}
+      propertyPath: PerryHearingRadius
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2784488716243932058, guid: 4f0cf8c35bd4f514e908257a9714adf5,
+        type: 3}
       propertyPath: PatrolNodes.Array.size
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2784488716243932058, guid: 4f0cf8c35bd4f514e908257a9714adf5,
+        type: 3}
+      propertyPath: PerryWalkHearingRadius
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2784488716243932058, guid: 4f0cf8c35bd4f514e908257a9714adf5,
         type: 3}
