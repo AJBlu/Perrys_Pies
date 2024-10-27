@@ -35,8 +35,7 @@ public class PatrolManager : MonoBehaviour
         _search = Perry.GetComponent<Search>();
         _nextNode = GetClosestPatrolNode(PatrolNodes);
         Perry.GetComponent<PerrySensor>().AudioCueHeard.AddListener(OnAudioCueHeard);
-        Player.GetComponent<DemoPlayerController>().PlayerJump.AddListener(OnPlayerJump);
-        Player.GetComponent<DemoPlayerController>().PlayerSprint.AddListener(OnPlayerSprint);
+
 
 
     }
@@ -115,7 +114,7 @@ public class PatrolManager : MonoBehaviour
         yield return null;
     }
 
-    private void InstantiatePOI(Vector3 soundLocation, Priority priority)
+    private void InstantiatePOI(Transform location, Priority priority)
     {
         float distanceCheck;
         if(priority == Priority.WALKING)
@@ -127,26 +126,26 @@ public class PatrolManager : MonoBehaviour
             distanceCheck = PerryHearingRadius;
         }
 
-        if(Vector3.Distance(Perry.transform.position, soundLocation) < distanceCheck)
+        if(Vector3.Distance(Perry.transform.position, location.position) < distanceCheck)
         {
-            var point = Instantiate(POI, soundLocation, this.transform.rotation, this.transform);
+            Debug.Log("Adding jump/sprint to search nodes");
+            var point = Instantiate(POI, location.position, location.transform.rotation, this.transform);
             SearchNodes.Add(point.transform);
 
         }
     }
+    public void OnPlayerJump(Transform playerPos)
+    {
+        InstantiatePOI(playerPos, Priority.RUNNING);
+    }
 
+    public void OnPlayerSprint(Transform playerPos)
+    {
+        InstantiatePOI(playerPos, Priority.RUNNING);
+    }
     public void OnAudioCueHeard()
     {
         _perryAgent.SetDestination(SearchNodes[0].position);
     }
 
-    public void OnPlayerJump(Vector3 playerPostion)
-    {
-        InstantiatePOI(playerPostion, Priority.RUNNING);
-    }
-
-    public void OnPlayerSprint(Vector3 playerPosition)
-    {
-        InstantiatePOI(playerPosition, Priority.RUNNING);
-    }
 }

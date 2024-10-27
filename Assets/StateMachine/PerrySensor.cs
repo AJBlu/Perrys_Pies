@@ -183,7 +183,7 @@ public class PerrySensor : MonoBehaviour
                         else if (radius == DistantSightRadius)
                         {
                             PlayerSeen_Distant.Invoke();
-                            InstantiatePOI();
+                            InstantiatePOI(_player.transform);
                             playerSeen = true;
                         }
                     }
@@ -200,11 +200,11 @@ public class PerrySensor : MonoBehaviour
         }
     }
 
-    private void InstantiatePOI()
+    private void InstantiatePOI(Transform playerPos)
     {
         var _distantPlayer = GameObject.FindGameObjectWithTag("Player");
         var _patrolmanager = GameObject.Find("PatrolManager");
-        var lastKnownPosition = Instantiate(POI, _distantPlayer.transform.position, _distantPlayer.transform.rotation);
+        var lastKnownPosition = Instantiate(POI, playerPos.position, playerPos.rotation);
         lastKnownPosition.transform.SetParent(_patrolmanager.transform);
         _patrolmanager.GetComponent<PatrolManager>().SearchNodes.Add(lastKnownPosition.transform);
         
@@ -304,9 +304,12 @@ public class PerrySensor : MonoBehaviour
             Debug.LogFormat($"{gameObject.name} [PerrySensor.cs:OnPursuitExit()] Removing LineOfSightBroken and AudioCueHeard from Patrol State.");
         LineOfSightBroken.RemoveListener(gameObject.GetComponent<Pursuit>().OnLineOfSightBroken);
         AudioCueHeard.RemoveListener(gameObject.GetComponent<Pursuit>().OnAudioCueHeard);
-        InstantiatePOI();
+        //find player even if not currently available
+        InstantiatePOI(GameObject.FindGameObjectWithTag("Player").transform);
     }
-    
+
+
+
     /*
     private void OnDrawGizmosSelected()
     {

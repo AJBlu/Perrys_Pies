@@ -81,8 +81,8 @@ public class PlayerController : MonoBehaviour
     public Vector3 ogPos;
 
     //unity events for Perry hearing
-    public UnityEvent<Vector3> PlayerJump;
-    public UnityEvent<Vector3> PlayerSprint;
+    public UnityEvent<Transform> PlayerJump;
+    public UnityEvent<Transform> PlayerSprint;
 
     private void Awake()
     {
@@ -98,6 +98,11 @@ public class PlayerController : MonoBehaviour
         }
 
         ogPos = this.gameObject.transform.position;
+
+        PatrolManager _p = GameObject.FindGameObjectWithTag("PatrolManager").GetComponent<PatrolManager>();
+        PlayerJump.AddListener(_p.OnPlayerJump);
+        PlayerSprint.AddListener(_p.OnPlayerSprint);
+
     }
 
     // Start is called before the first frame update
@@ -522,7 +527,7 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 jumpVec = new Vector3(0, jumpSpeed, 0);
             rigid.AddRelativeForce(jumpVec, ForceMode.Impulse);
-            PlayerJump.Invoke(transform.position);
+            PlayerJump.Invoke(transform);
         }
     }
 
@@ -532,7 +537,7 @@ public class PlayerController : MonoBehaviour
         {
             sprinting = true;
             if (currentSpeed == originalSpeed) currentSpeed *= sprintFactor;
-            PlayerSprint.Invoke(transform.position);
+            PlayerSprint.Invoke(transform);
         }
         else
         {
