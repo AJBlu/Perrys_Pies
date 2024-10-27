@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
@@ -48,9 +47,6 @@ public class PlayerController : MonoBehaviour
     [Min(1)]
     public float hitRange = 3f;
 
-    public UnityEvent PlayerJump = new UnityEvent();
-    public UnityEvent PlayerSprint = new UnityEvent();
-
     public InputActionReference interactionInput;
 
     public static GameObject playerInstance;
@@ -90,7 +86,6 @@ public class PlayerController : MonoBehaviour
         if (canMove)
         {
             rigid.velocity = transform.TransformDirection(movement);
-            //Debug.Log(rigid.velocity.magnitude);
         }
 
         if (sprinting)
