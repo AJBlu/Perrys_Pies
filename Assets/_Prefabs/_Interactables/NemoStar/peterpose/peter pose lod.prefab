@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5017866049059920344}
   - component: {fileID: 8242532028015578206}
   - component: {fileID: 3930609062120742989}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: polySurface61
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,9 +93,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5774511099038629098}
   - component: {fileID: 8905794147299163800}
+  - component: {fileID: 3879138385483841184}
+  - component: {fileID: 2674105843281857453}
   m_Layer: 6
   m_Name: peter pose
-  m_TagString: Untagged
+  m_TagString: Skeleton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -138,6 +140,36 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.4951367, y: 0.49225932, z: 0.8212607}
   m_Center: {x: 0.24756837, y: 0.25387034, z: -0.08936964}
+--- !u!114 &3879138385483841184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4199340295769482584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6cbfc1fe50e034da22a9bf50894cb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2674105843281857453
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4199340295769482584}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 3
+  outlineColor: {r: 1, g: 0, b: 1, a: 0}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &6455735659491298964
 GameObject:
   m_ObjectHideFlags: 0
@@ -149,7 +181,7 @@ GameObject:
   - component: {fileID: 2159584315338342247}
   - component: {fileID: 5242690390008256771}
   - component: {fileID: 2701807479421495385}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: group4_warpCard1_geoCard1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +263,7 @@ GameObject:
   m_Component:
   - component: {fileID: 730617146500424851}
   - component: {fileID: 9068596968339571901}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: peter pose lod
   m_TagString: Untagged
   m_Icon: {fileID: 0}

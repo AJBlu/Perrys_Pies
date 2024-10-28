@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 676284184877937561}
   - component: {fileID: 6232749392243874787}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Meditate Pose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63,9 +63,11 @@ GameObject:
   m_Component:
   - component: {fileID: 7958226352627017690}
   - component: {fileID: 4452730012520283596}
+  - component: {fileID: 4252371314464327171}
+  - component: {fileID: 8219354966997201840}
   m_Layer: 6
   m_Name: two hand skeleton
-  m_TagString: Untagged
+  m_TagString: Skeleton
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -108,6 +110,36 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.96725595, y: 0.8158017, z: 0.6633623}
   m_Center: {x: 0.016372025, y: 0.46286777, z: 0.16831884}
+--- !u!114 &4252371314464327171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2766263377746789196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f6cbfc1fe50e034da22a9bf50894cb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8219354966997201840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2766263377746789196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 1, b: 1, a: 1}
+  outlineWidth: 2
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &3462457824207629415
 GameObject:
   m_ObjectHideFlags: 0
@@ -119,7 +151,7 @@ GameObject:
   - component: {fileID: 3617684757113733385}
   - component: {fileID: 5886664748329248227}
   - component: {fileID: 4976542369981493001}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: group4_warpCard1_geoCard1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -202,7 +234,7 @@ GameObject:
   - component: {fileID: 3657916226548642587}
   - component: {fileID: 2250435334400493828}
   - component: {fileID: 5060871272155232556}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: polySurface89
   m_TagString: Untagged
   m_Icon: {fileID: 0}
