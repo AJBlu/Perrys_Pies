@@ -5,25 +5,10 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/LevelDesignScene/Scenes/Placeholder Basement.unity
-    guid: 0d33177506b45d145bb5ad6c6125f355
-  - enabled: 0
-    path: Assets/LevelDesignScene/Scenes/Basement.unity
-    guid: 5c4fca73ad8ccfe419390762c1d81ce9
-  - enabled: 1
-    path: Assets/LevelDesignScene/Scenes/Test Basement.unity
-    guid: 2f9422d6268638546afc02fd9de69374
-  - enabled: 1
-    path: Assets/LevelDesignScene/Scenes/JH Testing Scene.unity
-    guid: 96bc432f782646446bc9674eb89eccb2
-  - enabled: 1
-    path: Assets/LevelDesignScene/Scenes/Test Floor 2.unity
-    guid: d3bf3a77714628441a60343650266db2
-  - enabled: 1
-    path: Assets/LevelDesignScene/Scenes/Test Floor 3.unity
-    guid: ab089a34c0ffab544b11f35d232837e8
   - enabled: 1
     path: Assets/LevelDesignScene/Scenes/MainMenu.unity
     guid: 26e8e8b0a7df619488a9cde3f8e4c629
+  - enabled: 1
+    path: Assets/LevelDesignScene/Scenes/Basement.unity
+    guid: 3ece5b9a2dc7935408171bd694dbb4f1
   m_configObjects: {}

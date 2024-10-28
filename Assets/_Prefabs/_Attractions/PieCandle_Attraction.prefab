@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1817174906746644117}
   - component: {fileID: 467909571953803636}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PieCandle_Attraction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,6 +129,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Candle_Pie
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8cdafc96d8766aa4a964502e1a6db2ab,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

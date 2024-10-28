@@ -79,6 +79,9 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 ogPos;
 
+
+
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -100,8 +103,8 @@ public class PlayerController : MonoBehaviour
     {
         interactionInput.action.performed += Interact;
         rigid = GetComponent<Rigidbody>();
-        originalSpeed = currentSpeed = 10;
-        jumpSpeed = 5;
+        originalSpeed = currentSpeed = 5f;
+        jumpSpeed = 1.65f;
         hasPieTin = false;
         isCrouched = false;
         keyDeterGrabbed = false;
@@ -196,6 +199,7 @@ public class PlayerController : MonoBehaviour
                 keyCount++;
                 return;
             }
+
             if (hit.collider.tag == "Skeleton")
             {
                 UIManager.UImanager.skeletonHint(hit.collider.gameObject);
@@ -331,6 +335,8 @@ public class PlayerController : MonoBehaviour
             {
                 resetMovement();
             }
+
+            
 
             /*
             if (Input.GetKeyDown("u"))
