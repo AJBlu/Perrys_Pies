@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1007172333628345298}
   - component: {fileID: 7824111209647872252}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PieBreze_Attraction
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,6 +62,21 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: a6a1e599d80a4b5428671d71424415ed,
         type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a6a1e599d80a4b5428671d71424415ed,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a6a1e599d80a4b5428671d71424415ed,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a6a1e599d80a4b5428671d71424415ed,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -110,10 +125,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: a6a1e599d80a4b5428671d71424415ed,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -7816380300004966119, guid: a6a1e599d80a4b5428671d71424415ed,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a6a1e599d80a4b5428671d71424415ed,
         type: 3}
       propertyPath: m_Name
       value: PieBreeze
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a6a1e599d80a4b5428671d71424415ed,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

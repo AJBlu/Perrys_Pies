@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5017866049059920344}
   - component: {fileID: 8242532028015578206}
   - component: {fileID: 3930609062120742989}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: polySurface61
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5774511099038629098}
   - component: {fileID: 8905794147299163800}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: peter pose
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ GameObject:
   - component: {fileID: 2159584315338342247}
   - component: {fileID: 5242690390008256771}
   - component: {fileID: 2701807479421495385}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: group4_warpCard1_geoCard1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -231,7 +231,7 @@ GameObject:
   m_Component:
   - component: {fileID: 730617146500424851}
   - component: {fileID: 9068596968339571901}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: peter pose lod
   m_TagString: Untagged
   m_Icon: {fileID: 0}

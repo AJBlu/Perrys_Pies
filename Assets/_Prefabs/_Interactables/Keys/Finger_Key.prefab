@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7569038536412637452}
   - component: {fileID: 717228287031462270}
   - component: {fileID: 858611755726371055}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Keys1:Finger_Key
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,9 +93,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2804170739671603563}
   - component: {fileID: 4741327317620277053}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Finger_Key
-  m_TagString: Untagged
+  m_TagString: Key
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -145,7 +145,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1648277128149512048}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Finger Key(Clone)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,49 +176,70 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2804170739671603563}
     m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e,
+        type: 3}
       propertyPath: m_LocalPosition.x
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e,
+        type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e,
+        type: 3}
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e,
+        type: 3}
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e,
+        type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e,
+        type: 3}
       propertyPath: m_LocalRotation.y
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e,
+        type: 3}
       propertyPath: m_LocalRotation.z
       value: -0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e, type: 3}
+    - target: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e,
+        type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: 1e36df4728c9738419feba142405068e, type: 3}
+    - target: {fileID: 919132149155446097, guid: 1e36df4728c9738419feba142405068e,
+        type: 3}
       propertyPath: m_Name
       value: Finger Key
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 1e36df4728c9738419feba142405068e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5771645359354655885, guid: 1e36df4728c9738419feba142405068e,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -227,6 +248,7 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: 1e36df4728c9738419feba142405068e, type: 3}
 --- !u!4 &1298861620636158499 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e, type: 3}
+  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 1e36df4728c9738419feba142405068e,
+    type: 3}
   m_PrefabInstance: {fileID: 1552830094325935560}
   m_PrefabAsset: {fileID: 0}
