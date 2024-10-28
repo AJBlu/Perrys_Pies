@@ -79,6 +79,9 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 ogPos;
 
+
+
+
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -100,8 +103,8 @@ public class PlayerController : MonoBehaviour
     {
         interactionInput.action.performed += Interact;
         rigid = GetComponent<Rigidbody>();
-        originalSpeed = currentSpeed = 10;
-        jumpSpeed = 5;
+        originalSpeed = currentSpeed = 5f;
+        jumpSpeed = 1.65f;
         hasPieTin = false;
         isCrouched = false;
         keyDeterGrabbed = false;
@@ -196,6 +199,7 @@ public class PlayerController : MonoBehaviour
                 keyCount++;
                 return;
             }
+
             if (hit.collider.tag == "Skeleton")
             {
                 UIManager.UImanager.skeletonHint(hit.collider.gameObject);
@@ -230,7 +234,13 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
-            if (!isStored) Debug.Log("Inventory is full.");
+            if (!isStored)
+            {
+                UIManager.UImanager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().text = "There's no more room in my pockets for this.";
+                UIManager.UImanager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().color = Color.white;
+                UIManager.UImanager.fadingText.GetComponent<FadeText>().fadeTime = 2;
+                Debug.Log("Inventory is full.");
+            }
         }
     }
 
@@ -277,6 +287,7 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                UIManager.UImanager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().text = "I don't have a key to unlock this lock.";
                 UIManager.UImanager.fadingText.GetComponent<FadeText>().fadeTime = 2;
                 Debug.Log("I need a key");
             }
@@ -302,7 +313,9 @@ public class PlayerController : MonoBehaviour
 
             if (hit.collider != null)
             {
-                hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
+                if (hit.collider.tag == "Skeleton") hit.collider.GetComponent<Outline>().OutlineColor = new Color(255, 0, 255, 0);
+                else hit.collider.GetComponent<Highlight>().ToggleHighlight(false);
+
                 pickupUI.SetActive(false);
             }
             if (!canInteract)
@@ -312,7 +325,9 @@ public class PlayerController : MonoBehaviour
 
             if (canInteract && (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit, hitRange, pickableLayerMask)))
             {
-                hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
+                if (hit.collider.tag == "Skeleton") hit.collider.GetComponent<Outline>().OutlineColor = new Color(255, 0, 255, 255);
+                else hit.collider.GetComponent<Highlight>().ToggleHighlight(true);
+
                 pickupUI.SetActive(true);
             }
 
@@ -320,6 +335,8 @@ public class PlayerController : MonoBehaviour
             {
                 resetMovement();
             }
+
+            
 
             /*
             if (Input.GetKeyDown("u"))

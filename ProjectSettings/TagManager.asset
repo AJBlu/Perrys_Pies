@@ -27,6 +27,8 @@ TagManager:
   - SkeletonText
   - TrueEventSystem
   - TrUI
+  - ElevatorLock
+  - POI
   layers:
   - Default
   - TransparentFX

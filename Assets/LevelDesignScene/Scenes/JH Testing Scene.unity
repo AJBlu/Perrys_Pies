@@ -661,7 +661,7 @@ GameObject:
   - component: {fileID: 344844847}
   - component: {fileID: 344844846}
   m_Layer: 5
-  m_Name: KeyNeeded
+  m_Name: FadingText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -683,7 +683,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 54.49}
+  m_AnchoredPosition: {x: 0, y: 146.8}
   m_SizeDelta: {x: 600, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &344844846
@@ -1023,8 +1023,8 @@ GameObject:
   - component: {fileID: 516276032}
   - component: {fileID: 516276031}
   - component: {fileID: 516276030}
-  - component: {fileID: 516276029}
   - component: {fileID: 516276034}
+  - component: {fileID: 516276035}
   m_Layer: 6
   m_Name: Skeleton
   m_TagString: Skeleton
@@ -1032,21 +1032,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &516276029
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 516276028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f040414ac82bc04eb5184add00858ef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  renderers:
-  - {fileID: 516276031}
-  color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!136 &516276030
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1129,7 +1114,7 @@ Transform:
   m_GameObject: {fileID: 516276028}
   serializedVersion: 2
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -8.92, y: -0.5, z: 8.97}
+  m_LocalPosition: {x: -8.92, y: -0.5104755, z: 8.97}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1147,6 +1132,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f6cbfc1fe50e034da22a9bf50894cb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &516276035
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516276028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 3
+  outlineColor: {r: 1, g: 0, b: 1, a: 0}
+  outlineWidth: 5
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &577599565
 GameObject:
   m_ObjectHideFlags: 0
@@ -1492,7 +1495,7 @@ MonoBehaviour:
   - {fileID: 344130968}
   - {fileID: 1126505441}
   slotIdentifyer: {fileID: 923216932}
-  fadingText: {fileID: 0}
+  fadingText: {fileID: 344844844}
   keyImageHolder: {fileID: 0}
   keyImages:
   - {fileID: 0}
@@ -3068,7 +3071,7 @@ PrefabInstance:
     - target: {fileID: 8350863762394929466, guid: 36998493345497e43b89ec2c7a876e63,
         type: 3}
       propertyPath: canThrowStrength
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8350863762394929466, guid: 36998493345497e43b89ec2c7a876e63,
         type: 3}
@@ -3084,7 +3087,7 @@ PrefabInstance:
     - target: {fileID: 8350863762394929466, guid: 36998493345497e43b89ec2c7a876e63,
         type: 3}
       propertyPath: bellThrowStrength
-      value: 20
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8350863762394929466, guid: 36998493345497e43b89ec2c7a876e63,
         type: 3}
