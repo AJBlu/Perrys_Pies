@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
     {
         UIManager.UImanager.panelDown();
         SceneManager.LoadScene(pressedButton);
-        player.GetComponent<PlayerController>().currentFloor = pressedButton;
+        player.GetComponent<PlayerController>().currentFloor = pressedButton - 1;
         StartCoroutine(player.GetComponent<PlayerController>().interactBuffer());
         if (pressedButton == 2)
         {
