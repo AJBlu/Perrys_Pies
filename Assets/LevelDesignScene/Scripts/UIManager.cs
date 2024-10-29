@@ -147,11 +147,22 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public int GetLargestBuildIndex()
+    {
+        int largestIndex = -1; // Initialize with a value that will be overwritten
+
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            largestIndex = Mathf.Max(largestIndex, i);
+        }
+        return largestIndex;
+    }
+
     private void FixedUpdate()
     {
         for (int i = 0; i < elevatorButtons.Count; i++)
         {
-            if (i == player.GetComponent<PlayerController>().currentFloor) elevatorButtons[i].interactable = false;
+            if ((i == player.GetComponent<PlayerController>().currentFloor) || (i + 1 > GetLargestBuildIndex())) elevatorButtons[i].interactable = false;
             else elevatorButtons[i].interactable = true;
         }
     }
