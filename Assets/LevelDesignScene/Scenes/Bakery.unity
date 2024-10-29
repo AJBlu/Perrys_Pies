@@ -289,7 +289,7 @@ PrefabInstance:
     - target: {fileID: 5237674267385293520, guid: a7297cc304c37df42ab789a46b8737bb,
         type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Skeleton
       objectReference: {fileID: 0}
     - target: {fileID: 6449624161207727235, guid: a7297cc304c37df42ab789a46b8737bb,
         type: 3}
@@ -2458,11 +2458,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 20892499}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: skeletonHint
-        m_Mode: 2
+        m_MethodName: skeletonHintReturn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -5279,11 +5279,11 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 20892499}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: skeletonLore
-        m_Mode: 2
+        m_MethodName: skeletonHintReturn
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

@@ -45,6 +45,8 @@ public class UIManager : MonoBehaviour
         else if (UImanager != this) Destroy(gameObject);
     }
 
+    GameObject tempSkeleton;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -58,6 +60,8 @@ public class UIManager : MonoBehaviour
         givingHint = false;
 
         gameManager = GameManager.gmInstance;
+
+        tempSkeleton = GameObject.FindGameObjectWithTag("Skeleton");
     }
 
     public void keyColor(int keySlot, bool isObtained)
@@ -178,7 +182,7 @@ public class UIManager : MonoBehaviour
         skeleton.GetComponent<SkeletonDialog>().setHintText(skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>(), skeletonHint);
     }
 
-    public void skeletonLore(GameObject skeleton)
+    public void skeletonLore()
     {
         activateDialogSwitch(true);
         givingHint = true;
@@ -186,7 +190,18 @@ public class UIManager : MonoBehaviour
         //this is where the logic for determining the string would go
         skeletonLore = "Look out, Tom Robinson.";
 
-        skeleton.GetComponent<SkeletonDialog>().setHintText(skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>(), skeletonLore);
+        tempSkeleton.GetComponent<SkeletonDialog>().setHintText(skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>(), skeletonLore);
+    }
+
+    public void skeletonHintReturn()
+    {
+        activateDialogSwitch(false);
+        givingHint = true;
+        string skeletonHint;
+        //this is where the logic for determining the string would go
+        skeletonHint = "This is where the hint goes.";
+
+        tempSkeleton.GetComponent<SkeletonDialog>().setHintText(skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>(), skeletonHint);
     }
 
     public void stopSkeletonStuff()
