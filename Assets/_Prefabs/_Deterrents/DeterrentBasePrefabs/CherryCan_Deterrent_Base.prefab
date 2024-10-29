@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: -359646085902329466}
   - component: {fileID: 6559199816415112721}
   m_Layer: 6
-  m_Name: CherryCan_Deterrent_Projectile
+  m_Name: CherryCan_Deterrent_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -205,16 +205,79 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 624782dc15ef83043b7006d68b20a1db,
+        type: 3}
+      propertyPath: m_TagString
+      value: CanAttract
+      objectReference: {fileID: 0}
     - target: {fileID: 7158308833377081784, guid: 624782dc15ef83043b7006d68b20a1db,
         type: 3}
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 7158308833377081784, guid: 624782dc15ef83043b7006d68b20a1db,
+        type: 3}
+      propertyPath: m_TagString
+      value: CanAttract
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7158308833377081784, guid: 624782dc15ef83043b7006d68b20a1db,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2562557074889225493}
+    - targetCorrespondingSourceObject: {fileID: 7158308833377081784, guid: 624782dc15ef83043b7006d68b20a1db,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6234206553334133347}
   m_SourcePrefab: {fileID: 100100000, guid: 624782dc15ef83043b7006d68b20a1db, type: 3}
+--- !u!1 &94267424272875936 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7158308833377081784, guid: 624782dc15ef83043b7006d68b20a1db,
+    type: 3}
+  m_PrefabInstance: {fileID: 7068835349058181144}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &2562557074889225493
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94267424272875936}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 11.832496, y: 16.790586, z: 11.832496}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6234206553334133347
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 94267424272875936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 1, a: 1}
+  outlineWidth: 1.34
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!23 &4472907395133432406 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: 6632528878750612046, guid: 624782dc15ef83043b7006d68b20a1db,
