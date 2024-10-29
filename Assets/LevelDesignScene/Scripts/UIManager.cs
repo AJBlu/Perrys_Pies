@@ -170,9 +170,21 @@ public class UIManager : MonoBehaviour
     public void skeletonHint(GameObject skeleton)
     {
         givingHint = true;
+        string skeletonHint;
         //this is where the logic for determining the string would go
+        skeletonHint = "This is where the hint goes.";
 
-        skeleton.GetComponent<SkeletonDialog>().setHintText(skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>(), "Lorem ipsum dolor sit amet");
+        skeleton.GetComponent<SkeletonDialog>().setHintText(skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>(), skeletonHint);
+    }
+
+    public void skeletonLore(GameObject skeleton)
+    {
+        givingHint = true;
+        string skeletonLore;
+        //this is where the logic for determining the string would go
+        skeletonLore = "Look out, Tom Robinson.";
+
+        skeleton.GetComponent<SkeletonDialog>().setHintText(skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>(), skeletonLore);
     }
 
     public void panelUp()
