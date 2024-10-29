@@ -25,6 +25,6 @@ public class UIManagerClone : MonoBehaviour
 
     public void startGame()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Bakery");
     }
 }
