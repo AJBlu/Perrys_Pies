@@ -38,9 +38,13 @@ public class PerryNav : MonoBehaviour
 
     public UnityEvent allDestinationsSearched;
 
+    public bool IsAttracted;
+
 
     private void Awake()
     {
+
+        IsAttracted = false;
         if(PatrolManager == null)
         {
             print("Warning [PerryNav.cs]: PatrolManager not attached. Attempting to find in scene.");
