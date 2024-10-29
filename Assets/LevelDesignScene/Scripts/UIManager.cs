@@ -169,6 +169,7 @@ public class UIManager : MonoBehaviour
 
     public void skeletonHint(GameObject skeleton)
     {
+        activateDialogSwitch(false);
         givingHint = true;
         string skeletonHint;
         //this is where the logic for determining the string would go
@@ -179,12 +180,32 @@ public class UIManager : MonoBehaviour
 
     public void skeletonLore(GameObject skeleton)
     {
+        activateDialogSwitch(true);
         givingHint = true;
         string skeletonLore;
         //this is where the logic for determining the string would go
         skeletonLore = "Look out, Tom Robinson.";
 
         skeleton.GetComponent<SkeletonDialog>().setHintText(skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>(), skeletonLore);
+    }
+
+    public void stopSkeletonStuff()
+    {
+        givingHint = false;
+    }
+
+    public void activateDialogSwitch(bool isLore)
+    {
+        if (!isLore)
+        {
+            skeletonHintHolder.transform.Find("LoreDrop").GetComponent<Button>().interactable = true;
+            skeletonHintHolder.transform.Find("BasicHint").GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            skeletonHintHolder.transform.Find("LoreDrop").GetComponent<Button>().interactable = false;
+            skeletonHintHolder.transform.Find("BasicHint").GetComponent<Button>().interactable = true;
+        }
     }
 
     public void panelUp()

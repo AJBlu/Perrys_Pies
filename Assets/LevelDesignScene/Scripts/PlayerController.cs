@@ -411,7 +411,7 @@ public class PlayerController : MonoBehaviour
     {
         if (UIManager.UImanager.givingHint)
         {
-            UIManager.UImanager.givingHint = false;
+            //UIManager.UImanager.givingHint = false;
         }
         else
         {
