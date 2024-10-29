@@ -141,7 +141,11 @@ public class PlayerController : MonoBehaviour
     {
         //Debug.Log("Interacted with: " + hit.collider.name);
         //hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
-        storeLogic();
+        if (canInteract)
+        {
+            storeLogic();
+            deactivatePickup();
+        }
     }
 
     public void storeLogic()
