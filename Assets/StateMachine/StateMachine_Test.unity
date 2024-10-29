@@ -513,17 +513,17 @@ PrefabInstance:
     - target: {fileID: 2486609428787854644, guid: 3aa9ad3b5534aa246b67e9847fb840cf,
         type: 3}
       propertyPath: PerryPatrolSpeed
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2486609428787854644, guid: 3aa9ad3b5534aa246b67e9847fb840cf,
         type: 3}
       propertyPath: PerrySearchSpeed
-      value: 5.5
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2486609428787854644, guid: 3aa9ad3b5534aa246b67e9847fb840cf,
         type: 3}
       propertyPath: PerryPursuitSpeed
-      value: 7
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3194623580175864131, guid: 3aa9ad3b5534aa246b67e9847fb840cf,
         type: 3}
@@ -579,6 +579,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628195242090199578, guid: 3aa9ad3b5534aa246b67e9847fb840cf,
+        type: 3}
+      propertyPath: CloseSightRadius
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

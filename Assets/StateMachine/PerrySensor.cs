@@ -67,10 +67,11 @@ public class PerrySensor : MonoBehaviour
 
         if (GameObject.FindWithTag("Player"))
         {
-            _player = GameObject.FindWithTag("Player");
+
         } else
         {
-            if(_perryNav.DebugEnabled)
+            _player = GameObject.FindWithTag("Player");
+            if (_perryNav.DebugEnabled)
                 Debug.LogFormat($"[{gameObject.name}] in PerrySensor.cs: No Player GameObject in Scene");
         }
         //add listeners to events
@@ -307,6 +308,29 @@ public class PerrySensor : MonoBehaviour
         InstantiatePOI();
     }
     
+    public void OnPlayerJump(Transform playerTransform)
+    {
+        Debug.Log("Jump detected! Time to determine if it's listenable.");
+        if (isListenable(playerTransform))
+        {
+            InstantiatePOI();
+        }
+    }
+
+    public void OnPlayerSprint(Transform playerTransform)
+    {
+        Debug.Log("Sprint detected! Time to determine if it's listenable.");
+        if (isListenable(playerTransform))
+            InstantiatePOI();
+    }
+
+    private bool isListenable(Transform playerTransform)
+    {
+        if (Vector3.Distance(playerTransform.position, transform.position) < HearingRadius)
+            return true;
+
+        return false;
+    }
     /*
     private void OnDrawGizmosSelected()
     {

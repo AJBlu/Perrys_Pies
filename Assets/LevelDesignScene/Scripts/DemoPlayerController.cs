@@ -26,8 +26,8 @@ public class DemoPlayerController : MonoBehaviour
     [Tooltip("Player height while crouching.")]
     public float crouchHeight;
 
-    public UnityEvent PlayerJump;
-    public UnityEvent PlayerSprint;
+    public UnityEvent <Transform> PlayerJump;
+    public UnityEvent <Transform> PlayerSprint;
 
     public bool isCrouched;
     public bool sprinting;
@@ -60,6 +60,9 @@ public class DemoPlayerController : MonoBehaviour
         rigid = GetComponent<Rigidbody>();
         originalSpeed = currentSpeed;
         isCrouched = false;
+        PlayerJump.AddListener(GameObject.FindGameObjectWithTag("Perry").GetComponent<PerrySensor>().OnPlayerJump);
+        PlayerSprint.AddListener(GameObject.FindGameObjectWithTag("Perry").GetComponent<PerrySensor>().OnPlayerSprint);
+
     }
 
     // Update is called once per frame
@@ -123,12 +126,14 @@ public class DemoPlayerController : MonoBehaviour
     {
         Vector3 jumpVec = new Vector3(0, jumpSpeed, 0);
         rigid.AddRelativeForce(jumpVec, ForceMode.Impulse);
+        PlayerJump.Invoke(transform);
     }
 
     public void sprint()
     {
         if (_sprint > 0 && rigid.velocity != Vector3.zero)
         {
+            PlayerSprint.Invoke(transform);
             sprinting = true;
             if (currentSpeed == originalSpeed) currentSpeed *= sprintFactor;
         }
