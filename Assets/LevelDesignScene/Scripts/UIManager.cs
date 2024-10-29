@@ -265,22 +265,22 @@ public class UIManager : MonoBehaviour
 
     public void moveToBasement()
     {
-        GameManager.gmInstance.moveToFloor(0, false);
+        GameManager.gmInstance.moveToFloor(1, false);
     }
 
     public void moveToGround()
     {
-        GameManager.gmInstance.moveToFloor(1, false);
+        GameManager.gmInstance.moveToFloor(2, false);
     }
 
     public void moveToFloor2()
     {
-        GameManager.gmInstance.moveToFloor(2, false);
+        GameManager.gmInstance.moveToFloor(3, false);
     }
 
     public void moveToFloor3()
     {
-        GameManager.gmInstance.moveToFloor(3, false);
+        GameManager.gmInstance.moveToFloor(4, false);
     }
     public IEnumerator waitAndCheck()
     {
