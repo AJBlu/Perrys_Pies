@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(pressedButton);
         player.GetComponent<PlayerController>().currentFloor = pressedButton;
         StartCoroutine(player.GetComponent<PlayerController>().interactBuffer());
-        if (pressedButton == 1)
+        if (pressedButton == 2)
         {
             StartCoroutine(waitFor(1f));
             findCrucialStuff();

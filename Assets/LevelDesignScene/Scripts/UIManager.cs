@@ -238,7 +238,7 @@ public class UIManager : MonoBehaviour
     {
         GameObject playerCam = GameObject.FindGameObjectWithTag("MainCamera");
 
-        GameManager.gmInstance.moveToFloor(1, true);
+        GameManager.gmInstance.moveToFloor(2, true);
         //player.GetComponent<PlayerController>().transform.position = player.GetComponent<PlayerController>().ogPos;
         Debug.Log("PlayerCam should reset rotation.");
         playerCam.gameObject.GetComponent<FirstPersonCamera>().resetRotation();

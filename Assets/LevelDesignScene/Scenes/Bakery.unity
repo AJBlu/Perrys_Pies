@@ -2025,8 +2025,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  UI: {fileID: 0}
-  EventSystem: {fileID: 0}
+  UI: {fileID: 1921656987}
+  EventSystem: {fileID: 1906555715}
   exitUnlocked: 0
   hiddenObjects: []
 --- !u!1 &625467961
