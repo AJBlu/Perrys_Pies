@@ -171,37 +171,40 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    string publicSkeletonHint;
+
     public void skeletonHint(GameObject skeleton)
     {
         activateDialogSwitch(false);
         givingHint = true;
-        string skeletonHint;
         //this is where the logic for determining the string would go
-        skeletonHint = "This is where the hint goes.";
+        publicSkeletonHint = "This is where the hint goes.";
 
-        skeleton.GetComponent<SkeletonDialog>().setHintText(skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>(), skeletonHint);
+        skeleton.GetComponent<SkeletonDialog>().setHintText(skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>(), publicSkeletonHint);
     }
 
     public void skeletonLore()
     {
+        tempSkeleton = GameObject.FindGameObjectWithTag("Skeleton");
         activateDialogSwitch(true);
         givingHint = true;
         string skeletonLore;
         //this is where the logic for determining the string would go
         skeletonLore = "Look out, Tom Robinson.";
 
-        tempSkeleton.GetComponent<SkeletonDialog>().setHintText(skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>(), skeletonLore);
+        skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>().text = skeletonLore;
     }
 
     public void skeletonHintReturn()
     {
+        tempSkeleton = GameObject.FindGameObjectWithTag("Skeleton");
         activateDialogSwitch(false);
         givingHint = true;
         string skeletonHint;
         //this is where the logic for determining the string would go
-        skeletonHint = "This is where the hint goes.";
+        skeletonHint = publicSkeletonHint;
 
-        tempSkeleton.GetComponent<SkeletonDialog>().setHintText(skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>(), skeletonHint);
+        skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>().text = skeletonHint;
     }
 
     public void stopSkeletonStuff()

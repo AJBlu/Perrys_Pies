@@ -5279,7 +5279,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 20892499}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: skeletonHintReturn
+        m_MethodName: skeletonLore
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
