@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 129266251801588831}
   - component: {fileID: 8182937698100664021}
+  - component: {fileID: -4136745857177329242}
   m_Layer: 6
   m_Name: ApplePie_Deterrent_Base
   m_TagString: Untagged
@@ -52,6 +53,24 @@ LODGroup:
     renderers:
     - renderer: {fileID: 6933448573655654641}
   m_Enabled: 1
+--- !u!114 &-4136745857177329242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4119275876486471488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0.7529412, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &2140802870898731143
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -2063695260957312736}
   - component: {fileID: -1341590544192846220}
   - component: {fileID: 7009949541622476992}
+  - component: {fileID: -1274909376579115213}
   m_Layer: 6
   m_Name: BlueberryBall_Deterrent_Base
   m_TagString: Untagged
@@ -115,6 +116,24 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 18.60463
   m_Center: {x: 0, y: 18.10463, z: 0}
+--- !u!114 &-1274909376579115213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5364093903445903690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 0, g: 0, b: 0.7529412, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &4477714403445729588
 PrefabInstance:
   m_ObjectHideFlags: 0
