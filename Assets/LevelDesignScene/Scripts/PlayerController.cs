@@ -318,9 +318,12 @@ public class PlayerController : MonoBehaviour
             if (hit.collider != null)
             {
                 if (hit.collider.tag == "Skeleton") hit.collider.GetComponent<Outline>().OutlineWidth = 0;
-                else if ((hit.collider.tag == "BallDeter") || (hit.collider.tag == "BagDeter")) 
+                else if ((hit.collider.tag == "BallDeter") || (hit.collider.tag == "BagDeter") ||
+                    (hit.collider.tag == "CanDeter") || (hit.collider.tag == "PieDeterA") || 
+                    (hit.collider.tag == "PieDeterB") || (hit.collider.tag == "PieDeterC"))
                     hit.collider.GetComponent<Outline>().OutlineWidth = 0;
-                else if ((hit.collider.tag == "BellAttract") || (hit.collider.tag == "CanAttract"))
+                else if ((hit.collider.tag == "BellAttract") || (hit.collider.tag == "SprayAttract") ||
+                    (hit.collider.tag == "CandleAttract"))
                     hit.collider.GetComponent<Outline>().OutlineWidth = 0;
                 else hit.collider.GetComponent<Highlight>()?.ToggleHighlight(false);
 
@@ -334,9 +337,12 @@ public class PlayerController : MonoBehaviour
             if (canInteract && (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit, hitRange, pickableLayerMask)))
             {
                 if (hit.collider.tag == "Skeleton") hit.collider.GetComponent<Outline>().OutlineWidth = 5;
-                else if ((hit.collider.tag == "BallDeter") || (hit.collider.tag == "BagDeter"))
+                else if ((hit.collider.tag == "BallDeter") || (hit.collider.tag == "BagDeter") ||
+                    (hit.collider.tag == "CanDeter") || (hit.collider.tag == "PieDeterA") ||
+                    (hit.collider.tag == "PieDeterB") || (hit.collider.tag == "PieDeterC"))
                     hit.collider.GetComponent<Outline>().OutlineWidth = 5;
-                else if ((hit.collider.tag == "BellAttract") || (hit.collider.tag == "CanAttract"))
+                else if ((hit.collider.tag == "BellAttract") || (hit.collider.tag == "SprayAttract") ||
+                    (hit.collider.tag == "CandleAttract"))
                     hit.collider.GetComponent<Outline>().OutlineWidth = 5;
                 else hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
 

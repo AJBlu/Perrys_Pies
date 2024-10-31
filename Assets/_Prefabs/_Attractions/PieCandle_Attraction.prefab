@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1817174906746644117}
   - component: {fileID: 467909571953803636}
+  - component: {fileID: -8250967349256455048}
   m_Layer: 6
   m_Name: PieCandle_Attraction
-  m_TagString: Untagged
+  m_TagString: CandleAttract
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,6 +53,24 @@ LODGroup:
     renderers:
     - renderer: {fileID: 1500923965103623298}
   m_Enabled: 1
+--- !u!114 &-8250967349256455048
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1308263759436613789}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1001 &222312201849786374
 PrefabInstance:
   m_ObjectHideFlags: 0

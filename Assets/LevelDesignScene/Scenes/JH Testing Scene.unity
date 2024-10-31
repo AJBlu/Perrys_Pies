@@ -238,7 +238,7 @@ PrefabInstance:
     - target: {fileID: 94267424272875936, guid: 52198c7a198309942868df6913b04071,
         type: 3}
       propertyPath: m_TagString
-      value: CanAttract
+      value: CanDeter
       objectReference: {fileID: 0}
     - target: {fileID: 1016330909688810837, guid: 52198c7a198309942868df6913b04071,
         type: 3}
@@ -7461,7 +7461,7 @@ PrefabInstance:
     - target: {fileID: 736113820545745498, guid: bda402b05d9835e428c7efe994de1a3e,
         type: 3}
       propertyPath: m_TagString
-      value: CanAttract
+      value: SprayAttract
       objectReference: {fileID: 0}
     - target: {fileID: 4901786631865875705, guid: bda402b05d9835e428c7efe994de1a3e,
         type: 3}
@@ -8231,7 +8231,7 @@ PrefabInstance:
     - target: {fileID: 736113820545745498, guid: bda402b05d9835e428c7efe994de1a3e,
         type: 3}
       propertyPath: m_TagString
-      value: CanAttract
+      value: SprayAttract
       objectReference: {fileID: 0}
     - target: {fileID: 4901786631865875705, guid: bda402b05d9835e428c7efe994de1a3e,
         type: 3}

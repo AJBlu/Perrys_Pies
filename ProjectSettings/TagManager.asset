@@ -16,7 +16,6 @@ TagManager:
   - BallDeter
   - BagDeter
   - BellAttract
-  - CanAttract
   - Key3Image
   - KeyImageHolder
   - EventSystem
@@ -29,6 +28,12 @@ TagManager:
   - TrUI
   - ElevatorLock
   - POI
+  - SprayAttract
+  - CandleAttract
+  - PieDeterA
+  - PieDeterB
+  - PieDeterC
+  - CanDeter
   layers:
   - Default
   - TransparentFX
