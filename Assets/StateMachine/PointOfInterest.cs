@@ -17,7 +17,6 @@ public class PointOfInterest : MonoBehaviour
     {
         if(other.tag == "Perry")
         {
-            _patrolManager.SearchNodes.Remove(this.transform);
             StartCoroutine("DestroyThis");
             
         }
@@ -32,7 +31,12 @@ public class PointOfInterest : MonoBehaviour
 
     private IEnumerator DestroyThis()
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(2.0f);
         gameObject.SetActive(false);
+    }
+
+    public void SetPriority(Priority p)
+    {
+        this.priority = p;
     }
 }

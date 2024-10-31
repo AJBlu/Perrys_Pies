@@ -53,6 +53,7 @@ public class Search : State
 
     public void OnDistantPlayerSeen()
     {
+
     }
 
     public void OnLineOfSightBroken()
