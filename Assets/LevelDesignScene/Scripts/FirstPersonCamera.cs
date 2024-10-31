@@ -16,7 +16,7 @@ public class FirstPersonCamera : MonoBehaviour
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
 
-        ogRotation = Quaternion.Euler(0, 0, 0);
+        ogRotation = Quaternion.Euler(0, 270, 0);
     }
 
     // Update is called once per frame
