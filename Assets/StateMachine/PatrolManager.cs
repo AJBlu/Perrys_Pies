@@ -27,9 +27,16 @@ public class PatrolManager : MonoBehaviour
     private int _nextNode;
     private void Awake()
     {
-        GameObject.FindGameObjectWithTag("Player");
-        GameObject.FindGameObjectWithTag("Perry");
-        
+        Player = GameObject.FindGameObjectWithTag("Player");
+        if(Player == null)
+        {
+            Debug.LogFormat($"[{gameObject.name}] in PatrolManager.cs: No GameObject Tagged 'Player' in scene.");
+        }
+        Perry = GameObject.FindGameObjectWithTag("Perry");
+        if(Perry == null )
+        {
+            Debug.LogFormat($"[{gameObject.name}] in PatrolManager.cs: No GameObject Tagged 'Perry' in scene.");
+        }
         _perryAgent = Perry.GetComponent<NavMeshAgent>();
         _patrol = Perry.GetComponent<Patrol>();
         _search = Perry.GetComponent<Search>();

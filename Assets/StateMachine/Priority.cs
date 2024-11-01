@@ -1,5 +1,6 @@
 public enum Priority
 {
+    SIGHT,
     DETERRENT,
     ATTRACTANT,
     SOUNDTRAP,
