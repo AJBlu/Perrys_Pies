@@ -54,7 +54,7 @@ public class PerrySensor : MonoBehaviour
     {
         _csr = CloseSightRadius;
         _dsr = DistantSightRadius;
-        _hsr = HearingRadius;
+        _hsr = HearingRadius;           
 
         if (gameObject.GetComponent<PerryNav>())
         {
@@ -92,65 +92,55 @@ public class PerrySensor : MonoBehaviour
         isPlayerVisible();
         //CheckLineOfSight(CloseSightRadius, "Player");
         //CheckLineOfSight(DistantSightRadius, "Player");
-        if (!gameObject.GetComponent<Patrol>().isDeaf)
-        {
-            //TODO: Remake Checkhearing for new HearingNode system.
-            //CheckHearing(HearingRadius);
-        }
 
     }
 
     private void isPlayerVisible()
     {
-        _player = CheckDistance(DistantSightRadius, "Player");
-        bool hasBeenSeen = false;
+        playerSeen = false;
         RaycastHit hit;
-        if (_player != null)
-        {
 
-            //if player is confirmed to exist in space, check if player is within vision cone
-            if (Vector3.Dot(gameObject.transform.position, transform.TransformDirection(Vector3.forward) * _csr) < VISIONANGLE)
+            //just check if player is within vision cone and within far distance of perry
+            if (Vector3.Dot(gameObject.transform.position, transform.TransformDirection(Vector3.forward)) < VISIONANGLE && Vector3.Distance(_player.transform.position,this.transform.position) < DistantSightRadius)
             {
-
+                transform.LookAt(_player.transform);
                 if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) * _csr, out hit, _csr))
                 {
                     if (hit.collider.tag == "Player")
                     {
                         Debug.Log("Seeing Player Up Close");
                         transform.LookAt(_player.transform);
-                        //Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * radius, Color.green);
+                        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * _csr, Color.green);
                         //invoke events depending on radius used
-                        hasBeenSeen = true;
+                        playerSeen = true;
                         PlayerSeen_Close.Invoke();
                     }
                     else
                     {
-                        
+                    playerSeen = false;
                     }
                 }
                 else
                 {
-                    if (!hasBeenSeen)
-                    {
                         if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward) * _dsr, out hit, _dsr))
                         {
                             if (hit.collider.tag == "Player")
                             {
-                                InstantiatePOI(_player.transform, Priority.DISTANTSEEN);
+                                if(!gameObject.GetComponent<Pursuit>().isActive)
+                                    InstantiatePOI(_player.transform, Priority.DISTANTSEEN);
                                 PlayerSeen_Distant.Invoke();
-                                hasBeenSeen = true;
-                            }
-                            else
-                            {
-                                hasBeenSeen = false;
+                                playerSeen = true;
+                            }else{
                                 LineOfSightBroken.Invoke();
+                                playerSeen = false;
                             }
                         }
-                    }
-
                 }
             }
-        }
+            else
+            {
+                LineOfSightBroken.Invoke();    
+            }
 
     }
 
@@ -247,26 +237,28 @@ public class PerrySensor : MonoBehaviour
         var _patrolmanager = GameObject.Find("PatrolManager");
         GameObject HearingNode = _patrolmanager.GetComponent<PatrolManager>().HearingNode;
 
-
-        if (priority > HearingNode.GetComponent<PointOfInterest>().priority)
+        if (HearingNode != null)
         {
-            _allowSpawn = false;
-            Debug.Log("Node to be added is of a lower priority than current node, not adding it.");
-
+            if (Vector3.Distance(audioSource.position, HearingNode.transform.position) < MaxNodeDistance)
+            {
+                _allowSpawn = false;
+            }
+            else if (priority > HearingNode.GetComponent<PointOfInterest>().priority)
+            {
+                _allowSpawn = false;
+            }
         }
-
         if (_allowSpawn)
         {
+            //create and replace node
             var lastKnownPosition = Instantiate(POI, audioSource.position, audioSource.rotation);
             lastKnownPosition.GetComponent<PointOfInterest>().SetPriority(priority);
             lastKnownPosition.transform.SetParent(_patrolmanager.transform);
             _patrolmanager.GetComponent<PatrolManager>().HearingNode = lastKnownPosition;
             AudioCueHeard.Invoke();
         }
-        else
-        {
-            Debug.Log("Node would be too close to adjacent nodes. Not instancing it.");
-        }
+
+
     }
 
     private IEnumerator DelayedRaycast()
@@ -324,8 +316,8 @@ public class PerrySensor : MonoBehaviour
 
     public void OnPatrol()
     {
-        _dsr = DistantSightRadius;
-        _csr = CloseSightRadius;
+        //_dsr = DistantSightRadius;
+        //_csr = CloseSightRadius;
         Debug.Log("OnPatrolTriggered");
         PlayerSeen_Close.AddListener(gameObject.GetComponent<Patrol>().OnClosePlayerSeen);
         PlayerSeen_Distant.AddListener(gameObject.GetComponent<Patrol>().OnDistantPlayerSeen);
@@ -343,8 +335,8 @@ public class PerrySensor : MonoBehaviour
 
     public void OnSearch()
     {
-        _dsr = DistantSightRadius + (DistantSightRadius / 2);
-        _csr = CloseSightRadius + (CloseSightRadius / 2);
+        //_dsr = DistantSightRadius + (DistantSightRadius / 2);
+       //_csr = CloseSightRadius + (CloseSightRadius / 2);
         if (_perryNav.DebugEnabled)
             Debug.LogFormat($"{gameObject.name} [PerrySensor.cs:OnSearch()] Adding PlayerSeen_Close, PlayerSeen_Distant, AudioCueHeard, and LineOfSightBroken to Search State.");
 
@@ -370,8 +362,8 @@ public class PerrySensor : MonoBehaviour
 
     public void OnPursuit()
     {
-        _csr = DistantSightRadius + (DistantSightRadius / 2);
-        _dsr = 0;
+        //_csr = DistantSightRadius + (DistantSightRadius / 2);
+        //_dsr = 0;
         if (_perryNav.DebugEnabled)
             Debug.LogFormat($"{gameObject.name} [PerrySensor.cs:OnPursuit()] Adding LineOfSightBroken and AudioCueHeard to Patrol State.");
         LineOfSightBroken.AddListener(gameObject.GetComponent<Pursuit>().OnLineOfSightBroken);

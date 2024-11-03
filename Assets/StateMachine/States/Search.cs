@@ -33,10 +33,7 @@ public class Search : State
 
     public override void UpdateState()
     {
-        if(!stillSearching)
-        {
-            _statemachine.ChangeState(_patrol);
-        }
+
     }
 
     public override void ExitState()
@@ -60,9 +57,10 @@ public class Search : State
     {
         if (isActive)
         {
-            Debug.Log("No longer seeing the player at distance");
+            //Debug.Log("No longer seeing the player at distance");
             //continue searching for player
             //code for checking destinations will be here, for now returns to patrol
+           
         }
     }
 
@@ -71,8 +69,7 @@ public class Search : State
         if (isActive)
         {
             Debug.Log("All destinations reached.");
-            //StartCoroutine("CheckPlayerRadius");
-            stillSearching = false;
+            _statemachine.ChangeState(_patrol);
         }
     }
     public void OnClosePlayerSeen()

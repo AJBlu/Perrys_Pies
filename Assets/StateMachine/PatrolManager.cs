@@ -28,7 +28,6 @@ public class PatrolManager : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("Player");
         GameObject.FindGameObjectWithTag("Perry");
-        
         _perryAgent = Perry.GetComponent<NavMeshAgent>();
         _patrol = Perry.GetComponent<Patrol>();
         _search = Perry.GetComponent<Search>();
@@ -42,9 +41,9 @@ public class PatrolManager : MonoBehaviour
 
     public void Update()
     {
-        if (!_isPathfinding && _search.isActive && HearingNode != null)
+        if (!_isPathfinding && _search.isActive)
             StartCoroutine("SearchRoute");
-        if (!_isPathfinding && _patrol.isActive && PatrolNodes.Count > 0 && HearingNode == null)
+        if (!_isPathfinding && _patrol.isActive)
             StartCoroutine("PatrolRoute");
 
 
@@ -97,9 +96,15 @@ public class PatrolManager : MonoBehaviour
         {
             if (!_perryAgent.hasPath)
             {
-
-                Debug.Log("Setting Destination");
-                _perryAgent.SetDestination(HearingNode.transform.position);
+                if (HearingNode != null)
+                {
+                    Debug.Log("Setting Destination");
+                    _perryAgent.SetDestination(HearingNode.transform.position);
+                }
+                else
+                {
+                    Debug.Log("No available hearing node. Returning to patrol.");
+                }
             }
         }
         _isPathfinding = false;

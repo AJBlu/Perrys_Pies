@@ -70,6 +70,11 @@ public class PerryNav : MonoBehaviour
             NavMeshAgent.SetDestination(GameObject.FindGameObjectWithTag("Player").transform.position);
         }
 
+        if(_Search.isActive && PatrolManager.HearingNode == null)
+        {
+            allDestinationsSearched.Invoke();
+        }
+
     }        
     
 
