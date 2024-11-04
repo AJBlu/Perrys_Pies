@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -8250967349256455048}
   m_Layer: 6
   m_Name: PieCandle_Attraction
-  m_TagString: CandleAttract
+  m_TagString: CanAttract
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -82,32 +82,32 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 8cdafc96d8766aa4a964502e1a6db2ab,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8cdafc96d8766aa4a964502e1a6db2ab,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8cdafc96d8766aa4a964502e1a6db2ab,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.025
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8cdafc96d8766aa4a964502e1a6db2ab,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.781
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8cdafc96d8766aa4a964502e1a6db2ab,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.1579
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8cdafc96d8766aa4a964502e1a6db2ab,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 2.002
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 8cdafc96d8766aa4a964502e1a6db2ab,
         type: 3}
@@ -144,6 +144,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8cdafc96d8766aa4a964502e1a6db2ab,
+        type: 3}
+      propertyPath: m_ConstrainProportionsScale
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 8cdafc96d8766aa4a964502e1a6db2ab,
         type: 3}
       propertyPath: m_Name
@@ -154,10 +159,23 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8cdafc96d8766aa4a964502e1a6db2ab,
+        type: 3}
+      propertyPath: m_TagString
+      value: CandleAttract
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cdafc96d8766aa4a964502e1a6db2ab,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8395414503077898672}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cdafc96d8766aa4a964502e1a6db2ab,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 772025229677049836}
   m_SourcePrefab: {fileID: 100100000, guid: 8cdafc96d8766aa4a964502e1a6db2ab, type: 3}
 --- !u!4 &333115432019998701 stripped
 Transform:
@@ -165,6 +183,51 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 222312201849786374}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1140719214360849751 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8cdafc96d8766aa4a964502e1a6db2ab,
+    type: 3}
+  m_PrefabInstance: {fileID: 222312201849786374}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &8395414503077898672
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140719214360849751}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 13.202543, y: 12.902086, z: 12.871524}
+  m_Center: {x: 0, y: -0.0000038146973, z: 0}
+--- !u!114 &772025229677049836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1140719214360849751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!23 &1500923965103623298 stripped
 MeshRenderer:
   m_CorrespondingSourceObject: {fileID: -7511558181221131132, guid: 8cdafc96d8766aa4a964502e1a6db2ab,

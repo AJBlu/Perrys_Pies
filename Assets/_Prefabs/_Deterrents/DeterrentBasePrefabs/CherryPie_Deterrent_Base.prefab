@@ -195,6 +195,11 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: -3049143070020695301, guid: ed0532efd580b3c49afb7caa0d8e1c10,
+        type: 3}
+      propertyPath: m_TagString
+      value: PieDeterC
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: ed0532efd580b3c49afb7caa0d8e1c10,
         type: 3}
       propertyPath: m_Name
