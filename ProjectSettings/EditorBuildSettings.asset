@@ -10,7 +10,7 @@ EditorBuildSettings:
     guid: 26e8e8b0a7df619488a9cde3f8e4c629
   - enabled: 1
     path: Assets/LevelDesignScene/Scenes/Basement.unity
-    guid: 3ece5b9a2dc7935408171bd694dbb4f1
+    guid: 5c4fca73ad8ccfe419390762c1d81ce9
   - enabled: 1
     path: Assets/LevelDesignScene/Scenes/Bakery.unity
     guid: c835c1961918ee145bd84ab97361c358
