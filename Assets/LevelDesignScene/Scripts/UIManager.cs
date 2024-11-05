@@ -77,7 +77,7 @@ public class UIManager : MonoBehaviour
         {
             if (i + 1 == player.GetComponent<PlayerController>().selectedSlot)
             {
-                slotIdentifyer.transform.localPosition = new Vector3((-450 + (85 * i)), -256, 0);
+                slotIdentifyer.transform.localPosition = new Vector3((-445 + (85 * i)), -246, 0);
             }
         }
 
