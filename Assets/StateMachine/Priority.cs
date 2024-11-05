@@ -4,6 +4,7 @@ public enum Priority
     ATTRACTANT,
     DISTANTSEEN,
     SOUNDTRAP,
+    SEEN,
     RUNNING,
     WALKING
 }
