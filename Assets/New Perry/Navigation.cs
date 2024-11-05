@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class Navigation : MonoBehaviour
 {
 
-    public bool stopMoving;
+    public bool caughtPlayer;
     public bool isPatrolling;
     public bool isSearching;
     public bool reachedNode;
@@ -24,17 +25,22 @@ public class Navigation : MonoBehaviour
 
     public List<GameObject> patrolNodes = new List<GameObject>();
 
+    private GameOverCollider gameOverCollider;
+
     public void Awake()
     {
         NewStateMachine = GetComponent<NewStateMachine>();
         NavMeshAgent = GetComponent<NavMeshAgent>();
         Player = GameObject.FindGameObjectWithTag("Player");
         NewStateMachine.StateChange.AddListener(OnStateChange);
+        gameOverCollider = GameObject.Find("GameOverCollider").GetComponent<GameOverCollider>();
+        gameOverCollider.GameOver.AddListener(OnGameOver);
+        caughtPlayer = false;
     }
 
     public void FixedUpdate()
     {
-        if (!stopMoving)
+        if (!caughtPlayer)
         {
             //if current state of things is...
             //patrol
@@ -135,5 +141,10 @@ public class Navigation : MonoBehaviour
         {
             NavMeshAgent.speed = PursuitSpeed;
         }
+    }
+
+    private void OnGameOver()
+    {
+        NewStateMachine.ChangeState(States.PATROL);
     }
 }
