@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -8250967349256455048}
   m_Layer: 6
   m_Name: PieCandle_Attraction
-  m_TagString: CanAttract
+  m_TagString: CandleAttract
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
     public GameObject ballDeter;
     public GameObject bagDeter;
     public GameObject bellAttract;
-    public GameObject canAttract;
+    public GameObject sprayAttract;
     public GameObject tinReference;
 
     public List<GameObject> keyReferences;
@@ -225,7 +225,7 @@ public class PlayerController : MonoBehaviour
                         if (hit.collider.tag == "BallDeter" || hit.collider.tag == "KeyDeter") inventory[i] = ballDeter;
                         else if (hit.collider.tag == "BagDeter") inventory[i] = bagDeter;
                         else if (hit.collider.tag == "BellAttract") inventory[i] = bellAttract;
-                        else if (hit.collider.tag == "CanAttract") inventory[i] = canAttract;
+                        else if (hit.collider.tag == "SprayAttract") inventory[i] = sprayAttract;
                         UIManager.UImanager.slotUpdate(i, hit.collider.tag);
                         if (hit.collider.tag == "KeyDeter")
                         {
@@ -320,9 +320,10 @@ public class PlayerController : MonoBehaviour
             if (hit.collider != null)
             {
                 if (hit.collider.tag == "Skeleton") hit.collider.GetComponent<Outline>().OutlineWidth = 0;
-                else if ((hit.collider.tag == "BallDeter") || (hit.collider.tag == "BagDeter") ||
-                    (hit.collider.tag == "CanDeter") || (hit.collider.tag == "PieDeterA") || 
-                    (hit.collider.tag == "PieDeterB") || (hit.collider.tag == "PieDeterC"))
+                else if ((hit.collider.tag == "BallDeter") || (hit.collider.tag == "KeyDeter") ||
+                    (hit.collider.tag == "BagDeter") || (hit.collider.tag == "CanDeter") ||
+                    (hit.collider.tag == "PieDeterA") || (hit.collider.tag == "PieDeterB") ||
+                    (hit.collider.tag == "PieDeterC"))
                     hit.collider.GetComponent<Outline>().OutlineWidth = 0;
                 else if ((hit.collider.tag == "BellAttract") || (hit.collider.tag == "SprayAttract") ||
                     (hit.collider.tag == "CandleAttract"))
@@ -339,9 +340,10 @@ public class PlayerController : MonoBehaviour
             if (canInteract && (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit, hitRange, pickableLayerMask)))
             {
                 if (hit.collider.tag == "Skeleton") hit.collider.GetComponent<Outline>().OutlineWidth = 5;
-                else if ((hit.collider.tag == "BallDeter") || (hit.collider.tag == "BagDeter") ||
-                    (hit.collider.tag == "CanDeter") || (hit.collider.tag == "PieDeterA") ||
-                    (hit.collider.tag == "PieDeterB") || (hit.collider.tag == "PieDeterC"))
+                else if ((hit.collider.tag == "BallDeter") || (hit.collider.tag == "KeyDeter") || 
+                    (hit.collider.tag == "BagDeter") || (hit.collider.tag == "CanDeter") ||
+                    (hit.collider.tag == "PieDeterA") || (hit.collider.tag == "PieDeterB") ||
+                    (hit.collider.tag == "PieDeterC"))
                     hit.collider.GetComponent<Outline>().OutlineWidth = 5;
                 else if ((hit.collider.tag == "BellAttract") || (hit.collider.tag == "SprayAttract") ||
                     (hit.collider.tag == "CandleAttract"))
@@ -371,7 +373,7 @@ public class PlayerController : MonoBehaviour
             }
             if (Input.GetKeyDown("p"))
             {
-                throwDistraction(canAttract);
+                throwDistraction(sprayAttract);
             }
             */
         }
@@ -478,7 +480,7 @@ public class PlayerController : MonoBehaviour
             projectileSpeed = bellThrowStrength;
             Debug.Log("Throwing Pie Bell");
         }
-        if (throwable == canAttract)
+        if (throwable == sprayAttract)
         {
             //target.transform.position = this.transform.position + (this.transform.forward * canThrowStrength);
             projectileSpeed = canThrowStrength;

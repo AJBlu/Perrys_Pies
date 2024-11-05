@@ -77,7 +77,7 @@ public class UIManager : MonoBehaviour
         {
             if (i + 1 == player.GetComponent<PlayerController>().selectedSlot)
             {
-                slotIdentifyer.transform.localPosition = new Vector3((-450 + (85 * i)), -256, 0);
+                slotIdentifyer.transform.localPosition = new Vector3((-445 + (85 * i)), -246, 0);
             }
         }
 
@@ -109,7 +109,12 @@ public class UIManager : MonoBehaviour
         if (slotName == "BallDeter" || slotName == "KeyDeter") inventorySlots[slotNumber].GetComponent<Image>().color = Color.blue;
         else if (slotName == "BagDeter") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(238, 229, 190, 255);
         else if (slotName == "BellAttract") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(210, 180, 140, 255);
-        else if (slotName == "CanAttract") inventorySlots[slotNumber].GetComponent<Image>().color = Color.red;
+        else if (slotName == "SprayAttract") inventorySlots[slotNumber].GetComponent<Image>().color = Color.red;
+        else if (slotName == "CandleAttract") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(255, 128, 255, 255);
+        else if (slotName == "CanDeter") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(128, 0, 0, 255);
+        else if (slotName == "PieDeterA") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(128, 255, 0, 255);
+        else if (slotName == "PieDeterB") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(96, 0, 192, 255);
+        else if (slotName == "PieDeterC") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(173, 41, 56, 255);
         else if (slotName == null) inventorySlots[slotNumber].GetComponent<Image>().color = Color.white;
     }
 
