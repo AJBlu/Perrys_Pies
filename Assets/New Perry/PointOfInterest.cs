@@ -4,17 +4,28 @@ using UnityEngine;
 
 public class NewPointOfInterest : MonoBehaviour
 {
+
+    public bool isPatrolNode;
+
     public Priority priority;
 
     public Transform point_transform;
 
     public Navigation Navigation;
 
+    public int NodePosition;
+
+    public GameObject nextNode;
+
     private void Awake()
     {
         point_transform = transform;
         Navigation = GameObject.FindGameObjectWithTag("Perry").GetComponent<Navigation>();
-        StartCoroutine(RelevanceCountdown());
+        if (!isPatrolNode)
+        {
+            StartCoroutine(RelevanceCountdown());
+            NodePosition = 99;
+        }
     }
     public void RemoveNode()
     {
@@ -38,10 +49,22 @@ public class NewPointOfInterest : MonoBehaviour
 
     public void OnTriggerEnter(Collider other)
     {
+
         if(other.gameObject.tag == "Perry")
         {
-            Debug.Log("Collided with Perry. Deleting node.");
-            RemoveNode();
+            if (!isPatrolNode)
+            {
+                Debug.Log("Collided with Perry. Deleting node.");
+                RemoveNode();
+            }
+            else
+            {
+
+                    Debug.Log("Collided with Perry. Going to next node in list.");
+                    Navigation.TargetNode = nextNode;
+                    Navigation.reachedNode = true;
+                
+            }
         }
     }
 

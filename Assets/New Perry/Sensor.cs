@@ -13,6 +13,9 @@ public class Sensor : MonoBehaviour
     public Navigation Navigation;
     public NewStateMachine NewStateMachine;
 
+    public bool checkingEyeContact;
+    public bool playerSeenByEyeContactCheck;
+
 
     private void Awake()
     {
@@ -27,28 +30,79 @@ public class Sensor : MonoBehaviour
         if (isPlayerDistant(distantRadius, Player.transform))
         {
             //then check if player is in vision cone
-            if (isPlayerInCone(dotProduct, Player.transform))
-            {
+            //if (isPlayerInCone(dotProduct, Player.transform))
+            //{
 
                 //look at player
                 gameObject.transform.LookAt(Player.transform.position);
-
+                RaycastHit hit;
                 if (isPlayerClose(closeRadius, Player.transform))
                 {
+                //Debug.Log("player is close");
 
+                //draw raycast for close
+                //if it hits, change state to pursuit
+                if (Physics.Raycast(transform.position, transform.forward * closeRadius, out hit, closeRadius))
+                    {
+                        if (hit.collider.gameObject.tag == "Player")
+                        {
+                            if (NewStateMachine.GetState() != States.PURSUIT)
+                            {
+                                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.green);
+                                Debug.Log("Player seen up close, changing to pursuit state.");
+                                NewStateMachine.ChangeState(States.PURSUIT);
+                            }
+                            if (!checkingEyeContact && NewStateMachine.GetState() == States.PURSUIT)
+                            {
+                                Debug.Log("Starting eyecontact check.");
+                                StartCoroutine(EyecontactCheck());
+                            }
+                            
+                        }
 
-                    //draw raycast for close
-                    //if it hits, change state to pursuit
-
+                    }
                 }
                 else
                 {
-
+                    if(!checkingEyeContact && NewStateMachine.GetState() == States.PURSUIT)
+                    {
+                        Debug.Log("Player is out of close sight range but still being pursued.");
+                        StartCoroutine(EyecontactCheck());
+                    }
                     //if that doesn't work, draw far raycast
                     //if that hits, change state to search and create hearing node on player location
                 }
+                //}
+        }
+    }
+
+    private IEnumerator EyecontactCheck()
+    {
+        checkingEyeContact = true;
+        yield return new WaitForSeconds(5f);
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, distantRadius))
+        {
+            if(hit.collider.gameObject.tag == "Player")
+            {
+                Debug.Log("Continuing to pursue player.");
+            }
+            else
+            {
+                Debug.Log("Player no longer found. Switching to search and adding node with last known position.");
+                OnNoiseEvent(Player.transform, Priority.RUNNING);
+                NewStateMachine.ChangeState(States.SEARCH);
+
             }
         }
+        else
+        {
+            Debug.Log("Empty raycast, player no longer found. Switching to search and adding node with last known position.");
+            OnNoiseEvent(Player.transform, Priority.RUNNING);
+            NewStateMachine.ChangeState(States.SEARCH);
+        }
+        checkingEyeContact = false;
+
     }
 
     private bool isPlayerInCone(float dotProduct, Transform playerPosition)
@@ -77,15 +131,18 @@ public class Sensor : MonoBehaviour
     {
         if(priority == Priority.WALKING)
         {
-            if(Vector3.Distance(sourceTransform.position, gameObject.transform.position) < closeRadius)
+            if(Vector3.Distance(sourceTransform.position, gameObject.transform.position) < walkingHearingRadius)
             {
+                Debug.Log("Walking node in appropriate distance. Checking to see if it can be the new hearing node.");
+
                 Navigation.CheckNewNodePriority(sourceTransform, priority);
             }
         }
         else
         {
-            if (Vector3.Distance(sourceTransform.position, gameObject.transform.position) < distantRadius)
+            if (Vector3.Distance(sourceTransform.position, gameObject.transform.position) < farHearingRadius)
             {
+                Debug.Log("Non-walking node in appropriate distance. Checking to see if it can be the new hearing node.");
                 Navigation.CheckNewNodePriority(sourceTransform, priority);
             }
         }

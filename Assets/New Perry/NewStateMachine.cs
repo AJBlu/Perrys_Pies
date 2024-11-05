@@ -8,7 +8,7 @@ using UnityEngine.XR;
 public class NewStateMachine : MonoBehaviour
 {
     public UnityEvent<States> StateChange;
-    States currentState;
+    public States currentState;
 
     public States GetState() { return currentState; }
 

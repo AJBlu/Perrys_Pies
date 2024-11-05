@@ -5,56 +5,99 @@ using UnityEngine.AI;
 
 public class Navigation : MonoBehaviour
 {
+
+    public bool stopMoving;
+    public bool isPatrolling;
+    public bool isSearching;
+    public bool reachedNode;
+    public GameObject TargetNode;
+
     public float PatrolSpeed;
     public float SearchSpeed;
     public float PursuitSpeed;
 
     public NewStateMachine NewStateMachine;
     public GameObject PointOfInterest;
+    public GameObject Player;
     public NewPointOfInterest HearingNode;
     public NavMeshAgent NavMeshAgent;
 
-    public List<GameObject> patrolRoute = new List<GameObject>();
+    public List<GameObject> patrolNodes = new List<GameObject>();
 
     public void Awake()
     {
         NewStateMachine = GetComponent<NewStateMachine>();
         NavMeshAgent = GetComponent<NavMeshAgent>();
+        Player = GameObject.FindGameObjectWithTag("Player");
         NewStateMachine.StateChange.AddListener(OnStateChange);
     }
 
     public void FixedUpdate()
     {
-        //if current state of things is...
-        //patrol
-        if(NewStateMachine.GetState() == States.PATROL)
+        if (!stopMoving)
         {
-            //run patrol coroutine
+            //if current state of things is...
+            //patrol
+            if (NewStateMachine.GetState() == States.PATROL)
+            {
+                if (!isPatrolling)
+                {
+                    //run patrol coroutine
+                    StartCoroutine(PatrolRoute());
+                }
+            }
+            //search
+            else if (NewStateMachine.GetState() == States.SEARCH)
+            {
+                //go to search node
+            }
+            //pursuit
+            else
+            {
+                //chase player until eye contact has been broken for more than five seconds
+                NavMeshAgent.SetDestination(Player.transform.position);
+            }
+
+            //pursuit has to be broken out of by its own coroutine. otherwise, patrol until there's a hearing node, then search until there isn't a hearing node
+            if (NewStateMachine.GetState() != States.PURSUIT)
+            {
+                isPatrolling = false;
+                isSearching = false;
+                if (HearingNode == null && NewStateMachine.GetState() != States.PATROL)
+                {
+                    Debug.Log("No more hearing nodes. Going to Patrol state.");
+                    NewStateMachine.ChangeState(States.PATROL);
+                    isPatrolling = true;
+                }
+                else if(HearingNode != null && NewStateMachine.GetState() != States.SEARCH)
+                {
+                    Debug.Log("Hearing node found. Going to Search state.");
+                    NewStateMachine.ChangeState(States.SEARCH);
+                }
+            }
         }
-        //search
-        else if(NewStateMachine.GetState() == States.SEARCH)
-        {
-            //go to search node
-        }
-        //pursuit
-        else{
-            //chase player until eye contact has been broken for more than five seconds
-        }
-        
-        if(HearingNode == null){
-            NewStateMachine.ChangeState(States.PATROL);
-        }
-        else
-        {
-            NewStateMachine.ChangeState(States.SEARCH);
-        }
+    }
+
+    public IEnumerator PatrolRoute()
+    {
+        isPatrolling = true;
+        if (!NavMeshAgent.hasPath && TargetNode != null)
+            NavMeshAgent.SetDestination(TargetNode.transform.position);
+        yield return null;
+        isPatrolling = false;
 
     }
 
     public void CheckNewNodePriority(Transform sourceTransform, Priority priority)
     {
-        if(priority < HearingNode.priority || HearingNode == null)
+        if(HearingNode == null)
         {
+            Debug.Log("Creating hearing node, no other node found.");
+            HearingNode = CreateHearingNode(sourceTransform, priority).GetComponent<NewPointOfInterest>();
+        }
+        else if(priority <= HearingNode.priority)
+        {
+            Debug.Log("Higher priority node or newer node of same priority, replacing old node.");
             NewPointOfInterest oldNode = HearingNode;
             HearingNode = CreateHearingNode(sourceTransform, priority).GetComponent<NewPointOfInterest>();
             oldNode.RemoveNode();
