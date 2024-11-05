@@ -49,11 +49,18 @@ public class Navigation : MonoBehaviour
             //search
             else if (NewStateMachine.GetState() == States.SEARCH)
             {
+                //stopMoving = false;
                 //go to search node
+                if (!NavMeshAgent.hasPath)
+                {
+                    NavMeshAgent.SetDestination(HearingNode.gameObject.transform.position);
+                }
+
             }
             //pursuit
             else
             {
+                //stopMoving = true;
                 //chase player until eye contact has been broken for more than five seconds
                 NavMeshAgent.SetDestination(Player.transform.position);
             }
@@ -65,12 +72,14 @@ public class Navigation : MonoBehaviour
                 isSearching = false;
                 if (HearingNode == null && NewStateMachine.GetState() != States.PATROL)
                 {
+                    NavMeshAgent.ResetPath();
                     Debug.Log("No more hearing nodes. Going to Patrol state.");
                     NewStateMachine.ChangeState(States.PATROL);
                     isPatrolling = true;
                 }
                 else if(HearingNode != null && NewStateMachine.GetState() != States.SEARCH)
                 {
+                    NavMeshAgent.ResetPath();
                     Debug.Log("Hearing node found. Going to Search state.");
                     NewStateMachine.ChangeState(States.SEARCH);
                 }
@@ -82,7 +91,8 @@ public class Navigation : MonoBehaviour
     {
         isPatrolling = true;
         if (!NavMeshAgent.hasPath && TargetNode != null)
-            NavMeshAgent.SetDestination(TargetNode.transform.position);
+            NavMeshAgent.SetDestination(TargetNode.transform.position
+                );
         yield return null;
         isPatrolling = false;
 
@@ -106,7 +116,7 @@ public class Navigation : MonoBehaviour
 
     private GameObject CreateHearingNode(Transform noisePosition, Priority priority)
     {
-        var newNode = Instantiate(PointOfInterest, noisePosition.position, transform.rotation, this.gameObject.transform);
+        var newNode = Instantiate(PointOfInterest, noisePosition.position, transform.rotation);
         newNode.GetComponent<NewPointOfInterest>().priority = priority;
         newNode.GetComponent<NewPointOfInterest>().Navigation = this;
         return newNode;

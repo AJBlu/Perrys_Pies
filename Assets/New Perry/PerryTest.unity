@@ -431,6 +431,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7415934340964607472, guid: dfee427d99d2b7a4ea387886028c4630,
         type: 3}
+      propertyPath: nextNode
+      value: 
+      objectReference: {fileID: 648749780}
+    - target: {fileID: 7415934340964607472, guid: dfee427d99d2b7a4ea387886028c4630,
+        type: 3}
       propertyPath: isPatrolNode
       value: 1
       objectReference: {fileID: 0}
@@ -513,6 +518,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewPOI (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 7415934340964607472, guid: dfee427d99d2b7a4ea387886028c4630,
+        type: 3}
+      propertyPath: nextNode
+      value: 
+      objectReference: {fileID: 456889614}
     - target: {fileID: 7415934340964607472, guid: dfee427d99d2b7a4ea387886028c4630,
         type: 3}
       propertyPath: isPatrolNode
@@ -686,6 +696,7 @@ GameObject:
   - component: {fileID: 1554293644}
   - component: {fileID: 1554293643}
   - component: {fileID: 1554293642}
+  - component: {fileID: 1554293646}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -773,12 +784,39 @@ Transform:
   m_GameObject: {fileID: 1554293641}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.37, y: 1, z: 3.9}
+  m_LocalPosition: {x: 36.23, y: 1, z: 37.47}
   m_LocalScale: {x: 1, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!54 &1554293646
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1554293641}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &1564507252
 GameObject:
   m_ObjectHideFlags: 0
@@ -991,6 +1029,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7415934340964607472, guid: dfee427d99d2b7a4ea387886028c4630,
         type: 3}
+      propertyPath: nextNode
+      value: 
+      objectReference: {fileID: 1007121079}
+    - target: {fileID: 7415934340964607472, guid: dfee427d99d2b7a4ea387886028c4630,
+        type: 3}
       propertyPath: isPatrolNode
       value: 1
       objectReference: {fileID: 0}
@@ -1062,6 +1105,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1429067643}
     m_Modifications:
+    - target: {fileID: 84068984468978097, guid: 915439fd399169548b4ab469fb2c1f6d,
+        type: 3}
+      propertyPath: TargetNode
+      value: 
+      objectReference: {fileID: 456889614}
     - target: {fileID: 84068984468978097, guid: 915439fd399169548b4ab469fb2c1f6d,
         type: 3}
       propertyPath: PatrolSpeed
@@ -1177,6 +1225,11 @@ PrefabInstance:
         type: 3}
       propertyPath: closeRadius
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 5515924463852469188, guid: 915439fd399169548b4ab469fb2c1f6d,
+        type: 3}
+      propertyPath: visionAngle
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 5515924463852469188, guid: 915439fd399169548b4ab469fb2c1f6d,
         type: 3}

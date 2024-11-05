@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Sensor : MonoBehaviour
 {
-    public float dotProduct;
+    public float visionAngle;
     public float closeRadius;
     public float distantRadius;
     public float walkingHearingRadius;
@@ -29,9 +29,9 @@ public class Sensor : MonoBehaviour
         //check if player can be seen at all
         if (isPlayerDistant(distantRadius, Player.transform))
         {
-            //then check if player is in vision cone
-            //if (isPlayerInCone(dotProduct, Player.transform))
-            //{
+            //then check if player is in vision cone as long as perry isn't chasing them
+            if (isPlayerInCone(visionAngle, Player.transform) && NewStateMachine.GetState() != States.PURSUIT)
+            {
 
                 //look at player
                 gameObject.transform.LookAt(Player.transform.position);
@@ -48,8 +48,9 @@ public class Sensor : MonoBehaviour
                         {
                             if (NewStateMachine.GetState() != States.PURSUIT)
                             {
-                                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward), Color.green);
+                                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * closeRadius, Color.green);
                                 Debug.Log("Player seen up close, changing to pursuit state.");
+                                Navigation.NavMeshAgent.ResetPath();
                                 NewStateMachine.ChangeState(States.PURSUIT);
                             }
                             if (!checkingEyeContact && NewStateMachine.GetState() == States.PURSUIT)
@@ -69,10 +70,33 @@ public class Sensor : MonoBehaviour
                         Debug.Log("Player is out of close sight range but still being pursued.");
                         StartCoroutine(EyecontactCheck());
                     }
+                    else //if not in pursuit, then run distant sight code
+                    {
+                        Debug.Log("Checking to see if player is within distant sight.");
+                        if(Physics.Raycast(transform.position, transform.forward * distantRadius, out hit, distantRadius))
+                        {
+                            if(hit.collider.gameObject.tag == "Player")
+                            {   //if perry is not actively chasing the player, create a search node on distant sight radius
+                                if (NewStateMachine.GetState() != States.PURSUIT)
+                                {
+                                    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * distantRadius, Color.yellow);
+                                    Debug.Log("Player has been seen from afar. Creating search node.");
+                                    OnNoiseEvent(Player.transform, Priority.SEEN);
+                                }
+                            }
+                        }
+                    }
                     //if that doesn't work, draw far raycast
                     //if that hits, change state to search and create hearing node on player location
                 }
-                //}
+            }
+
+            //if player is in walking radius and isn't being chased, make a search node
+            if (isPlayerInWalkingRadius(walkingHearingRadius, Player.transform) && Player.gameObject.GetComponent<Rigidbody>().velocity.magnitude > 1)
+            {
+                Debug.Log("Player found in walking radius and is moving. Seeing if node can be made.");
+                OnNoiseEvent(Player.transform, Priority.WALKING);
+            }
         }
     }
 
@@ -90,7 +114,7 @@ public class Sensor : MonoBehaviour
             else
             {
                 Debug.Log("Player no longer found. Switching to search and adding node with last known position.");
-                OnNoiseEvent(Player.transform, Priority.RUNNING);
+                OnNoiseEvent(Player.transform, Priority.SEEN);
                 NewStateMachine.ChangeState(States.SEARCH);
 
             }
@@ -98,17 +122,18 @@ public class Sensor : MonoBehaviour
         else
         {
             Debug.Log("Empty raycast, player no longer found. Switching to search and adding node with last known position.");
-            OnNoiseEvent(Player.transform, Priority.RUNNING);
+            OnNoiseEvent(Player.transform, Priority.SEEN);
             NewStateMachine.ChangeState(States.SEARCH);
         }
         checkingEyeContact = false;
 
     }
 
-    private bool isPlayerInCone(float dotProduct, Transform playerPosition)
+    private bool isPlayerInCone(float visionAngle, Transform playerPosition)
     {
-
-        return false;
+        Vector3 target = Player.transform.position - gameObject.transform.position;
+        Debug.Log(Vector3.Angle(target, transform.TransformDirection(Vector3.forward)));
+        return Vector3.Angle(target, transform.TransformDirection(Vector3.forward)) < visionAngle;
     }
     private bool isPlayerClose(float closeRadius, Transform playerPosition)
     {
@@ -120,6 +145,12 @@ public class Sensor : MonoBehaviour
     {
         return Vector3.Distance(playerPosition.position, gameObject.transform.position) < distantRadius;
     }
+
+    private bool isPlayerInWalkingRadius(float walkingHearingRadius, Transform playerPosition)
+    {
+        return Vector3.Distance(playerPosition.position, gameObject.transform.position) < walkingHearingRadius;
+    }
+
 
 
     /// <summary>
