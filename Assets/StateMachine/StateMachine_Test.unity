@@ -223,7 +223,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &795623030
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -237,6 +237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSightBased: 1
+  isAttractant: 0
   DeterrentDuration: 4
   DeterrentRadius: 100
   DeterrentDelay: 1
@@ -840,6 +841,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628195242090199578, guid: 3aa9ad3b5534aa246b67e9847fb840cf,
+        type: 3}
+      propertyPath: HearingRadius
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628195242090199578, guid: 3aa9ad3b5534aa246b67e9847fb840cf,
+        type: 3}
+      propertyPath: CloseSightRadius
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 5628195242090199578, guid: 3aa9ad3b5534aa246b67e9847fb840cf,
+        type: 3}
+      propertyPath: DistantSightRadius
+      value: 30
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

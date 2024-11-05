@@ -60,7 +60,7 @@ public class PerryNav : MonoBehaviour
 
         AddStates();
 
-        StateMachine.ChangeState(_Search);
+        StateMachine.ChangeState(_Patrol);
     }
 
     private void FixedUpdate()
@@ -69,20 +69,10 @@ public class PerryNav : MonoBehaviour
         {
             NavMeshAgent.SetDestination(GameObject.FindGameObjectWithTag("Player").transform.position);
         }
-        else
+
+        if(_Search.isActive && PatrolManager.HearingNode == null)
         {
-
-            //if there are still nodes to be searched and nav agent has no path
-            if (PatrolManager.SearchNodes.Count != 0 && !NavMeshAgent.hasPath)
-            {
-                OnAudioCueHeard();
-
-            }
-            //if there are no more nodes to search and nav agent has reached last destination
-            if (PatrolManager.SearchNodes.Count == 0 && !NavMeshAgent.hasPath)
-            {
-                allDestinationsSearched.Invoke();
-            }
+            allDestinationsSearched.Invoke();
         }
 
     }        
@@ -123,23 +113,9 @@ public class PerryNav : MonoBehaviour
 
     public void OnAudioCueHeard()
     {
-        if (!NavMeshAgent.hasPath)
-        {
-            float shortest = float.MaxValue;
-            int index = 0;
-            //search 
-            for (int i = 0; i < PatrolManager.SearchNodes.Count; i++)
-            {
-                if (Vector3.Distance(transform.position, PatrolManager.SearchNodes[i].transform.position) < shortest)
-                {
-                    shortest = Vector3.Distance(transform.position, PatrolManager.SearchNodes[i].transform.position);
-                    index = i;
-                }
-            }
-            NavMeshAgent.SetDestination(PatrolManager.SearchNodes[index].transform.position);
-            PatrolManager.SearchNodes.Remove(PatrolManager.SearchNodes[index]);
 
-        }
+        NavMeshAgent.SetDestination(PatrolManager.HearingNode.transform.position);
+
     }
 
     //events
