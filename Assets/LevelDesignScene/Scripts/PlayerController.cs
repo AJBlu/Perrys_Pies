@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
@@ -79,7 +80,8 @@ public class PlayerController : MonoBehaviour
 
     public Vector3 ogPos;
 
-
+    public UnityEvent<Transform, Priority> playerJump;
+    public UnityEvent<Transform, Priority> playerRun;
 
 
     private void Awake()
@@ -539,6 +541,7 @@ public class PlayerController : MonoBehaviour
         {
             Vector3 jumpVec = new Vector3(0, jumpSpeed, 0);
             rigid.AddRelativeForce(jumpVec, ForceMode.Impulse);
+            playerJump.Invoke(gameObject.transform, Priority.RUNNING);
         }
     }
 
@@ -548,6 +551,7 @@ public class PlayerController : MonoBehaviour
         {
             sprinting = true;
             if (currentSpeed == originalSpeed) currentSpeed *= sprintFactor;
+            playerRun.Invoke(gameObject.transform, Priority.RUNNING);
         }
         else
         {

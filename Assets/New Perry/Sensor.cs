@@ -12,7 +12,7 @@ public class Sensor : MonoBehaviour
     public GameObject Player;
     public Navigation Navigation;
     public NewStateMachine NewStateMachine;
-
+    public PlayerController PlayerController;
     public bool checkingEyeContact;
     public bool playerSeenByEyeContactCheck;
 
@@ -22,6 +22,12 @@ public class Sensor : MonoBehaviour
         Navigation = gameObject.GetComponent<Navigation>();
         NewStateMachine = gameObject.GetComponent<NewStateMachine>();
         Player = GameObject.FindGameObjectWithTag("Player");
+        PlayerController = Player.GetComponent<PlayerController>();
+        if(PlayerController != null)
+        {
+            PlayerController.playerJump.AddListener(OnNoiseEvent);
+            PlayerController.playerRun.AddListener(OnNoiseEvent);
+        }
     }
 
     private void FixedUpdate()
@@ -132,7 +138,7 @@ public class Sensor : MonoBehaviour
     private bool isPlayerInCone(float visionAngle, Transform playerPosition)
     {
         Vector3 target = Player.transform.position - gameObject.transform.position;
-        Debug.Log(Vector3.Angle(target, transform.TransformDirection(Vector3.forward)));
+        //Debug.Log(Vector3.Angle(target, transform.TransformDirection(Vector3.forward)));
         return Vector3.Angle(target, transform.TransformDirection(Vector3.forward)) < visionAngle;
     }
     private bool isPlayerClose(float closeRadius, Transform playerPosition)
