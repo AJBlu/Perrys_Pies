@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -4962602559887004319}
   m_Layer: 0
   m_Name: SprayCan Projectile
-  m_TagString: CanAttract
+  m_TagString: SprayAttract
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

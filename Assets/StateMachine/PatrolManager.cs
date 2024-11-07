@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class PatrolManager : MonoBehaviour
 {
-    public GameObject POI;
+    public GameObject HearingNode;
 
     [Tooltip("Hearing radius for running, sprinting, and other audio cues.")]
     public float PerryHearingRadius;
@@ -17,7 +17,6 @@ public class PatrolManager : MonoBehaviour
     public GameObject Perry;
     public GameObject Player;
     public List<Transform> PatrolNodes = new List<Transform>();
-    public List<Transform> SearchNodes = new List<Transform>();
 
     private NavMeshAgent _perryAgent;
     private Patrol _patrol;
@@ -29,7 +28,6 @@ public class PatrolManager : MonoBehaviour
     {
         GameObject.FindGameObjectWithTag("Player");
         GameObject.FindGameObjectWithTag("Perry");
-        
         _perryAgent = Perry.GetComponent<NavMeshAgent>();
         _patrol = Perry.GetComponent<Patrol>();
         _search = Perry.GetComponent<Search>();
@@ -43,9 +41,9 @@ public class PatrolManager : MonoBehaviour
 
     public void Update()
     {
-        if (!_isPathfinding && _search.isActive && SearchNodes.Count > 0)
+        if (!_isPathfinding && _search.isActive)
             StartCoroutine("SearchRoute");
-        if (!_isPathfinding && _patrol.isActive && PatrolNodes.Count > 0 && SearchNodes.Count == 0)
+        if (!_isPathfinding && _patrol.isActive)
             StartCoroutine("PatrolRoute");
 
 
@@ -94,50 +92,30 @@ public class PatrolManager : MonoBehaviour
     public IEnumerator SearchRoute()
     {
         _isPathfinding = true;
-
-        //this could probably fuck things up
-        _nextNode = GetClosestPatrolNode(SearchNodes);
         if (_search.isActive)
         {
             if (!_perryAgent.hasPath)
             {
-
-                Debug.Log("Setting Destination");
-                _perryAgent.SetDestination(SearchNodes[_nextNode].position);
-                _nextNode++;
+                if (HearingNode != null)
+                {
+                    Debug.Log("Setting Destination");
+                    _perryAgent.SetDestination(HearingNode.transform.position);
+                }
+                else
+                {
+                    Debug.Log("No available hearing node. Returning to patrol.");
+                }
             }
-
-            if (_nextNode == SearchNodes.Count)
-                _nextNode = 0;
-
         }
         _isPathfinding = false;
         yield return null;
     }
 
-    private void InstantiatePOI(Vector3 soundLocation, Priority priority)
-    {
-        float distanceCheck;
-        if(priority == Priority.WALKING)
-        {
-            distanceCheck = PerryWalkHearingRadius;
-        }
-        else
-        {
-            distanceCheck = PerryHearingRadius;
-        }
 
-        if(Vector3.Distance(Perry.transform.position, soundLocation) < distanceCheck)
-        {
-            var point = Instantiate(POI, soundLocation, this.transform.rotation, this.transform);
-            SearchNodes.Add(point.transform);
-
-        }
-    }
 
     public void OnAudioCueHeard()
     {
-        _perryAgent.SetDestination(SearchNodes[0].position);
+        _perryAgent.SetDestination(HearingNode.transform.position);
     }
 
     public void OnPlayerJump()

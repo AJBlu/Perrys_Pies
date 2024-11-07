@@ -33,6 +33,7 @@ public class UIManager : MonoBehaviour
 
     public bool givingHint;
 
+    public bool gameOverTriggered;
    
 
     private void Awake()
@@ -44,6 +45,8 @@ public class UIManager : MonoBehaviour
         }
         else if (UImanager != this) Destroy(gameObject);
     }
+
+    GameObject tempSkeleton;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +61,8 @@ public class UIManager : MonoBehaviour
         givingHint = false;
 
         gameManager = GameManager.gmInstance;
+
+        tempSkeleton = GameObject.FindGameObjectWithTag("Skeleton");
     }
 
     public void keyColor(int keySlot, bool isObtained)
@@ -73,7 +78,7 @@ public class UIManager : MonoBehaviour
         {
             if (i + 1 == player.GetComponent<PlayerController>().selectedSlot)
             {
-                slotIdentifyer.transform.localPosition = new Vector3((-450 + (85 * i)), -256, 0);
+                slotIdentifyer.transform.localPosition = new Vector3((-445 + (85 * i)), -246, 0);
             }
         }
 
@@ -91,6 +96,12 @@ public class UIManager : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
+        else if (gameOverTriggered)
+        {
+            Time.timeScale = 0;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
         else
         {
             Time.timeScale = 1;
@@ -105,7 +116,12 @@ public class UIManager : MonoBehaviour
         if (slotName == "BallDeter" || slotName == "KeyDeter") inventorySlots[slotNumber].GetComponent<Image>().color = Color.blue;
         else if (slotName == "BagDeter") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(238, 229, 190, 255);
         else if (slotName == "BellAttract") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(210, 180, 140, 255);
-        else if (slotName == "CanAttract") inventorySlots[slotNumber].GetComponent<Image>().color = Color.red;
+        else if (slotName == "SprayAttract") inventorySlots[slotNumber].GetComponent<Image>().color = Color.red;
+        else if (slotName == "CandleAttract") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(255, 128, 255, 255);
+        else if (slotName == "CanDeter") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(128, 0, 0, 255);
+        else if (slotName == "PieDeterA") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(128, 255, 0, 255);
+        else if (slotName == "PieDeterB") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(96, 0, 192, 255);
+        else if (slotName == "PieDeterC") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(173, 41, 56, 255);
         else if (slotName == null) inventorySlots[slotNumber].GetComponent<Image>().color = Color.white;
     }
 
@@ -147,21 +163,79 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    public int GetLargestBuildIndex()
+    {
+        int largestIndex = -1; // Initialize with a value that will be overwritten
+
+        for (int i = 0; i < SceneManager.sceneCountInBuildSettings; i++)
+        {
+            largestIndex = Mathf.Max(largestIndex, i);
+        }
+        return largestIndex;
+    }
+
     private void FixedUpdate()
     {
         for (int i = 0; i < elevatorButtons.Count; i++)
         {
-            if (i == player.GetComponent<PlayerController>().currentFloor) elevatorButtons[i].interactable = false;
+            if ((i == player.GetComponent<PlayerController>().currentFloor) || (i + 1 > GetLargestBuildIndex())) elevatorButtons[i].interactable = false;
             else elevatorButtons[i].interactable = true;
         }
     }
 
+    string publicSkeletonHint;
+
     public void skeletonHint(GameObject skeleton)
     {
+        activateDialogSwitch(false);
         givingHint = true;
         //this is where the logic for determining the string would go
+        publicSkeletonHint = "This is where the hint goes.";
 
-        skeleton.GetComponent<SkeletonDialog>().setHintText(skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>(), "Lorem ipsum dolor sit amet");
+        skeleton.GetComponent<SkeletonDialog>().setHintText(skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>(), publicSkeletonHint);
+    }
+
+    public void skeletonLore()
+    {
+        tempSkeleton = GameObject.FindGameObjectWithTag("Skeleton");
+        activateDialogSwitch(true);
+        givingHint = true;
+        string skeletonLore;
+        //this is where the logic for determining the string would go
+        skeletonLore = "Look out, Tom Robinson.";
+
+        skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>().text = skeletonLore;
+    }
+
+    public void skeletonHintReturn()
+    {
+        tempSkeleton = GameObject.FindGameObjectWithTag("Skeleton");
+        activateDialogSwitch(false);
+        givingHint = true;
+        string skeletonHint;
+        //this is where the logic for determining the string would go
+        skeletonHint = publicSkeletonHint;
+
+        skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>().text = skeletonHint;
+    }
+
+    public void stopSkeletonStuff()
+    {
+        givingHint = false;
+    }
+
+    public void activateDialogSwitch(bool isLore)
+    {
+        if (!isLore)
+        {
+            skeletonHintHolder.transform.Find("LoreDrop").GetComponent<Button>().interactable = true;
+            skeletonHintHolder.transform.Find("BasicHint").GetComponent<Button>().interactable = false;
+        }
+        else
+        {
+            skeletonHintHolder.transform.Find("LoreDrop").GetComponent<Button>().interactable = false;
+            skeletonHintHolder.transform.Find("BasicHint").GetComponent<Button>().interactable = true;
+        }
     }
 
     public void panelUp()
@@ -227,7 +301,7 @@ public class UIManager : MonoBehaviour
     {
         GameObject playerCam = GameObject.FindGameObjectWithTag("MainCamera");
 
-        GameManager.gmInstance.moveToFloor(1, true);
+        GameManager.gmInstance.moveToFloor(2, true);
         //player.GetComponent<PlayerController>().transform.position = player.GetComponent<PlayerController>().ogPos;
         Debug.Log("PlayerCam should reset rotation.");
         playerCam.gameObject.GetComponent<FirstPersonCamera>().resetRotation();
@@ -254,22 +328,22 @@ public class UIManager : MonoBehaviour
 
     public void moveToBasement()
     {
-        GameManager.gmInstance.moveToFloor(0, false);
+        GameManager.gmInstance.moveToFloor(1, false);
     }
 
     public void moveToGround()
     {
-        GameManager.gmInstance.moveToFloor(1, false);
+        GameManager.gmInstance.moveToFloor(2, false);
     }
 
     public void moveToFloor2()
     {
-        GameManager.gmInstance.moveToFloor(2, false);
+        GameManager.gmInstance.moveToFloor(3, false);
     }
 
     public void moveToFloor3()
     {
-        GameManager.gmInstance.moveToFloor(3, false);
+        GameManager.gmInstance.moveToFloor(4, false);
     }
     public IEnumerator waitAndCheck()
     {

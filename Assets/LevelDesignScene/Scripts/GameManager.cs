@@ -5,7 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject perry;
     public GameObject player;
+    private Vector3 originalPlayerPosition, originalPerryPosition;
     public GameObject UI;
     public static GameObject UIinstance;
     //public GameObject UIManager;
@@ -25,6 +27,10 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this);
         }
         else if (gmInstance != this) Destroy(gameObject);
+        player = GameObject.FindGameObjectWithTag("Player");
+        perry = GameObject.FindGameObjectWithTag("Perry");
+        originalPerryPosition = perry.transform.position;
+        originalPlayerPosition = player.transform.position;
     }
 
     // Start is called before the first frame update
@@ -63,9 +69,9 @@ public class GameManager : MonoBehaviour
     {
         UIManager.UImanager.panelDown();
         SceneManager.LoadScene(pressedButton);
-        player.GetComponent<PlayerController>().currentFloor = pressedButton;
+        player.GetComponent<PlayerController>().currentFloor = pressedButton - 1;
         StartCoroutine(player.GetComponent<PlayerController>().interactBuffer());
-        if (pressedButton == 1)
+        if (pressedButton == 2)
         {
             StartCoroutine(waitFor(1f));
             findCrucialStuff();
@@ -232,4 +238,6 @@ public class GameManager : MonoBehaviour
 
         yield return null;
     }
+
+
 }

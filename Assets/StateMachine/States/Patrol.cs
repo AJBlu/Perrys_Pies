@@ -56,9 +56,11 @@ public class Patrol : State
 
     public override void ExitState()
     {
-
-
         ExitedState.Invoke();
+        EnteredState.RemoveListener(gameObject.GetComponent<PerryNav>().OnPatrol);
+        EnteredState.RemoveListener(gameObject.GetComponent<PerrySensor>().OnPatrol);
+        ExitedState.RemoveListener(gameObject.GetComponent<PerryNav>().OnPatrolExit);
+        ExitedState.RemoveListener(gameObject.GetComponent<PerrySensor>().OnPatrolExit);
         isActive = false;
 
     }
