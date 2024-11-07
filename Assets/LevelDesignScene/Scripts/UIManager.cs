@@ -33,6 +33,7 @@ public class UIManager : MonoBehaviour
 
     public bool givingHint;
 
+    public bool gameOverTriggered;
    
 
     private void Awake()
@@ -92,6 +93,12 @@ public class UIManager : MonoBehaviour
         {
             Time.timeScale = 0;
             skeletonHintHolder.SetActive(false);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+        else if (gameOverTriggered)
+        {
+            Time.timeScale = 0;
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
