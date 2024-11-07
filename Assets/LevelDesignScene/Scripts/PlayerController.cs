@@ -83,6 +83,8 @@ public class PlayerController : MonoBehaviour
     public UnityEvent<Transform, Priority> playerJump;
     public UnityEvent<Transform, Priority> playerRun;
 
+    public bool isLoudMovement, isWalking;
+
 
     private void Awake()
     {
@@ -353,9 +355,16 @@ public class PlayerController : MonoBehaviour
                 pickupUI.SetActive(true);
             }
 
-            if (Input.GetKeyUp("left shift") || Input.GetKeyUp("left ctrl"))
+            if (Input.GetKeyUp("left shift"))
             {
                 resetMovement();
+                isLoudMovement = false;
+            }
+            if(Input.GetKeyUp("left ctrl"))
+            {
+
+                resetMovement();
+                isCrouched = false;
             }
 
             /*
@@ -503,9 +512,15 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        //Debug.Log(gameObject.GetComponent<Rigidbody>().velocity.magnitude);
         if (canMove)
         {
             rigid.velocity = transform.TransformDirection(movement);
+            isWalking = true;
+        }
+        else
+        {
+            isWalking = false;
         }
 
         if (sprinting)
@@ -544,6 +559,7 @@ public class PlayerController : MonoBehaviour
             Vector3 jumpVec = new Vector3(0, jumpSpeed, 0);
             rigid.AddRelativeForce(jumpVec, ForceMode.Impulse);
             playerJump.Invoke(gameObject.transform, Priority.RUNNING);
+            isLoudMovement = true;
         }
     }
 
@@ -554,6 +570,7 @@ public class PlayerController : MonoBehaviour
             sprinting = true;
             if (currentSpeed == originalSpeed) currentSpeed *= sprintFactor;
             playerRun.Invoke(gameObject.transform, Priority.RUNNING);
+            isLoudMovement = true;
         }
         else
         {

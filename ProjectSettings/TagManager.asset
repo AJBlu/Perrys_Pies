@@ -34,6 +34,7 @@ TagManager:
   - PieDeterB
   - PieDeterC
   - CanDeter
+  - CanAttract
   layers:
   - Default
   - TransparentFX
@@ -42,8 +43,8 @@ TagManager:
   - Water
   - UI
   - Pickable
-  - 
-  - 
+  - Perry
+  - DoNotBake
   - 
   - 
   - 
