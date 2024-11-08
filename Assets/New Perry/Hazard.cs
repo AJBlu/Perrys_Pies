@@ -13,7 +13,7 @@ public class Hazard : MonoBehaviour
 
     public bool playerIsInArea;
 
-    public bool triggeredByLoudAction, triggeredByWalk, triggeredByCrouch;
+    public bool triggeredByLoudAction, triggeredByWalk, triggeredByCrouch, resettableTrap;
 
     public bool soundTrapTriggered;
     public void FixedUpdate()
@@ -34,6 +34,7 @@ public class Hazard : MonoBehaviour
             {
                 LoudMovementAction();
             }
+
         }
     }
 
@@ -62,6 +63,10 @@ public class Hazard : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             playerIsInArea = false;
+            if (resettableTrap)
+            {
+                soundTrapTriggered = false;
+            }
         }
     }
 
@@ -70,6 +75,7 @@ public class Hazard : MonoBehaviour
         if (Vector3.Distance(gameObject.transform.position, perry_Sensor.gameObject.transform.position) < radius)
         {
             Debug.Log("Informing Perry");
+            perry_Sensor.OnNoiseEvent(gameObject.transform, Priority.SOUNDTRAP);
         }
     }
 
@@ -79,7 +85,7 @@ public class Hazard : MonoBehaviour
     /// </summary>
     public virtual void CrouchMovementAction()
     {
-
+        soundTrapTriggered = true;
     }
 
     /// <summary>
@@ -87,13 +93,14 @@ public class Hazard : MonoBehaviour
     /// </summary>
     public virtual void WalkMovementAction()
     {
-
+        soundTrapTriggered = true;
     }
     /// <summary>
     /// Fill out if Perry needs to be alerted on loud movement. If soundtrap is done after being triggered, set soundTrapTriggered to true.
     /// </summary>
     public virtual void LoudMovementAction()
     {
+        soundTrapTriggered = true;
 
     }
 

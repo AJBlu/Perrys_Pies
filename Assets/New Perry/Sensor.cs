@@ -175,6 +175,12 @@ public class Sensor : MonoBehaviour
                 Navigation.CheckNewNodePriority(sourceTransform, priority);
             }
         }
+        else if (priority == Priority.SOUNDTRAP || priority == Priority.ATTRACTANT)
+        {
+            //distance is checked within the soundtrap and attractants code, speed is set in navigation
+            Navigation.CheckNewNodePriority(sourceTransform, priority);
+            
+        }
         else
         {
             if (Vector3.Distance(sourceTransform.position, gameObject.transform.position) < farHearingRadius)
