@@ -242,7 +242,7 @@ public class PlayerController : MonoBehaviour
             }
             if (!isStored)
             {
-                UIManager.UImanager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().text = "There's no more room in my pockets for this.";
+                UIManager.UImanager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().text = "There's no more room\nin my pockets for this.";
                 UIManager.UImanager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().color = Color.white;
                 UIManager.UImanager.fadingText.GetComponent<FadeText>().fadeTime = 2;
                 Debug.Log("Inventory is full.");
