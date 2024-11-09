@@ -7,6 +7,8 @@ public class Sensor : MonoBehaviour
     public float visionAngle;
     public float closeRadius;
     public float distantRadius;
+    public float _cd;
+    public float _dr;
     public float walkingHearingRadius;
     public float farHearingRadius;
     public GameObject Player;
@@ -19,6 +21,8 @@ public class Sensor : MonoBehaviour
 
     private void Awake()
     {
+        _cd = closeRadius;
+        _dr = distantRadius;
         Navigation = gameObject.GetComponent<Navigation>();
         NewStateMachine = gameObject.GetComponent<NewStateMachine>();
         Player = GameObject.FindGameObjectWithTag("Player");
@@ -32,12 +36,14 @@ public class Sensor : MonoBehaviour
 
     private void FixedUpdate()
     {
+        checkPlayerCrouched();
         //check if player can be seen at all
-        if (isPlayerDistant(distantRadius, Player.transform))
+        if (isPlayerDistant(_dr, Player.transform))
         {
             //then check if player is in vision cone as long as perry isn't chasing them
             if (isPlayerInCone(visionAngle, Player.transform) && NewStateMachine.GetState() != States.PURSUIT)
             {
+                //make decisions after checking if player is crouched
 
                 //look at player
                 gameObject.transform.LookAt(Player.transform.position);
@@ -48,13 +54,13 @@ public class Sensor : MonoBehaviour
 
                 //draw raycast for close
                 //if it hits, change state to pursuit
-                if (Physics.Raycast(transform.position, transform.forward * closeRadius, out hit, closeRadius))
+                if (Physics.Raycast(transform.position, transform.forward * _cd, out hit, _cd))
                     {
                         if (hit.collider.gameObject.tag == "Player")
                         {
                             if (NewStateMachine.GetState() != States.PURSUIT)
                             {
-                                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * closeRadius, Color.green);
+                                Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * _cd, Color.green);
                                 Debug.Log("Player seen up close, changing to pursuit state.");
                                 Navigation.NavMeshAgent.ResetPath();
                                 NewStateMachine.ChangeState(States.PURSUIT);
@@ -79,13 +85,13 @@ public class Sensor : MonoBehaviour
                     else //if not in pursuit, then run distant sight code
                     {
                         Debug.Log("Checking to see if player is within distant sight.");
-                        if(Physics.Raycast(transform.position, transform.forward * distantRadius, out hit, distantRadius))
+                        if(Physics.Raycast(transform.position, transform.forward * _dr, out hit, _dr))
                         {
                             if(hit.collider.gameObject.tag == "Player")
                             {   //if perry is not actively chasing the player, create a search node on distant sight radius
                                 if (NewStateMachine.GetState() != States.PURSUIT)
                                 {
-                                    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * distantRadius, Color.yellow);
+                                    Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * _dr, Color.yellow);
                                     Debug.Log("Player has been seen from afar. Creating search node.");
                                     OnNoiseEvent(Player.transform, Priority.SEEN);
                                 }
@@ -106,12 +112,26 @@ public class Sensor : MonoBehaviour
         }
     }
 
+    private void checkPlayerCrouched()
+    {
+        if (Player.GetComponent<PlayerController>().isCrouched)
+        {
+            _cd = (closeRadius * 2f) / 3f;
+            _dr = (distantRadius * 2f) / 3f;
+        }
+        else
+        {
+            _cd = closeRadius;
+            _dr = distantRadius;
+        }
+    }
+
     private IEnumerator EyecontactCheck()
     {
         checkingEyeContact = true;
         yield return new WaitForSeconds(5f);
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, distantRadius))
+        if(Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit, _dr))
         {
             if(hit.collider.gameObject.tag == "Player")
             {
@@ -144,12 +164,12 @@ public class Sensor : MonoBehaviour
     private bool isPlayerClose(float closeRadius, Transform playerPosition)
     {
 
-        return Vector3.Distance(playerPosition.position, gameObject.transform.position) < closeRadius;
+        return Vector3.Distance(playerPosition.position, gameObject.transform.position) < _cd;
     }
 
     private bool isPlayerDistant(float distantRadius, Transform playerPosition)
     {
-        return Vector3.Distance(playerPosition.position, gameObject.transform.position) < distantRadius;
+        return Vector3.Distance(playerPosition.position, gameObject.transform.position) < _dr;
     }
 
     private bool isPlayerInWalkingRadius(float walkingHearingRadius, Transform playerPosition)
