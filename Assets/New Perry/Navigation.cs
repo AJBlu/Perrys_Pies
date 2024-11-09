@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class Navigation : MonoBehaviour
 {
-
+    public bool stopMoving;
     public bool caughtPlayer;
     public bool isPatrolling;
     public bool isSearching;
@@ -40,7 +40,7 @@ public class Navigation : MonoBehaviour
 
     public void FixedUpdate()
     {
-        if (!caughtPlayer)
+        if (!caughtPlayer || !stopMoving)
         {
             //if current state of things is...
             //patrol
@@ -88,6 +88,11 @@ public class Navigation : MonoBehaviour
                     NavMeshAgent.ResetPath();
                     Debug.Log("Hearing node found. Going to Search state.");
                     NewStateMachine.ChangeState(States.SEARCH);
+                    //nodes that require Perry to sprint to location instead of usual search speed
+                    if(HearingNode.priority == Priority.DETERRENT || HearingNode.priority == Priority.DETERRENT || HearingNode.priority == Priority.SOUNDTRAP)
+                    {
+                        NavMeshAgent.speed = PursuitSpeed;
+                    }
                 }
             }
         }
