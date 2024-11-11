@@ -35,6 +35,7 @@ TagManager:
   - PieDeterC
   - CanDeter
   - CanAttract
+  - Objectives
   layers:
   - Default
   - TransparentFX
