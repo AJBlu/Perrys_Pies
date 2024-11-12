@@ -1948,7 +1948,10 @@ MonoBehaviour:
   skeletonHintHolder: {fileID: 608651430}
   skeletonHintText: {fileID: 2117163154}
   objectiveList: {fileID: 0}
+  pieTinText: {fileID: 0}
+  escapeText: {fileID: 0}
   keyCountText: {fileID: 0}
+  returnKeyText: {fileID: 0}
   givingHint: 0
   gameOverTriggered: 0
 --- !u!4 &599591484
@@ -4827,13 +4830,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
-
-
-
-
-
-    Objective: Find the Keys (X/3)'
+  m_text: 'Objective: Find the Keys (X/3)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -7019,7 +7016,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\n\n\n\n\n\n\n\t! Return the\n\tkey to the\n\tentrance"
+  m_text: "\t! Return the\n\tkey to the\n\tentrance"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -8417,11 +8414,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '
-
-
-
-    Objective: Escape to the Elevator!'
+  m_text: 'Objective: Escape to the Elevator!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
