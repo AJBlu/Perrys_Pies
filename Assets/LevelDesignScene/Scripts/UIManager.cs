@@ -37,7 +37,8 @@ public class UIManager : MonoBehaviour
     public bool givingHint;
 
     public bool gameOverTriggered;
-   
+
+    Color middleGray = new Color32(128, 128, 128, 255);
 
     private void Awake()
     {
@@ -71,6 +72,21 @@ public class UIManager : MonoBehaviour
         keyCountText = objectiveList.transform.Find("KeyCountInfo").gameObject;
 
         keyTextUpdate();
+    }
+
+    GameObject tempText;
+    string tempTextContents;
+
+    public void crossOff(string clearedObjective)
+    {
+        tempText = objectiveList.transform.Find(clearedObjective).gameObject;
+        tempTextContents = tempText.GetComponent<TMPro.TextMeshProUGUI>().text;
+
+        tempText.GetComponent<TMPro.TextMeshProUGUI>().text = "<s>" + tempTextContents;
+        tempText.GetComponent<TMPro.TextMeshProUGUI>().color = middleGray;
+
+        tempText = null;
+        tempTextContents = null;
     }
 
     public void keyTextUpdate()
