@@ -31,6 +31,9 @@ public class UIManager : MonoBehaviour
     public GameObject skeletonHintHolder;
     public GameObject skeletonHintText;
 
+    public GameObject objectiveList;
+    public GameObject keyCountText;
+
     public bool givingHint;
 
     public bool gameOverTriggered;
@@ -63,6 +66,17 @@ public class UIManager : MonoBehaviour
         gameManager = GameManager.gmInstance;
 
         tempSkeleton = GameObject.FindGameObjectWithTag("Skeleton");
+
+        objectiveList = GameObject.FindGameObjectWithTag("Objectives");
+        keyCountText = objectiveList.transform.Find("KeyCountInfo").gameObject;
+
+        keyTextUpdate();
+    }
+
+    public void keyTextUpdate()
+    {
+        keyCountText.GetComponent<TMPro.TextMeshProUGUI>().text = "\n\n\n\nObjective: Find the Keys ("
+            + player.GetComponent<PlayerController>().keyCount + "/3)";
     }
 
     public void keyColor(int keySlot, bool isObtained)

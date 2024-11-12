@@ -205,6 +205,7 @@ public class PlayerController : MonoBehaviour
                     }
                 }
                 keyCount++;
+                UIManager.UImanager.keyTextUpdate();
                 return;
             }
 
