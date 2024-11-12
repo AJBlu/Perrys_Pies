@@ -91,7 +91,7 @@ public class UIManager : MonoBehaviour
 
     public void keyTextUpdate()
     {
-        keyCountText.GetComponent<TMPro.TextMeshProUGUI>().text = "\n\n\n\nObjective: Find the Keys ("
+        keyCountText.GetComponent<TMPro.TextMeshProUGUI>().text = "\n\n\n\n\nObjective: Find the Keys ("
             + player.GetComponent<PlayerController>().keyCount + "/3)";
     }
 
