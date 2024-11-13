@@ -172,6 +172,7 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("Better start running!");
                     GameManager gameManager = FindObjectOfType<GameManager>();
                     gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
+                    UIManager.UImanager.crossOff("PieTinInfo");
                     return;
                 }
             }

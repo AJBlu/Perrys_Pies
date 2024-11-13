@@ -32,12 +32,16 @@ public class UIManager : MonoBehaviour
     public GameObject skeletonHintText;
 
     public GameObject objectiveList;
+    public GameObject pieTinText;
+    public GameObject escapeText;
     public GameObject keyCountText;
+    public GameObject returnKeyText;
 
     public bool givingHint;
 
     public bool gameOverTriggered;
-   
+
+    Color middleGray = new Color32(128, 128, 128, 255);
 
     private void Awake()
     {
@@ -68,14 +72,72 @@ public class UIManager : MonoBehaviour
         tempSkeleton = GameObject.FindGameObjectWithTag("Skeleton");
 
         objectiveList = GameObject.FindGameObjectWithTag("Objectives");
+        pieTinText = objectiveList.transform.Find("PieTinInfo").gameObject;
+        escapeText = objectiveList.transform.Find("EscapeInfo").gameObject;
         keyCountText = objectiveList.transform.Find("KeyCountInfo").gameObject;
+        returnKeyText = objectiveList.transform.Find("ReturnKeyInfo").gameObject;
 
+        squareOne();
         keyTextUpdate();
+    }
+    
+    public void squareOne()
+    {
+        pieTinText.GetComponent<TMPro.TextMeshProUGUI>().color = Color.white;
+        escapeText.transform.localPosition = new Vector2(escapeText.transform.localPosition.x, -82.52f);
+        escapeText.GetComponent<TMPro.TextMeshProUGUI>().alpha = 0f;
+        keyCountText.transform.localPosition = new Vector2(escapeText.transform.localPosition.x, -134.52f);
+        keyCountText.GetComponent<TMPro.TextMeshProUGUI>().alpha = 0f;
+        returnKeyText.transform.localPosition = new Vector2(escapeText.transform.localPosition.x, -186.52f);
+        returnKeyText.GetComponent<TMPro.TextMeshProUGUI>().alpha = 0f;
+    }
+
+    GameObject tempText;
+    string tempTextContents;
+
+    public void crossOff(string clearedObjective)
+    {
+        tempText = objectiveList.transform.Find(clearedObjective).gameObject;
+        tempTextContents = tempText.GetComponent<TMPro.TextMeshProUGUI>().text;
+
+        tempText.GetComponent<TMPro.TextMeshProUGUI>().text = "<s>" + tempTextContents;
+        tempText.GetComponent<TMPro.TextMeshProUGUI>().color = middleGray;
+        tempText.GetComponent<TMPro.TextMeshProUGUI>().alpha = 2;
+
+        if (clearedObjective == "PieTinInfo")
+        {
+            escapeText.GetComponent<TMPro.TextMeshProUGUI>().alpha = 1f;
+            keyCountText.GetComponent<TMPro.TextMeshProUGUI>().alpha = 1f;
+        }
+
+        StartCoroutine(FadeTextToZeroAlpha(2f, tempText, tempText.name));
+
+        tempText = null;
+        tempTextContents = null;
+    }
+
+    public IEnumerator FadeTextToZeroAlpha(float start, GameObject FadeText, string textName)
+    {
+        while (FadeText.GetComponent<TMPro.TextMeshProUGUI>().alpha > 0.0f)
+        {
+            FadeText.GetComponent<TMPro.TextMeshProUGUI>().color = new Color
+                (FadeText.GetComponent<TMPro.TextMeshProUGUI>().color.r,
+                FadeText.GetComponent<TMPro.TextMeshProUGUI>().color.g,
+                FadeText.GetComponent<TMPro.TextMeshProUGUI>().color.b,
+                FadeText.GetComponent<TMPro.TextMeshProUGUI>().color.a - (Time.deltaTime / start));
+            yield return null;
+        }
+
+        if (textName == "PieTinInfo")
+        {
+            escapeText.transform.localPosition = new Vector2(escapeText.transform.localPosition.x, -4.522247f);
+            keyCountText.transform.localPosition = new Vector2(escapeText.transform.localPosition.x, -56.54f);
+        }
     }
 
     public void keyTextUpdate()
     {
-        keyCountText.GetComponent<TMPro.TextMeshProUGUI>().text = "\n\n\n\nObjective: Find the Keys ("
+        keyCountText.GetComponent<TMPro.TextMeshProUGUI>().text = "Objective: Find the Keys ("
             + player.GetComponent<PlayerController>().keyCount + "/3)";
     }
 
