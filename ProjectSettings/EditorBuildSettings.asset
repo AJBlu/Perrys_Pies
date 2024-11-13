@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/LevelDesignScene/Scenes/MainMenu.unity
     guid: 26e8e8b0a7df619488a9cde3f8e4c629
   - enabled: 1
-    path: Assets/LevelDesignScene/Scenes/Basement.unity
+    path: Assets/LevelDesignScene/Scenes/Basement_Build.unity
     guid: 5c4fca73ad8ccfe419390762c1d81ce9
   - enabled: 1
     path: Assets/LevelDesignScene/Scenes/Bakery.unity
