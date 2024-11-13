@@ -36,6 +36,7 @@ TagManager:
   - CanDeter
   - CanAttract
   - Objectives
+  - MainMenu
   layers:
   - Default
   - TransparentFX
