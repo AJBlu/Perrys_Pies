@@ -197,7 +197,7 @@ public class Sensor : MonoBehaviour
         }
         else if (priority == Priority.SOUNDTRAP || priority == Priority.ATTRACTANT)
         {
-            //distance is checked within the soundtrap and attractants code, speed is set in navigation
+            Debug.Log("Soundtrap or throwable triggered.");
             Navigation.CheckNewNodePriority(sourceTransform, priority);
             
         }

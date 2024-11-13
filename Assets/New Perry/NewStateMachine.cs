@@ -14,7 +14,15 @@ public class NewStateMachine : MonoBehaviour
 
     public void ChangeState(States newState)
     {
-        currentState = newState;
-        StateChange.Invoke(currentState);
+        if (currentState != States.TRAPPED)
+        {
+            currentState = newState;
+            StateChange.Invoke(currentState);
+        }
+    }
+
+    public void UntrapPerry(States untrapState)
+    {
+        currentState = untrapState;
     }
 }

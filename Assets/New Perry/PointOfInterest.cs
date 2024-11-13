@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class NewPointOfInterest : MonoBehaviour
 {
 
     public bool isPatrolNode;
+
+    public bool isTrappedNode;
 
     public Priority priority;
 
@@ -17,11 +20,15 @@ public class NewPointOfInterest : MonoBehaviour
 
     public GameObject nextNode;
 
+    public float TrapDuration;
+
+    private NavMeshAgent NMA;
+
     private void Awake()
     {
         point_transform = transform;
         Navigation = GameObject.FindGameObjectWithTag("Perry").GetComponent<Navigation>();
-        if (!isPatrolNode)
+        if (!isPatrolNode || !isTrappedNode)
         {
             StartCoroutine(RelevanceCountdown());
             NodePosition = 99;
@@ -52,12 +59,16 @@ public class NewPointOfInterest : MonoBehaviour
 
         if(other.gameObject.tag == "Perry")
         {
-            if (!isPatrolNode)
+            if (isTrappedNode)
+            {
+                StartCoroutine(Trapped(TrapDuration));
+            }
+            else if (!isPatrolNode || !isTrappedNode)
             {
                 Debug.Log("Collided with Perry. Deleting node.");
                 RemoveNode();
             }
-            else
+            else 
             {
 
                     Debug.Log("Collided with Perry. Going to next node in list.");
@@ -66,6 +77,15 @@ public class NewPointOfInterest : MonoBehaviour
                 
             }
         }
+    }
+
+    public IEnumerator Trapped(float TrapDuration)
+    {
+        NewStateMachine nsm = GameObject.FindGameObjectWithTag("Perry").GetComponent<NewStateMachine>();
+        nsm.ChangeState(States.TRAPPED);
+        yield return new WaitForSeconds(TrapDuration);
+        nsm.UntrapPerry(States.PATROL);
+        RemoveNode();
     }
 
 }
