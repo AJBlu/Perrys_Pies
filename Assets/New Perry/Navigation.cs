@@ -134,7 +134,6 @@ public class Navigation : MonoBehaviour
         {
             newNode.GetComponent<NewPointOfInterest>().isTrappedNode = true;
             newNode.GetComponent<NewPointOfInterest>().TrapDuration = 5f;
-
         }
         return newNode;
     }
@@ -154,7 +153,7 @@ public class Navigation : MonoBehaviour
         }
         if(state == States.TRAPPED)
         {
-            NavMeshAgent.speed = 0;
+            NavMeshAgent.speed = PursuitSpeed;
         }
     }
 

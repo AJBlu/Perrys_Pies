@@ -51,6 +51,11 @@ public class NewPointOfInterest : MonoBehaviour
     private IEnumerator RelevanceCountdown()
     {
         yield return new WaitForSeconds(10f);
+        NewStateMachine nsm = GameObject.FindGameObjectWithTag("Perry").GetComponent<NewStateMachine>();
+        if(nsm.currentState == States.TRAPPED)
+        {
+            nsm.currentState = States.PATROL;
+        } 
         Destroy(this.gameObject);
     }
 
