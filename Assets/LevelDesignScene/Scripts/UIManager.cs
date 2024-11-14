@@ -41,6 +41,10 @@ public class UIManager : MonoBehaviour
 
     public bool gameOverTriggered;
 
+    GameObject pauseMenu;
+    GameObject controls;
+    GameObject controlsButton;
+
     Color middleGray = new Color32(128, 128, 128, 255);
 
     private void Awake()
@@ -58,6 +62,17 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
+        controls = GameObject.Find("Controls");
+        controlsButton = controls.transform.Find("GoBack").gameObject;
+
+        controls.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+        controlsButton.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+
+        controlsButton.GetComponent<Button>().interactable = false;
+        controlsButton.transform.Find("Text (TMP)").gameObject.GetComponent<TMPro.TextMeshProUGUI>().color =
+            new Color32(50, 50, 50, 0);
+
         checkForMissingStuff();
         for (int i = 0; i < keyImages.Count; i++)
         {
@@ -114,6 +129,26 @@ public class UIManager : MonoBehaviour
 
         tempText = null;
         tempTextContents = null;
+    }
+
+    public void showControls()
+    {
+        pauseMenu.transform.localPosition = new Vector3(0, -600, 0);
+        controls.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        controlsButton.GetComponent<Image>().color = new Color(1, 0, 0, 1);
+        controlsButton.GetComponent<Button>().interactable = true;
+        controlsButton.transform.Find("Text (TMP)").gameObject.GetComponent<TMPro.TextMeshProUGUI>().color =
+            new Color32(50, 50, 50, 255);
+    }
+
+    public void hideControls()
+    {
+        pauseMenu.transform.localPosition = new Vector3(0, -7.5f, 0);
+        controls.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+        controlsButton.GetComponent<Image>().color = new Color(1, 0, 0, 0);
+        controlsButton.GetComponent<Button>().interactable = false;
+        controlsButton.transform.Find("Text (TMP)").gameObject.GetComponent<TMPro.TextMeshProUGUI>().color =
+            new Color32(50, 50, 50, 0);
     }
 
     public IEnumerator FadeTextToZeroAlpha(float start, GameObject FadeText, string textName)
