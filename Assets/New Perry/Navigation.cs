@@ -89,7 +89,7 @@ public class Navigation : MonoBehaviour
                     Debug.Log("Hearing node found. Going to Search state.");
                     NewStateMachine.ChangeState(States.SEARCH);
                     //nodes that require Perry to sprint to location instead of usual search speed
-                    if(HearingNode.priority == Priority.DETERRENT || HearingNode.priority == Priority.DETERRENT || HearingNode.priority == Priority.SOUNDTRAP)
+                    if(HearingNode.priority == Priority.ATTRACTANT || HearingNode.priority == Priority.DETERRENT || HearingNode.priority == Priority.SOUNDTRAP)
                     {
                         NavMeshAgent.speed = PursuitSpeed;
                     }
@@ -130,6 +130,12 @@ public class Navigation : MonoBehaviour
         var newNode = Instantiate(PointOfInterest, noisePosition.position, transform.rotation);
         newNode.GetComponent<NewPointOfInterest>().priority = priority;
         newNode.GetComponent<NewPointOfInterest>().Navigation = this;
+        if(priority == Priority.ATTRACTANT)
+        {
+            newNode.GetComponent<NewPointOfInterest>().isTrappedNode = true;
+            newNode.GetComponent<NewPointOfInterest>().TrapDuration = 5f;
+
+        }
         return newNode;
     }
 
@@ -145,6 +151,10 @@ public class Navigation : MonoBehaviour
         if(state == States.PURSUIT)
         {
             NavMeshAgent.speed = PursuitSpeed;
+        }
+        if(state == States.TRAPPED)
+        {
+            NavMeshAgent.speed = 0;
         }
     }
 
