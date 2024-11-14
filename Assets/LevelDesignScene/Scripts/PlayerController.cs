@@ -152,6 +152,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void debugSlotAssignment(InputAction.CallbackContext obj)
+    {
+        if (Input.GetKey(KeyCode.Keypad1)) UIManager.UImanager.slotUpdate(0, "BallDeter");
+        if (Input.GetKey(KeyCode.Keypad2)) UIManager.UImanager.slotUpdate(0, "BagDeter");
+        if (Input.GetKey(KeyCode.Keypad3)) UIManager.UImanager.slotUpdate(0, "BellAttract");
+        if (Input.GetKey(KeyCode.Keypad4)) UIManager.UImanager.slotUpdate(0, "SprayAttract");
+        if (Input.GetKey(KeyCode.Keypad5)) UIManager.UImanager.slotUpdate(0, "CandleAttract");
+        if (Input.GetKey(KeyCode.Keypad6)) UIManager.UImanager.slotUpdate(0, "CanDeter");
+        if (Input.GetKey(KeyCode.Keypad7)) UIManager.UImanager.slotUpdate(0, "PieDeterA");
+    }
+
     public void storeLogic()
     {
         bool isStored = false;

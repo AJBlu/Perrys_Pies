@@ -41,11 +41,15 @@ public class UIManager : MonoBehaviour
 
     public bool gameOverTriggered;
 
+    public List<Sprite> distractionSprites;
+
     GameObject pauseMenu;
     GameObject controls;
     GameObject controlsButton;
 
     Color middleGray = new Color32(128, 128, 128, 255);
+
+
 
     private void Awake()
     {
@@ -224,16 +228,23 @@ public class UIManager : MonoBehaviour
 
     public void slotUpdate(int slotNumber, string slotName)
     {
-        if (slotName == "BallDeter" || slotName == "KeyDeter") inventorySlots[slotNumber].GetComponent<Image>().color = Color.blue;
-        else if (slotName == "BagDeter") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(238, 229, 190, 255);
-        else if (slotName == "BellAttract") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(210, 180, 140, 255);
-        else if (slotName == "SprayAttract") inventorySlots[slotNumber].GetComponent<Image>().color = Color.red;
-        else if (slotName == "CandleAttract") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(255, 128, 255, 255);
-        else if (slotName == "CanDeter") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(128, 0, 0, 255);
-        else if (slotName == "PieDeterA") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(128, 255, 0, 255);
-        else if (slotName == "PieDeterB") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(96, 0, 192, 255);
-        else if (slotName == "PieDeterC") inventorySlots[slotNumber].GetComponent<Image>().color = new Color32(173, 41, 56, 255);
-        else if (slotName == null) inventorySlots[slotNumber].GetComponent<Image>().color = Color.white;
+        if (slotName == null) inventorySlots[slotNumber].GetComponent<Image>().color = new Color(1, 1, 1, 0);
+        else
+        {
+            inventorySlots[slotNumber].GetComponent<Image>().color = new Color(1, 1, 1, 1);
+
+            Debug.Log("Recieved Item Name: " + slotName);
+
+            if (slotName == "BallDeter" || slotName == "KeyDeter") inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[0];
+            else if (slotName == "BagDeter") inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[1];
+            else if (slotName == "BellAttract") inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[2];
+            else if (slotName == "SprayAttract") inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[3];
+            else if (slotName == "CandleAttract") inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[4];
+            else if (slotName == "CanDeter") inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[5];
+            else if (slotName == "PieDeterA") inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[6];
+            else if (slotName == "PieDeterB") inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[7];
+            else if (slotName == "PieDeterC") inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[8];
+        }
     }
 
     public void checkForMissingStuff()
