@@ -228,22 +228,62 @@ public class UIManager : MonoBehaviour
 
     public void slotUpdate(int slotNumber, string slotName)
     {
-        if (slotName == null) inventorySlots[slotNumber].GetComponent<Image>().color = new Color(1, 1, 1, 0);
+        if (slotName == null)
+        {
+            inventorySlots[slotNumber].GetComponent<Image>().rectTransform.sizeDelta = new Vector3(75f, 75f, 1);
+            inventorySlots[slotNumber].GetComponent<Image>().color = new Color(1, 1, 1, 0);
+        }
         else
         {
             inventorySlots[slotNumber].GetComponent<Image>().color = new Color(1, 1, 1, 1);
 
             Debug.Log("Recieved Item Name: " + slotName);
 
-            if (slotName == "BallDeter" || slotName == "KeyDeter") inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[0];
-            else if (slotName == "BagDeter") inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[1];
-            else if (slotName == "BellAttract") inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[2];
-            else if (slotName == "SprayAttract") inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[3];
-            else if (slotName == "CandleAttract") inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[4];
-            else if (slotName == "CanDeter") inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[5];
-            else if (slotName == "PieDeterA") inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[6];
-            else if (slotName == "PieDeterB") inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[7];
-            else if (slotName == "PieDeterC") inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[8];
+            if (slotName == "BallDeter" || slotName == "KeyDeter")
+            {
+                inventorySlots[slotNumber].GetComponent<Image>().rectTransform.sizeDelta = new Vector3(75f, 70.89f, 1);
+                inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[0];
+            }
+            else if (slotName == "BagDeter")
+            {
+                inventorySlots[slotNumber].GetComponent<Image>().rectTransform.sizeDelta = new Vector3(75f, 24.14f, 1);
+                inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[1];
+            }
+            else if (slotName == "BellAttract")
+            {
+                inventorySlots[slotNumber].GetComponent<Image>().rectTransform.sizeDelta = new Vector3(75f, 49.81f, 1);
+                inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[2];
+            }
+            else if (slotName == "SprayAttract")
+            {
+                inventorySlots[slotNumber].GetComponent<Image>().rectTransform.sizeDelta = new Vector3(20.27f, 75f, 1);
+                inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[3];
+            }
+            else if (slotName == "CandleAttract")
+            {
+                inventorySlots[slotNumber].GetComponent<Image>().rectTransform.sizeDelta = new Vector3(71.41f, 75f, 1);
+                inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[4];
+            }
+            else if (slotName == "CanDeter")
+            {
+                inventorySlots[slotNumber].GetComponent<Image>().rectTransform.sizeDelta = new Vector3(50.92f, 75f, 1);
+                inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[5];
+            }
+            else if (slotName == "PieDeterA")
+            {
+                inventorySlots[slotNumber].GetComponent<Image>().rectTransform.sizeDelta = new Vector3(75f, 56.29f, 1);
+                inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[6];
+            }
+            else if (slotName == "PieDeterB")
+            {
+                inventorySlots[slotNumber].GetComponent<Image>().rectTransform.sizeDelta = new Vector3(75f, 56.29f, 1);
+                inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[6];
+            }
+            else if (slotName == "PieDeterC")
+            {
+                inventorySlots[slotNumber].GetComponent<Image>().rectTransform.sizeDelta = new Vector3(75f, 56.29f, 1);
+                inventorySlots[slotNumber].GetComponent<Image>().sprite = distractionSprites[6];
+            }
         }
     }
 
