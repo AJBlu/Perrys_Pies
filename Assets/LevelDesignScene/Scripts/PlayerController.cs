@@ -154,6 +154,7 @@ public class PlayerController : MonoBehaviour
 
     public void debugSlotAssignment(InputAction.CallbackContext obj)
     {
+        if (Input.GetKey(KeyCode.Keypad0)) UIManager.UImanager.slotUpdate(0, null);
         if (Input.GetKey(KeyCode.Keypad1)) UIManager.UImanager.slotUpdate(0, "BallDeter");
         if (Input.GetKey(KeyCode.Keypad2)) UIManager.UImanager.slotUpdate(0, "BagDeter");
         if (Input.GetKey(KeyCode.Keypad3)) UIManager.UImanager.slotUpdate(0, "BellAttract");

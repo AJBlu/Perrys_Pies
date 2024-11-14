@@ -344,6 +344,17 @@
                 },
                 {
                     "name": "",
+                    "id": "b3bf651e-fa0d-4591-8e2f-f86e0354b57c",
+                    "path": "<Keyboard>/numpad0",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "DebugSlotAssignment",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "976e99bd-d994-4f20-a813-2000d0bd5c6a",
                     "path": "<Keyboard>/numpad1",
                     "interactions": "",
