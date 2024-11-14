@@ -27,27 +27,15 @@ public class Attractant_Script : MonoBehaviour
             if (!_coroutineRunning)
                 StartCoroutine(_radiusAction());
         }
-        if (isPerryTrapped)
-        {
-
-            if (nsm.currentState != States.TRAPPED)
-            {
-                isPerryTrapped = false;
-                StartCoroutine(_cleanup());
-            }
-        }
     }
 
     public IEnumerator ThrowableCoroutine()
     {
         Debug.Log("Throwable Coroutine Starting");
-        NavMeshAgent PerryNMA = GameObject.FindGameObjectWithTag("Perry").GetComponent<NavMeshAgent>();
         Sensor _p = GameObject.FindGameObjectWithTag("Perry").GetComponent<Sensor>();
         _p.OnNoiseEvent(gameObject.transform, Priority.ATTRACTANT);
-
-        PerryNMA.isStopped = true;
         yield return new WaitForSeconds(Duration);
-        PerryNMA.isStopped = false;
+        StartCoroutine(_cleanup());
     }
     private IEnumerator _radiusAction()
     {
@@ -70,7 +58,7 @@ public class Attractant_Script : MonoBehaviour
                     {
                         if (hit.collider.gameObject.tag == "Perry")
                         {
-                            Debug.Log("Perry found and starting deterrent action.");
+                            Debug.Log("Perry found and starting attractant action.");
                             ThrowableCoroutine();
                         }
                     }

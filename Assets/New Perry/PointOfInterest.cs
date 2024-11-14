@@ -23,12 +23,14 @@ public class NewPointOfInterest : MonoBehaviour
     public float TrapDuration;
 
     private NavMeshAgent NMA;
+    private NewStateMachine nsm;
+
 
     private void Awake()
     {
         point_transform = transform;
         Navigation = GameObject.FindGameObjectWithTag("Perry").GetComponent<Navigation>();
-        if (!isPatrolNode || !isTrappedNode)
+        if (!isPatrolNode && !isTrappedNode)
         {
             StartCoroutine(RelevanceCountdown());
             NodePosition = 99;
@@ -86,10 +88,13 @@ public class NewPointOfInterest : MonoBehaviour
 
     public IEnumerator Trapped(float TrapDuration)
     {
-        NewStateMachine nsm = GameObject.FindGameObjectWithTag("Perry").GetComponent<NewStateMachine>();
-        nsm.ChangeState(States.TRAPPED);
+        nsm = GameObject.FindGameObjectWithTag("Perry").GetComponent<NewStateMachine>();
+        NMA = GameObject.FindGameObjectWithTag("Perry").GetComponent<NavMeshAgent>();
+        NMA.speed = 0;
         yield return new WaitForSeconds(TrapDuration);
-        nsm.UntrapPerry(States.PATROL);
+        if(nsm.currentState == States.TRAPPED)
+            nsm.UntrapPerry(States.PATROL);
+        nsm.ChangeState(States.PATROL);
         RemoveNode();
     }
 
