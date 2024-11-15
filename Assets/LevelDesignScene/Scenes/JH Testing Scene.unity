@@ -2503,7 +2503,14 @@ MonoBehaviour:
   returnKeyText: {fileID: 0}
   givingHint: 0
   gameOverTriggered: 0
-  distractionSprites: []
+  distractionSprites:
+  - {fileID: 695038436, guid: 9f4b38677962c8344ab7b214a8039cad, type: 3}
+  - {fileID: -923804534, guid: 9f4b38677962c8344ab7b214a8039cad, type: 3}
+  - {fileID: 684826610, guid: c5d73653c95ac4542922f235cc8914fe, type: 3}
+  - {fileID: 1741387454, guid: c5d73653c95ac4542922f235cc8914fe, type: 3}
+  - {fileID: 252915516, guid: c5d73653c95ac4542922f235cc8914fe, type: 3}
+  - {fileID: 1011327794, guid: 9f4b38677962c8344ab7b214a8039cad, type: 3}
+  - {fileID: -575280515, guid: 9f4b38677962c8344ab7b214a8039cad, type: 3}
 --- !u!4 &599591484
 Transform:
   m_ObjectHideFlags: 0
