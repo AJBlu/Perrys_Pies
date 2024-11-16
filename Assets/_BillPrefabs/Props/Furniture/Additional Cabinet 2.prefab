@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1512581727454619839}
   - component: {fileID: 2166499681526500606}
   - component: {fileID: 3012308703876752216}
+  - component: {fileID: 8710142071874126336}
   m_Layer: 0
   m_Name: addtional_cabinet_2
   m_TagString: Untagged
@@ -103,8 +104,29 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.025120668, y: 0.012492289, z: 0.013276739}
-  m_Center: {x: -9.313226e-10, y: 0, z: 6.9849193e-10}
+  m_Size: {x: 0.024171105, y: 0.012492289, z: 0.008516721}
+  m_Center: {x: 0.00047479998, y: 0, z: -0.00240533}
+--- !u!65 &8710142071874126336
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1907800178757596644}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.02413388, y: 0.0110188415, z: 0.006288049}
+  m_Center: {x: -0.00049343106, y: -0.0007367393, z: 0.003494357}
 --- !u!1 &6027671344478930468
 GameObject:
   m_ObjectHideFlags: 0
