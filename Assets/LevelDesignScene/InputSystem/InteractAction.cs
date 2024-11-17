@@ -143,6 +143,15 @@ public partial class @InteractAction: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""DebugSlotAssignment"",
+                    ""type"": ""Button"",
+                    ""id"": ""c1f350d5-a64e-4018-b9ed-c885866288e2"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -354,6 +363,94 @@ public partial class @InteractAction: IInputActionCollection2, IDisposable
                     ""action"": ""Slot5"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b3bf651e-fa0d-4591-8e2f-f86e0354b57c"",
+                    ""path"": ""<Keyboard>/numpad0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DebugSlotAssignment"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""976e99bd-d994-4f20-a813-2000d0bd5c6a"",
+                    ""path"": ""<Keyboard>/numpad1"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DebugSlotAssignment"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""42cb3d46-54db-4c36-9d1f-79710bb9a7be"",
+                    ""path"": ""<Keyboard>/numpad2"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DebugSlotAssignment"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fb5b9f3b-7189-4e21-9857-8dc3dd209a58"",
+                    ""path"": ""<Keyboard>/numpad3"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DebugSlotAssignment"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b62962af-f112-40bf-8689-c996e165df43"",
+                    ""path"": ""<Keyboard>/numpad4"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DebugSlotAssignment"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""87eb960b-29e3-43fd-b233-04ceb214842b"",
+                    ""path"": ""<Keyboard>/numpad5"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DebugSlotAssignment"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5c3b5599-a01c-4acc-9349-9b8a9215bc1e"",
+                    ""path"": ""<Keyboard>/numpad6"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DebugSlotAssignment"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""8ea1f8a5-dc9c-4c77-8a4f-b21673b8f8e6"",
+                    ""path"": ""<Keyboard>/numpad7"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""DebugSlotAssignment"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -375,6 +472,7 @@ public partial class @InteractAction: IInputActionCollection2, IDisposable
         m_PlayerControls_Slot3 = m_PlayerControls.FindAction("Slot3", throwIfNotFound: true);
         m_PlayerControls_Slot4 = m_PlayerControls.FindAction("Slot4", throwIfNotFound: true);
         m_PlayerControls_Slot5 = m_PlayerControls.FindAction("Slot5", throwIfNotFound: true);
+        m_PlayerControls_DebugSlotAssignment = m_PlayerControls.FindAction("DebugSlotAssignment", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -449,6 +547,7 @@ public partial class @InteractAction: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControls_Slot3;
     private readonly InputAction m_PlayerControls_Slot4;
     private readonly InputAction m_PlayerControls_Slot5;
+    private readonly InputAction m_PlayerControls_DebugSlotAssignment;
     public struct PlayerControlsActions
     {
         private @InteractAction m_Wrapper;
@@ -466,6 +565,7 @@ public partial class @InteractAction: IInputActionCollection2, IDisposable
         public InputAction @Slot3 => m_Wrapper.m_PlayerControls_Slot3;
         public InputAction @Slot4 => m_Wrapper.m_PlayerControls_Slot4;
         public InputAction @Slot5 => m_Wrapper.m_PlayerControls_Slot5;
+        public InputAction @DebugSlotAssignment => m_Wrapper.m_PlayerControls_DebugSlotAssignment;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControls; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -514,6 +614,9 @@ public partial class @InteractAction: IInputActionCollection2, IDisposable
             @Slot5.started += instance.OnSlot5;
             @Slot5.performed += instance.OnSlot5;
             @Slot5.canceled += instance.OnSlot5;
+            @DebugSlotAssignment.started += instance.OnDebugSlotAssignment;
+            @DebugSlotAssignment.performed += instance.OnDebugSlotAssignment;
+            @DebugSlotAssignment.canceled += instance.OnDebugSlotAssignment;
         }
 
         private void UnregisterCallbacks(IPlayerControlsActions instance)
@@ -557,6 +660,9 @@ public partial class @InteractAction: IInputActionCollection2, IDisposable
             @Slot5.started -= instance.OnSlot5;
             @Slot5.performed -= instance.OnSlot5;
             @Slot5.canceled -= instance.OnSlot5;
+            @DebugSlotAssignment.started -= instance.OnDebugSlotAssignment;
+            @DebugSlotAssignment.performed -= instance.OnDebugSlotAssignment;
+            @DebugSlotAssignment.canceled -= instance.OnDebugSlotAssignment;
         }
 
         public void RemoveCallbacks(IPlayerControlsActions instance)
@@ -589,5 +695,6 @@ public partial class @InteractAction: IInputActionCollection2, IDisposable
         void OnSlot3(InputAction.CallbackContext context);
         void OnSlot4(InputAction.CallbackContext context);
         void OnSlot5(InputAction.CallbackContext context);
+        void OnDebugSlotAssignment(InputAction.CallbackContext context);
     }
 }
