@@ -63,6 +63,14 @@ public class Navigation : MonoBehaviour
                 }
 
             }
+            else if (NewStateMachine.GetState() == States.TRAPPED)
+            {
+                Debug.Log("Going to attractant node.");
+                if (!NavMeshAgent.hasPath)
+                {
+                    NavMeshAgent.SetDestination(HearingNode.gameObject.transform.position);
+                }
+            }
             //pursuit
             else
             {
@@ -77,22 +85,19 @@ public class Navigation : MonoBehaviour
                 isPatrolling = false;
                 isSearching = false;
                 if (HearingNode == null && NewStateMachine.GetState() != States.PATROL)
-                {
+                {   
+                    if(NewStateMachine.currentState == States.TRAPPED) { NewStateMachine.UntrapPerry(States.PATROL); }
                     NavMeshAgent.ResetPath();
                     Debug.Log("No more hearing nodes. Going to Patrol state.");
                     NewStateMachine.ChangeState(States.PATROL);
                     isPatrolling = true;
                 }
-                else if(HearingNode != null && NewStateMachine.GetState() != States.SEARCH)
+                else if(HearingNode != null && NewStateMachine.GetState() != States.SEARCH && NewStateMachine.currentState != States.TRAPPED)
                 {
                     NavMeshAgent.ResetPath();
                     Debug.Log("Hearing node found. Going to Search state.");
                     NewStateMachine.ChangeState(States.SEARCH);
                     //nodes that require Perry to sprint to location instead of usual search speed
-                    if(HearingNode.priority == Priority.ATTRACTANT || HearingNode.priority == Priority.DETERRENT || HearingNode.priority == Priority.SOUNDTRAP)
-                    {
-                        NavMeshAgent.speed = PursuitSpeed;
-                    }
                 }
             }
         }
@@ -123,6 +128,7 @@ public class Navigation : MonoBehaviour
             HearingNode = CreateHearingNode(sourceTransform, priority).GetComponent<NewPointOfInterest>();
             oldNode.RemoveNode();
         }
+
     }
 
     private GameObject CreateHearingNode(Transform noisePosition, Priority priority)
@@ -134,7 +140,6 @@ public class Navigation : MonoBehaviour
         {
             newNode.GetComponent<NewPointOfInterest>().isTrappedNode = true;
             newNode.GetComponent<NewPointOfInterest>().TrapDuration = 5f;
-
         }
         return newNode;
     }
@@ -154,7 +159,7 @@ public class Navigation : MonoBehaviour
         }
         if(state == States.TRAPPED)
         {
-            NavMeshAgent.speed = 0;
+            NavMeshAgent.speed = PursuitSpeed;
         }
     }
 

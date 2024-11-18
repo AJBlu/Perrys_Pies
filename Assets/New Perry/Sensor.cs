@@ -58,11 +58,11 @@ public class Sensor : MonoBehaviour
                     {
                         if (hit.collider.gameObject.tag == "Player")
                         {
-                            if (NewStateMachine.GetState() != States.PURSUIT)
+                            if (NewStateMachine.GetState() != States.PURSUIT && NewStateMachine.GetState() != States.TRAPPED) 
                             {
                                 Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward) * _cd, Color.green);
                                 Debug.Log("Player seen up close, changing to pursuit state.");
-                                Navigation.NavMeshAgent.ResetPath();
+                                //Navigation.NavMeshAgent.ResetPath();
                                 NewStateMachine.ChangeState(States.PURSUIT);
                             }
                             if (!checkingEyeContact && NewStateMachine.GetState() == States.PURSUIT)
