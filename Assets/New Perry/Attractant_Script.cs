@@ -32,6 +32,7 @@ public class Attractant_Script : MonoBehaviour
     public IEnumerator ThrowableCoroutine()
     {
         Debug.Log("Throwable Coroutine Starting");
+        GameObject.FindGameObjectWithTag("Perry").GetComponent<NewStateMachine>().ChangeState(States.TRAPPED);
         Sensor _p = GameObject.FindGameObjectWithTag("Perry").GetComponent<Sensor>();
         _p.OnNoiseEvent(gameObject.transform, Priority.ATTRACTANT);
         yield return new WaitForSeconds(Duration);

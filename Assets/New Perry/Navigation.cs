@@ -140,12 +140,6 @@ public class Navigation : MonoBehaviour
         {
             newNode.GetComponent<NewPointOfInterest>().isTrappedNode = true;
             newNode.GetComponent<NewPointOfInterest>().TrapDuration = 5f;
-<<<<<<< Updated upstream
-=======
-            NavMeshAgent.ResetPath();
-            NewStateMachine.ChangeState(States.TRAPPED);
-
->>>>>>> Stashed changes
         }
         return newNode;
     }
@@ -166,10 +160,6 @@ public class Navigation : MonoBehaviour
         if(state == States.TRAPPED)
         {
             NavMeshAgent.speed = PursuitSpeed;
-<<<<<<< Updated upstream
-=======
-            //Empty state designed to make Perry run to whatever
->>>>>>> Stashed changes
         }
     }
 

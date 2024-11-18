@@ -40,22 +40,11 @@ public class Deterrent_ : MonoBehaviour
     public IEnumerator ThrowableCoroutine()
     {
         Debug.Log("Throwable Coroutine Starting");
-<<<<<<< Updated upstream
-=======
-        nsm = GameObject.FindGameObjectWithTag("Perry").GetComponent<NewStateMachine>();
-        Sensor _p = GameObject.FindGameObjectWithTag("Perry").GetComponent<Sensor>();
-        //_p.OnNoiseEvent(gameObject.transform, Priority.DETERRENT);
->>>>>>> Stashed changes
-
         nsm = GameObject.FindGameObjectWithTag("Perry").GetComponent<NewStateMachine>();
         Navigation nav = GameObject.FindGameObjectWithTag("Perry").GetComponent<Navigation>();
         //_p.OnNoiseEvent(gameObject.transform, Priority.DETERRENT);
-        nsm.ChangeState(States.TRAPPED);
-<<<<<<< Updated upstream
-        nav.GetComponent<NavMeshAgent>().speed = 0;
-=======
+        //nsm.ChangeState(States.TRAPPED);
         GameObject.FindGameObjectWithTag("Perry").GetComponent<NavMeshAgent>().speed = 0;
->>>>>>> Stashed changes
         yield return new WaitForSeconds(Duration);
         nsm.UntrapPerry(States.PATROL);
     }
