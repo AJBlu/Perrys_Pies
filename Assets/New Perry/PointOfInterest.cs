@@ -70,7 +70,7 @@ public class NewPointOfInterest : MonoBehaviour
             {
                 StartCoroutine(Trapped(TrapDuration));
             }
-            else if (!isPatrolNode || !isTrappedNode)
+            else if (!isPatrolNode && !isTrappedNode)
             {
                 Debug.Log("Collided with Perry. Deleting node.");
                 RemoveNode();

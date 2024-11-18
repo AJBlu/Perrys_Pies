@@ -66,6 +66,7 @@ public class Navigation : MonoBehaviour
             else if (NewStateMachine.GetState() == States.TRAPPED)
             {
                 Debug.Log("Going to attractant node.");
+                gameObject.transform.LookAt(HearingNode.transform.position);
                 if (!NavMeshAgent.hasPath)
                 {
                     NavMeshAgent.SetDestination(HearingNode.gameObject.transform.position);
@@ -124,8 +125,13 @@ public class Navigation : MonoBehaviour
         else if(priority <= HearingNode.priority)
         {
             Debug.Log("Higher priority node or newer node of same priority, replacing old node.");
+            GameObject newNode = CreateHearingNode(sourceTransform, priority);
+            NewPointOfInterest newNodePOI = newNode.GetComponent<NewPointOfInterest>();
             NewPointOfInterest oldNode = HearingNode;
-            HearingNode = CreateHearingNode(sourceTransform, priority).GetComponent<NewPointOfInterest>();
+            if(newNode != null)
+            {
+                HearingNode = newNodePOI;
+            }
             oldNode.RemoveNode();
         }
 
@@ -133,14 +139,28 @@ public class Navigation : MonoBehaviour
 
     private GameObject CreateHearingNode(Transform noisePosition, Priority priority)
     {
-        var newNode = Instantiate(PointOfInterest, noisePosition.position, transform.rotation);
-        newNode.GetComponent<NewPointOfInterest>().priority = priority;
-        newNode.GetComponent<NewPointOfInterest>().Navigation = this;
-        if(priority == Priority.ATTRACTANT)
+        GameObject newNode = null;
+        if (HearingNode == null)
         {
+            newNode = Instantiate(PointOfInterest, noisePosition.position, transform.rotation);
+            newNode.GetComponent<NewPointOfInterest>().priority = priority;
+            newNode.GetComponent<NewPointOfInterest>().Navigation = this;
+
+        }
+        else if(Vector3.Distance(noisePosition.position, HearingNode.transform.position) < 5)
+        {
+            Debug.Log("Node not found an appropriate distance away.");
+
+        }
+        else if(priority == Priority.ATTRACTANT)
+        {
+            newNode = Instantiate(PointOfInterest, noisePosition.position, transform.rotation);
+            newNode.GetComponent<NewPointOfInterest>().priority = priority;
+            newNode.GetComponent<NewPointOfInterest>().Navigation = this;
             newNode.GetComponent<NewPointOfInterest>().isTrappedNode = true;
             newNode.GetComponent<NewPointOfInterest>().TrapDuration = 5f;
         }
+
         return newNode;
     }
 

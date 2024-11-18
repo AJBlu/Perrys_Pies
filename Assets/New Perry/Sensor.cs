@@ -46,7 +46,8 @@ public class Sensor : MonoBehaviour
                 //make decisions after checking if player is crouched
 
                 //look at player
-                gameObject.transform.LookAt(Player.transform.position);
+                if(NewStateMachine.currentState != States.TRAPPED)
+                    gameObject.transform.LookAt(Player.transform.position);
                 RaycastHit hit;
                 if (isPlayerClose(closeRadius, Player.transform))
                 {
