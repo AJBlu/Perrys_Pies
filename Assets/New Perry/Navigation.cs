@@ -13,6 +13,8 @@ public class Navigation : MonoBehaviour
     public bool reachedNode;
     public GameObject TargetNode;
 
+    public float MinNodeDistance;
+
     public float PatrolSpeed;
     public float SearchSpeed;
     public float PursuitSpeed;
@@ -147,7 +149,7 @@ public class Navigation : MonoBehaviour
             newNode.GetComponent<NewPointOfInterest>().Navigation = this;
 
         }
-        else if(Vector3.Distance(noisePosition.position, HearingNode.transform.position) < 5)
+        else if(Vector3.Distance(noisePosition.position, HearingNode.transform.position) < MinNodeDistance)
         {
             Debug.Log("Node not found an appropriate distance away.");
 
