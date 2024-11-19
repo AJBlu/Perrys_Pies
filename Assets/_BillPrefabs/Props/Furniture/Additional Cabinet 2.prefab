@@ -136,7 +136,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6793298122797691783}
-  - component: {fileID: 1285643361833789227}
   m_Layer: 0
   m_Name: Additional Cabinet 2
   m_TagString: Untagged
@@ -160,22 +159,3 @@ Transform:
   - {fileID: 4040014200832111572}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: -270, z: 0}
---- !u!205 &1285643361833789227
-LODGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6027671344478930468}
-  serializedVersion: 2
-  m_LocalReferencePoint: {x: -0.041846454, y: 0.49226838, z: -0.25031638}
-  m_Size: 1.9327561
-  m_FadeMode: 0
-  m_AnimateCrossFading: 0
-  m_LastLODIsBillboard: 0
-  m_LODs:
-  - screenRelativeHeight: 0.17727163
-    fadeTransitionWidth: 0
-    renderers:
-    - renderer: {fileID: 2166499681526500606}
-  m_Enabled: 1
