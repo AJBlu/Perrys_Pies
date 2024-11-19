@@ -152,6 +152,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    /*
     public void debugSlotAssignment(InputAction.CallbackContext obj)
     {
         if (Input.GetKey(KeyCode.Keypad0)) UIManager.UImanager.slotUpdate(0, null);
@@ -163,6 +164,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.Keypad6)) UIManager.UImanager.slotUpdate(0, "CanDeter");
         if (Input.GetKey(KeyCode.Keypad7)) UIManager.UImanager.slotUpdate(0, "PieDeterA");
     }
+    */
 
     public void storeLogic()
     {
@@ -174,6 +176,9 @@ public class PlayerController : MonoBehaviour
                 if (!keyDeterGrabbed)
                 {
                     Debug.Log("I feel like I need something else...");
+                    UIManager.UImanager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().text = "I feel like I'm\nforgetting something";
+                    UIManager.UImanager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().color = Color.white;
+                    UIManager.UImanager.fadingText.GetComponent<FadeText>().fadeTime = 2;
                     return;
                 }
                 else

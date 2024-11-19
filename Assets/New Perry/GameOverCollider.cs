@@ -20,8 +20,6 @@ public class GameOverCollider : MonoBehaviour
         UIM.gameOverTriggered = false;
         PerryStart = Perry.transform.position;
         PlayerStart = Player.transform.position;
-        Text.SetActive(false);
-        restartGameButton.SetActive(false);
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -31,8 +29,6 @@ public class GameOverCollider : MonoBehaviour
             UIM.gameOverTriggered = true;
             Perry.GetComponent<Navigation>().caughtPlayer = true;
             //Cursor.lockState = CursorLockMode.None;
-            Text.SetActive(true);
-            restartGameButton.SetActive(true);
         }
     }
 
@@ -40,8 +36,6 @@ public class GameOverCollider : MonoBehaviour
     {
         Player.transform.position = PlayerStart;
         Perry.transform.position = PerryStart;
-        Text.SetActive(false);
-        restartGameButton.SetActive(false);
         UIM.gameOverTriggered = false;
         //Cursor.lockState = CursorLockMode.Locked;
         GameOver.Invoke();

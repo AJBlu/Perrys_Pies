@@ -29,8 +29,11 @@ public class GameManager : MonoBehaviour
         else if (gmInstance != this) Destroy(gameObject);
         player = GameObject.FindGameObjectWithTag("Player");
         perry = GameObject.FindGameObjectWithTag("Perry");
-        originalPerryPosition = perry.transform.position;
-        originalPlayerPosition = player.transform.position;
+        if (perry != null)
+        {
+            originalPerryPosition = perry.transform.position;
+            originalPlayerPosition = player.transform.position;
+        }
     }
 
     // Start is called before the first frame update

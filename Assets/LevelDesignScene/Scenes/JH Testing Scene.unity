@@ -3627,8 +3627,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   perry: {fileID: 0}
   player: {fileID: 0}
-  UI: {fileID: 0}
-  EventSystem: {fileID: 0}
+  UI: {fileID: 599591482}
+  EventSystem: {fileID: 305218636}
   exitUnlocked: 0
   hiddenObjects: []
 --- !u!1 &811213606
