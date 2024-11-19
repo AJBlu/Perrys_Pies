@@ -202,7 +202,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 0
   m_VoxelSize: 0.16666667
   m_MinRegionArea: 2
-  m_NavMeshData: {fileID: 23800000, guid: 62502bb7ea7c78f44aa96ca05ce4d421, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 48a41ec9c3049774688b5f5fd1226e96, type: 2}
   m_BuildHeightMesh: 0
 --- !u!1 &7966485688578999921
 GameObject:
@@ -637,17 +637,17 @@ PrefabInstance:
     - target: {fileID: 856029761854861139, guid: 915439fd399169548b4ab469fb2c1f6d,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -23.45
+      value: -13.75
       objectReference: {fileID: 0}
     - target: {fileID: 856029761854861139, guid: 915439fd399169548b4ab469fb2c1f6d,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.12
+      value: -0.09
       objectReference: {fileID: 0}
     - target: {fileID: 856029761854861139, guid: 915439fd399169548b4ab469fb2c1f6d,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 5.49
+      value: 15.05
       objectReference: {fileID: 0}
     - target: {fileID: 856029761854861139, guid: 915439fd399169548b4ab469fb2c1f6d,
         type: 3}
@@ -697,7 +697,7 @@ PrefabInstance:
     - target: {fileID: 5515924463852469188, guid: 915439fd399169548b4ab469fb2c1f6d,
         type: 3}
       propertyPath: closeRadius
-      value: 15
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5515924463852469188, guid: 915439fd399169548b4ab469fb2c1f6d,
         type: 3}
@@ -707,7 +707,7 @@ PrefabInstance:
     - target: {fileID: 5515924463852469188, guid: 915439fd399169548b4ab469fb2c1f6d,
         type: 3}
       propertyPath: distantRadius
-      value: 18
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5515924463852469188, guid: 915439fd399169548b4ab469fb2c1f6d,
         type: 3}
