@@ -46,7 +46,9 @@ public class Deterrent_ : MonoBehaviour
         //nsm.ChangeState(States.TRAPPED);
         GameObject.FindGameObjectWithTag("Perry").GetComponent<NavMeshAgent>().speed = 0;
         yield return new WaitForSeconds(Duration);
+        GameObject.FindGameObjectWithTag("Perry").GetComponent<NavMeshAgent>().speed = nav.PatrolSpeed;
         nsm.UntrapPerry(States.PATROL);
+        nav.isPatrolling = false;
     }
     private IEnumerator _radiusAction()
     {

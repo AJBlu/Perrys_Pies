@@ -50,6 +50,7 @@ public class Navigation : MonoBehaviour
             {
                 if (!isPatrolling)
                 {
+                    Debug.Log("Starting Patrol Routine");
                     //run patrol coroutine
                     StartCoroutine(PatrolRoute());
                 }
@@ -85,15 +86,16 @@ public class Navigation : MonoBehaviour
             //pursuit has to be broken out of by its own coroutine. otherwise, patrol until there's a hearing node, then search until there isn't a hearing node
             if (NewStateMachine.GetState() != States.PURSUIT)
             {
-                isPatrolling = false;
+                //isPatrolling = false;
                 isSearching = false;
                 if (HearingNode == null && NewStateMachine.GetState() != States.PATROL)
                 {   
                     if(NewStateMachine.currentState == States.TRAPPED) { NewStateMachine.UntrapPerry(States.PATROL); }
-                    NavMeshAgent.ResetPath();
+                    //NavMeshAgent.ResetPath();
+                    NavMeshAgent.speed = PatrolSpeed;
                     Debug.Log("No more hearing nodes. Going to Patrol state.");
                     NewStateMachine.ChangeState(States.PATROL);
-                    isPatrolling = true;
+                    isPatrolling = false;
                 }
                 else if(HearingNode != null && NewStateMachine.GetState() != States.SEARCH && NewStateMachine.currentState != States.TRAPPED)
                 {
@@ -108,12 +110,21 @@ public class Navigation : MonoBehaviour
 
     public IEnumerator PatrolRoute()
     {
-        isPatrolling = true;
-        if (!NavMeshAgent.hasPath && TargetNode != null)
-            NavMeshAgent.SetDestination(TargetNode.transform.position
-                );
+        Debug.Log("Patrol route starting.");
+        //NavMeshAgent.ResetPath();
+        if (TargetNode != null)
+        {
+            Debug.Log("Setting destination here.");
+            NavMeshAgent.SetDestination(TargetNode.transform.position);
+
+        }
+
+        if (NavMeshAgent.hasPath)
+        {
+            isPatrolling = true;
+        }
+
         yield return null;
-        isPatrolling = false;
 
     }
 
@@ -170,6 +181,7 @@ public class Navigation : MonoBehaviour
     {
         if(state == States.PATROL)
         {
+            isPatrolling = false;
             NavMeshAgent.speed = PatrolSpeed;
         }
         if(state == States.SEARCH) {
