@@ -2785,6 +2785,7 @@ GameObject:
   - component: {fileID: 45434855}
   - component: {fileID: 45434854}
   - component: {fileID: 45434853}
+  - component: {fileID: 45434856}
   m_Layer: 0
   m_Name: oxygentank_low (5)
   m_TagString: Untagged
@@ -2876,6 +2877,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 45434851}
   m_Mesh: {fileID: -84987116981649727, guid: b86dc34bde3eaeb4390665bc9036af01, type: 3}
+--- !u!65 &45434856
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 45434851}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.011570431, y: 0.04519506, z: 0.0115704285}
+  m_Center: {x: 0, y: 0.022297604, z: 0}
 --- !u!4 &45784800 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3418750849858073110, guid: 7ad6e13312c422e4c95a588edaa12676,
@@ -3167,7 +3189,7 @@ PrefabInstance:
     - target: {fileID: 3779856615931851501, guid: fbe56481453fb214e84b8069d19937ff,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.1
+      value: -46.43
       objectReference: {fileID: 0}
     - target: {fileID: 3779856615931851501, guid: fbe56481453fb214e84b8069d19937ff,
         type: 3}
@@ -3177,7 +3199,7 @@ PrefabInstance:
     - target: {fileID: 3779856615931851501, guid: fbe56481453fb214e84b8069d19937ff,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -39.4
+      value: 3.22
       objectReference: {fileID: 0}
     - target: {fileID: 3779856615931851501, guid: fbe56481453fb214e84b8069d19937ff,
         type: 3}
@@ -5135,6 +5157,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4df8c8128df48314d9606669e0106be1, type: 3}
+--- !u!1 &85111875 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4157945652724556108, guid: 99678f188375f884ea84f9c1119fa966,
+    type: 3}
+  m_PrefabInstance: {fileID: 215748786}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &86969667 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4125563306237382565, guid: f540766444cf85b4083ee2f55236bace,
@@ -6101,6 +6129,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8b78a63182549147a6fd8f816ed3794, type: 3}
+--- !u!1 &104242235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4157945652724556108, guid: 99678f188375f884ea84f9c1119fa966,
+    type: 3}
+  m_PrefabInstance: {fileID: 1933303139}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &104964570
 GameObject:
   m_ObjectHideFlags: 0
@@ -10972,7 +11006,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4157945652724556108, guid: 99678f188375f884ea84f9c1119fa966,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1861552640}
   m_SourcePrefab: {fileID: 100100000, guid: 99678f188375f884ea84f9c1119fa966, type: 3}
 --- !u!4 &216338519 stripped
 Transform:
@@ -15320,6 +15358,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1933303139}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &317493190
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 104242235}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 350.99176, y: 92.94285, z: 109.199905}
+  m_Center: {x: -115.08715, y: 131.58739, z: 5.727482}
 --- !u!1 &317507452
 GameObject:
   m_ObjectHideFlags: 0
@@ -27667,6 +27726,89 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 538171167}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &538414815
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1507313815}
+    m_Modifications:
+    - target: {fileID: 4860755772469836874, guid: 426f49456aebab54cb2f6537e5e57893,
+        type: 3}
+      propertyPath: m_Name
+      value: Statue_Perry
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663172744870680047, guid: 426f49456aebab54cb2f6537e5e57893,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663172744870680047, guid: 426f49456aebab54cb2f6537e5e57893,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663172744870680047, guid: 426f49456aebab54cb2f6537e5e57893,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663172744870680047, guid: 426f49456aebab54cb2f6537e5e57893,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -15.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663172744870680047, guid: 426f49456aebab54cb2f6537e5e57893,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.07
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663172744870680047, guid: 426f49456aebab54cb2f6537e5e57893,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -14.21
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663172744870680047, guid: 426f49456aebab54cb2f6537e5e57893,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663172744870680047, guid: 426f49456aebab54cb2f6537e5e57893,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663172744870680047, guid: 426f49456aebab54cb2f6537e5e57893,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663172744870680047, guid: 426f49456aebab54cb2f6537e5e57893,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663172744870680047, guid: 426f49456aebab54cb2f6537e5e57893,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663172744870680047, guid: 426f49456aebab54cb2f6537e5e57893,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8663172744870680047, guid: 426f49456aebab54cb2f6537e5e57893,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 426f49456aebab54cb2f6537e5e57893, type: 3}
 --- !u!1001 &541297270
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27928,6 +28070,7 @@ GameObject:
   - component: {fileID: 544556143}
   - component: {fileID: 544556142}
   - component: {fileID: 544556141}
+  - component: {fileID: 544556144}
   m_Layer: 0
   m_Name: oxygentank_low (6)
   m_TagString: Untagged
@@ -28019,6 +28162,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 544556139}
   m_Mesh: {fileID: -84987116981649727, guid: b86dc34bde3eaeb4390665bc9036af01, type: 3}
+--- !u!65 &544556144
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544556139}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.011570432, y: 0.045195065, z: 0.011570429}
+  m_Center: {x: -0.000000059604645, y: 0.022297606, z: 0.000000059604645}
 --- !u!4 &545667973 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6730452901204547986, guid: 3da3328c67684724695c697022088fe9,
@@ -59343,6 +59507,7 @@ GameObject:
   - component: {fileID: 1229550780}
   - component: {fileID: 1229550779}
   - component: {fileID: 1229550778}
+  - component: {fileID: 1229550781}
   m_Layer: 0
   m_Name: propanetank_low (1)
   m_TagString: Untagged
@@ -59434,6 +59599,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1229550776}
   m_Mesh: {fileID: -2867768144339153310, guid: b86dc34bde3eaeb4390665bc9036af01, type: 3}
+--- !u!65 &1229550781
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1229550776}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.5546606, y: 1.3169155, z: 1.1352148}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1230433883
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -61589,6 +61775,7 @@ GameObject:
   - component: {fileID: 1268545722}
   - component: {fileID: 1268545721}
   - component: {fileID: 1268545720}
+  - component: {fileID: 1268545723}
   m_Layer: 0
   m_Name: oxygentank_low (1)
   m_TagString: Untagged
@@ -61680,6 +61867,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1268545718}
   m_Mesh: {fileID: -84987116981649727, guid: b86dc34bde3eaeb4390665bc9036af01, type: 3}
+--- !u!65 &1268545723
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1268545718}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.011570431, y: 0.04519506, z: 0.0115704285}
+  m_Center: {x: 0, y: 0.022297604, z: 0}
 --- !u!1 &1269272855
 GameObject:
   m_ObjectHideFlags: 0
@@ -72835,6 +73043,7 @@ Transform:
   - {fileID: 1770999029}
   - {fileID: 2102325149}
   - {fileID: 1391126175}
+  - {fileID: 1520793083}
   m_Father: {fileID: 603919384}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1507646336 stripped
@@ -73533,6 +73742,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3418750849858073110, guid: 7ad6e13312c422e4c95a588edaa12676,
     type: 3}
   m_PrefabInstance: {fileID: 1502806299}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1520793083 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8663172744870680047, guid: 426f49456aebab54cb2f6537e5e57893,
+    type: 3}
+  m_PrefabInstance: {fileID: 538414815}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1521062795
 PrefabInstance:
@@ -80719,6 +80934,7 @@ GameObject:
   - component: {fileID: 1664175242}
   - component: {fileID: 1664175241}
   - component: {fileID: 1664175240}
+  - component: {fileID: 1664175243}
   m_Layer: 0
   m_Name: propanetank_low (4)
   m_TagString: Untagged
@@ -80810,6 +81026,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1664175238}
   m_Mesh: {fileID: -2867768144339153310, guid: b86dc34bde3eaeb4390665bc9036af01, type: 3}
+--- !u!65 &1664175243
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1664175238}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.5546615, y: 1.3169155, z: 1.135215}
+  m_Center: {x: 0, y: 0, z: -0.0000019073486}
 --- !u!1 &1665053037
 GameObject:
   m_ObjectHideFlags: 0
@@ -80822,6 +81059,7 @@ GameObject:
   - component: {fileID: 1665053041}
   - component: {fileID: 1665053040}
   - component: {fileID: 1665053039}
+  - component: {fileID: 1665053042}
   m_Layer: 0
   m_Name: oxygentank_low (2)
   m_TagString: Untagged
@@ -80913,6 +81151,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1665053037}
   m_Mesh: {fileID: -84987116981649727, guid: b86dc34bde3eaeb4390665bc9036af01, type: 3}
+--- !u!65 &1665053042
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1665053037}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.011570431, y: 0.04519506, z: 0.0115704285}
+  m_Center: {x: 0, y: 0.022297604, z: 0}
 --- !u!4 &1666527286 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3418750849858073110, guid: 7ad6e13312c422e4c95a588edaa12676,
@@ -81028,6 +81287,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 325167883}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1673319838 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4157945652724556108, guid: 99678f188375f884ea84f9c1119fa966,
+    type: 3}
+  m_PrefabInstance: {fileID: 2117319177}
+  m_PrefabAsset: {fileID: 0}
+--- !u!65 &1673319840
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1673319838}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 233.80165, y: 128.77803, z: 131.04973}
+  m_Center: {x: -61.1948, y: 40.01336, z: -2.4951935}
 --- !u!1 &1676155533
 GameObject:
   m_ObjectHideFlags: 0
@@ -84211,6 +84497,7 @@ GameObject:
   - component: {fileID: 1768089146}
   - component: {fileID: 1768089145}
   - component: {fileID: 1768089144}
+  - component: {fileID: 1768089147}
   m_Layer: 0
   m_Name: oxygentank_low (3)
   m_TagString: Untagged
@@ -84302,6 +84589,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1768089142}
   m_Mesh: {fileID: -84987116981649727, guid: b86dc34bde3eaeb4390665bc9036af01, type: 3}
+--- !u!65 &1768089147
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768089142}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.011570431, y: 0.04519506, z: 0.0115704285}
+  m_Center: {x: 0.000000059604645, y: 0.022297604, z: 0.000000059604645}
 --- !u!1 &1768364034
 GameObject:
   m_ObjectHideFlags: 0
@@ -84486,6 +84794,7 @@ GameObject:
   - component: {fileID: 1770614135}
   - component: {fileID: 1770614134}
   - component: {fileID: 1770614133}
+  - component: {fileID: 1770614136}
   m_Layer: 0
   m_Name: propanetank_low (3)
   m_TagString: Untagged
@@ -84577,6 +84886,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1770614131}
   m_Mesh: {fileID: -2867768144339153310, guid: b86dc34bde3eaeb4390665bc9036af01, type: 3}
+--- !u!65 &1770614136
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1770614131}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.5546615, y: 1.3169155, z: 1.135215}
+  m_Center: {x: 0, y: 0, z: -0.0000019073486}
 --- !u!1 &1770999028
 GameObject:
   m_ObjectHideFlags: 0
@@ -86293,6 +86623,7 @@ GameObject:
   - component: {fileID: 1795994463}
   - component: {fileID: 1795994462}
   - component: {fileID: 1795994461}
+  - component: {fileID: 1795994464}
   m_Layer: 0
   m_Name: oxygentank_low (4)
   m_TagString: Untagged
@@ -86384,6 +86715,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1795994459}
   m_Mesh: {fileID: -84987116981649727, guid: b86dc34bde3eaeb4390665bc9036af01, type: 3}
+--- !u!65 &1795994464
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1795994459}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.011570431, y: 0.04519506, z: 0.0115704285}
+  m_Center: {x: 0.000000059604645, y: 0.022297604, z: 0}
 --- !u!1 &1796132618
 GameObject:
   m_ObjectHideFlags: 0
@@ -88373,6 +88725,27 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 215748786}
   m_PrefabAsset: {fileID: 0}
+--- !u!65 &1861552640
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 85111875}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 116.64963, y: 126.55466, z: 130.82712}
+  m_Center: {x: 1.5590668, y: 43.13065, z: -2.6366115}
 --- !u!1 &1862006554
 GameObject:
   m_ObjectHideFlags: 0
@@ -91329,7 +91702,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4157945652724556108, guid: 99678f188375f884ea84f9c1119fa966,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 317493190}
   m_SourcePrefab: {fileID: 100100000, guid: 99678f188375f884ea84f9c1119fa966, type: 3}
 --- !u!1 &1934574109
 GameObject:
@@ -96495,6 +96872,7 @@ GameObject:
   - component: {fileID: 2054317150}
   - component: {fileID: 2054317149}
   - component: {fileID: 2054317148}
+  - component: {fileID: 2054317151}
   m_Layer: 0
   m_Name: propanetank_low (2)
   m_TagString: Untagged
@@ -96586,6 +96964,27 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2054317146}
   m_Mesh: {fileID: -2867768144339153310, guid: b86dc34bde3eaeb4390665bc9036af01, type: 3}
+--- !u!65 &2054317151
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054317146}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.5546615, y: 1.3169155, z: 1.135215}
+  m_Center: {x: 0, y: 0, z: -0.0000019073486}
 --- !u!1001 &2055052593
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -100833,7 +101232,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4157945652724556108, guid: 99678f188375f884ea84f9c1119fa966,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1673319840}
   m_SourcePrefab: {fileID: 100100000, guid: 99678f188375f884ea84f9c1119fa966, type: 3}
 --- !u!1 &2118073970
 GameObject:
