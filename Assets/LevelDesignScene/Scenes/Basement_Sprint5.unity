@@ -460,7 +460,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8383851883304716036}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: mainMenu
         m_Mode: 1
@@ -9523,7 +9523,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8383851883304716036}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: restartGame
         m_Mode: 1
@@ -20552,6 +20552,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 910141665}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &708014972 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 38418e40be75e444a82094c69e251fc7,
+    type: 3}
+  m_PrefabInstance: {fileID: 1627543020}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &718300875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -29448,7 +29454,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8383851883304716036}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: showControls
         m_Mode: 1
@@ -31160,6 +31166,47 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1627543020}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1079988181
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708014972}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0, b: 1, a: 1}
+  outlineWidth: 0
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
+--- !u!136 &1079988182
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 708014972}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.56
+  m_Height: 1.27
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.36, z: 0.22}
 --- !u!1 &1084804200
 GameObject:
   m_ObjectHideFlags: 0
@@ -34958,7 +35005,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8383851883304716036}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: panelDown
         m_Mode: 1
@@ -39435,7 +39482,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8383851883304716036}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: hideControls
         m_Mode: 1
@@ -45212,6 +45259,21 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 38418e40be75e444a82094c69e251fc7,
         type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 38418e40be75e444a82094c69e251fc7,
+        type: 3}
+      propertyPath: m_TagString
+      value: Skeleton
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163162019458792444, guid: 38418e40be75e444a82094c69e251fc7,
+        type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 9163162019458792444, guid: 38418e40be75e444a82094c69e251fc7,
+        type: 3}
       propertyPath: m_TagString
       value: Skeleton
       objectReference: {fileID: 0}
@@ -45222,7 +45284,15 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 2060848826}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 38418e40be75e444a82094c69e251fc7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1079988181}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 38418e40be75e444a82094c69e251fc7,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1079988182}
   m_SourcePrefab: {fileID: 100100000, guid: 38418e40be75e444a82094c69e251fc7, type: 3}
 --- !u!1001 &1629883937
 PrefabInstance:
@@ -59140,7 +59210,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 8383851883304716036}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: quitGame
         m_Mode: 1
