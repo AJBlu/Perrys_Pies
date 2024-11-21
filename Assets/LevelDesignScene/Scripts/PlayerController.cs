@@ -222,6 +222,30 @@ public class PlayerController : MonoBehaviour
                         gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
                     }
                 }
+                if (hit.collider.name == "Eye_Key" || hit.collider.name == "Eye Key")
+                {
+                    keySpace[keyCount] = keyReferences[0];
+                    UIManager.UImanager.keyColor(0, true);
+                    keysGrabbed[0] = true;
+                    GameManager gameManager = FindObjectOfType<GameManager>();
+                    gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
+                }
+                else if (hit.collider.name == "Finger_Key" || hit.collider.name == "Finger Key")
+                {
+                    keySpace[keyCount] = keyReferences[0];
+                    UIManager.UImanager.keyColor(0, true);
+                    keysGrabbed[0] = true;
+                    GameManager gameManager = FindObjectOfType<GameManager>();
+                    gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
+                }
+                else if (hit.collider.name == "Pie_Key" || hit.collider.name == "Pie Key")
+                {
+                    keySpace[keyCount] = keyReferences[0];
+                    UIManager.UImanager.keyColor(0, true);
+                    keysGrabbed[0] = true;
+                    GameManager gameManager = FindObjectOfType<GameManager>();
+                    gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
+                }
                 keyCount++;
                 UIManager.UImanager.keyTextUpdate();
                 return;
