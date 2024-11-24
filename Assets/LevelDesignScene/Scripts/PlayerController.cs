@@ -177,6 +177,7 @@ public class PlayerController : MonoBehaviour
         {
             if (hit.collider.tag == "PieTin")
             {
+                //Prevents sequence breaking; you need the "KeyDeter" before progressing with the story
                 if (!keyDeterGrabbed)
                 {
                     Debug.Log("I feel like I need something else...");
@@ -185,6 +186,7 @@ public class PlayerController : MonoBehaviour
                     UIManager.UImanager.fadingText.GetComponent<FadeText>().fadeTime = 2;
                     return;
                 }
+                //Kicks off the story properly
                 else
                 {
                     hit.collider.gameObject.SetActive(false);
@@ -197,16 +199,19 @@ public class PlayerController : MonoBehaviour
                     return;
                 }
             }
+            //Brings up the elevator panel
             if (hit.collider.gameObject.tag == "EleDoor")
             {
                 UIManager.UImanager.panelUp();
                 return;
             }
+            //Opens or closes the interacted door
             if (hit.collider.tag == "RoomDoor")
             {
                 hit.collider.gameObject.GetComponent<RoomDoor>().isOpen = !hit.collider.gameObject.GetComponent<RoomDoor>().isOpen;
                 return;
             }
+            //Collects the proper key and lights up the right UI element
             if ((hit.collider.tag == "Key") && hit.collider.enabled)
             {
                 hit.collider.gameObject.GetComponent<MeshRenderer>().enabled = false;
@@ -226,6 +231,7 @@ public class PlayerController : MonoBehaviour
                         gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
                     }
                 }
+                //These next three are intended to be edge cases if all else fails with the above statement
                 if (hit.collider.name == "Eye_Key" || hit.collider.name == "Eye Key")
                 {
                     keySpace[keyCount] = keyReferences[0];
@@ -255,11 +261,13 @@ public class PlayerController : MonoBehaviour
                 return;
             }
 
+            //Start the dialog for the skeleton
             if (hit.collider.tag == "Skeleton")
             {
                 UIManager.UImanager.skeletonHint(hit.collider.gameObject);
                 return;
             }
+            //If the interacted object is a genuine distraction
             for (int i = 0; i < inventory.Count; i++)
             {
                 if (isStored)
@@ -289,6 +297,8 @@ public class PlayerController : MonoBehaviour
                     }
                 }
             }
+            //If you interacted with a distraction
+            //but your inventory is full
             if (!isStored)
             {
                 UIManager.UImanager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().text = "There's no more room\nin my pockets for this.";
