@@ -100,6 +100,7 @@ public class UIManager : MonoBehaviour
         keyTextUpdate();
     }
     
+    //Resets the objectives list to the beginning when the game restarts
     public void squareOne()
     {
         pieTinText.GetComponent<TMPro.TextMeshProUGUI>().color = Color.white;
@@ -114,6 +115,8 @@ public class UIManager : MonoBehaviour
     GameObject tempText;
     string tempTextContents;
 
+    //Crosses off the objective that was cleared, fades it away,
+    //and generates the new objectives in its place
     public void crossOff(string clearedObjective)
     {
         tempText = objectiveList.transform.Find(clearedObjective).gameObject;
@@ -135,6 +138,7 @@ public class UIManager : MonoBehaviour
         tempTextContents = null;
     }
 
+    //Shows the controls on the pause menu
     public void showControls()
     {
         pauseMenu.transform.localPosition = new Vector3(0, -600, 0);
@@ -145,6 +149,7 @@ public class UIManager : MonoBehaviour
             new Color32(50, 50, 50, 255);
     }
 
+    //Brings back up the pause menu
     public void hideControls()
     {
         pauseMenu.transform.localPosition = new Vector3(0, -7.5f, 0);
@@ -155,6 +160,7 @@ public class UIManager : MonoBehaviour
             new Color32(50, 50, 50, 0);
     }
 
+    //Responible for fading the text
     public IEnumerator FadeTextToZeroAlpha(float start, GameObject FadeText, string textName)
     {
         while (FadeText.GetComponent<TMPro.TextMeshProUGUI>().alpha > 0.0f)
@@ -174,12 +180,14 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    //Updates the key count objective when a new key is collected
     public void keyTextUpdate()
     {
         keyCountText.GetComponent<TMPro.TextMeshProUGUI>().text = "Objective: Find the Keys ("
             + player.GetComponent<PlayerController>().keyCount + "/3)";
     }
 
+    //Changes the visibility of the specified key sprite
     public void keyColor(int keySlot, bool isObtained)
     {
         if (isObtained) keyImages[keySlot].color = Color.white;
@@ -226,6 +234,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    //Responsible for updating the designated inventory slot with the right image
     public void slotUpdate(int slotNumber, string slotName)
     {
         if (slotName == null)
@@ -287,6 +296,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    //Edge case if anything became missing references upon switching scenes
     public void checkForMissingStuff()
     {
         player = GameObject.Find("Player");
@@ -325,6 +335,8 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    //Responsible for finding the highest scene number in build settings
+    //Used for development purposes
     public int GetLargestBuildIndex()
     {
         int largestIndex = -1; // Initialize with a value that will be overwritten
@@ -347,6 +359,7 @@ public class UIManager : MonoBehaviour
 
     string publicSkeletonHint;
 
+    //Brings up the hint given by the skeleton
     public void skeletonHint(GameObject skeleton)
     {
         activateDialogSwitch(false);
@@ -357,6 +370,7 @@ public class UIManager : MonoBehaviour
         skeleton.GetComponent<SkeletonDialog>().setHintText(skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>(), publicSkeletonHint);
     }
 
+    //Brings up the corresponding lore given by the skeleton
     public void skeletonLore()
     {
         tempSkeleton = GameObject.FindGameObjectWithTag("Skeleton");
@@ -369,6 +383,7 @@ public class UIManager : MonoBehaviour
         skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>().text = skeletonLore;
     }
 
+    //Brings up the previously given hint given by the skeleton
     public void skeletonHintReturn()
     {
         tempSkeleton = GameObject.FindGameObjectWithTag("Skeleton");
@@ -381,11 +396,13 @@ public class UIManager : MonoBehaviour
         skeletonHintText.GetComponent<TMPro.TextMeshProUGUI>().text = skeletonHint;
     }
 
+    //Brings down everything relating to the skeleton hint system
     public void stopSkeletonStuff()
     {
         givingHint = false;
     }
 
+    //
     public void activateDialogSwitch(bool isLore)
     {
         if (!isLore)
@@ -400,6 +417,7 @@ public class UIManager : MonoBehaviour
         }
     }
 
+    //Brings up the elevator panel
     public void panelUp()
     {
         elevatorPanelHolder.SetActive(true);
@@ -411,10 +429,9 @@ public class UIManager : MonoBehaviour
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         menuOpen = true;
-
-        
     }
 
+    //Puts down the elevator panel
     public void panelDown()
     {
         elevatorPanelHolder.SetActive(false);
@@ -448,6 +465,7 @@ public class UIManager : MonoBehaviour
         Application.Quit();
     }
 
+    //Returns to the title screen
     public void mainMenu()
     {
         GameObject eventSystem = GameObject.Find("EventSystem");
@@ -459,6 +477,7 @@ public class UIManager : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    //Restarts the game
     public void restartGame()
     {
         GameObject playerCam = GameObject.FindGameObjectWithTag("MainCamera");
@@ -488,25 +507,33 @@ public class UIManager : MonoBehaviour
         GameManager.gmInstance.resetProgress();
     }
 
+    //Switches scenes to the basement
     public void moveToBasement()
     {
         GameManager.gmInstance.moveToFloor(1, false);
     }
 
+    //Switches scenes to the ground floor
     public void moveToGround()
     {
         GameManager.gmInstance.moveToFloor(2, false);
     }
 
+
+    //Switches scenes to the second floor
     public void moveToFloor2()
     {
         GameManager.gmInstance.moveToFloor(3, false);
     }
 
+    //Switches scenes to the third floor
     public void moveToFloor3()
     {
         GameManager.gmInstance.moveToFloor(4, false);
     }
+
+    //Waits before finding the possibly missing stuff
+    //Accounts for the time in between loading scenes
     public IEnumerator waitAndCheck()
     {
         yield return new WaitForSeconds(1f);

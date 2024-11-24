@@ -63,11 +63,14 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(EventSystemInstance);
     }
 
+    //Gets rid of this object when returning to the main menu
     public void destroyThis()
     {
         Destroy(this.gameObject);
     }
 
+    //Transports the player to the designated floor
+    //Also Accounts for restarting the game
     public void moveToFloor(int pressedButton, bool restarting)
     {
         UIManager.UImanager.panelDown();
@@ -87,6 +90,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    //Finds some items in case they go missing in between scenes
     public void findCrucialStuff()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -115,6 +119,7 @@ public class GameManager : MonoBehaviour
     }
     */
 
+    //Looks for duplicate objects and gets rid of any if applicable
     public void checkForDupes()
     {
         if (EventSystemInstance == null)
@@ -148,11 +153,13 @@ public class GameManager : MonoBehaviour
         player.GetComponent<PlayerController>().verifyInventory();
     }
 
+    //Waits for a certain amount of time
     public IEnumerator waitFor(float seconds)
     {
         yield return new WaitForSeconds(seconds);
     }
 
+    //Deactivates a certain object given its name
     public IEnumerator deactivateByName(string name)
     {
         yield return new WaitForSeconds(0.001f);
@@ -162,6 +169,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.001f);
     }
 
+    //Deactivates a certain object given its tag
     public IEnumerator deactivateByTag(string tag)
     {
         yield return new WaitForSeconds(0.001f);
@@ -171,6 +179,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.001f);
     }
 
+    //Destroys a certain object given its tag
     public IEnumerator destroyByTag(string tag)
     {
         yield return new WaitForSeconds(0.001f);
@@ -180,12 +189,14 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(0.001f);
     }
 
+    //References an object that was collected that pertains to the game's progression
     public void addHiddenItem(GameObject currentItem)
     {
         hiddenObjects.Add(currentItem);
         Debug.Log("Added: " + currentItem);
     }
 
+    //Empties the list of progression objects upon restart
     public void resetProgress()
     {
         /*
@@ -226,7 +237,7 @@ public class GameManager : MonoBehaviour
     }
     */
 
-
+    //Intended to all progression objects when going back into a certain scene
     public IEnumerator destroyProgressObjects()
     {
         if (player.GetComponent<PlayerController>().keyDeterGrabbed) StartCoroutine(deactivateByTag("KeyDeter"));

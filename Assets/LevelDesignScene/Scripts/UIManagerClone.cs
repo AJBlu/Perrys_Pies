@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+//This script is only for the title screen
 public class UIManagerClone : MonoBehaviour
 {
     GameObject mainMenu;
