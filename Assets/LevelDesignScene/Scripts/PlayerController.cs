@@ -90,6 +90,7 @@ public class PlayerController : MonoBehaviour
     {
         DontDestroyOnLoad(this);
 
+        //Ensures that there is only one player game object
         if (playerInstance == null)
         {
             playerInstance = this.gameObject;
@@ -99,6 +100,7 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }
 
+        //References this value when the restart button is pressed
         ogPos = this.gameObject.transform.position;
     }
 
@@ -122,7 +124,7 @@ public class PlayerController : MonoBehaviour
         uiManager = UIManager.UImanager;
     }
 
-    
+    //Looks for the UI in case there was some corruption when transitioning between scenes
     public void findUI()
     {
         if (pickupUI == null)
@@ -132,7 +134,7 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-
+    //Without this, there will be times when the interact message will remain visible on screen.
     public IEnumerator interactBuffer()
     {
         canInteract = false;
@@ -141,6 +143,7 @@ public class PlayerController : MonoBehaviour
         yield return null;
     }
 
+    
     private void Interact(InputAction.CallbackContext obj)
     {
         //Debug.Log("Interacted with: " + hit.collider.name);
@@ -166,6 +169,7 @@ public class PlayerController : MonoBehaviour
     }
     */
 
+    //Handles the interaction for any interactable object
     public void storeLogic()
     {
         bool isStored = false;
@@ -176,7 +180,7 @@ public class PlayerController : MonoBehaviour
                 if (!keyDeterGrabbed)
                 {
                     Debug.Log("I feel like I need something else...");
-                    UIManager.UImanager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().text = "I feel like I'm\nforgetting something";
+                    UIManager.UImanager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().text = "I feel like I'm\nforgetting something...";
                     UIManager.UImanager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().color = Color.white;
                     UIManager.UImanager.fadingText.GetComponent<FadeText>().fadeTime = 2;
                     return;
@@ -295,6 +299,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Referenced when the player switches scenes via the elevator
     public void verifyInventory()
     {
         for (int i = 0; i < inventory.Count; i++)
@@ -306,6 +311,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Another method for preventing the graphical bug
     public void deactivatePickup()
     {
         StartCoroutine(interactBuffer());
@@ -364,6 +370,7 @@ public class PlayerController : MonoBehaviour
 
             if (hit.collider != null)
             {
+                //Removes graphical highlight when looking away from the object
                 if (hit.collider.tag == "Skeleton") hit.collider.GetComponent<Outline>().OutlineWidth = 0;
                 else if ((hit.collider.tag == "BallDeter") || (hit.collider.tag == "KeyDeter") ||
                     (hit.collider.tag == "BagDeter") || (hit.collider.tag == "CanDeter") ||
@@ -377,6 +384,7 @@ public class PlayerController : MonoBehaviour
 
                 pickupUI.SetActive(false);
             }
+            //prevents interact message from remaining visible
             if (!canInteract)
             {
                 pickupUI.SetActive(false);
@@ -384,6 +392,7 @@ public class PlayerController : MonoBehaviour
 
             if (canInteract && (Physics.Raycast(playerCameraTransform.position, playerCameraTransform.forward, out hit, hitRange, pickableLayerMask)))
             {
+                //Highlights the interactable object when looking at it
                 if (hit.collider.tag == "Skeleton") hit.collider.GetComponent<Outline>().OutlineWidth = 5;
                 else if ((hit.collider.tag == "BallDeter") || (hit.collider.tag == "KeyDeter") || 
                     (hit.collider.tag == "BagDeter") || (hit.collider.tag == "CanDeter") ||
@@ -403,9 +412,9 @@ public class PlayerController : MonoBehaviour
                 resetMovement();
                 isLoudMovement = false;
             }
+
             if(Input.GetKeyUp("left ctrl"))
             {
-
                 resetMovement();
                 isCrouched = false;
             }
@@ -454,6 +463,7 @@ public class PlayerController : MonoBehaviour
 
     bool canScroll;
 
+    //Checks which direction the scroll wheel is moving in and changes the selector accordingly
     public void scrollCheck(InputAction.CallbackContext obj)
     {
         if (canScroll)
@@ -463,12 +473,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Pauses the game when it's not and vice versa
     public void pauseToggle(InputAction.CallbackContext obj)
     {
         if (!UIManager.UImanager.gamePaused) UIManager.UImanager.pauseGame();
         else UIManager.UImanager.panelDown();
     }
 
+    //Throws the currently selected distraction when the left mouse button is pressed
     public void leftMouse(InputAction.CallbackContext obj)
     {
         if (UIManager.UImanager.givingHint)
@@ -485,6 +497,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //changes the location of the selector by one slot
     public IEnumerator slotByOne(bool isScrollUp)
     {
         canScroll = false;
@@ -510,6 +523,8 @@ public class PlayerController : MonoBehaviour
 
     float projectileSpeed;
 
+    //Checks which type of distraction is selected
+    //Throws the distraction with its appropriate strength
     public void throwDistraction(GameObject throwable)
     {
         
@@ -553,6 +568,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //Used for calculating movement and sprinting speed
     private void FixedUpdate()
     {
         //Debug.Log(gameObject.GetComponent<Rigidbody>().velocity.magnitude);
@@ -627,6 +643,8 @@ public class PlayerController : MonoBehaviour
         if (currentSpeed == originalSpeed) currentSpeed *= crawlFactor;
     }
 
+    //When the sprint or crouch button is released
+    //The movement speed is reset
     public void resetMovement()
     {
         isCrouched = false;
@@ -635,6 +653,7 @@ public class PlayerController : MonoBehaviour
         playerCameraTransform.transform.position = normalHeight.transform.position;
     }
 
+    //checks if the player is on the ground
     private bool IsGround()
     {
         RaycastHit hit;
@@ -643,10 +662,5 @@ public class PlayerController : MonoBehaviour
             return true;
         }
         return false;
-    }
-
-    private void ResetSpeed()
-    {
-        currentSpeed = originalSpeed;
     }
 }
