@@ -17,6 +17,8 @@ public class GameManager : MonoBehaviour
     public static GameManager gmInstance;
     public bool exitUnlocked;
 
+    public bool introDialoguePlayed;
+
     public List<GameObject> hiddenObjects;
 
     private void Awake()
@@ -51,6 +53,12 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(EventSystemInstance);
         */
         seekDestroyAndDont();
+
+        if (!introDialoguePlayed)
+        {
+            this.gameObject.GetComponent<AudioSource>().Play();
+            introDialoguePlayed = true;
+        }
     }
 
     public void seekDestroyAndDont()
