@@ -85,7 +85,8 @@ public class PlayerController : MonoBehaviour
 
     public bool isLoudMovement, isWalking;
 
-
+    public AudioSource steps;
+    public AudioSource sprint_steps;
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -598,6 +599,8 @@ public class PlayerController : MonoBehaviour
             {
                 sprintLimit -= 0.01f;
             }
+            steps.enabled = false;
+            sprint_steps.enabled = true;
         }
         else
         {
@@ -605,12 +608,26 @@ public class PlayerController : MonoBehaviour
             {
                 sprintLimit += 0.01f;
             }
+            sprint_steps.enabled = false;
         }
         
         if (sprintLimit <= 0)
         {
             resetMovement();
         }
+
+        if (!sprint_steps.enabled)
+        {
+            if (rigid.velocity.magnitude > .1)
+            {
+                steps.enabled = true;
+            }
+            else
+            {
+                steps.enabled = false;
+            }
+        }
+
     }
 
 
