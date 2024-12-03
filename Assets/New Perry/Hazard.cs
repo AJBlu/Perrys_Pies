@@ -5,10 +5,10 @@ using UnityEngine;
 public class Hazard : MonoBehaviour
 {
     Sensor perry_Sensor;
-    PlayerController playerController;
+    public PlayerController playerController;
     
     
-    public AudioClip[] soundsForHazard;
+    public AudioSource soundsForHazard;
     public float nearRadius, medRadius, farRadius;
 
     public bool playerIsInArea;
@@ -76,9 +76,14 @@ public class Hazard : MonoBehaviour
         {
             Debug.Log("Informing Perry");
             perry_Sensor.OnNoiseEvent(gameObject.transform, Priority.SOUNDTRAP);
+            PlayAudio();
         }
     }
 
+    public void PlayAudio()
+    {
+        soundsForHazard.Play();
+    }
 
     /// <summary>
     /// Fill out if Perry needs to be alerted on crouch. If soundtrap is done after being triggered, set soundTrapTriggered to true.

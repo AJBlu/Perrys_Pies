@@ -39,6 +39,11 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        UI = GameObject.Find("Canvas");
+        EventSystem = GameObject.Find("EventSystem");
+
+        //DontDestroyOnLoad(EventSystemInstance);
+
         /*
         player = GameObject.FindGameObjectWithTag("Player");
         UI = GameObject.Find("Canvas");
@@ -50,7 +55,7 @@ public class GameManager : MonoBehaviour
         DontDestroyOnLoad(this);
         DontDestroyOnLoad(EventSystemInstance);
         */
-        seekDestroyAndDont();
+        // seekDestroyAndDont();
     }
 
     public void seekDestroyAndDont()
@@ -122,11 +127,12 @@ public class GameManager : MonoBehaviour
     //Looks for duplicate objects and gets rid of any if applicable
     public void checkForDupes()
     {
+        /*
         if (EventSystemInstance == null)
         {
             EventSystemInstance = EventSystem;
             EventSystemInstance.tag = "TrueEventSystem";
-            EventSystem = null;
+            EventSystem.SetActive(false);
         }
         else
         {
@@ -139,14 +145,16 @@ public class GameManager : MonoBehaviour
         {
             UIinstance = UI;
             UIinstance.tag = "TrUI";
-            UI = null;
+            UI.SetActive(false);
         }
         else
         {
             //Debug.Log("Problematic UI should be destroyed.");
             //Destroy(GameObject.FindGameObjectWithTag("UI"));
             StartCoroutine(destroyByTag("UI"));
+
         }
+        */
         UIManager.UImanager.checkForMissingStuff();
         StartCoroutine(UIManager.UImanager.waitAndCheck());
         player.GetComponent<PlayerController>().findUI();

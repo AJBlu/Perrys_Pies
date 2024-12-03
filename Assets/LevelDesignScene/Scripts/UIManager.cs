@@ -59,16 +59,19 @@ public class UIManager : MonoBehaviour
             DontDestroyOnLoad(this);
         }
         else if (UImanager != this) Destroy(gameObject);
+
+        assignButtons();
+
     }
+
+
 
     GameObject tempSkeleton;
 
     // Start is called before the first frame update
     void Start()
     {
-        pauseMenu = GameObject.FindGameObjectWithTag("PauseMenu");
-        controls = GameObject.Find("Controls");
-        controlsButton = controls.transform.Find("GoBack").gameObject;
+        assignButtons();
 
         controls.GetComponent<Image>().color = new Color(1, 1, 1, 0);
         controlsButton.GetComponent<Image>().color = new Color(1, 1, 1, 0);
@@ -82,7 +85,6 @@ public class UIManager : MonoBehaviour
         {
             keyColor(i, false);
         }
-        panelDown();
         skeletonHintHolder.SetActive(false);
         givingHint = false;
 
@@ -95,11 +97,11 @@ public class UIManager : MonoBehaviour
         escapeText = objectiveList.transform.Find("EscapeInfo").gameObject;
         keyCountText = objectiveList.transform.Find("KeyCountInfo").gameObject;
         returnKeyText = objectiveList.transform.Find("ReturnKeyInfo").gameObject;
-
+        panelDown();
         squareOne();
         keyTextUpdate();
     }
-    
+
     //Resets the objectives list to the beginning when the game restarts
     public void squareOne()
     {
@@ -539,5 +541,47 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         checkForMissingStuff();
         yield return null;
+    }
+
+    private void assignButtons()
+    {
+        elevatorPanelHolder = GameObject.Find("ElevatorScreenParent");
+        pauseHolder = GameObject.Find("PauseMenuHolder");
+        inventoryHolder = GameObject.Find("InventoryParent");
+        player = GameObject.FindGameObjectWithTag("Player");
+
+        elevatorButtons[0] = GameObject.Find("Basement").GetComponent<Button>();
+        elevatorButtons[1] = GameObject.Find("Ground").GetComponent<Button>();
+        elevatorButtons[2] = GameObject.Find("Floor2").GetComponent<Button>();
+        elevatorButtons[3] = GameObject.Find("Floor3").GetComponent<Button>();
+        elevatorPanelHolder.SetActive(false);
+
+        inventorySlots[0] = GameObject.Find("Slot1");
+        inventorySlots[1] = GameObject.Find("Slot2");
+        inventorySlots[2] = GameObject.Find("Slot3");
+        inventorySlots[3] = GameObject.Find("Slot4");
+        inventorySlots[4] = GameObject.Find("Slot5");
+
+        slotIdentifyer = GameObject.Find("SelectorHolder");
+
+        fadingText = GameObject.Find("FadingText");
+
+        keyImageHolder = GameObject.Find("KeysHolder");
+        keyImages[0] = GameObject.Find("Key1Image").GetComponent<Image>();
+        keyImages[1] = GameObject.Find("Key2Image").GetComponent<Image>();
+        keyImages[2] = GameObject.Find("Key3Image").GetComponent<Image>();
+
+        skeletonHintHolder = GameObject.Find("HintHolder");
+        skeletonHintHolder.SetActive(false);
+        skeletonHintText = GameObject.Find("Hint Text");
+
+        objectiveList = GameObject.Find("ObjectiveListHolder");
+        pieTinText = GameObject.Find("pieTinText");
+        escapeText = GameObject.Find("EscapeInfo");
+        keyCountText = GameObject.Find("KeyCountInfo");
+        returnKeyText = GameObject.Find("ReturnKeyInfo");
+        pauseMenu = GameObject.Find("PauseMenu");
+        controls = GameObject.Find("Controls");
+        controlsButton = GameObject.Find("GoBack");
     }
 }

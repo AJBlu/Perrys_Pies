@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8342928542493568868}
   - component: {fileID: -2063695260957312736}
   - component: {fileID: -1341590544192846220}
+  - component: {fileID: -3479099699329757247}
+  - component: {fileID: -8594742723921665047}
   m_Layer: 6
   m_Name: BlueberryBall_Deterrent_Projectile
   m_TagString: BallDeter
@@ -93,6 +95,43 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-3479099699329757247
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5364093903445903690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4061a6d1375488a4aa7d160e27c0613b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Duration: 5
+  Radius: 10
+  Delay: 0.25
+  IsSightBased: 0
+--- !u!135 &-8594742723921665047
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5364093903445903690}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.2
+  m_Center: {x: 0, y: 0.2, z: 0}
 --- !u!1001 &4477714403445729588
 PrefabInstance:
   m_ObjectHideFlags: 0

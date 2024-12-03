@@ -713,12 +713,13 @@ MonoBehaviour:
   interactionInput: {fileID: 4417774981443331334, guid: 7c68a63bb95ef694f95d088a9bc549bd,
     type: 3}
   keyCount: 0
-  ballDeter: {fileID: 5010966276305397424, guid: 6a80c7ac3b7f8684381ca523682d5acf,
+  ballDeter: {fileID: 5364093903445903690, guid: 93272cf148ebbe5409bb9d34289b2681,
     type: 3}
-  bagDeter: {fileID: 875158317567215946, guid: b7bbb88033bd0b04088802ebff9cf94b, type: 3}
-  bellAttract: {fileID: 3377830441188796269, guid: 9f71130fca637324da6a65fa13befefe,
+  bagDeter: {fileID: 4502411245125427587, guid: c899505d684f5ca4d94ff3d9c9b099ac,
     type: 3}
-  sprayAttract: {fileID: 736113820545745498, guid: 4a7c9718076f85148a8963f8bc591379,
+  bellAttract: {fileID: 4229028127027710361, guid: 559b4bee45a5fe445aa074a1e9521c81,
+    type: 3}
+  sprayAttract: {fileID: 8178242621297172211, guid: 9492fa7cb540e3e4d922028b4a37ac35,
     type: 3}
   tinReference: {fileID: 1512990660793436739, guid: 34c8742ba3ce3424595d0a4cf3fb5a80,
     type: 3}
@@ -743,7 +744,7 @@ MonoBehaviour:
   isLoudMovement: 0
   isWalking: 0
   steps: {fileID: 4886364076523445873}
-  sprint_steps: {fileID: 0}
+  sprint_steps: {fileID: 128798131466828056}
 --- !u!82 &4886364076523445873
 AudioSource:
   m_ObjectHideFlags: 0
