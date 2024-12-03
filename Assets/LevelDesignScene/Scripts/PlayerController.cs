@@ -85,7 +85,8 @@ public class PlayerController : MonoBehaviour
 
     public bool isLoudMovement, isWalking;
 
-
+    public AudioSource steps;
+    public AudioSource sprint_steps;
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -121,7 +122,7 @@ public class PlayerController : MonoBehaviour
         selectedSlot = 1;
         canScroll = true;
 
-        uiManager = UIManager.UImanager;
+        uiManager = GameObject.Find("UIManager").GetComponent<UIManager>();
     }
 
     //Looks for the UI in case there was some corruption when transitioning between scenes
@@ -181,9 +182,9 @@ public class PlayerController : MonoBehaviour
                 if (!keyDeterGrabbed)
                 {
                     Debug.Log("I feel like I need something else...");
-                    UIManager.UImanager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().text = "I feel like I'm\nforgetting something...";
-                    UIManager.UImanager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().color = Color.white;
-                    UIManager.UImanager.fadingText.GetComponent<FadeText>().fadeTime = 2;
+                    uiManager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().text = "I feel like I'm\nforgetting something...";
+                    uiManager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().color = Color.white;
+                    uiManager.fadingText.GetComponent<FadeText>().fadeTime = 2;
                     return;
                 }
                 //Kicks off the story properly
@@ -195,14 +196,14 @@ public class PlayerController : MonoBehaviour
                     Debug.Log("Better start running!");
                     GameManager gameManager = FindObjectOfType<GameManager>();
                     gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
-                    UIManager.UImanager.crossOff("PieTinInfo");
+                    uiManager.crossOff("PieTinInfo");
                     return;
                 }
             }
             //Brings up the elevator panel
             if (hit.collider.gameObject.tag == "EleDoor")
             {
-                UIManager.UImanager.panelUp();
+                uiManager.panelUp();
                 return;
             }
             //Opens or closes the interacted door
@@ -225,7 +226,7 @@ public class PlayerController : MonoBehaviour
                     {
                         Debug.Log("Adding a key, but it should be the only one added.");
                         keySpace[keyCount] = keyReferences[i];
-                        UIManager.UImanager.keyColor(i, true);
+                        uiManager.keyColor(i, true);
                         keysGrabbed[i] = true;
                         GameManager gameManager = FindObjectOfType<GameManager>();
                         gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
@@ -235,7 +236,7 @@ public class PlayerController : MonoBehaviour
                 if (hit.collider.name == "Eye_Key" || hit.collider.name == "Eye Key")
                 {
                     keySpace[keyCount] = keyReferences[0];
-                    UIManager.UImanager.keyColor(0, true);
+                    uiManager.keyColor(0, true);
                     keysGrabbed[0] = true;
                     GameManager gameManager = FindObjectOfType<GameManager>();
                     gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
@@ -243,7 +244,7 @@ public class PlayerController : MonoBehaviour
                 else if (hit.collider.name == "Finger_Key" || hit.collider.name == "Finger Key")
                 {
                     keySpace[keyCount] = keyReferences[0];
-                    UIManager.UImanager.keyColor(0, true);
+                    uiManager.keyColor(0, true);
                     keysGrabbed[0] = true;
                     GameManager gameManager = FindObjectOfType<GameManager>();
                     gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
@@ -251,20 +252,20 @@ public class PlayerController : MonoBehaviour
                 else if (hit.collider.name == "Pie_Key" || hit.collider.name == "Pie Key")
                 {
                     keySpace[keyCount] = keyReferences[0];
-                    UIManager.UImanager.keyColor(0, true);
+                    uiManager.keyColor(0, true);
                     keysGrabbed[0] = true;
                     GameManager gameManager = FindObjectOfType<GameManager>();
                     gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
                 }
                 keyCount++;
-                UIManager.UImanager.keyTextUpdate();
+                uiManager.keyTextUpdate();
                 return;
             }
 
             //Start the dialog for the skeleton
             if (hit.collider.tag == "Skeleton")
             {
-                UIManager.UImanager.skeletonHint(hit.collider.gameObject);
+                uiManager.skeletonHint(hit.collider.gameObject);
                 return;
             }
             //If the interacted object is a genuine distraction
@@ -283,7 +284,7 @@ public class PlayerController : MonoBehaviour
                         else if (hit.collider.tag == "BagDeter") inventory[i] = bagDeter;
                         else if (hit.collider.tag == "BellAttract") inventory[i] = bellAttract;
                         else if (hit.collider.tag == "SprayAttract") inventory[i] = sprayAttract;
-                        UIManager.UImanager.slotUpdate(i, hit.collider.tag);
+                        uiManager.slotUpdate(i, hit.collider.tag);
                         if (hit.collider.tag == "KeyDeter")
                         {
                             keyDeterGrabbed = true;
@@ -301,9 +302,9 @@ public class PlayerController : MonoBehaviour
             //but your inventory is full
             if (!isStored)
             {
-                UIManager.UImanager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().text = "There's no more room\nin my pockets for this.";
-                UIManager.UImanager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().color = Color.white;
-                UIManager.UImanager.fadingText.GetComponent<FadeText>().fadeTime = 2;
+                uiManager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().text = "There's no more room\nin my pockets for this.";
+                uiManager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().color = Color.white;
+                uiManager.fadingText.GetComponent<FadeText>().fadeTime = 2;
                 Debug.Log("Inventory is full.");
             }
         }
@@ -316,7 +317,7 @@ public class PlayerController : MonoBehaviour
         {
             if (inventory[i] != null)
             {
-                UIManager.UImanager.slotUpdate(i, inventory[i].gameObject.tag);
+                uiManager.slotUpdate(i, inventory[i].gameObject.tag);
             }
         }
     }
@@ -335,7 +336,7 @@ public class PlayerController : MonoBehaviour
             {
                 for (int i = keySpace.Count; i > 0; i--)
                 {
-                    UIManager.UImanager.keyColor(i - 1, false);
+                    uiManager.keyColor(i - 1, false);
                 }
                 other.gameObject.SetActive(false);
                 GameManager gameManager = FindObjectOfType<GameManager>();
@@ -354,8 +355,8 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
-                UIManager.UImanager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().text = "I don't have a key to unlock this lock.";
-                UIManager.UImanager.fadingText.GetComponent<FadeText>().fadeTime = 2;
+                uiManager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().text = "I don't have a key to unlock this lock.";
+                uiManager.fadingText.GetComponent<FadeText>().fadeTime = 2;
                 Debug.Log("I need a key");
             }
         }
@@ -374,7 +375,7 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!UIManager.UImanager.menuOpen)
+        if (!uiManager.menuOpen)
         {
             ChangeMoveMent();
 
@@ -486,14 +487,14 @@ public class PlayerController : MonoBehaviour
     //Pauses the game when it's not and vice versa
     public void pauseToggle(InputAction.CallbackContext obj)
     {
-        if (!UIManager.UImanager.gamePaused) UIManager.UImanager.pauseGame();
-        else UIManager.UImanager.panelDown();
+        if (!uiManager.gamePaused) UIManager.UImanager.pauseGame();
+        else uiManager.panelDown();
     }
 
     //Throws the currently selected distraction when the left mouse button is pressed
     public void leftMouse(InputAction.CallbackContext obj)
     {
-        if (UIManager.UImanager.givingHint)
+        if (uiManager.givingHint)
         {
             //UIManager.UImanager.givingHint = false;
         }
@@ -573,7 +574,7 @@ public class PlayerController : MonoBehaviour
             if (i + 1 == selectedSlot)
             {
                 inventory[i] = null;
-                UIManager.UImanager.slotUpdate(i, null);
+                uiManager.slotUpdate(i, null);
             }
         }
     }
@@ -598,6 +599,8 @@ public class PlayerController : MonoBehaviour
             {
                 sprintLimit -= 0.01f;
             }
+            steps.enabled = false;
+            sprint_steps.enabled = true;
         }
         else
         {
@@ -605,12 +608,26 @@ public class PlayerController : MonoBehaviour
             {
                 sprintLimit += 0.01f;
             }
+            sprint_steps.enabled = false;
         }
         
         if (sprintLimit <= 0)
         {
             resetMovement();
         }
+
+        if (!sprint_steps.enabled)
+        {
+            if (rigid.velocity.magnitude > .1)
+            {
+                steps.enabled = true;
+            }
+            else
+            {
+                steps.enabled = false;
+            }
+        }
+
     }
 
 

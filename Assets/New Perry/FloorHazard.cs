@@ -8,5 +8,13 @@ public class FloorHazard : Hazard
     {
         base.WalkMovementAction();
         base.AlertPerry(medRadius);
+        base.PlayAudio();
     }
+    public override void LoudMovementAction()
+    {
+        base.LoudMovementAction();
+        base.AlertPerry(farRadius);
+        base.PlayAudio();
+    }
+
 }

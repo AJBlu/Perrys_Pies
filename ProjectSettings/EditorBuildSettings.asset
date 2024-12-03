@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/LevelDesignScene/Scenes/MainMenu.unity
     guid: 26e8e8b0a7df619488a9cde3f8e4c629
   - enabled: 1
+    path: Assets/LevelDesignScene/Scenes/Bakery.unity
+    guid: c835c1961918ee145bd84ab97361c358
+  - enabled: 1
     path: Assets/LevelDesignScene/Scenes/Basement_Sprint5.unity
     guid: 0412ee391195a014d93b5efb7d533237
   m_configObjects: {}
