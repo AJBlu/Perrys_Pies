@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 3293213148139903780}
   - component: {fileID: -6052958734110641124}
   - component: {fileID: -4190108184633681056}
+  - component: {fileID: -1346997319680011396}
+  - component: {fileID: 2666509402211333707}
   m_Layer: 6
   m_Name: IcingBag_Deterrent_Projectile
   m_TagString: BagDeter
@@ -93,6 +95,45 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-1346997319680011396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4502411245125427587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4061a6d1375488a4aa7d160e27c0613b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Duration: 10
+  Radius: 15
+  Delay: 0.25
+  IsSightBased: 1
+--- !u!136 &2666509402211333707
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4502411245125427587}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.12
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.3, z: 0}
 --- !u!1001 &7214434843948416167
 PrefabInstance:
   m_ObjectHideFlags: 0
