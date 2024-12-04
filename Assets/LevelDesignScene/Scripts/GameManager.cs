@@ -61,8 +61,6 @@ public class GameManager : MonoBehaviour
             this.gameObject.GetComponent<AudioSource>().Play();
             introDialoguePlayed = true;
         }
-
-        moveToFloor(2, false);
     }
 
     public void seekDestroyAndDont()
