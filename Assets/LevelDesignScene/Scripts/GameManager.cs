@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> hiddenObjects;
 
+    public List<GameObject> floors;
+
     private void Awake()
     {
         if (gmInstance == null)
@@ -82,7 +84,12 @@ public class GameManager : MonoBehaviour
     public void moveToFloor(int pressedButton, bool restarting)
     {
         UIManager.UImanager.panelDown();
-        SceneManager.LoadScene(pressedButton);
+        //SceneManager.LoadScene(pressedButton);
+        for (int i = 0; i <= floors.Count; i++)
+        {
+            if (i == pressedButton) floors[i].SetActive(true);
+            else floors[i].SetActive(false);
+        }
         player.GetComponent<PlayerController>().currentFloor = pressedButton - 1;
         StartCoroutine(player.GetComponent<PlayerController>().interactBuffer());
         if (pressedButton == 2)
