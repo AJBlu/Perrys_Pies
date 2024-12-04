@@ -239,6 +239,8 @@ public class PlayerController : MonoBehaviour
                     keysGrabbed[0] = true;
                     GameManager gameManager = FindObjectOfType<GameManager>();
                     gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
+                    GameObject keyGlow = hit.collider.gameObject.transform.Find("Key Glow Shell").gameObject;
+                    keyGlow.SetActive(false);
                 }
                 else if (hit.collider.name == "Finger_Key" || hit.collider.name == "Finger Key")
                 {
