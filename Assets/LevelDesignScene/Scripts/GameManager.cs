@@ -61,6 +61,8 @@ public class GameManager : MonoBehaviour
             this.gameObject.GetComponent<AudioSource>().Play();
             introDialoguePlayed = true;
         }
+
+        moveToFloor(2, false);
     }
 
     public void seekDestroyAndDont()
@@ -85,9 +87,12 @@ public class GameManager : MonoBehaviour
     {
         UIManager.UImanager.panelDown();
         //SceneManager.LoadScene(pressedButton);
-        for (int i = 0; i <= floors.Count; i++)
+        for (int i = 0; i < floors.Count; i++)
         {
-            if (i == pressedButton) floors[i].SetActive(true);
+            if (i + 1 == pressedButton)
+            {
+                floors[i].SetActive(true);
+            }
             else floors[i].SetActive(false);
         }
         player.GetComponent<PlayerController>().currentFloor = pressedButton - 1;
