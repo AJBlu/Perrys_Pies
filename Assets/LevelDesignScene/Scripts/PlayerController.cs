@@ -416,6 +416,7 @@ public class PlayerController : MonoBehaviour
                     hit.collider.GetComponent<Outline>().OutlineWidth = 5;
                 else if (hit.collider.tag == "Elevator" && hasPieTin) 
                     hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
+                else hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
 
                 pickupUI.SetActive(true);
             }
