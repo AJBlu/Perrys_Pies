@@ -203,7 +203,9 @@ public class PlayerController : MonoBehaviour
             //Brings up the elevator panel
             if (hit.collider.gameObject.tag == "EleDoor")
             {
+
                 uiManager.panelUp();
+                uiManager.activateWinText();
                 return;
             }
             //Opens or closes the interacted door
@@ -240,6 +242,7 @@ public class PlayerController : MonoBehaviour
                     keysGrabbed[0] = true;
                     GameManager gameManager = FindObjectOfType<GameManager>();
                     gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
+                    hit.collider.gameObject.SetActive(false);
                 }
                 else if (hit.collider.name == "Finger_Key" || hit.collider.name == "Finger Key")
                 {

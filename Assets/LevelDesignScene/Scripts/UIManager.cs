@@ -37,6 +37,8 @@ public class UIManager : MonoBehaviour
     public GameObject keyCountText;
     public GameObject returnKeyText;
 
+
+    public GameObject winText;
     public bool givingHint;
 
     public bool gameOverTriggered;
@@ -49,7 +51,12 @@ public class UIManager : MonoBehaviour
 
     Color middleGray = new Color32(128, 128, 128, 255);
 
-
+    public void activateWinText()
+    {
+        winText.SetActive(true);
+        elevatorPanelHolder.SetActive(false);
+        Time.timeScale = 0;
+    }
 
     private void Awake()
     {
@@ -59,8 +66,6 @@ public class UIManager : MonoBehaviour
             DontDestroyOnLoad(this);
         }
         else if (UImanager != this) Destroy(gameObject);
-
-        assignButtons();
 
     }
 
@@ -545,6 +550,7 @@ public class UIManager : MonoBehaviour
 
     private void assignButtons()
     {
+
         elevatorPanelHolder = GameObject.Find("ElevatorScreenParent");
         pauseHolder = GameObject.Find("PauseMenuHolder");
         inventoryHolder = GameObject.Find("InventoryParent");
@@ -583,5 +589,8 @@ public class UIManager : MonoBehaviour
         pauseMenu = GameObject.Find("PauseMenu");
         controls = GameObject.Find("Controls");
         controlsButton = GameObject.Find("GoBack");
+
+        winText = GameObject.Find("WinText");
+        winText.SetActive(false);
     }
 }
