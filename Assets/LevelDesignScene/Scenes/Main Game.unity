@@ -11146,7 +11146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   renderers:
-  - {fileID: 2078545561}
+  - {fileID: 282652303}
   color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!136 &282652301
 CapsuleCollider:
@@ -11171,6 +11171,56 @@ CapsuleCollider:
   m_Height: 24.1
   m_Direction: 1
   m_Center: {x: -1.3, y: 11.85, z: 0}
+--- !u!23 &282652303
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282652298}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 6b4de697134bc0549847ca7ccf18bbac, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
+--- !u!33 &282652304
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 282652298}
+  m_Mesh: {fileID: 3783106631749671318, guid: c78799a7bb15700499c8babef4aa1a44, type: 3}
 --- !u!1 &284055059 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 735841434785758102, guid: fc7e5facd75a22a48aed4bbb61bd53ce,
@@ -80804,6 +80854,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8846209482994105525, guid: 08d036652f9a0dc43bd3255e893270f4,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9159805433824196237, guid: 08d036652f9a0dc43bd3255e893270f4,
         type: 3}
       propertyPath: m_LocalScale.x
@@ -80886,6 +80941,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 282652300}
+    - targetCorrespondingSourceObject: {fileID: 5627642897862543294, guid: 08d036652f9a0dc43bd3255e893270f4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 282652304}
+    - targetCorrespondingSourceObject: {fileID: 5627642897862543294, guid: 08d036652f9a0dc43bd3255e893270f4,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 282652303}
   m_SourcePrefab: {fileID: 100100000, guid: 08d036652f9a0dc43bd3255e893270f4, type: 3}
 --- !u!4 &2142258657 stripped
 Transform:
