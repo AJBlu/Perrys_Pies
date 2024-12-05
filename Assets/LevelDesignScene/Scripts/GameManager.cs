@@ -25,12 +25,6 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        if (gmInstance == null)
-        {
-            gmInstance = this;
-            DontDestroyOnLoad(this);
-        }
-        else if (gmInstance != this) Destroy(gameObject);
         player = GameObject.FindGameObjectWithTag("Player");
         perry = GameObject.FindGameObjectWithTag("Perry");
         if (perry != null)
@@ -49,10 +43,6 @@ public class GameManager : MonoBehaviour
         UIManager = GameObject.Find("UIManager");
         EventSystem = GameObject.Find("EventSystem");
         checkForDupes();
-        DontDestroyOnLoad(UIinstance);
-        DontDestroyOnLoad(UIManager);
-        DontDestroyOnLoad(this);
-        DontDestroyOnLoad(EventSystemInstance);
         */
         seekDestroyAndDont();
 
@@ -67,10 +57,6 @@ public class GameManager : MonoBehaviour
     {
         findCrucialStuff();
         checkForDupes();
-        DontDestroyOnLoad(UIinstance);
-        DontDestroyOnLoad(uiManager);
-        DontDestroyOnLoad(this);
-        DontDestroyOnLoad(EventSystemInstance);
     }
 
     //Gets rid of this object when returning to the main menu

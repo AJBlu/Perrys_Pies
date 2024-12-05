@@ -1589,84 +1589,6 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1811162549}
   m_SourcePrefab: {fileID: 100100000, guid: 7ad6e13312c422e4c95a588edaa12676, type: 3}
---- !u!1 &20892497
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 20892498}
-  - component: {fileID: 20892499}
-  m_Layer: 0
-  m_Name: UIManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &20892498
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 20892497}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 450.33334, y: 269.33337, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &20892499
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 20892497}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27345c159182aae42b602cbf03c19839, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  elevatorPanelHolder: {fileID: 0}
-  pauseHolder: {fileID: 0}
-  inventoryHolder: {fileID: 0}
-  player: {fileID: 2059999511}
-  menuOpen: 0
-  gamePaused: 0
-  elevatorButtons:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  inventorySlots:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  slotIdentifyer: {fileID: 0}
-  fadingText: {fileID: 0}
-  keyImageHolder: {fileID: 0}
-  keyImages:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  skeletonHintHolder: {fileID: 0}
-  skeletonHintText: {fileID: 0}
-  objectiveList: {fileID: 0}
-  pieTinText: {fileID: 0}
-  escapeText: {fileID: 0}
-  keyCountText: {fileID: 0}
-  returnKeyText: {fileID: 0}
-  givingHint: 0
-  gameOverTriggered: 0
-  distractionSprites: []
 --- !u!1001 &21192043
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17378,58 +17300,6 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 452233719}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &452715463
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 452715464}
-  - component: {fileID: 452715465}
-  m_Layer: 0
-  m_Name: GameManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &452715464
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 452715463}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 450.33334, y: 269.33337, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &452715465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 452715463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c7bc76754a58be4dbb65882187cce0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  perry: {fileID: 0}
-  player: {fileID: 2059999511}
-  UI: {fileID: 0}
-  EventSystem: {fileID: 1906555715}
-  exitUnlocked: 0
-  introDialoguePlayed: 0
-  hiddenObjects: []
-  floors: []
 --- !u!1001 &453806265
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -31282,6 +31152,7 @@ MonoBehaviour:
   pauseHolder: {fileID: 1525441420}
   inventoryHolder: {fileID: 654738162}
   player: {fileID: 2059999511}
+  gameManager: {fileID: 0}
   menuOpen: 0
   gamePaused: 0
   elevatorButtons:
@@ -81184,8 +81055,6 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1760964703}
-  - {fileID: 452715464}
-  - {fileID: 20892498}
   - {fileID: 1906555716}
   - {fileID: 51716104}
   - {fileID: 12875206}
