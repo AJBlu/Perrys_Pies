@@ -56,7 +56,6 @@ public class UIManager : MonoBehaviour
         if (UImanager == null)
         {
             UImanager = this;
-            DontDestroyOnLoad(this);
         }
         else if (UImanager != this) Destroy(gameObject);
     }

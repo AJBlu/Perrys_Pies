@@ -88,18 +88,6 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        DontDestroyOnLoad(this);
-
-        //Ensures that there is only one player game object
-        if (playerInstance == null)
-        {
-            playerInstance = this.gameObject;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-
         //References this value when the restart button is pressed
         ogPos = this.gameObject.transform.position;
     }
