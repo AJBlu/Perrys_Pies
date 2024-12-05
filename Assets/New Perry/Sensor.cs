@@ -18,7 +18,7 @@ public class Sensor : MonoBehaviour
     public bool checkingEyeContact;
     public bool playerSeenByEyeContactCheck;
 
-
+    public AudioSource alert;
     private void Awake()
     {
         _cd = closeRadius;

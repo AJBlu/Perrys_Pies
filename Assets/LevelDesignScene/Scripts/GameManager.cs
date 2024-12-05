@@ -207,6 +207,7 @@ public class GameManager : MonoBehaviour
     //Empties the list of progression objects upon restart
     public void resetProgress()
     {
+        Time.timeScale = 1;
         /*
         StartCoroutine(respawnItemByTag("Lock"));
         StartCoroutine(respawnItemByTag("PieTin"));

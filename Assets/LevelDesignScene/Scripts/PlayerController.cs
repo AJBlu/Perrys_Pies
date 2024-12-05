@@ -7,6 +7,7 @@ using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject alt_restart;
     public LayerMask pickableLayerMask;
     public Transform playerCameraTransform;
     public GameObject pickupUI;
@@ -108,6 +109,7 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        alt_restart.SetActive(false);
         interactionInput.action.performed += Interact;
         rigid = GetComponent<Rigidbody>();
         originalSpeed = currentSpeed = 5f;
@@ -204,8 +206,14 @@ public class PlayerController : MonoBehaviour
             if (hit.collider.gameObject.tag == "EleDoor")
             {
 
-                uiManager.panelUp();
-                uiManager.activateWinText();
+                //uiManager.panelUp();
+                if (keySpace[0] != null)
+                {
+                    uiManager.menuOpen = true;
+                    Time.timeScale = 0;
+                    uiManager.activateWinText();
+                    alt_restart.SetActive(true);
+                }
                 return;
             }
             //Opens or closes the interacted door
@@ -243,6 +251,8 @@ public class PlayerController : MonoBehaviour
                     GameManager gameManager = FindObjectOfType<GameManager>();
                     gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
                     hit.collider.gameObject.SetActive(false);
+                    //temporary; for beta build
+                    uiManager.crossOff("PieTinInfo");
                 }
                 else if (hit.collider.name == "Finger_Key" || hit.collider.name == "Finger Key")
                 {
@@ -585,6 +595,7 @@ public class PlayerController : MonoBehaviour
     //Used for calculating movement and sprinting speed
     private void FixedUpdate()
     {
+        Debug.Log(Time.timeScale);
         //Debug.Log(gameObject.GetComponent<Rigidbody>().velocity.magnitude);
         if (canMove)
         {

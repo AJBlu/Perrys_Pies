@@ -37,7 +37,7 @@ public class UIManager : MonoBehaviour
     public GameObject keyCountText;
     public GameObject returnKeyText;
 
-
+    public GameObject Activator;
     public GameObject winText;
     public bool givingHint;
 
@@ -48,13 +48,26 @@ public class UIManager : MonoBehaviour
     GameObject pauseMenu;
     GameObject controls;
     GameObject controlsButton;
+    GameObject lossText;
+    GameObject altRestart;
 
     Color middleGray = new Color32(128, 128, 128, 255);
 
     public void activateWinText()
     {
+        //Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.None;
         winText.SetActive(true);
-        elevatorPanelHolder.SetActive(false);
+        //elevatorPanelHolder.SetActive(false);
+        Time.timeScale = 0;
+    }
+
+    public void activateLossText()
+    {
+        //Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.None;
+        //altRestart.SetActive(true);
+        lossText.SetActive(true);
         Time.timeScale = 0;
     }
 
@@ -76,6 +89,11 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
+        altRestart = GameObject.Find("Alt_Restart");
+        altRestart.SetActive(false);
+        lossText = GameObject.Find("LossText");
+        lossText.SetActive(false);
         assignButtons();
 
         controls.GetComponent<Image>().color = new Color(1, 1, 1, 0);
@@ -136,7 +154,7 @@ public class UIManager : MonoBehaviour
         if (clearedObjective == "PieTinInfo")
         {
             escapeText.GetComponent<TMPro.TextMeshProUGUI>().alpha = 1f;
-            keyCountText.GetComponent<TMPro.TextMeshProUGUI>().alpha = 1f;
+            //keyCountText.GetComponent<TMPro.TextMeshProUGUI>().alpha = 1f;
         }
 
         StartCoroutine(FadeTextToZeroAlpha(2f, tempText, tempText.name));
@@ -487,9 +505,10 @@ public class UIManager : MonoBehaviour
     //Restarts the game
     public void restartGame()
     {
+        gameOverTriggered = false;
         GameObject playerCam = GameObject.FindGameObjectWithTag("MainCamera");
 
-        GameManager.gmInstance.moveToFloor(2, true);
+        //GameManager.gmInstance.moveToFloor(2, true);
         //player.GetComponent<PlayerController>().transform.position = player.GetComponent<PlayerController>().ogPos;
         Debug.Log("PlayerCam should reset rotation.");
         playerCam.gameObject.GetComponent<FirstPersonCamera>().resetRotation();
@@ -510,7 +529,13 @@ public class UIManager : MonoBehaviour
             }
         }
         player.GetComponent<PlayerController>().keyCount = 0;
-
+        altRestart.SetActive(false);
+        winText.SetActive(false);
+        lossText.SetActive(false);
+        if(GameObject.FindGameObjectWithTag("Perry") != null)
+            GameObject.FindGameObjectWithTag("Perry").SetActive(false);
+        Activator.SetActive(false);
+        Activator.SetActive(true);
         GameManager.gmInstance.resetProgress();
     }
 

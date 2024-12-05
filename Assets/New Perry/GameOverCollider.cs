@@ -26,7 +26,8 @@ public class GameOverCollider : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             Debug.Log("Player is here.");
-            UIM.gameOverTriggered = true;
+            UIM.activateLossText();
+            //UIM.gameOverTriggered = true;
             Perry.GetComponent<Navigation>().caughtPlayer = true;
             //Cursor.lockState = CursorLockMode.None;
         }

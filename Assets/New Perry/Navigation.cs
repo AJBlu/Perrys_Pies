@@ -28,7 +28,8 @@ public class Navigation : MonoBehaviour
     public List<GameObject> patrolNodes = new List<GameObject>();
 
     private GameOverCollider gameOverCollider;
-
+    public AudioSource dragging;
+    public AudioSource dragging_chase;
     public void Awake()
     {
         NewStateMachine = GetComponent<NewStateMachine>();
@@ -42,6 +43,32 @@ public class Navigation : MonoBehaviour
 
     public void FixedUpdate()
     {
+        if (NavMeshAgent.speed > 0)
+        {
+            if (NewStateMachine.currentState != States.PURSUIT)
+            {
+                dragging_chase.enabled = false;
+                dragging.enabled = true;
+            }
+            else
+            {
+                dragging.enabled = false;
+                dragging_chase.enabled = true;
+            }
+
+            if (caughtPlayer)
+            {
+                Debug.Log("Lose screen activated");
+                var trash = GameObject.Find("UIManager").GetComponent<UIManager>();
+                trash.activateLossText();
+            }
+
+        }
+        else
+        {
+            dragging.enabled = false;
+            dragging_chase.enabled = false;
+        }
         if (!caughtPlayer || !stopMoving)
         {
             //if current state of things is...

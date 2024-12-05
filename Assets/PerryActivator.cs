@@ -8,19 +8,24 @@ public class PerryActivator : MonoBehaviour
     public GameObject Perry;
     public bool isBakery;
     public AudioSource ding;
-    private void Awake()
+    bool perryActive;
+    private void OnEnable()
     {
-        Perry.gameObject.SetActive(false);
+        perryActive = false;
+        Perry.SetActive(false);
+        Debug.Log("Restarting Coroutine");
         if (!isBakery)
             StartCoroutine("SpawnInTen");
+
     }
 
     public void FixedUpdate()
     {
         if (isBakery)
         {
-            if (pc.keyDeterGrabbed)
+            if (pc.keyDeterGrabbed && !perryActive)
             {
+                perryActive=true;
                 Perry.gameObject.SetActive(true);
                 ding.Play();
             }
