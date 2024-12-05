@@ -11,7 +11,7 @@ public class UIManager : MonoBehaviour
     public GameObject pauseHolder;
     public GameObject inventoryHolder;
     public GameObject player;
-    public static GameManager gameManager;
+    public GameManager gameManager;
 
     public static UIManager UImanager;
 
@@ -85,7 +85,7 @@ public class UIManager : MonoBehaviour
         skeletonHintHolder.SetActive(false);
         givingHint = false;
 
-        gameManager = GameManager.gmInstance;
+        gameManager = FindAnyObjectByType<GameManager>();
 
         tempSkeleton = GameObject.FindGameObjectWithTag("Skeleton");
 
@@ -351,7 +351,7 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < elevatorButtons.Count; i++)
         {
-            if ((i == player.GetComponent<PlayerController>().currentFloor) || (i + 1 > GameManager.gmInstance.floors.Count)) elevatorButtons[i].interactable = false;
+            if ((i == player.GetComponent<PlayerController>().currentFloor) || (i + 1 > gameManager.floors.Count)) elevatorButtons[i].interactable = false;
             else elevatorButtons[i].interactable = true;
         }
     }
@@ -469,7 +469,7 @@ public class UIManager : MonoBehaviour
     {
         GameObject eventSystem = GameObject.Find("EventSystem");
         SceneManager.LoadScene("MainMenu");
-        GameManager.gmInstance.destroyThis();
+        gameManager.destroyThis();
         Destroy(player);
         Destroy(eventSystem);
         Destroy(pauseHolder.transform.parent.gameObject);
@@ -481,7 +481,7 @@ public class UIManager : MonoBehaviour
     {
         GameObject playerCam = GameObject.FindGameObjectWithTag("MainCamera");
 
-        GameManager.gmInstance.moveToFloor(2, true);
+        gameManager.moveToFloor(2, true);
         //player.GetComponent<PlayerController>().transform.position = player.GetComponent<PlayerController>().ogPos;
         Debug.Log("PlayerCam should reset rotation.");
         playerCam.gameObject.GetComponent<FirstPersonCamera>().resetRotation();
@@ -503,32 +503,32 @@ public class UIManager : MonoBehaviour
         }
         player.GetComponent<PlayerController>().keyCount = 0;
 
-        GameManager.gmInstance.resetProgress();
+        gameManager.resetProgress();
     }
 
     //Switches scenes to the basement
     public void moveToBasement()
     {
-        GameManager.gmInstance.moveToFloor(1, false);
+        gameManager.moveToFloor(1, false);
     }
 
     //Switches scenes to the ground floor
     public void moveToGround()
     {
-        GameManager.gmInstance.moveToFloor(2, false);
+        gameManager.moveToFloor(2, false);
     }
 
 
     //Switches scenes to the second floor
     public void moveToFloor2()
     {
-        GameManager.gmInstance.moveToFloor(3, false);
+        gameManager.moveToFloor(3, false);
     }
 
     //Switches scenes to the third floor
     public void moveToFloor3()
     {
-        GameManager.gmInstance.moveToFloor(4, false);
+        gameManager.moveToFloor(4, false);
     }
 
     //Waits before finding the possibly missing stuff
