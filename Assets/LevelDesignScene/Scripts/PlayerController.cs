@@ -589,7 +589,7 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(gameObject.GetComponent<Rigidbody>().velocity.magnitude);
         if (canMove)
         {
-            rigid.velocity = transform.TransformDirection(movement);
+            rigid.velocity = this.gameObject.transform.TransformDirection(movement);
             isWalking = true;
         }
         else
