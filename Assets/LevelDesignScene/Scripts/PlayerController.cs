@@ -194,6 +194,7 @@ public class PlayerController : MonoBehaviour
             if (hit.collider.gameObject.tag == "EleDoor")
             {
                 uiManager.panelUp();
+                /*
                 if (keySpace[0] != null)
                 {
                     uiManager.menuOpen = true;
@@ -201,6 +202,7 @@ public class PlayerController : MonoBehaviour
                     uiManager.activateWinText();
                     alt_restart.SetActive(true);
                 }
+                */
                 return;
             }
             //Opens or closes the interacted door
