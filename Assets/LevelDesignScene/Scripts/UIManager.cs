@@ -89,10 +89,10 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         
-        altRestart = GameObject.Find("Alt_Restart");
-        altRestart.SetActive(false);
-        lossText = GameObject.Find("LossText");
-        lossText.SetActive(false);
+        //altRestart = GameObject.Find("Alt_Restart");
+        //altRestart.SetActive(false);
+        //lossText = GameObject.Find("LossText");
+        //lossText.SetActive(false);
         assignButtons();
 
         controls.GetComponent<Image>().color = new Color(1, 1, 1, 0);
@@ -614,7 +614,7 @@ public class UIManager : MonoBehaviour
         controls = GameObject.Find("Controls");
         controlsButton = GameObject.Find("GoBack");
 
-        winText = GameObject.Find("WinText");
-        winText.SetActive(false);
+        //winText = GameObject.Find("WinText");
+        //winText.SetActive(false);
     }
 }

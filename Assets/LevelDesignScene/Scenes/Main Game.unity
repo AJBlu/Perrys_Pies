@@ -32059,7 +32059,10 @@ MonoBehaviour:
   exitUnlocked: 0
   introDialoguePlayed: 0
   hiddenObjects: []
-  floors: []
+  floors:
+  - {fileID: 1048734437}
+  - {fileID: 922189276}
+  - {fileID: 1860523293}
 --- !u!4 &828227170
 Transform:
   m_ObjectHideFlags: 0
@@ -35898,6 +35901,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ea4b75de4a368d34ebb6e5a3573c0573,
     type: 3}
   m_PrefabInstance: {fileID: 594408336}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &922189276 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 841238974301910533, guid: a7297cc304c37df42ab789a46b8737bb,
+    type: 3}
+  m_PrefabInstance: {fileID: 12875206}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &923435597 stripped
 Transform:
@@ -45636,7 +45645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1196820307
 RectTransform:
   m_ObjectHideFlags: 0
@@ -45931,7 +45940,7 @@ MonoBehaviour:
   pauseHolder: {fileID: 2105522476}
   inventoryHolder: {fileID: 561383448}
   player: {fileID: 1004652166}
-  gameManager: {fileID: 0}
+  gameManager: {fileID: 828227169}
   menuOpen: 0
   gamePaused: 0
   elevatorButtons:
@@ -70621,6 +70630,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: ea4b75de4a368d34ebb6e5a3573c0573,
     type: 3}
   m_PrefabInstance: {fileID: 1093049106}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1860523293 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8230688082621498547, guid: 61e35b617e90d1c45a176e0263c27512,
+    type: 3}
+  m_PrefabInstance: {fileID: 1667755981}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1861043118
 PrefabInstance:

@@ -193,8 +193,7 @@ public class PlayerController : MonoBehaviour
             //Brings up the elevator panel
             if (hit.collider.gameObject.tag == "EleDoor")
             {
-
-                //uiManager.panelUp();
+                uiManager.panelUp();
                 if (keySpace[0] != null)
                 {
                     uiManager.menuOpen = true;
