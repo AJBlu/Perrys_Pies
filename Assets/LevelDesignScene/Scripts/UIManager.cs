@@ -395,7 +395,7 @@ public class UIManager : MonoBehaviour
                 else if (keyImages[i].color == Color.black)
                 {
                     if (i == 0) elevatorButtons[i].interactable = true;
-                    else if (i + 2 <= gameManager.floors.Count) elevatorButtons[i + 1].interactable = true;
+                    else if (i + 2 < gameManager.floors.Count) elevatorButtons[i + 1].interactable = true;
                 }
             }
         }
