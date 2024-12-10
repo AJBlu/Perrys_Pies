@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 426172473211004219}
   - component: {fileID: 8435163709156855501}
+  - component: {fileID: 1022943148444826961}
+  - component: {fileID: 4295648391751341455}
   m_Layer: 0
   m_Name: Use_Vase Prefab
   m_TagString: Untagged
@@ -52,6 +54,60 @@ LODGroup:
     renderers:
     - renderer: {fileID: 6575467107034015216}
   m_Enabled: 1
+--- !u!135 &1022943148444826961
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3092913315424642872}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 1.2442844
+  m_Center: {x: 0, y: 0.7442825, z: 0}
+--- !u!114 &4295648391751341455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3092913315424642872}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5e206bedc14011f4986c6743d9d56fca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  executeOnEnter:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 8300000, guid: f4bc54d2d65736b4489dc43b611eb650, type: 3}
+        m_TargetAssemblyTypeName: 
+        m_MethodName: 
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  executeOnExit:
+    m_PersistentCalls:
+      m_Calls: []
+  triggerTag: Player
+  triggerEnterOnlyOnce: 1
+  triggerExitOnlyOnce: 0
 --- !u!1 &8051370494440813951
 GameObject:
   m_ObjectHideFlags: 0
