@@ -32171,6 +32171,7 @@ MonoBehaviour:
   - {fileID: 922189276}
   - {fileID: 1860523293}
   - {fileID: 813511830}
+  kitchenParticles: {fileID: 0}
 --- !u!4 &828227170
 Transform:
   m_ObjectHideFlags: 0
@@ -39028,6 +39029,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 774385520574989335, guid: 36998493345497e43b89ec2c7a876e63,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3779113868538040823, guid: 36998493345497e43b89ec2c7a876e63,
         type: 3}
