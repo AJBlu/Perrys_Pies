@@ -193,7 +193,13 @@ public class PlayerController : MonoBehaviour
             //Brings up the elevator panel
             if (hit.collider.gameObject.tag == "EleDoor")
             {
-                uiManager.panelUp();
+                if (!hasPieTin)
+                {
+                    uiManager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().text = "I feel like I'm\nforgetting something...";
+                    uiManager.fadingText.GetComponent<TMPro.TextMeshProUGUI>().color = Color.white;
+                    uiManager.fadingText.GetComponent<FadeText>().fadeTime = 2;
+                }
+                else uiManager.panelUp();
                 /*
                 if (keySpace[0] != null)
                 {
@@ -250,6 +256,7 @@ public class PlayerController : MonoBehaviour
                     keysGrabbed[1] = true;
                     GameManager gameManager = FindObjectOfType<GameManager>();
                     gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
+                    hit.collider.gameObject.SetActive(false);
                 }
                 else if (hit.collider.name == "Pie_Key" || hit.collider.name == "Pie Key")
                 {
@@ -258,6 +265,7 @@ public class PlayerController : MonoBehaviour
                     keysGrabbed[1] = true;
                     GameManager gameManager = FindObjectOfType<GameManager>();
                     gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
+                    hit.collider.gameObject.SetActive(false);
                 }
                 keyCount++;
                 uiManager.keyTextUpdate();
@@ -415,8 +423,6 @@ public class PlayerController : MonoBehaviour
                 else if ((hit.collider.tag == "BellAttract") || (hit.collider.tag == "SprayAttract") ||
                     (hit.collider.tag == "CandleAttract"))
                     hit.collider.GetComponent<Outline>().OutlineWidth = 5;
-                else if (hit.collider.tag == "Elevator" && hasPieTin) 
-                    hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
                 else hit.collider.GetComponent<Highlight>()?.ToggleHighlight(true);
 
                 pickupUI.SetActive(true);
