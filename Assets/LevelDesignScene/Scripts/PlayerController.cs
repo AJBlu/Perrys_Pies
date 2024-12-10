@@ -245,17 +245,17 @@ public class PlayerController : MonoBehaviour
                 }
                 else if (hit.collider.name == "Finger_Key" || hit.collider.name == "Finger Key")
                 {
-                    keySpace[keyCount] = keyReferences[0];
-                    uiManager.keyColor(0, true);
-                    keysGrabbed[0] = true;
+                    keySpace[keyCount] = keyReferences[1];
+                    uiManager.keyColor(1, true);
+                    keysGrabbed[1] = true;
                     GameManager gameManager = FindObjectOfType<GameManager>();
                     gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
                 }
                 else if (hit.collider.name == "Pie_Key" || hit.collider.name == "Pie Key")
                 {
-                    keySpace[keyCount] = keyReferences[0];
-                    uiManager.keyColor(0, true);
-                    keysGrabbed[0] = true;
+                    keySpace[keyCount] = keyReferences[2];
+                    uiManager.keyColor(2, true);
+                    keysGrabbed[1] = true;
                     GameManager gameManager = FindObjectOfType<GameManager>();
                     gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
                 }
