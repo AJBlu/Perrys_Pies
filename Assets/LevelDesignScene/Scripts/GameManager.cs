@@ -23,6 +23,8 @@ public class GameManager : MonoBehaviour
 
     public List<GameObject> floors;
 
+    public GameObject kitchenParticles;
+
     private void Awake()
     {
         player = GameObject.FindGameObjectWithTag("Player");
@@ -51,6 +53,10 @@ public class GameManager : MonoBehaviour
             this.gameObject.GetComponent<AudioSource>().Play();
             introDialoguePlayed = true;
         }
+
+        kitchenParticles = player.GetComponent<PlayerController>()
+            .playerCameraTransform.Find("Onboard DustParticles").gameObject;
+        kitchenParticles.SetActive(false);
     }
 
     public void seekDestroyAndDont()
@@ -92,6 +98,12 @@ public class GameManager : MonoBehaviour
 
             }
         }
+
+        if (pressedButton == 3)
+        {
+            kitchenParticles.SetActive(true);
+        }
+        else kitchenParticles.SetActive(false);
     }
 
     //Finds some items in case they go missing in between scenes
