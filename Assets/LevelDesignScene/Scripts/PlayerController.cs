@@ -250,6 +250,7 @@ public class PlayerController : MonoBehaviour
                     keysGrabbed[1] = true;
                     GameManager gameManager = FindObjectOfType<GameManager>();
                     gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
+                    hit.collider.gameObject.SetActive(false);
                 }
                 else if (hit.collider.name == "Pie_Key" || hit.collider.name == "Pie Key")
                 {
@@ -258,6 +259,7 @@ public class PlayerController : MonoBehaviour
                     keysGrabbed[1] = true;
                     GameManager gameManager = FindObjectOfType<GameManager>();
                     gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
+                    hit.collider.gameObject.SetActive(false);
                 }
                 keyCount++;
                 uiManager.keyTextUpdate();

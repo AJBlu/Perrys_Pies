@@ -390,12 +390,14 @@ public class UIManager : MonoBehaviour
                 if (keyImages[i].color == Color.white)
                 {
                     if (i == 0) elevatorButtons[i].interactable = false;
-                    else if (i + 2 > gameManager.floors.Count) elevatorButtons[i + 1].interactable = false;
+                    else if (i == 1) elevatorButtons[3].interactable = false;
+                    else if (i == 2) elevatorButtons[2].interactable = false;
                 }
                 else if (keyImages[i].color == Color.black)
                 {
                     if (i == 0) elevatorButtons[i].interactable = true;
-                    else if (i + 2 < gameManager.floors.Count) elevatorButtons[i + 1].interactable = true;
+                    else if (i == 1) elevatorButtons[3].interactable = true;
+                    else if (i == 2) elevatorButtons[2].interactable = true;
                 }
             }
         }
