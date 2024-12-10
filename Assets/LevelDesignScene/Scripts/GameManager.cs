@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        if (pressedButton == 3)
+        if (pressedButton == 4)
         {
             kitchenParticles.SetActive(true);
         }
