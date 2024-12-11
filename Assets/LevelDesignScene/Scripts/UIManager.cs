@@ -155,7 +155,7 @@ public class UIManager : MonoBehaviour
         if (clearedObjective == "PieTinInfo")
         {
             escapeText.GetComponent<TMPro.TextMeshProUGUI>().alpha = 1f;
-            //keyCountText.GetComponent<TMPro.TextMeshProUGUI>().alpha = 1f;
+            keyCountText.GetComponent<TMPro.TextMeshProUGUI>().alpha = 1f;
         }
 
         StartCoroutine(FadeTextToZeroAlpha(2f, tempText, tempText.name));
