@@ -555,6 +555,7 @@ public class UIManager : MonoBehaviour
         Activator.SetActive(false);
         Activator.SetActive(true);
         GameManager.gmInstance.resetProgress();
+        squareOne();
     }
 
     //Switches scenes to the basement
