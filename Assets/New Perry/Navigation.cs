@@ -30,6 +30,8 @@ public class Navigation : MonoBehaviour
     private GameOverCollider gameOverCollider;
     public AudioSource dragging;
     public AudioSource dragging_chase;
+
+    public Animator ASM;
     public void Awake()
     {
         NewStateMachine = GetComponent<NewStateMachine>();
@@ -43,15 +45,19 @@ public class Navigation : MonoBehaviour
 
     public void FixedUpdate()
     {
+
         if (NavMeshAgent.speed > 0)
         {
+            ASM.SetBool("IsMoving", true);
             if (NewStateMachine.currentState != States.PURSUIT)
             {
+                ASM.SetBool("IsPursuing", false);
                 dragging_chase.enabled = false;
                 dragging.enabled = true;
             }
             else
             {
+                ASM.SetBool("IsPursuing", true);
                 dragging.enabled = false;
                 dragging_chase.enabled = true;
             }
@@ -66,6 +72,7 @@ public class Navigation : MonoBehaviour
         }
         else
         {
+            ASM.SetBool("IsMoving", false);
             dragging.enabled = false;
             dragging_chase.enabled = false;
         }
@@ -79,7 +86,9 @@ public class Navigation : MonoBehaviour
                 {
                     Debug.Log("Starting Patrol Routine");
                     //run patrol coroutine
-                    StartCoroutine(PatrolRoute());
+                    //
+                    //StartCoroutine(PatrolRoute());
+                    NavMeshAgent.SetDestination(TargetNode.gameObject.transform.position);
                 }
             }
             //search
@@ -138,7 +147,7 @@ public class Navigation : MonoBehaviour
     public IEnumerator PatrolRoute()
     {
         Debug.Log("Patrol route starting.");
-        //NavMeshAgent.ResetPath();
+        NavMeshAgent.ResetPath();
         if (TargetNode != null)
         {
             Debug.Log("Setting destination here.");
@@ -208,18 +217,23 @@ public class Navigation : MonoBehaviour
     {
         if(state == States.PATROL)
         {
+            ASM.SetBool("IsPursuing", false);
             isPatrolling = false;
             NavMeshAgent.speed = PatrolSpeed;
         }
         if(state == States.SEARCH) {
+            ASM.SetBool("IsPursuing", false);
+
             NavMeshAgent.speed = SearchSpeed;
         }
         if(state == States.PURSUIT)
         {
+            ASM.SetBool("IsPursuing", true);
             NavMeshAgent.speed = PursuitSpeed;
         }
         if(state == States.TRAPPED)
         {
+            ASM.SetBool("IsPursuing", true);
             NavMeshAgent.speed = PursuitSpeed;
         }
     }
