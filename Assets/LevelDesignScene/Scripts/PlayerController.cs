@@ -246,8 +246,6 @@ public class PlayerController : MonoBehaviour
                     GameManager gameManager = FindObjectOfType<GameManager>();
                     gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
                     hit.collider.gameObject.SetActive(false);
-                    //temporary; for beta build
-                    uiManager.crossOff("PieTinInfo");
                 }
                 else if (hit.collider.name == "Finger_Key" || hit.collider.name == "Finger Key")
                 {

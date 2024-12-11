@@ -155,7 +155,7 @@ public class UIManager : MonoBehaviour
         if (clearedObjective == "PieTinInfo")
         {
             escapeText.GetComponent<TMPro.TextMeshProUGUI>().alpha = 1f;
-            //keyCountText.GetComponent<TMPro.TextMeshProUGUI>().alpha = 1f;
+            keyCountText.GetComponent<TMPro.TextMeshProUGUI>().alpha = 1f;
         }
 
         StartCoroutine(FadeTextToZeroAlpha(2f, tempText, tempText.name));
@@ -555,6 +555,7 @@ public class UIManager : MonoBehaviour
         Activator.SetActive(false);
         Activator.SetActive(true);
         GameManager.gmInstance.resetProgress();
+        squareOne();
     }
 
     //Switches scenes to the basement
