@@ -16,6 +16,8 @@ public class TitleManager : MonoBehaviour
     public GameObject knownIssuesButton;
     public GameObject knownIssuesText;
 
+    public AudioSource menuMusic;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -44,6 +46,8 @@ public class TitleManager : MonoBehaviour
     {
         vp.clip = videos[1];
         vp.isLooping = true;
+
+        menuMusic.Play();
     }
 
     public IEnumerator FadeMenuToFullAlpha(float buffer, VideoPlayer vp)
