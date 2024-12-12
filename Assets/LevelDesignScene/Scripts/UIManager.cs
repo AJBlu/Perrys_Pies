@@ -392,26 +392,23 @@ public class UIManager : MonoBehaviour
         }
 
         //If you have a certain key, then the floor will be inaccessible
-        for (int i = 0; i < keyImages.Count; i++)
+        for (int i = 0; i < player.GetComponent<PlayerController>().keysGrabbed.Count; i++)
         {
-            if (keyImages[i].color == Color.white)
+            if (player.GetComponent<PlayerController>().keysGrabbed[i])
             {
-                if (i == 0) elevatorButtons[i].interactable = false;
-                else if (i == 1) elevatorButtons[3].interactable = false;
-                else if (i == 2) elevatorButtons[2].interactable = false;
+                if ((i == 0) && (elevatorButtons[0].interactable)) elevatorButtons[i].interactable = false;
+                else if ((i == 1) && (elevatorButtons[3].interactable)) elevatorButtons[3].interactable = false;
+                else if ((i == 2) && (elevatorButtons[2].interactable)) elevatorButtons[2].interactable = false;
             }
-            else if (keyImages[i].color == Color.black)
+            else
             {
-                if (i == 0) elevatorButtons[i].interactable = true;
-                else if (i == 1) elevatorButtons[3].interactable = true;
-                else if (i == 2) elevatorButtons[2].interactable = true;
+                if ((i == 0) && (player.GetComponent<PlayerController>().currentFloor != 0))
+                    elevatorButtons[i].interactable = true;
+                else if ((i == 1) && (player.GetComponent<PlayerController>().currentFloor != 3))
+                    elevatorButtons[3].interactable = true;
+                else if ((i == 1) && (player.GetComponent<PlayerController>().currentFloor != 2))
+                    elevatorButtons[2].interactable = true;
             }
-        }
-
-        for (int i = 0; i < elevatorButtons.Count; i++)
-        {
-            if (i == player.GetComponent<PlayerController>().currentFloor) elevatorButtons[i].interactable = false;
-            else elevatorButtons[i].interactable = true;
         }
     }
 
