@@ -95,7 +95,25 @@ public class GameManager : MonoBehaviour
             if (!restarting)
             {
                 StartCoroutine(destroyProgressObjects());
+            }
+            bool fullCompletion = false;
 
+            for (int i = 0; i < player.GetComponent<PlayerController>().keysGrabbed.Count; i++)
+            {
+                if (player.GetComponent<PlayerController>().keysGrabbed[i])
+                {
+                    fullCompletion = true;
+                }
+                else
+                {
+                    fullCompletion = false;
+                    return;
+                }
+            }
+
+            if (fullCompletion)
+            {
+                uiManager.activateWinText();
             }
         }
 

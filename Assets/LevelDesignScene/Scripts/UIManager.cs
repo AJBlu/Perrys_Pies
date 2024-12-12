@@ -415,8 +415,8 @@ public class UIManager : MonoBehaviour
             if (player.GetComponent<PlayerController>().keysGrabbed[i])
             {
                 if ((i == 0) && (elevatorButtons[0].interactable)) elevatorButtons[i].interactable = false;
-                else if ((i == 1) && (elevatorButtons[3].interactable)) elevatorButtons[3].interactable = false;
-                else if ((i == 2) && (elevatorButtons[2].interactable)) elevatorButtons[2].interactable = false;
+                else if ((i == 1) && (elevatorButtons[2].interactable)) elevatorButtons[2].interactable = false;
+                else if ((i == 2) && (elevatorButtons[3].interactable)) elevatorButtons[3].interactable = false;
             }
             else
             {
