@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6315869161414035843}
   - component: {fileID: -974419830712760753}
   - component: {fileID: -359646085902329466}
+  - component: {fileID: -5616693772329834969}
+  - component: {fileID: -8464630711357748881}
   m_Layer: 6
   m_Name: CherryCan_Deterrent_Projectile
   m_TagString: CanAttract
@@ -93,6 +95,45 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &-5616693772329834969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4767474547208590238}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4061a6d1375488a4aa7d160e27c0613b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Duration: 0
+  Radius: 0
+  Delay: 0
+  IsSightBased: 0
+--- !u!136 &-8464630711357748881
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4767474547208590238}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &7068835349058181144
 PrefabInstance:
   m_ObjectHideFlags: 0

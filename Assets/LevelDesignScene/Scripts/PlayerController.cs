@@ -64,6 +64,10 @@ public class PlayerController : MonoBehaviour
     public GameObject bagDeter;
     public GameObject bellAttract;
     public GameObject sprayAttract;
+    public GameObject candleAttract;
+    public GameObject canDeter;
+    public GameObject pieDeter;
+
     public GameObject tinReference;
 
     public List<GameObject> keyReferences;
