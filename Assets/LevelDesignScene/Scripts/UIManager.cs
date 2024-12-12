@@ -526,7 +526,7 @@ public class UIManager : MonoBehaviour
     public void mainMenu()
     {
         GameObject eventSystem = GameObject.Find("EventSystem");
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(2);
         gameManager.destroyThis();
         Destroy(player);
         Destroy(eventSystem);
