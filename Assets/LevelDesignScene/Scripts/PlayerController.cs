@@ -507,7 +507,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
-            if (inventory[selectedSlot - 1] != null)
+            if (inventory[selectedSlot - 1] != null && !UIManager.UImanager.menuOpen)
             {
                 throwDistraction(inventory[selectedSlot - 1]);
             }
