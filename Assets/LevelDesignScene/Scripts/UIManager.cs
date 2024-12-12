@@ -76,6 +76,7 @@ public class UIManager : MonoBehaviour
         menuOpen = true;
         gameManager.GetComponent<AudioSource>().Stop();
         perry.GetComponent<AudioSource>().Stop();
+        player.GetComponent<AudioSource>().Stop();
     }
 
     private void Awake()
