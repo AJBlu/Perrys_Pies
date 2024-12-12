@@ -222,16 +222,13 @@ MonoBehaviour:
       m_Calls: []
   m_text: '- Floor 3 can become unavailable to go to if not chosen first
 
-    - Crouch
-    is currently not working
+    - NemoStar
+    is not interactable
 
-    - NemoStar is not interactable
+    - Uncommon issue where all interactables stop working
 
-    - Uncommon
-    issue where all interactables stop working
-
-    - Perry can get stuck outside
-    of the level when changing levels
+    -
+    Perry can get stuck outside of the level when changing levels
 
     - '
   m_isRightToLeft: 0
