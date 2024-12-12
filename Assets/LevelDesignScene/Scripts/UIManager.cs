@@ -91,8 +91,8 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         
-        //altRestart = GameObject.Find("Alt_Restart");
-        //winHolder.SetActive(false);
+        winHolder = GameObject.Find("WinHolder");
+        winHolder.SetActive(false);
         lossHolder = GameObject.Find("LoseHolder");
         lossHolder.SetActive(false);
         assignButtons();
