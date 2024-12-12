@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Video;
@@ -12,6 +13,8 @@ public class TitleManager : MonoBehaviour
     public GameObject startButton;
     public GameObject quitButton;
     public GameObject logo;
+    public GameObject knownIssuesButton;
+    public GameObject knownIssuesText;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +28,11 @@ public class TitleManager : MonoBehaviour
         startButton.GetComponent<Image>().color = new Color(1, 1, 1, 0);
         quitButton.GetComponent<Image>().color = new Color(1, 1, 1, 0);
         logo.GetComponent<RawImage>().color = new Color(1, 1, 1, 0);
+        
+        
+        // Known Issues Button
+        knownIssuesButton.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+        knownIssuesText.SetActive(false);
 
         startButton.GetComponent<Button>().interactable = false;
         quitButton.GetComponent<Button>().interactable = false;
@@ -50,6 +58,13 @@ public class TitleManager : MonoBehaviour
                 (1, 1, 1, quitButton.GetComponent<Image>().color.a + (Time.deltaTime / Mathf.Abs(2)));
             logo.GetComponent<RawImage>().color = new Color
                 (1, 1, 1, logo.GetComponent<RawImage>().color.a + (Time.deltaTime / Mathf.Abs(2)));
+
+            // Known Issues Button
+            knownIssuesButton.GetComponent<Image>().color = new Color
+                (1, 1, 1, knownIssuesButton.GetComponent<Image>().color.a + (Time.deltaTime / Mathf.Abs(2)));
+            knownIssuesText.SetActive(true);
+
+
             yield return null;
         }
 
