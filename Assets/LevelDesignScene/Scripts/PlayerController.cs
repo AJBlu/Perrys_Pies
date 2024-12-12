@@ -66,7 +66,9 @@ public class PlayerController : MonoBehaviour
     public GameObject sprayAttract;
     public GameObject candleAttract;
     public GameObject canDeter;
-    public GameObject pieDeter;
+    public GameObject pieDeterA;
+    public GameObject pieDeterB;
+    public GameObject pieDeterC;
 
     public GameObject tinReference;
 
@@ -77,7 +79,12 @@ public class PlayerController : MonoBehaviour
     public float ballThrowStrength;
     public float bagThrowStrength;
     public float bellThrowStrength;
+    public float sprayThrowStrength;
+    public float candleThrowStrength;
     public float canThrowStrength;
+    public float pieThrowStrengthA;
+    public float pieThrowStrengthB;
+    public float pieThrowStrengthC;
 
     public GameObject target;
 
@@ -296,6 +303,11 @@ public class PlayerController : MonoBehaviour
                         else if (hit.collider.tag == "BagDeter") inventory[i] = bagDeter;
                         else if (hit.collider.tag == "BellAttract") inventory[i] = bellAttract;
                         else if (hit.collider.tag == "SprayAttract") inventory[i] = sprayAttract;
+                        else if (hit.collider.tag == "CandleAttract") inventory[i] = candleAttract;
+                        else if (hit.collider.tag == "CanDeter") inventory[i] = canDeter;
+                        else if (hit.collider.tag == "PieDeterA") inventory[i] = pieDeterA;
+                        else if (hit.collider.tag == "PieDeterB") inventory[i] = pieDeterB;
+                        else if (hit.collider.tag == "PieDeterC") inventory[i] = pieDeterC;
                         uiManager.slotUpdate(i, hit.collider.tag);
                         if (hit.collider.tag == "KeyDeter")
                         {
@@ -573,8 +585,38 @@ public class PlayerController : MonoBehaviour
         if (throwable == sprayAttract)
         {
             //target.transform.position = this.transform.position + (this.transform.forward * canThrowStrength);
-            projectileSpeed = canThrowStrength;
+            projectileSpeed = sprayThrowStrength;
             Debug.Log("Throwing Pie Scent");
+        }
+        if (throwable == candleAttract)
+        {
+            //target.transform.position = this.transform.position + (this.transform.forward * canThrowStrength);
+            projectileSpeed = candleThrowStrength;
+            Debug.Log("Throwing Candle");
+        }
+        if (throwable == canDeter)
+        {
+            //target.transform.position = this.transform.position + (this.transform.forward * canThrowStrength);
+            projectileSpeed = canThrowStrength;
+            Debug.Log("Throwing Canned Fruit");
+        }
+        if (throwable == pieDeterA)
+        {
+            //target.transform.position = this.transform.position + (this.transform.forward * canThrowStrength);
+            projectileSpeed = pieThrowStrengthA;
+            Debug.Log("Throwing Apple Pie");
+        }
+        if (throwable == pieDeterB)
+        {
+            //target.transform.position = this.transform.position + (this.transform.forward * canThrowStrength);
+            projectileSpeed = pieThrowStrengthB;
+            Debug.Log("Throwing Blueberry Pie");
+        }
+        if (throwable == pieDeterC)
+        {
+            //target.transform.position = this.transform.position + (this.transform.forward * canThrowStrength);
+            projectileSpeed = pieThrowStrengthC;
+            Debug.Log("Throwing Cherry Pie");
         }
         var position = transform.position + transform.forward;
         var rotation = transform.rotation;
