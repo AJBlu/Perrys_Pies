@@ -79,6 +79,18 @@ public class UIManager : MonoBehaviour
         player.GetComponent<AudioSource>().Stop();
     }
 
+    public void activateWinText()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        winHolder.SetActive(true);
+        Time.timeScale = 0;
+        menuOpen = true;
+        gameManager.GetComponent<AudioSource>().Stop();
+        perry.GetComponent<AudioSource>().Stop();
+        player.GetComponent<AudioSource>().Stop();
+    }
+
     private void Awake()
     {
         if (UImanager == null)
