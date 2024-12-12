@@ -387,7 +387,7 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < elevatorButtons.Count; i++)
         {
-            if ((i == player.GetComponent<PlayerController>().currentFloor) || (i + 1 > gameManager.floors.Count)) elevatorButtons[i].interactable = false;
+            if (i == player.GetComponent<PlayerController>().currentFloor) elevatorButtons[i].interactable = false;
             else elevatorButtons[i].interactable = true;
         }
 
@@ -406,6 +406,12 @@ public class UIManager : MonoBehaviour
                 else if (i == 1) elevatorButtons[3].interactable = true;
                 else if (i == 2) elevatorButtons[2].interactable = true;
             }
+        }
+
+        for (int i = 0; i < elevatorButtons.Count; i++)
+        {
+            if (i == player.GetComponent<PlayerController>().currentFloor) elevatorButtons[i].interactable = false;
+            else elevatorButtons[i].interactable = true;
         }
     }
 
