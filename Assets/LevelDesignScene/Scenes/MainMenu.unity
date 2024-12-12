@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3340791
 RectTransform:
   m_ObjectHideFlags: 0
@@ -175,7 +175,7 @@ GameObject:
   - component: {fileID: 85485249}
   - component: {fileID: 85485248}
   m_Layer: 5
-  m_Name: Issues
+  m_Name: IssuesText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -225,7 +225,15 @@ MonoBehaviour:
     - Crouch
     is currently not working
 
-    - NemoStar is not interactable'
+    - NemoStar is not interactable
+
+    - Uncommon
+    issue where all interactables stop working
+
+    - Perry can get stuck outside
+    of the level when changing levels
+
+    - '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -264,7 +272,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 1.89
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
