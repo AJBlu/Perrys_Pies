@@ -32,6 +32,10 @@ public class Navigation : MonoBehaviour
     public AudioSource dragging_chase;
 
     public Animator ASM;
+
+
+    // Audio Source Maximum Distance Variable
+    public float MaxAudioDist = 3f;
     public void Awake()
     {
         NewStateMachine = GetComponent<NewStateMachine>();
@@ -41,6 +45,10 @@ public class Navigation : MonoBehaviour
         gameOverCollider = GameObject.Find("GameOverCollider").GetComponent<GameOverCollider>();
         gameOverCollider.GameOver.AddListener(OnGameOver);
         caughtPlayer = false;
+
+        // Setting the maximum distance value on Awake
+        dragging.maxDistance = MaxAudioDist;
+        dragging_chase.maxDistance = MaxAudioDist;
     }
 
     public void FixedUpdate()
