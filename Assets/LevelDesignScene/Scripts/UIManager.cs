@@ -474,6 +474,8 @@ public class UIManager : MonoBehaviour
         menuOpen = true;
     }
 
+    bool reservedPlayingClip;
+
     //Puts down the elevator panel
     public void panelDown()
     {
@@ -487,6 +489,12 @@ public class UIManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         menuOpen = false;
         gamePaused = false;
+
+        if (reservedPlayingClip)
+        {
+            player.GetComponent<AudioSource>().Play();
+            reservedPlayingClip = false;
+        }
     }
 
     public void pauseGame()
@@ -501,6 +509,12 @@ public class UIManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         menuOpen = true;
         gamePaused = true;
+
+        if (player.GetComponent<AudioSource>().isPlaying) 
+        { 
+            player.GetComponent<AudioSource>().Pause();
+            reservedPlayingClip = true;
+        }
     }
     public void quitGame()
     {
