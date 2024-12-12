@@ -269,7 +269,7 @@ public class PlayerController : MonoBehaviour
                 {
                     keySpace[keyCount] = keyReferences[2];
                     uiManager.keyColor(2, true);
-                    keysGrabbed[1] = true;
+                    keysGrabbed[2] = true;
                     GameManager gameManager = FindObjectOfType<GameManager>();
                     gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
                     hit.collider.gameObject.SetActive(false);
