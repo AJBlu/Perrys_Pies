@@ -26,7 +26,10 @@ public class TitleManager : MonoBehaviour
         quitButton.GetComponent<Image>().color = new Color(1, 1, 1, 0);
         logo.GetComponent<RawImage>().color = new Color(1, 1, 1, 0);
 
-        StartCoroutine(FadeMenuToFullAlpha(24.5f));
+        startButton.GetComponent<Button>().interactable = false;
+        quitButton.GetComponent<Button>().interactable = false;
+
+        StartCoroutine(FadeMenuToFullAlpha(24.5f, videoPlayer));
     }
 
     void EndReached(VideoPlayer vp)
@@ -35,7 +38,7 @@ public class TitleManager : MonoBehaviour
         vp.isLooping = true;
     }
 
-    public IEnumerator FadeMenuToFullAlpha(float buffer)
+    public IEnumerator FadeMenuToFullAlpha(float buffer, VideoPlayer vp)
     {
         yield return new WaitForSeconds(Mathf.Abs(buffer));
 
@@ -49,6 +52,13 @@ public class TitleManager : MonoBehaviour
                 (1, 1, 1, logo.GetComponent<RawImage>().color.a + (Time.deltaTime / Mathf.Abs(2)));
             yield return null;
         }
+
+        startButton.GetComponent<Button>().interactable = true;
+        quitButton.GetComponent<Button>().interactable = true;
+
+        yield return new WaitForSeconds(2f);
+
+        EndReached(vp);
     }
 
     // Update is called once per frame
