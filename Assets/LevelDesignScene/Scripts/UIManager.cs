@@ -258,6 +258,15 @@ public class UIManager : MonoBehaviour
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
         }
+
+        if (reservedPlayingClip && pauseMenuActive)
+        {
+            gameManager.GetComponent<AudioSource>().Pause();
+        }
+        else
+        {
+            gameManager.GetComponent<AudioSource>().UnPause();
+        }
     }
 
     //Responsible for updating the designated inventory slot with the right image
@@ -475,6 +484,7 @@ public class UIManager : MonoBehaviour
     }
 
     bool reservedPlayingClip;
+    bool pauseMenuActive;
 
     //Puts down the elevator panel
     public void panelDown()
@@ -484,6 +494,7 @@ public class UIManager : MonoBehaviour
         inventoryHolder.SetActive(true);
         slotIdentifyer.SetActive(true);
         keyImageHolder.SetActive(true);
+        pauseMenuActive = false;
         Time.timeScale = 1;
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -492,7 +503,6 @@ public class UIManager : MonoBehaviour
 
         if (reservedPlayingClip)
         {
-            player.GetComponent<AudioSource>().Play();
             reservedPlayingClip = false;
         }
     }
@@ -504,15 +514,15 @@ public class UIManager : MonoBehaviour
         slotIdentifyer.SetActive(false);
         keyImageHolder.SetActive(false);
         pauseHolder.SetActive(true);
+        pauseMenuActive = true;
         Time.timeScale = 0;
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.None;
         menuOpen = true;
         gamePaused = true;
 
-        if (player.GetComponent<AudioSource>().isPlaying) 
-        { 
-            player.GetComponent<AudioSource>().Pause();
+        if (!reservedPlayingClip) 
+        {
             reservedPlayingClip = true;
         }
     }
@@ -526,7 +536,7 @@ public class UIManager : MonoBehaviour
     public void mainMenu()
     {
         GameObject eventSystem = GameObject.Find("EventSystem");
-        SceneManager.LoadScene("MainMenu");
+        SceneManager.LoadScene(2);
         gameManager.destroyThis();
         Destroy(player);
         Destroy(eventSystem);
