@@ -52,6 +52,8 @@ public class UIManager : MonoBehaviour
     GameObject controlsButton;
     GameObject altRestart;
 
+    public GameObject perry;
+
     Color middleGray = new Color32(128, 128, 128, 255);
 
     /*
@@ -71,6 +73,9 @@ public class UIManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         lossHolder.SetActive(true);
         Time.timeScale = 0;
+        menuOpen = true;
+        gameManager.GetComponent<AudioSource>().Stop();
+        perry.GetComponent<AudioSource>().Stop();
     }
 
     private void Awake()
@@ -90,7 +95,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        //perry = GameObject.Find("Perry");
         winHolder = GameObject.Find("WinHolder");
         winHolder.SetActive(false);
         lossHolder = GameObject.Find("LoseHolder");

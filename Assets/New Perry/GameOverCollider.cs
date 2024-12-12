@@ -30,6 +30,7 @@ public class GameOverCollider : MonoBehaviour
             //UIM.gameOverTriggered = true;
             Perry.GetComponent<Navigation>().caughtPlayer = true;
             //Cursor.lockState = CursorLockMode.None;
+
         }
     }
 
