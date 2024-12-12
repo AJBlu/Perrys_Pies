@@ -7,7 +7,7 @@ using UnityEngine.Events;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject alt_restart;
+    //public GameObject alt_restart;
     public LayerMask pickableLayerMask;
     public Transform playerCameraTransform;
     public GameObject pickupUI;
@@ -97,7 +97,6 @@ public class PlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        alt_restart.SetActive(false);
         interactionInput.action.performed += Interact;
         rigid = GetComponent<Rigidbody>();
         originalSpeed = currentSpeed = 5f;
@@ -246,8 +245,6 @@ public class PlayerController : MonoBehaviour
                     GameManager gameManager = FindObjectOfType<GameManager>();
                     gameManager.GetComponent<GameManager>().addHiddenItem(hit.collider.gameObject);
                     hit.collider.gameObject.SetActive(false);
-                    //temporary; for beta build
-                    uiManager.crossOff("PieTinInfo");
                 }
                 else if (hit.collider.name == "Finger_Key" || hit.collider.name == "Finger Key")
                 {
