@@ -38,17 +38,18 @@ public class UIManager : MonoBehaviour
     public GameObject returnKeyText;
 
     public GameObject Activator;
-    public GameObject winText;
     public bool givingHint;
 
     public bool gameOverTriggered;
 
     public List<Sprite> distractionSprites;
 
+    public GameObject lossHolder;
+    public GameObject winHolder;
+
     GameObject pauseMenu;
     GameObject controls;
     GameObject controlsButton;
-    GameObject lossText;
     GameObject altRestart;
 
     Color middleGray = new Color32(128, 128, 128, 255);
@@ -66,10 +67,9 @@ public class UIManager : MonoBehaviour
 
     public void activateLossText()
     {
-        //Cursor.visible = true;
-        //Cursor.lockState = CursorLockMode.None;
-        //altRestart.SetActive(true);
-        lossText.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        lossHolder.SetActive(true);
         Time.timeScale = 0;
     }
 
@@ -92,9 +92,9 @@ public class UIManager : MonoBehaviour
     {
         
         //altRestart = GameObject.Find("Alt_Restart");
-        //altRestart.SetActive(false);
-        //lossText = GameObject.Find("LossText");
-        //lossText.SetActive(false);
+        //winHolder.SetActive(false);
+        lossHolder = GameObject.Find("LoseHolder");
+        lossHolder.SetActive(false);
         assignButtons();
 
         controls.GetComponent<Image>().color = new Color(1, 1, 1, 0);
@@ -575,8 +575,8 @@ public class UIManager : MonoBehaviour
         }
         player.GetComponent<PlayerController>().keyCount = 0;
         altRestart.SetActive(false);
-        winText.SetActive(false);
-        lossText.SetActive(false);
+        winHolder.SetActive(false);
+        lossHolder.SetActive(false);
         if(GameObject.FindGameObjectWithTag("Perry") != null)
             GameObject.FindGameObjectWithTag("Perry").SetActive(false);
         Activator.SetActive(false);
