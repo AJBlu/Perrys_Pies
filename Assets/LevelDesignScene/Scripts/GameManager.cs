@@ -96,6 +96,7 @@ public class GameManager : MonoBehaviour
             {
                 StartCoroutine(destroyProgressObjects());
             }
+
             bool fullCompletion = false;
 
             for (int i = 0; i < player.GetComponent<PlayerController>().keysGrabbed.Count; i++)
