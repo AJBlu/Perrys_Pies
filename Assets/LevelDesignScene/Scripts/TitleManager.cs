@@ -24,9 +24,9 @@ public class TitleManager : MonoBehaviour
 
         startButton.GetComponent<Image>().color = new Color(1, 1, 1, 0);
         quitButton.GetComponent<Image>().color = new Color(1, 1, 1, 0);
-        logo.GetComponent<Image>().color = new Color(1, 1, 1, 0);
+        logo.GetComponent<RawImage>().color = new Color(1, 1, 1, 0);
 
-        StartCoroutine(FadeMenuToFullAlpha(-26f));
+        StartCoroutine(FadeMenuToFullAlpha(24.5f));
     }
 
     void EndReached(VideoPlayer vp)
@@ -35,16 +35,18 @@ public class TitleManager : MonoBehaviour
         vp.isLooping = true;
     }
 
-    public IEnumerator FadeMenuToFullAlpha(float start)
+    public IEnumerator FadeMenuToFullAlpha(float buffer)
     {
+        yield return new WaitForSeconds(Mathf.Abs(buffer));
+
         while (startButton.GetComponent<Image>().color.a < 1.0f)
         {
             startButton.GetComponent<Image>().color = new Color
-                (1, 1, 1, startButton.GetComponent<Image>().color.a - (Time.deltaTime / start));
+                (1, 1, 1, startButton.GetComponent<Image>().color.a + (Time.deltaTime / Mathf.Abs(2)));
             quitButton.GetComponent<Image>().color = new Color
-                (1, 1, 1, quitButton.GetComponent<Image>().color.a - (Time.deltaTime / start));
-            logo.GetComponent<Image>().color = new Color
-                (1, 1, 1, logo.GetComponent<Image>().color.a - (Time.deltaTime / start));
+                (1, 1, 1, quitButton.GetComponent<Image>().color.a + (Time.deltaTime / Mathf.Abs(2)));
+            logo.GetComponent<RawImage>().color = new Color
+                (1, 1, 1, logo.GetComponent<RawImage>().color.a + (Time.deltaTime / Mathf.Abs(2)));
             yield return null;
         }
     }
